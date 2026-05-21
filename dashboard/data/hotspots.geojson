@@ -1,0 +1,92 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "updated_at": "2026-05-21",
+    "source": "dashboard/data/hotspots.json",
+    "status": "prototype",
+    "geo_precision_note": "部分座標為 prototype fallback，待正式 geocoding 更新。"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "hotspot-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.4497,
+          23.4808
+        ]
+      },
+      "properties": {
+        "name": "文化路商圈",
+        "district": "西區",
+        "category": "停車 / 人行",
+        "department": "交通處",
+        "score": 92.0,
+        "action": "商圈動線與停車熱點專案",
+        "issue_tags": [
+          "traffic",
+          "parking",
+          "pedestrian",
+          "market"
+        ],
+        "source_count": 0,
+        "geo_precision": "prototype",
+        "review_status": "prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hotspot-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.4456,
+          23.4787
+        ]
+      },
+      "properties": {
+        "name": "市場周邊",
+        "district": "西區",
+        "category": "垃圾 / 動線",
+        "department": "環保局 / 建設處",
+        "score": 78.0,
+        "action": "市場周邊環境改善與卸貨規劃",
+        "issue_tags": [
+          "environment",
+          "market"
+        ],
+        "source_count": 0,
+        "geo_precision": "prototype",
+        "review_status": "prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hotspot-3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.4528,
+          23.4758
+        ]
+      },
+      "properties": {
+        "name": "學校周邊",
+        "district": "西區",
+        "category": "通學安全",
+        "department": "交通處 / 教育處",
+        "score": 71.0,
+        "action": "通學步道與接送區改善",
+        "issue_tags": [
+          "traffic",
+          "school",
+          "safety"
+        ],
+        "source_count": 0,
+        "geo_precision": "prototype",
+        "review_status": "prototype"
+      }
+    }
+  ]
+}
