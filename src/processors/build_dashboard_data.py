@@ -49,12 +49,12 @@ def build_issue_ranking():
 def build_hotspots():
     return [
         {
-            "name": "文化路夜市",
-            "district": "西區",
+            "name": "文化路商圈",
+            "district": "西區 / 東區交界",
             "category": "停車 / 人行",
             "department": "交通處",
             "score": 92,
-            "action": "夜間動線與停車熱點專案",
+            "action": "商圈動線與停車熱點專案",
             "x": 22,
             "y": 38,
         },
