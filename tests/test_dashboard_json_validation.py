@@ -8,6 +8,7 @@ DASHBOARD_DATA_DIR = ROOT / "dashboard" / "data"
 REQUIRED_JSON_FILES = [
     "dashboard_summary.json",
     "issue_ranking.json",
+    "issue_trends.json",
     "hotspots.json",
     "local_place_dictionary.json",
     "site_map.json",
@@ -24,6 +25,7 @@ SENSITIVE_FIELD_NAMES = {
 }
 
 VALID_TRENDS = {"up", "down", "stable", "spike"}
+VALID_TREND_REVIEW_STATUS = {"prototype", "uncertain", "unreviewed", "reviewed"}
 
 
 def load_json(filename: str):
@@ -107,6 +109,43 @@ def test_hotspots_schema_and_score_range() -> None:
         for field in ["lat", "lng", "x", "y"]:
             if field in item and item[field] is not None:
                 assert_number(item[field], field)
+
+
+def test_issue_trends_schema() -> None:
+    issue_trends = load_json("issue_trends.json")
+    assert isinstance(issue_trends, list)
+    assert issue_trends
+
+    required_fields = [
+        "issue",
+        "current_count",
+        "previous_count",
+        "change_percent",
+        "trend",
+        "window_days",
+        "confidence",
+        "summary",
+        "review_status",
+    ]
+    window_days = set()
+    for index, item in enumerate(issue_trends):
+        assert isinstance(item, dict), f"issue_trends item #{index} must be an object"
+        for field in required_fields:
+            assert field in item, f"issue_trends item #{index} missing {field}"
+        assert isinstance(item["issue"], str)
+        for field in ["current_count", "previous_count", "change_percent", "window_days", "confidence"]:
+            assert_number(item[field], field)
+        assert item["current_count"] >= 0
+        assert item["previous_count"] >= 0
+        assert item["window_days"] in {7, 30, 90}
+        assert 0 <= item["confidence"] <= 1
+        assert item["trend"] in VALID_TRENDS
+        assert isinstance(item["summary"], str)
+        assert item["summary"].strip()
+        assert item["review_status"] in VALID_TREND_REVIEW_STATUS
+        window_days.add(item["window_days"])
+
+    assert window_days == {7, 30, 90}
 
 
 def test_site_map_schema() -> None:
