@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嘉義市城市故障分析儀表板</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f5;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+    header {
+      background: #0f766e;
+      color: white;
+      padding: 24px;
+    }
+    .container {
+      padding: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .number {
+      font-size: 42px;
+      font-weight: bold;
+      color: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>嘉義市 12 年城市故障分析儀表板</h1>
+    <p>科技分析城市問題，文化理解地方生活，幸福改善市民日常。</p>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card">
+        <h2>年度陳情案件</h2>
+        <div class="number">12,458</div>
+      </div>
+
+      <div class="card">
+        <h2>高熱度議題</h2>
+        <p>交通 / 停車 / 道路</p>
+      </div>
+
+      <div class="card">
+        <h2>城市故障熱點</h2>
+        <p>市場周邊、學校周邊、主要幹道</p>
+      </div>
+
+      <div class="card">
+        <h2>投訴 vs 質詢落差</h2>
+        <p>找出長期被忽略的生活問題</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
