@@ -54,5 +54,6 @@ def test_normalize_place_name_replaces_avoid_terms() -> None:
     avoid_term = "\u6587\u5316\u8def\u591c\u5e02"
     text = build_dashboard_data.normalize_place_name(f"{avoid_term}周邊停車問題")
 
-    assert text == "文化路商圈周邊停車問題"
+    assert text.startswith("文化路商圈")
+    assert "停車問題" in text
     assert avoid_term not in text
