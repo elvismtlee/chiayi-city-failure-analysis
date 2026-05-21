@@ -1,0 +1,26 @@
+[
+  {
+    "issue": "停車",
+    "trend": "up",
+    "change_percent": 31,
+    "district": "西區",
+    "summary": "夜市與市場周邊停車問題呈現上升趨勢。",
+    "recommended_action": "建立夜間停車與卸貨動線規劃。"
+  },
+  {
+    "issue": "通學安全",
+    "trend": "up",
+    "change_percent": 18,
+    "district": "西區",
+    "summary": "學校周邊接送、人行與斑馬線議題值得追蹤。",
+    "recommended_action": "盤點通學步道、接送區與斑馬線安全。"
+  },
+  {
+    "issue": "路平",
+    "trend": "stable",
+    "change_percent": 3,
+    "district": "西區",
+    "summary": "道路坑洞與施工品質屬於長期追蹤議題。",
+    "recommended_action": "建立路段巡檢與回報閉環。"
+  }
+]
