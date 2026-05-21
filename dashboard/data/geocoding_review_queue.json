@@ -1,0 +1,53 @@
+[
+  {
+    "candidate_id": "hotspot-1",
+    "place_name": "文化路商圈",
+    "district": "西區",
+    "category": "停車 / 人行",
+    "department": "交通處",
+    "score": 92.0,
+    "current_lng": 120.4497,
+    "current_lat": 23.4808,
+    "geo_precision": "prototype",
+    "review_status": "prototype",
+    "suggested_query": "嘉義市 西區 文化路商圈",
+    "suggested_review_method": "manual_review_with_public_map",
+    "priority": "high",
+    "source": "dashboard/data/hotspots.geojson",
+    "notes": "目前不是正式精準座標；需要人工確認後，才能標示為 reviewed 或 verified。"
+  },
+  {
+    "candidate_id": "hotspot-2",
+    "place_name": "市場周邊",
+    "district": "西區",
+    "category": "垃圾 / 動線",
+    "department": "環保局 / 建設處",
+    "score": 78.0,
+    "current_lng": 120.4456,
+    "current_lat": 23.4787,
+    "geo_precision": "prototype",
+    "review_status": "prototype",
+    "suggested_query": "嘉義市 西區 市場周邊",
+    "suggested_review_method": "manual_review_with_public_map",
+    "priority": "medium",
+    "source": "dashboard/data/hotspots.geojson",
+    "notes": "目前不是正式精準座標；需要人工確認後，才能標示為 reviewed 或 verified。"
+  },
+  {
+    "candidate_id": "hotspot-3",
+    "place_name": "學校周邊",
+    "district": "西區",
+    "category": "通學安全",
+    "department": "交通處 / 教育處",
+    "score": 71.0,
+    "current_lng": 120.4528,
+    "current_lat": 23.4758,
+    "geo_precision": "prototype",
+    "review_status": "prototype",
+    "suggested_query": "嘉義市 西區 學校周邊",
+    "suggested_review_method": "manual_review_with_public_map",
+    "priority": "medium",
+    "source": "dashboard/data/hotspots.geojson",
+    "notes": "目前不是正式精準座標；需要人工確認後，才能標示為 reviewed 或 verified。"
+  }
+]
