@@ -6,6 +6,7 @@ on:
       - "src/processors/**"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
+      - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
       - ".github/workflows/dashboard-data.yml"
@@ -16,6 +17,7 @@ on:
       - "src/processors/**"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
+      - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
       - ".github/workflows/dashboard-data.yml"
@@ -66,5 +68,6 @@ jobs:
       - name: Run dashboard data tests
         run: |
           pytest -q tests/test_build_dashboard_data.py
+          pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py
