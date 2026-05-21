@@ -5,18 +5,35 @@ sources:
     targets:
       minutes:
         name: 會議紀錄檢索
-        url: TBD
-        type: html_or_pdf
-        priority: high
+        url: https://www.cycc.gov.tw/web/Download_file/listDownload_file.aspx?c0=3682
+        type: html_list
+        priority: highest
+        fields:
+          - title
+          - department
+          - views
+          - updated_at
+          - detail_url
       question_videos:
         name: 議員質詢影音專區
-        url: TBD
-        type: html_metadata
+        url: https://www.cycc.gov.tw/web/UnitStaff_New/List.aspx?c0=4758
+        type: html_form_metadata
+        priority: high
+        fields:
+          - councilor
+          - term
+          - session
+          - video_title
+          - video_url
+      council_journals:
+        name: 地方議會議事錄檢索系統
+        url: https://cycc.digital.th.gov.tw/
+        type: external_digital_library
         priority: high
       agenda:
         name: 議事日程表
-        url: TBD
-        type: html
+        url: https://www.cycc.gov.tw/web/Download_file/listDownload_file.aspx?c0=3679
+        type: html_list
         priority: medium
 
   chiayi_city_gov:
