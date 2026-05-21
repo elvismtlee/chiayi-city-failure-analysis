@@ -26,7 +26,7 @@
 - 地標
 - 市場 / 學校 / 公園名稱
 - 里名
-- 模糊描述，例如「文化路夜市附近」
+- 模糊描述，例如「文化路附近」或「文化路商圈周邊」
 
 ---
 
@@ -36,13 +36,13 @@
 
 ```json
 {
-  "location_text_raw": "文化路夜市附近",
-  "location_text_normalized": "嘉義市西區文化路夜市周邊",
+  "location_text_raw": "文化路附近",
+  "location_text_normalized": "嘉義市文化路商圈周邊",
   "district": "西區",
   "village": null,
   "road": "文化路",
   "intersection": null,
-  "landmark": "文化路夜市",
+  "landmark": "文化路商圈",
   "lat": 23.4800,
   "lng": 120.4490,
   "geo_precision": "landmark",
@@ -97,7 +97,7 @@
 
 | landmark | district | suggested_category |
 |---|---|---|
-| 文化路夜市 | 西區 / 東區交界 | market / traffic |
+| 文化路商圈 | 西區 / 東區交界 | market / traffic |
 | 嘉義火車站 | 西區 | traffic |
 | 北興市場 | 西區 | market |
 | 嘉義市政府 | 東區 | administration |
