@@ -1,0 +1,58 @@
+[
+  {
+    "place_id": "place-wenhua-road-business-district",
+    "display_name": "文化路商圈",
+    "local_name": "文化路",
+    "formal_name": "文化路商圈",
+    "aliases": ["文化路周邊", "文化路商圈周邊"],
+    "avoid_terms": ["文化路夜市", "嘉義市中心夜市區", "嘉義著名夜市觀光區"],
+    "district": "西區 / 東區交界",
+    "place_type": "business_district",
+    "issue_tags": ["traffic", "parking", "pedestrian", "business_district"],
+    "geo_precision": "landmark",
+    "public_note": "嘉義人日常多稱文化路或文化路商圈，對外資料不使用文化路夜市。",
+    "updated_at": "2026-05-21"
+  },
+  {
+    "place_id": "place-chiayi-front-station",
+    "display_name": "嘉義火車站前站",
+    "local_name": "火車站前站",
+    "formal_name": "嘉義火車站前站",
+    "aliases": ["嘉義火車站前站周邊", "嘉義車站前站", "火車站前站周邊"],
+    "avoid_terms": [],
+    "district": "西區",
+    "place_type": "station",
+    "issue_tags": ["traffic", "parking", "pedestrian", "pickup_dropoff"],
+    "geo_precision": "landmark",
+    "public_note": "可依需求區分前站與後站，避免只寫火車站造成範圍不清。",
+    "updated_at": "2026-05-21"
+  },
+  {
+    "place_id": "place-beixing-market-area",
+    "display_name": "北興市場周邊",
+    "local_name": "北興市場",
+    "formal_name": "北興市場",
+    "aliases": ["北興市場周邊"],
+    "avoid_terms": [],
+    "district": "西區",
+    "place_type": "market",
+    "issue_tags": ["market", "parking", "environment", "loading"],
+    "geo_precision": "landmark",
+    "public_note": "市場周邊議題常涉及停車、環境、卸貨與行人動線。",
+    "updated_at": "2026-05-21"
+  },
+  {
+    "place_id": "place-central-plaza-area",
+    "display_name": "中央廣場周邊",
+    "local_name": "中央廣場",
+    "formal_name": "中央廣場",
+    "aliases": ["中央廣場周邊"],
+    "avoid_terms": [],
+    "district": "西區",
+    "place_type": "public_space",
+    "issue_tags": ["public_space", "pedestrian", "environment", "activity"],
+    "geo_precision": "landmark",
+    "public_note": "適合觀察公共空間、人行與活動動線議題。",
+    "updated_at": "2026-05-21"
+  }
+]
