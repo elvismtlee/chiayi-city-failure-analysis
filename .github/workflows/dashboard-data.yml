@@ -4,8 +4,10 @@ on:
   pull_request:
     paths:
       - "src/processors/**"
+      - "scripts/build_hotspots_geojson.py"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
+      - "tests/test_build_hotspots_geojson.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -15,8 +17,10 @@ on:
       - main
     paths:
       - "src/processors/**"
+      - "scripts/build_hotspots_geojson.py"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
+      - "tests/test_build_hotspots_geojson.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -45,6 +49,10 @@ jobs:
         run: |
           python src/processors/build_dashboard_data.py
 
+      - name: Build hotspots GeoJSON
+        run: |
+          python scripts/build_hotspots_geojson.py
+
       - name: Validate dashboard JSON
         run: |
           python - <<'PY'
@@ -55,6 +63,7 @@ jobs:
               "dashboard_summary.json",
               "issue_ranking.json",
               "hotspots.json",
+              "hotspots.geojson",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -62,12 +71,13 @@ jobs:
               if not path.exists():
                   raise SystemExit(f"Missing {path}")
               json.loads(path.read_text(encoding="utf-8"))
-          print("Dashboard JSON files are valid.")
+          print("Dashboard JSON and GeoJSON files are valid.")
           PY
 
       - name: Run dashboard data tests
         run: |
           pytest -q tests/test_build_dashboard_data.py
+          pytest -q tests/test_build_hotspots_geojson.py
           pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py
