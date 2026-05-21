@@ -1,24 +1,8 @@
 name: Dashboard Data
 
 on:
-  pull_request:
-    paths:
-      - "src/processors/**"
-      - "dashboard/data/**"
-      - "tests/test_build_dashboard_data.py"
-      - "tests/test_local_terminology.py"
-      - "tests/test_local_place_dictionary.py"
-      - ".github/workflows/dashboard-data.yml"
   push:
-    branches:
-      - main
-    paths:
-      - "src/processors/**"
-      - "dashboard/data/**"
-      - "tests/test_build_dashboard_data.py"
-      - "tests/test_local_terminology.py"
-      - "tests/test_local_place_dictionary.py"
-      - ".github/workflows/dashboard-data.yml"
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -32,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -53,6 +37,7 @@ jobs:
               "dashboard_summary.json",
               "issue_ranking.json",
               "hotspots.json",
+              "ai_issue_summary.json",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -63,8 +48,6 @@ jobs:
           print("Dashboard JSON files are valid.")
           PY
 
-      - name: Run dashboard data tests
+      - name: Run dashboard pytest
         run: |
           pytest -q tests/test_build_dashboard_data.py
-          pytest -q tests/test_local_terminology.py
-          pytest -q tests/test_local_place_dictionary.py

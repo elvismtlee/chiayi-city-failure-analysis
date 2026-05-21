@@ -1,7 +1,22 @@
 [
-  {"issue": "停車", "score": 88},
-  {"issue": "道路", "score": 72},
-  {"issue": "人行", "score": 64},
-  {"issue": "環境", "score": 51},
-  {"issue": "路燈", "score": 39}
+  {
+    "issue": "停車",
+    "score": 88
+  },
+  {
+    "issue": "道路",
+    "score": 72
+  },
+  {
+    "issue": "人行",
+    "score": 64
+  },
+  {
+    "issue": "環境",
+    "score": 51
+  },
+  {
+    "issue": "路燈",
+    "score": 39
+  }
 ]

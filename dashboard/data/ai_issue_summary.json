@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-05-21 09:00:00",
+  "updated_at": "2026-05-21 19:25:32",
   "summary_title": "本週嘉義城市故障觀察",
-  "summary": "目前為原型資料。平台將整合議會質詢、1999 陳情與地方生活議題，形成可追蹤、可視覺化的城市治理資料。",
+  "summary": "目前尚未偵測到 CYCC raw CSV，dashboard 保留原型資料，待 crawler 輸出後會自動改用真實 metadata 更新摘要。",
   "top_findings": [
-    "交通、停車與道路是第一波優先觀察議題",
-    "市場周邊與學校周邊適合作為熱點分析示範區",
-    "議員質詢 metadata 將作為議題關注度分析基礎"
+    "交通、停車與道路仍作為原型優先觀察議題",
+    "raw CSV 不存在時，資料管線會保留 mock data，避免 GitHub Pages 顯示失敗",
+    "crawler 輸出後，dashboard JSON 會改由 metadata 統計產生"
   ],
   "recommended_actions": [
-    "建立嘉義市議會 metadata crawler",
+    "持續接入 CYCC 會議紀錄與議員質詢影音 metadata",
     "補齊 1999 與陳情資料來源",
-    "將熱點資料轉為 GeoJSON 並接入 Leaflet 地圖"
+    "將熱點資料轉為 GeoJSON 並接入正式地圖"
   ]
 }

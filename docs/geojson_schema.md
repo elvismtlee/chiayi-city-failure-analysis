@@ -42,7 +42,7 @@ dashboard/data/hotspots.geojson
       "type": "Feature",
       "properties": {
         "name": "文化路商圈",
-        "district": "西區 / 東區交界",
+        "district": "西區",
         "category": "停車 / 人行",
         "department": "交通處",
         "score": 92,
