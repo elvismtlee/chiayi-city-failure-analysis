@@ -29,6 +29,7 @@ sample data
 4. 可以使用公開地標、路段、學校、市場、公園等公共場所。
 5. 可混合真實觀察與假資料，但必須標示 `data_status: sample` 或 `prototype`。
 6. 不把樣本資料對外說成正式統計。
+7. 地名應符合嘉義在地稱呼，參考 `docs/local_terminology_style_guide.md`。
 
 ---
 
@@ -66,7 +67,7 @@ sample data
 
 | 地點 | 類型 | 可能議題 |
 |---|---|---|
-| 文化路夜市周邊 | 市場 / 商圈 | 停車、人行、市場動線 |
+| 文化路商圈周邊 | 商圈 | 停車、人行、商圈動線 |
 | 嘉義火車站前站周邊 | 交通節點 | 接送、停車、人行 |
 | 北興市場周邊 | 市場 | 停車、環境、動線 |
 | 中央廣場周邊 | 公共空間 | 活動、人行、環境 |
@@ -108,7 +109,7 @@ data/sample/city_failure_cases_sample.csv
 
 ```csv
 case_id,date,district,location_display,primary_issue,secondary_tags,summary_public,source_type,data_status,privacy_checked
-sample-0001,2026-05-21,西區,文化路夜市周邊,traffic,"illegal_parking,pedestrian,market_traffic",尖峰時段臨停與人行動線重疊，建議盤點臨停熱點與行人穿越動線。,sample,sample,TRUE
+sample-0001,2026-05-21,西區,文化路商圈周邊,traffic,"illegal_parking,pedestrian,business_district_traffic",尖峰時段臨停與人行動線重疊，建議盤點臨停熱點與行人穿越動線。,sample,sample,TRUE
 sample-0002,2026-05-21,西區,學校周邊通學路線,pedestrian,"school_route,crossing_safety",通學時段行人與車流交會，建議整理通學動線與路口安全需求。,sample,sample,TRUE
 ```
 
@@ -124,6 +125,7 @@ sample-0002,2026-05-21,西區,學校周邊通學路線,pedestrian,"school_route,
 - [ ] data_status 標示 sample
 - [ ] privacy_checked 為 TRUE
 - [ ] 可以被 processor 轉成 dashboard JSON
+- [ ] 地名符合 `docs/local_terminology_style_guide.md`
 
 ---
 
