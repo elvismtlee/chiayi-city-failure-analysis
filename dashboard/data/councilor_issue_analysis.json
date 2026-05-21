@@ -1,0 +1,34 @@
+[
+  {
+    "councilor_name": "範例議員 A",
+    "council_term": "第十一屆",
+    "district": "西區",
+    "total_questions": 25,
+    "top_issues": ["交通", "道路", "教育"],
+    "issue_distribution": {
+      "交通": 10,
+      "道路": 6,
+      "教育": 4,
+      "環境": 3,
+      "其他": 2
+    },
+    "latest_question_date": "2026-05-01",
+    "source_count": 25
+  },
+  {
+    "councilor_name": "範例議員 B",
+    "council_term": "第十一屆",
+    "district": "西區",
+    "total_questions": 18,
+    "top_issues": ["環境", "文化", "社福"],
+    "issue_distribution": {
+      "環境": 6,
+      "文化": 5,
+      "社福": 4,
+      "交通": 2,
+      "其他": 1
+    },
+    "latest_question_date": "2026-04-20",
+    "source_count": 18
+  }
+]
