@@ -23,6 +23,13 @@ function priorityLabel(priority) {
   return labels[priority] || '待判斷';
 }
 
+function reviewMethodLabel(method) {
+  const labels = {
+    manual_review_with_public_map: '人工比對公開地圖',
+  };
+  return labels[method] || '人工確認';
+}
+
 function setText(selector, value) {
   const node = document.querySelector(selector);
   if (node) node.textContent = value;
@@ -52,6 +59,8 @@ function renderQueue(items) {
         <div><b>分數</b>${Number(item.score || 0)}</div>
         <div><b>目前座標</b>${Number(item.current_lat || 0)}, ${Number(item.current_lng || 0)}</div>
         <div><b>狀態</b>${escapeHtml(item.geo_precision)} / ${escapeHtml(item.review_status)}</div>
+        <div><b>審核方式</b>${reviewMethodLabel(item.suggested_review_method)}</div>
+        <div><b>method</b>${escapeHtml(item.suggested_review_method || 'manual_review_with_public_map')}</div>
       </div>
       <div class="query">建議查詢：${escapeHtml(item.suggested_query)}</div>
       <p>${escapeHtml(item.notes)}</p>
