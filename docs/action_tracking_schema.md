@@ -67,12 +67,12 @@ dashboard/data/action_tracking.json
 ```json
 {
   "tracking_id": "track-2026-0001",
-  "issue_title": "文化路夜市周邊人行安全",
-  "related_hotspot_id": "hotspot-cultural-road-night-market",
+  "issue_title": "文化路商圈周邊人行安全",
+  "related_hotspot_id": "hotspot-wenhua-road-business-district",
   "related_observation_id": "field-2026-0001",
   "primary_issue": "traffic",
   "district": "西區",
-  "location_display": "文化路夜市周邊",
+  "location_display": "文化路商圈周邊",
   "status": "documented",
   "current_summary": "已完成現場觀察，初步整理臨停與人行動線重疊問題。",
   "recommended_action": "盤點臨停熱點、卸貨時段與行人穿越動線。",
@@ -146,3 +146,4 @@ dashboard/data/action_tracking.json
 - [ ] primary_issue 必須符合 issue_taxonomy
 - [ ] data_status 為 published 時不可含個資
 - [ ] responsible_unit 不確定時填 null，不可亂填
+- [ ] 地名應符合 `docs/local_terminology_style_guide.md`
