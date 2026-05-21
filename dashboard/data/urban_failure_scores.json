@@ -1,0 +1,32 @@
+[
+  {
+    "target_type": "hotspot",
+    "target_name": "文化路夜市",
+    "district": "西區",
+    "issue": "停車 / 人行",
+    "score": 92,
+    "level": "極高",
+    "main_reason": "案件量高、重複率高、近期趨勢升高。",
+    "recommended_action": "夜間停車與人行動線專案。"
+  },
+  {
+    "target_type": "hotspot",
+    "target_name": "市場周邊",
+    "district": "西區",
+    "issue": "垃圾 / 動線",
+    "score": 78,
+    "level": "高",
+    "main_reason": "市場周邊生活環境與動線問題集中。",
+    "recommended_action": "市場周邊環境改善與卸貨動線規劃。"
+  },
+  {
+    "target_type": "hotspot",
+    "target_name": "學校周邊",
+    "district": "西區",
+    "issue": "通學安全",
+    "score": 71,
+    "level": "高",
+    "main_reason": "接送、人行與斑馬線議題值得追蹤。",
+    "recommended_action": "通學安全盤點與行人友善改善。"
+  }
+]
