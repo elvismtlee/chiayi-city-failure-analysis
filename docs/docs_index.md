@@ -12,6 +12,7 @@
 | `docs/public_disclaimer.md` | 對外資料聲明、AI 摘要聲明、使用者回報資料聲明 |
 | `docs/data_governance.md` | 資料治理原則、不可使用字眼、AI 摘要限制 |
 | `docs/privacy_deidentification.md` | 個資去識別化與地址降精度規則 |
+| `docs/local_terminology_style_guide.md` | 嘉義在地名稱與用語規範，避免外地觀光式稱呼 |
 
 ---
 
@@ -103,6 +104,7 @@
 
 ```text
 project_public_positioning.md
+→ local_terminology_style_guide.md
 → site_architecture.md
 → development_board.md
 → versioning_and_milestones.md
@@ -139,7 +141,8 @@ source_inventory.md
 ### 要做 AI 與週報
 
 ```text
-ai_classification_prompt.md
+local_terminology_style_guide.md
+→ ai_classification_prompt.md
 → ai_issue_summarizer_spec.md
 → issue_trend_analysis_spec.md
 → report_template.md
