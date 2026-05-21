@@ -1,0 +1,7 @@
+review_id,raw_name,suggested_display_name,local_name,formal_name,district,place_type,aliases,avoid_terms,issue_tags,geo_precision,source,review_status,reviewer,reviewed_at,notes
+review-0001,文化路附近,文化路商圈,文化路,文化路商圈,西區 / 東區交界,business_district,"文化路周邊,文化路商圈周邊",文化路夜市,"traffic,parking,pedestrian,business_district",landmark,人工,approved,在地確認,2026-05-21,嘉義人日常多稱文化路或文化路商圈
+review-0002,嘉義火車站前面,嘉義火車站前站,火車站前站,嘉義火車站前站,西區,station,"嘉義車站前站,火車站前站周邊",,"traffic,parking,pedestrian,pickup_dropoff",landmark,人工,pending,,,需確認前站與後站範圍
+review-0003,北興市場附近,北興市場周邊,北興市場,北興市場,西區,market,北興市場周邊,,"market,parking,environment,loading",landmark,人工,pending,,,市場外圍停車與卸貨動線需確認
+review-0004,中央廣場附近,中央廣場周邊,中央廣場,中央廣場,西區,public_space,中央廣場周邊,,"public_space,pedestrian,environment,activity",landmark,人工,pending,,,公共空間與活動動線可列入觀察
+review-0005,民生南路,民生南路部分路段,民生南路,民生南路,西區,road_segment,民生南路周邊,,"traffic,pedestrian,road",road_segment,人工,pending,,,需確認具體路段範圍
+review-0006,學校附近,學校周邊通學路線,學校周邊,,西區,school_area,"通學路線,學校周邊",,"pedestrian,school_route,traffic_safety",district,人工,pending,,,未指涉單一學校時先用通稱
