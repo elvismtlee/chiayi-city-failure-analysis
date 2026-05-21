@@ -6,6 +6,12 @@
     "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"
   },
   {
+    "title": "城市熱點地圖",
+    "path": "./map.html",
+    "level": 2,
+    "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"
+  },
+  {
     "title": "城市洞察分析",
     "path": "./insights.html",
     "level": 2,
