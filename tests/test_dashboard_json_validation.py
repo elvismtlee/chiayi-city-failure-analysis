@@ -10,6 +10,7 @@ REQUIRED_JSON_FILES = [
     "issue_ranking.json",
     "issue_trends.json",
     "hotspots.json",
+    "hotspots.geojson",
     "local_place_dictionary.json",
     "site_map.json",
 ]
@@ -26,6 +27,8 @@ SENSITIVE_FIELD_NAMES = {
 
 VALID_TRENDS = {"up", "down", "stable", "spike"}
 VALID_TREND_REVIEW_STATUS = {"prototype", "uncertain", "unreviewed", "reviewed"}
+VALID_GEO_PRECISION = {"exact", "road_segment", "landmark", "village", "district", "prototype", "unknown"}
+VALID_GEO_REVIEW_STATUS = {"verified", "reviewed", "prototype", "uncertain", "rejected"}
 
 
 def load_json(filename: str):
@@ -109,6 +112,43 @@ def test_hotspots_schema_and_score_range() -> None:
         for field in ["lat", "lng", "x", "y"]:
             if field in item and item[field] is not None:
                 assert_number(item[field], field)
+
+
+def test_hotspots_geojson_schema() -> None:
+    geojson = load_json("hotspots.geojson")
+    assert geojson["type"] == "FeatureCollection"
+    assert isinstance(geojson.get("metadata"), dict)
+    assert geojson["metadata"].get("source") == "dashboard/data/hotspots.json"
+    assert isinstance(geojson.get("features"), list)
+    assert geojson["features"]
+
+    for index, feature in enumerate(geojson["features"]):
+        assert feature.get("type") == "Feature", f"feature #{index} must be a Feature"
+        geometry = feature.get("geometry") or {}
+        assert geometry.get("type") == "Point", f"feature #{index} must be a Point"
+        coordinates = geometry.get("coordinates")
+        assert isinstance(coordinates, list) and len(coordinates) == 2
+        lng, lat = coordinates
+        assert_number(lng, "lng")
+        assert_number(lat, "lat")
+        assert 120 <= lng <= 121
+        assert 23 <= lat <= 24
+
+        properties = feature.get("properties") or {}
+        for field in ["name", "district", "category", "department", "score", "action", "issue_tags", "source_count", "geo_precision", "review_status"]:
+            assert field in properties, f"feature #{index} missing {field}"
+        assert_number(properties["score"], "score")
+        assert 0 <= properties["score"] <= 100
+        assert isinstance(properties["issue_tags"], list)
+        assert_number(properties["source_count"], "source_count")
+        assert properties["geo_precision"] in VALID_GEO_PRECISION
+        assert properties["review_status"] in VALID_GEO_REVIEW_STATUS
+
+
+def test_hotspots_geojson_feature_count_matches_hotspots_json() -> None:
+    hotspots = load_json("hotspots.json")
+    geojson = load_json("hotspots.geojson")
+    assert len(geojson["features"]) == len(hotspots)
 
 
 def test_issue_trends_schema() -> None:
