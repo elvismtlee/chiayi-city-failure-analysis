@@ -18,6 +18,8 @@ ALLOWLIST_FILES = {
     Path("docs/codex_local_terms_instruction.md"),
     Path("docs/pr_review_guide.md"),
     Path("docs/ci_quality_gate_plan.md"),
+    Path("docs/pr_merge_quality_checklist.md"),
+    Path("docs/pr19_review_status_2026_05_21.md"),
     Path("dashboard/data/local_place_dictionary.json"),
 }
 
@@ -25,6 +27,7 @@ SCAN_PATTERNS = [
     "dashboard/**/*.html",
     "dashboard/data/*.json",
     "docs/*.md",
+    "src/**/*.py",
     "data/sample/*.csv",
     "data/processed/*.csv",
     "reports/**/*.md",
