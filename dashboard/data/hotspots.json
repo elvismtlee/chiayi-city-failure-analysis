@@ -1,0 +1,32 @@
+[
+  {
+    "name": "文化路夜市",
+    "district": "西區",
+    "category": "停車 / 人行",
+    "department": "交通處",
+    "score": 92,
+    "action": "夜間動線與停車熱點專案",
+    "x": 22,
+    "y": 38
+  },
+  {
+    "name": "市場周邊",
+    "district": "西區",
+    "category": "垃圾 / 動線",
+    "department": "環保局 / 建設處",
+    "score": 78,
+    "action": "市場周邊環境改善與卸貨規劃",
+    "x": 60,
+    "y": 55
+  },
+  {
+    "name": "學校周邊",
+    "district": "西區",
+    "category": "通學安全",
+    "department": "交通處 / 教育處",
+    "score": 71,
+    "action": "通學步道與接送區改善",
+    "x": 42,
+    "y": 72
+  }
+]
