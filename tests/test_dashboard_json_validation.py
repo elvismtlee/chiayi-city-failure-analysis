@@ -125,6 +125,12 @@ def test_site_map_schema() -> None:
         assert isinstance(item["description"], str)
 
 
+def test_site_map_includes_hotspot_map_page() -> None:
+    site_map = load_json("site_map.json")
+    paths = {item["path"] for item in site_map}
+    assert "./map.html" in paths
+
+
 def test_no_sensitive_field_names_in_dashboard_json() -> None:
     violations = []
     for path in DASHBOARD_DATA_DIR.glob("*.json"):
