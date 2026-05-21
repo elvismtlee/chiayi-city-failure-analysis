@@ -1,0 +1,32 @@
+[
+  {
+    "department": "交通處",
+    "total_cases": 320,
+    "avg_processing_days": 12.5,
+    "top_issues": ["停車", "號誌", "通學安全"],
+    "repeated_cases": 42,
+    "council_question_count": 18,
+    "response_score": 78,
+    "notes": "交通與停車為高負荷議題。"
+  },
+  {
+    "department": "工務處",
+    "total_cases": 260,
+    "avg_processing_days": 15.8,
+    "top_issues": ["路平", "施工", "人行道"],
+    "repeated_cases": 36,
+    "council_question_count": 14,
+    "response_score": 72,
+    "notes": "道路與施工品質適合長期追蹤。"
+  },
+  {
+    "department": "環保局",
+    "total_cases": 210,
+    "avg_processing_days": 8.4,
+    "top_issues": ["垃圾", "異味", "噪音"],
+    "repeated_cases": 22,
+    "council_question_count": 9,
+    "response_score": 81,
+    "notes": "市場與住宅周邊生活環境議題較多。"
+  }
+]
