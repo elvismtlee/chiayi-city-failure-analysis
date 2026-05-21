@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "project": "嘉義市 12 年城市故障分析資料庫",
+  "description": "n8n 第一階段 workflow 建置範本。不含 credentials，不可直接填入 token。",
+  "safety_boundaries": [
+    "不自動發文",
+    "不公開個人表單資料",
+    "不把 GitHub token 寫入 repo",
+    "不自動寄出對外 email",
+    "公開發布、權限修改、對外寄送都需要人工確認"
+  ],
+  "workflows": [
+    {
+      "id": "CYFA-WF-001-Weekly-Data-Update",
+      "name": "WF-001｜每週嘉義城市故障資料更新",
+      "trigger": {
+        "type": "cron",
+        "schedule": "0 9 * * 1",
+        "timezone": "Asia/Taipei"
+      },
+      "nodes": [
+        {
+          "name": "Cron｜每週一 09:00",
+          "type": "n8n-nodes-base.cron",
+          "purpose": "每週固定啟動資料更新流程"
+        },
+        {
+          "name": "GitHub｜Dispatch dashboard-data workflow",
+          "type": "n8n-nodes-base.github",
+          "purpose": "觸發 .github/workflows/dashboard-data.yml workflow_dispatch",
+          "credential_policy": "使用 n8n credential store，不可把 token 寫入 repo"
+        },
+        {
+          "name": "Wait｜等待 GitHub Actions 完成",
+          "type": "n8n-nodes-base.wait",
+          "purpose": "避免立即讀取尚未完成的 dashboard JSON"
+        },
+        {
+          "name": "GitHub｜讀取 dashboard JSON",
+          "type": "n8n-nodes-base.github",
+          "purpose": "確認 dashboard/data/*.json 是否存在且可讀取"
+        },
+        {
+          "name": "Function｜建立更新摘要",
+          "type": "n8n-nodes-base.function",
+          "purpose": "整理 workflow run、commit sha、JSON 檢查結果與下一步建議"
+        },
+        {
+          "name": "Gmail｜內部通知",
+          "type": "n8n-nodes-base.gmail",
+          "purpose": "寄送內部更新通知；不得對外群發"
+        }
+      ],
+      "required_outputs": [
+        "dashboard/data/dashboard_summary.json",
+        "dashboard/data/issue_ranking.json",
+        "dashboard/data/hotspots.json",
+        "dashboard/data/data_sources.json"
+      ],
+      "failure_route": "CYFA-WF-005-Update-Failure-Alert"
+    },
+    {
+      "id": "CYFA-WF-003-Weekly-Report-Draft",
+      "name": "WF-003｜嘉義城市故障週報生成",
+      "trigger": {
+        "type": "cron",
+        "schedule": "0 10 * * 1",
+        "timezone": "Asia/Taipei"
+      },
+      "nodes": [
+        {
+          "name": "Cron｜每週一 10:00",
+          "type": "n8n-nodes-base.cron",
+          "purpose": "資料更新完成後產生週報草稿"
+        },
+        {
+          "name": "GitHub｜讀取 dashboard JSON",
+          "type": "n8n-nodes-base.github",
+          "purpose": "讀取 dashboard summary、issue ranking、hotspots 與趨勢資料"
+        },
+        {
+          "name": "Function｜整理週報資料包",
+          "type": "n8n-nodes-base.function",
+          "purpose": "把 JSON 轉為週報 prompt 所需資料"
+        },
+        {
+          "name": "AI｜產生週報草稿",
+          "type": "n8n-nodes-base.openAi",
+          "purpose": "只產生草稿，不得公開發布；資料不足時標示 prototype / data pending"
+        },
+        {
+          "name": "Google Docs｜建立週報草稿",
+          "type": "n8n-nodes-base.googleDocs",
+          "purpose": "建立內部 Google Doc 草稿，不公開分享"
+        },
+        {
+          "name": "Gmail｜建立週報草稿",
+          "type": "n8n-nodes-base.gmail",
+          "purpose": "建立 Gmail draft，不自動寄出"
+        }
+      ],
+      "required_inputs": [
+        "dashboard/data/dashboard_summary.json",
+        "dashboard/data/issue_ranking.json",
+        "dashboard/data/hotspots.json"
+      ],
+      "optional_inputs": [
+        "dashboard/data/ai_issue_summary.json",
+        "dashboard/data/issue_trends.json"
+      ],
+      "outputs": [
+        "Markdown 草稿",
+        "HTML 草稿",
+        "JSON 摘要",
+        "Google Doc 草稿",
+        "Gmail 草稿"
+      ]
+    },
+    {
+      "id": "CYFA-WF-005-Update-Failure-Alert",
+      "name": "WF-005｜資料更新異常通知",
+      "trigger": {
+        "type": "webhook_or_error_trigger",
+        "description": "GitHub Actions failed webhook 或 n8n workflow error trigger"
+      },
+      "nodes": [
+        {
+          "name": "Webhook / Error Trigger",
+          "type": "n8n-nodes-base.webhook",
+          "purpose": "接收 GitHub Actions 失敗或 n8n 節點失敗事件"
+        },
+        {
+          "name": "Function｜整理錯誤摘要",
+          "type": "n8n-nodes-base.function",
+          "purpose": "整理 workflow name、run url、failed job、commit sha 與錯誤摘要"
+        },
+        {
+          "name": "Function｜移除敏感資訊",
+          "type": "n8n-nodes-base.function",
+          "purpose": "避免通知內容含 token、secret、credential 或個資"
+        },
+        {
+          "name": "Gmail｜內部異常通知",
+          "type": "n8n-nodes-base.gmail",
+          "purpose": "只寄內部異常通知，不公開錯誤內容"
+        }
+      ],
+      "notification_fields": [
+        "workflow_name",
+        "run_url",
+        "failed_job",
+        "commit_sha",
+        "error_summary",
+        "recommended_next_action"
+      ]
+    }
+  ]
+}
