@@ -11,6 +11,7 @@ REQUIRED_JSON_FILES = [
     "issue_trends.json",
     "hotspots.json",
     "hotspots.geojson",
+    "geocoding_review_queue.json",
     "local_place_dictionary.json",
     "site_map.json",
 ]
@@ -27,8 +28,9 @@ SENSITIVE_FIELD_NAMES = {
 
 VALID_TRENDS = {"up", "down", "stable", "spike"}
 VALID_TREND_REVIEW_STATUS = {"prototype", "uncertain", "unreviewed", "reviewed"}
-VALID_GEO_PRECISION = {"exact", "road_segment", "landmark", "village", "district", "prototype", "unknown"}
-VALID_GEO_REVIEW_STATUS = {"verified", "reviewed", "prototype", "uncertain", "rejected"}
+VALID_GEO_PRECISION = {"exact", "road_segment", "landmark", "village", "district", "prototype", "unknown", "uncertain"}
+VALID_GEO_REVIEW_STATUS = {"verified", "reviewed", "prototype", "uncertain", "unreviewed", "rejected"}
+VALID_GEOCODING_PRIORITY = {"high", "medium", "low"}
 
 
 def load_json(filename: str):
@@ -149,6 +151,47 @@ def test_hotspots_geojson_feature_count_matches_hotspots_json() -> None:
     hotspots = load_json("hotspots.json")
     geojson = load_json("hotspots.geojson")
     assert len(geojson["features"]) == len(hotspots)
+
+
+def test_geocoding_review_queue_schema() -> None:
+    queue = load_json("geocoding_review_queue.json")
+    assert isinstance(queue, list)
+    assert queue
+    required_fields = [
+        "candidate_id",
+        "place_name",
+        "district",
+        "category",
+        "department",
+        "score",
+        "current_lng",
+        "current_lat",
+        "geo_precision",
+        "review_status",
+        "suggested_query",
+        "suggested_review_method",
+        "priority",
+        "source",
+        "notes",
+    ]
+    for index, item in enumerate(queue):
+        assert isinstance(item, dict), f"queue item #{index} must be an object"
+        for field in required_fields:
+            assert field in item, f"queue item #{index} missing {field}"
+        for field in ["candidate_id", "place_name", "district", "category", "department", "suggested_query", "suggested_review_method", "priority", "source", "notes"]:
+            assert isinstance(item[field], str)
+            assert item[field].strip()
+        assert "嘉義市" in item["suggested_query"]
+        assert item["suggested_review_method"] == "manual_review_with_public_map"
+        assert item["priority"] in VALID_GEOCODING_PRIORITY
+        assert_number(item["score"], "score")
+        assert 0 <= item["score"] <= 100
+        assert_number(item["current_lng"], "current_lng")
+        assert_number(item["current_lat"], "current_lat")
+        assert item["geo_precision"] in VALID_GEO_PRECISION
+        assert item["review_status"] in VALID_GEO_REVIEW_STATUS
+        if item["geo_precision"] == "prototype":
+            assert item["review_status"] != "verified"
 
 
 def test_issue_trends_schema() -> None:
