@@ -1,0 +1,32 @@
+[
+  {
+    "title": "城市儀表板首頁",
+    "path": "./index.html",
+    "level": 1,
+    "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"
+  },
+  {
+    "title": "城市洞察分析",
+    "path": "./insights.html",
+    "level": 2,
+    "description": "AI 摘要、趨勢分析、局處負荷與議員議題分析。"
+  },
+  {
+    "title": "資料來源",
+    "path": "./sources.html",
+    "level": 2,
+    "description": "資料來源、更新狀態、資料筆數與資料限制。"
+  },
+  {
+    "title": "方法論",
+    "path": "./methodology.html",
+    "level": 2,
+    "description": "議題分類、城市故障分數、AI 摘要與資料限制。"
+  },
+  {
+    "title": "城市週報",
+    "path": "./reports.html",
+    "level": 2,
+    "description": "每週城市故障觀察報告列表。"
+  }
+]
