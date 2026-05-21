@@ -1,0 +1,47 @@
+[
+  {
+    "source_name": "嘉義市議會會議紀錄",
+    "source_type": "官方公開資料",
+    "status": "crawling",
+    "latest_update": "2026-05-21",
+    "record_count": 10,
+    "source_url": "https://www.cycc.gov.tw/",
+    "notes": "目前先抓取 metadata，尚未解析全文。"
+  },
+  {
+    "source_name": "嘉義市議員質詢影音 metadata",
+    "source_type": "官方公開資料",
+    "status": "crawling",
+    "latest_update": "2026-05-21",
+    "record_count": 131,
+    "source_url": "https://www.cycc.gov.tw/",
+    "notes": "目前先抓取影音 metadata，尚未進行語音轉文字。"
+  },
+  {
+    "source_name": "嘉義市政府 1999 / 陳情資料",
+    "source_type": "官方資料 / 待盤點",
+    "status": "planned",
+    "latest_update": "prototype",
+    "record_count": 0,
+    "source_url": "https://www.chiayi.gov.tw/",
+    "notes": "需確認公開資料來源、欄位與可用範圍。"
+  },
+  {
+    "source_name": "政府資料開放平台",
+    "source_type": "開放資料",
+    "status": "planned",
+    "latest_update": "prototype",
+    "record_count": 0,
+    "source_url": "https://data.gov.tw/",
+    "notes": "用於補充交通、道路、環境與統計資料。"
+  },
+  {
+    "source_name": "地方議題意見徵集資料",
+    "source_type": "使用者回報 / 未公開",
+    "status": "planned",
+    "latest_update": "prototype",
+    "record_count": 0,
+    "source_url": "https://www.chiayi2026.com/",
+    "notes": "未來如公開展示，需先去識別化並僅呈現統計與摘要。"
+  }
+]
