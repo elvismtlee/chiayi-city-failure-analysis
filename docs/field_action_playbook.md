@@ -49,8 +49,8 @@
 建議格式：
 
 ```text
-熱點：文化路夜市周邊
-議題：停車 / 人行 / 市場動線
+熱點：文化路商圈周邊
+議題：停車 / 人行 / 商圈動線
 觀察時間：平日傍晚 / 假日晚上
 拍攝重點：臨停、人行動線、卸貨區、行人穿越
 注意事項：不拍攝可識別個人正臉、不拍車牌特寫
@@ -64,14 +64,14 @@
 {
   "visit_id": "field-2026-0001",
   "visited_at": "2026-05-21 18:30:00",
-  "location_name": "文化路夜市周邊",
+  "location_name": "文化路商圈周邊",
   "district": "西區",
   "primary_issue": "traffic",
   "secondary_issues": ["pedestrian", "market"],
   "observations": [
     "尖峰時段臨停車輛增加",
     "部分行人被迫走到車道邊緣",
-    "攤商卸貨與行人動線重疊"
+    "商圈卸貨與行人動線重疊"
   ],
   "photo_count": 0,
   "video_count": 0,
@@ -145,7 +145,7 @@
 ```json
 {
   "tracking_id": "track-2026-0001",
-  "issue": "文化路夜市周邊人行安全",
+  "issue": "文化路商圈周邊人行安全",
   "status": "observed",
   "next_step": "整理照片與動線圖，提出改善建議",
   "responsible_unit": "待確認",
@@ -188,3 +188,4 @@ status 建議：
 4. 不攻擊個人。
 5. 把抱怨轉成可追蹤的改善清單。
 6. 每次現場走訪都要能回到資料與行動。
+7. 地名應符合嘉義在地稱呼，參考 `docs/local_terminology_style_guide.md`。
