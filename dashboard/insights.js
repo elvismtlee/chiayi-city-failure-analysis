@@ -39,10 +39,31 @@ const REVIEW_STATUS_LABELS = {
   corrected: '已人工修正',
 };
 
+const TREND_WINDOWS = [
+  {
+    days: 7,
+    id: 'trend-7',
+    title: '最近 7 天｜短期熱點',
+    note: '適合觀察最近快速升高、需要立即注意的議題。',
+  },
+  {
+    days: 30,
+    id: 'trend-30',
+    title: '最近 30 天｜中期變化',
+    note: '適合觀察一個月內逐漸累積的地方議題。',
+  },
+  {
+    days: 90,
+    id: 'trend-90',
+    title: '最近 90 天｜長期趨勢',
+    note: '適合觀察較長時間持續存在的結構性問題。',
+  },
+];
+
 function groupTrendsByWindow(items) {
-  return [7, 30, 90].map(days => ({
-    days,
-    items: items.filter(item => Number(item.window_days) === days),
+  return TREND_WINDOWS.map(window => ({
+    ...window,
+    items: items.filter(item => Number(item.window_days) === window.days),
   }));
 }
 
@@ -55,13 +76,16 @@ function renderTrendCards(items) {
   if (!node) return;
   const groups = groupTrendsByWindow(items);
   node.innerHTML = groups.map(group => `
-    <section class="trend-window" data-window-days="${group.days}">
-      <div class="trend-window-heading">
-        <h3>${group.days} 天</h3>
+    <section id="${group.id}" class="trend-group trend-group-${group.days}" data-window-days="${group.days}">
+      <div class="trend-group-header">
+        <div>
+          <h3>${group.title}</h3>
+          <p class="trend-group-note">${group.note}</p>
+        </div>
         <span>${group.items.length} 筆觀察</span>
       </div>
       <div class="trend-card-grid">
-        ${group.items.map(renderTrendCard).join('') || '<p class="muted">目前沒有可顯示的趨勢資料。</p>'}
+        ${group.items.map(renderTrendCard).join('') || '<p class="trend-empty">目前沒有可顯示的趨勢資料。</p>'}
       </div>
     </section>
   `).join('');
