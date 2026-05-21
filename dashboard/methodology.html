@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>分析方法與城市故障分數｜嘉義城市故障分析中心</title>
+  <style>
+    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}.nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.12)}.nav a.active{background:#fff;color:var(--dark);font-weight:800}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:780px;color:rgba(255,255,255,.9)}.wrap{padding:30px 24px 64px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08)}.card h2{margin-top:0}.card p,.card li{line-height:1.8;color:#334155}.formula{background:#ecfdf5;border:1px solid #bbf7d0;border-radius:18px;padding:18px;font-weight:800;color:var(--dark);line-height:1.8}.pill{display:inline-block;margin:4px;padding:6px 10px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:700;font-size:13px}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <section class="hero"><div class="inner"><nav class="nav"><a href="./index.html">城市儀表板首頁</a><a href="./insights.html">城市洞察分析</a><a href="./sources.html">資料來源</a><a class="active" href="./methodology.html">方法論</a><a href="./reports.html">城市週報</a></nav><h1>分析方法與城市故障分數</h1><p>說明本平台如何進行議題分類、熱點判定、趨勢分析、AI 摘要與城市故障分數計算。</p></div></section>
+  <main class="wrap">
+    <section class="grid2">
+      <article class="card"><h2>資料處理流程</h2><p>資料來源 → crawler → raw CSV → processed CSV → JSON → dashboard → AI 摘要與週報。</p></article>
+      <article class="card"><h2>城市故障分數</h2><div class="formula">案件量分數 + 重複率分數 + 處理時間分數 + 質詢落差分數 + 趨勢升高分數</div></article>
+      <article class="card"><h2>議題分類</h2><p><span class="pill">交通</span><span class="pill">道路</span><span class="pill">人行</span><span class="pill">環境</span><span class="pill">公共安全</span><span class="pill">水利排水</span><span class="pill">市場商圈</span><span class="pill">教育學區</span><span class="pill">文化觀光</span><span class="pill">行政服務</span></p></article>
+      <article class="card"><h2>趨勢分析</h2><p>支援 up、down、stable、spike 等趨勢狀態。時間範圍可包含 7 天、30 天、90 天、半年、一年與 12 年長期資料。</p></article>
+      <article class="card"><h2>AI 摘要限制</h2><ul><li>只能整理、分類、摘要與提示追蹤方向。</li><li>不做無來源指控。</li><li>不做人身攻擊。</li><li>不做支持度推論。</li><li>正式引用前應回到原始資料查證。</li></ul></article>
+      <article class="card"><h2>資料限制</h2><ul><li>metadata 不等於全文內容。</li><li>樣本資料不代表完整趨勢。</li><li>資料不足時不可做過度結論。</li><li>所有統計應標示更新時間。</li></ul></article>
+    </section>
+    <p class="footer-note">方法論頁讓資料站具備透明性。未來每個分數、趨勢與 AI 摘要都應能回到資料來源與計算方式。</p>
+  </main>
+</body>
+</html>
