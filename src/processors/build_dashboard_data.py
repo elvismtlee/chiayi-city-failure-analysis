@@ -6,12 +6,61 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
 DASHBOARD_DATA_DIR = ROOT / "dashboard" / "data"
+LOCAL_PLACE_DICTIONARY_PATH = DASHBOARD_DATA_DIR / "local_place_dictionary.json"
+WENHUA_PLACE_ID = "place-wenhua-road-business-district"
+
+DEFAULT_PLACE_ENTRY = {
+    "place_id": WENHUA_PLACE_ID,
+    "display_name": "文化路商圈",
+    "local_name": "文化路",
+    "formal_name": "文化路商圈",
+    "aliases": ["文化路周邊", "文化路商圈周邊"],
+    "avoid_terms": [],
+    "district": "西區 / 東區交界",
+}
 
 
 def load_csv_if_exists(path: Path) -> pd.DataFrame:
     if path.exists():
         return pd.read_csv(path)
     return pd.DataFrame()
+
+
+def load_local_place_dictionary(path: Path = LOCAL_PLACE_DICTIONARY_PATH) -> list[dict]:
+    if not path.exists():
+        return [DEFAULT_PLACE_ENTRY]
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data if isinstance(data, list) else [DEFAULT_PLACE_ENTRY]
+
+
+def get_place_entry(place_id: str, dictionary: list[dict] | None = None) -> dict:
+    place_dictionary = dictionary if dictionary is not None else load_local_place_dictionary()
+    for item in place_dictionary:
+        if item.get("place_id") == place_id:
+            return item
+    return DEFAULT_PLACE_ENTRY
+
+
+def get_place_display_name(place_id: str, dictionary: list[dict] | None = None) -> str:
+    return str(get_place_entry(place_id, dictionary).get("display_name") or DEFAULT_PLACE_ENTRY["display_name"])
+
+
+def normalize_place_name(text: str, dictionary: list[dict] | None = None) -> str:
+    place_dictionary = dictionary if dictionary is not None else load_local_place_dictionary()
+    normalized = text
+    for item in place_dictionary:
+        display_name = str(item.get("display_name") or "")
+        if not display_name:
+            continue
+        terms = [
+            *item.get("avoid_terms", []),
+            *item.get("aliases", []),
+            item.get("formal_name", ""),
+        ]
+        for term in terms:
+            if term and term != display_name:
+                normalized = normalized.replace(str(term), display_name)
+    return normalized
 
 
 def write_json(path: Path, data):
@@ -47,10 +96,13 @@ def build_issue_ranking():
 
 
 def build_hotspots():
+    place_dictionary = load_local_place_dictionary()
+    wenhua_entry = get_place_entry(WENHUA_PLACE_ID, place_dictionary)
     return [
         {
-            "name": "文化路商圈",
-            "district": "西區 / 東區交界",
+            "place_id": WENHUA_PLACE_ID,
+            "name": get_place_display_name(WENHUA_PLACE_ID, place_dictionary),
+            "district": wenhua_entry.get("district", DEFAULT_PLACE_ENTRY["district"]),
             "category": "停車 / 人行",
             "department": "交通處",
             "score": 92,
