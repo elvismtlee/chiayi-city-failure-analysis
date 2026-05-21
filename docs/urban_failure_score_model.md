@@ -54,13 +54,13 @@ dashboard/data/urban_failure_scores.json
 [
   {
     "target_type": "hotspot",
-    "target_name": "文化路夜市",
-    "district": "西區",
+    "target_name": "文化路商圈",
+    "district": "西區 / 東區交界",
     "issue": "停車 / 人行",
     "score": 92,
     "level": "極高",
     "main_reason": "案件量高、重複率高、近期趨勢升高",
-    "recommended_action": "夜間停車與人行動線專案"
+    "recommended_action": "商圈停車與人行動線專案"
   }
 ]
 ```
