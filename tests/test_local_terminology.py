@@ -7,10 +7,17 @@ BANNED_TERMS = {
     "嘉義著名夜市觀光區": "文化路商圈",
 }
 
+# These files intentionally document banned terms, avoid_terms, replacement rules,
+# or review instructions. They are not public-facing dashboard content.
 ALLOWLIST_FILES = {
     Path("docs/local_terminology_style_guide.md"),
     Path("docs/local_terms_validation_rules.md"),
     Path("docs/local_place_dictionary.md"),
+    Path("docs/local_place_dictionary_expansion_plan.md"),
+    Path("docs/place_name_review_sheet.md"),
+    Path("docs/codex_local_terms_instruction.md"),
+    Path("docs/pr_review_guide.md"),
+    Path("docs/ci_quality_gate_plan.md"),
     Path("dashboard/data/local_place_dictionary.json"),
 }
 
