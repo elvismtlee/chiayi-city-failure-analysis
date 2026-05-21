@@ -1,5 +1,6 @@
 const DASHBOARD_NAV_ITEMS = [
   { title: '城市儀表板首頁', path: './index.html', file: 'index.html' },
+  { title: '城市熱點地圖', path: './map.html', file: 'map.html' },
   { title: '城市洞察分析', path: './insights.html', file: 'insights.html' },
   { title: '資料來源', path: './sources.html', file: 'sources.html' },
   { title: '方法論', path: './methodology.html', file: 'methodology.html' },

@@ -5,6 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = ROOT / "dashboard"
 DASHBOARD_PAGES = [
     "index.html",
+    "map.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -26,12 +27,19 @@ def test_shared_nav_contains_required_pages() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     for page in [
         "./index.html",
+        "./map.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
         "./reports.html",
     ]:
         assert page in content
+
+
+def test_shared_nav_contains_hotspot_map_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "城市熱點地圖" in content
+    assert "map.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:
