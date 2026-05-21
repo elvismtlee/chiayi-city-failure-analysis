@@ -12,6 +12,12 @@
     "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"
   },
   {
+    "title": "座標審核",
+    "path": "./geocoding-review.html",
+    "level": 2,
+    "description": "人工檢查 prototype 座標與地理校正候選清單。"
+  },
+  {
     "title": "城市洞察分析",
     "path": "./insights.html",
     "level": 2,
