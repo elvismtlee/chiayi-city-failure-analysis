@@ -86,11 +86,11 @@
 
 ```json
 {
-  "name": "文化路夜市",
-  "district": "西區",
+  "name": "文化路商圈",
+  "district": "西區 / 東區交界",
   "category": "交通停車",
   "score": 92,
-  "action": "盤點停車與人行衝突點"
+  "action": "盤點商圈停車與人行衝突點"
 }
 ```
 
