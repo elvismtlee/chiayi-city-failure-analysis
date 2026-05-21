@@ -31,6 +31,8 @@
 
 ```text
 docs/local_terminology_style_guide.md
+docs/local_place_dictionary.md
+dashboard/data/local_place_dictionary.json
 ```
 
 相關文件：
@@ -95,20 +97,22 @@ reports/**/*.md
 reports/**/*.html
 ```
 
-### historical / audit 檔案
+### dictionary / audit 檔案
 
-若是刻意記錄錯誤或說明避免用語，可允許出現，但應只出現在：
+若是刻意記錄錯誤稱呼、替代詞、avoid_terms 或說明避免用語，可允許出現，但應只出現在：
 
 ```text
 docs/local_terminology_style_guide.md
 docs/local_terms_validation_rules.md
+docs/local_place_dictionary.md
+dashboard/data/local_place_dictionary.json
 ```
 
 ---
 
-## 建議 pytest 規則
+## pytest 規則
 
-未來可建立：
+建立：
 
 ```text
 tests/test_local_terminology.py
@@ -126,6 +130,8 @@ BANNED_TERMS = {
 ALLOWLIST_FILES = {
     "docs/local_terminology_style_guide.md",
     "docs/local_terms_validation_rules.md",
+    "docs/local_place_dictionary.md",
+    "dashboard/data/local_place_dictionary.json",
 }
 ```
 
