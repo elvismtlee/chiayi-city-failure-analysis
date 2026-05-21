@@ -1,0 +1,16 @@
+requests
+beautifulsoup4
+pandas
+lxml
+openpyxl
+python-dotenv
+selenium
+webdriver-manager
+playwright
+numpy
+scikit-learn
+jieba
+matplotlib
+plotly
+streamlit
+jupyter
