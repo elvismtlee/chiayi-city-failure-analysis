@@ -12,6 +12,7 @@ REQUIRED_JSON_FILES = [
     "hotspots.json",
     "hotspots.geojson",
     "geocoding_review_queue.json",
+    "transcript_review_queue.json",
     "local_place_dictionary.json",
     "site_map.json",
 ]
@@ -31,6 +32,9 @@ VALID_TREND_REVIEW_STATUS = {"prototype", "uncertain", "unreviewed", "reviewed"}
 VALID_GEO_PRECISION = {"exact", "road_segment", "landmark", "village", "district", "prototype", "unknown", "uncertain"}
 VALID_GEO_REVIEW_STATUS = {"verified", "reviewed", "prototype", "uncertain", "unreviewed", "rejected"}
 VALID_GEOCODING_PRIORITY = {"high", "medium", "low"}
+VALID_TRANSCRIPT_STATUS = {"not_started", "queued", "transcribed", "reviewed", "rejected"}
+VALID_TRANSCRIPT_REVIEW_STATUS = {"unreviewed", "needs_metadata_review", "reviewed", "rejected"}
+VALID_TRANSCRIPT_PRIORITY = {"needs_metadata_review", "medium", "normal"}
 
 
 def load_json(filename: str):
@@ -192,6 +196,44 @@ def test_geocoding_review_queue_schema() -> None:
         assert item["review_status"] in VALID_GEO_REVIEW_STATUS
         if item["geo_precision"] == "prototype":
             assert item["review_status"] != "verified"
+
+
+def test_transcript_review_queue_schema() -> None:
+    queue = load_json("transcript_review_queue.json")
+    assert isinstance(queue, list)
+    assert queue
+    required_fields = [
+        "queue_id",
+        "source_id",
+        "councilor_name",
+        "council_term",
+        "session_name",
+        "video_title",
+        "video_url",
+        "video_platform",
+        "video_id",
+        "meeting_date",
+        "topic_guess",
+        "raw_hash",
+        "transcript_status",
+        "review_status",
+        "priority",
+        "needs_metadata_review",
+        "recommended_action",
+        "notes",
+    ]
+    for index, item in enumerate(queue):
+        assert isinstance(item, dict), f"transcript queue item #{index} must be an object"
+        for field in required_fields:
+            assert field in item, f"transcript queue item #{index} missing {field}"
+        assert item["queue_id"].startswith("cycc-transcript-")
+        assert item["source_id"] == "CYCC_QUESTION_VIDEO"
+        assert isinstance(item["needs_metadata_review"], bool)
+        assert item["transcript_status"] in VALID_TRANSCRIPT_STATUS
+        assert item["review_status"] in VALID_TRANSCRIPT_REVIEW_STATUS
+        assert item["priority"] in VALID_TRANSCRIPT_PRIORITY
+        assert item["recommended_action"] == "manual_transcript_or_asr_review"
+        assert "不呼叫 Whisper" in item["notes"]
 
 
 def test_issue_trends_schema() -> None:
