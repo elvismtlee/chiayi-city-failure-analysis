@@ -15,13 +15,17 @@ function renderList(selector, items) {
   node.innerHTML = items.map(item => `<li>${item}</li>`).join('');
 }
 
+function issueTrendTitle(item) {
+  return item.display_name || item.issue || '未分類議題';
+}
+
 function renderTrendCards(items) {
   const node = document.querySelector('[data-render="trends"]');
   if (!node) return;
   node.innerHTML = items.map(item => `
     <article class="card">
       <div class="eyebrow">${item.district}｜${item.trend}</div>
-      <h3>${item.issue} <span>${item.change_percent}%</span></h3>
+      <h3>${issueTrendTitle(item)} <span>${item.change_percent}%</span></h3>
       <p>${item.summary}</p>
       <b>建議：${item.recommended_action}</b>
     </article>
