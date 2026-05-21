@@ -48,6 +48,12 @@ def iter_target_files(repo_root: Path):
             yield relative, path
 
 
+def test_allowlist_files_exist():
+    repo_root = Path(__file__).resolve().parents[1]
+    missing = [str(path) for path in sorted(ALLOWLIST_FILES) if not (repo_root / path).is_file()]
+    assert not missing, f"Allowlist paths do not exist: {missing}"
+
+
 def test_public_facing_files_do_not_use_banned_local_terms():
     repo_root = Path(__file__).resolve().parents[1]
     violations = []
