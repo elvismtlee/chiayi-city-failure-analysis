@@ -57,10 +57,10 @@ tests/test_local_place_dictionary.py
 
 ```text
 對外資料使用「文化路」「文化路商圈」「文化路商圈周邊」。
-不在 public-facing output 使用「文化路夜市」。
+不在 public-facing output 使用禁用觀光式稱呼。
 ```
 
-「文化路夜市」只可作為 avoid_terms 或測試禁用詞使用。
+禁用觀光式稱呼只可作為 local place dictionary 的 avoid_terms 或測試禁用詞使用。
 
 ---
 
