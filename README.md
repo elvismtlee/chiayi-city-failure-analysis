@@ -66,6 +66,14 @@ chiayi-city-failure-analysis/
 
 目前為 v0.1 專案骨架階段。
 
+## 快速執行
+
+```bash
+python issue_classifier.py
+python data_validator.py
+pytest
+```
+
 下一步：
 
 1. 確認資料來源網址與可爬欄位
