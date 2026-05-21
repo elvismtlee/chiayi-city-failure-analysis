@@ -71,12 +71,12 @@ dashboard/data/field_observations.json
 ```json
 {
   "observation_id": "field-2026-0001",
-  "related_hotspot_id": "hotspot-cultural-road-night-market",
+  "related_hotspot_id": "hotspot-wenhua-road-business-district",
   "observed_at": "2026-05-21 18:30:00",
   "observer_role": "staff",
-  "location_name": "文化路夜市周邊",
+  "location_name": "文化路商圈周邊",
   "district": "西區",
-  "location_text": "文化路夜市周邊路段",
+  "location_text": "文化路商圈周邊路段",
   "geo_precision": "landmark",
   "lat": null,
   "lng": null,
@@ -145,7 +145,7 @@ dashboard/data/field_observations.json
 週報可引用：
 
 ```text
-本週現場觀察顯示，文化路夜市周邊在尖峰時段仍有臨停與人行動線重疊問題，建議後續盤點卸貨區、臨停熱點與行人穿越動線。
+本週現場觀察顯示，文化路商圈周邊在尖峰時段仍有臨停與人行動線重疊問題，建議後續盤點卸貨區、臨停熱點與行人穿越動線。
 ```
 
 ---
@@ -157,3 +157,4 @@ dashboard/data/field_observations.json
 - [ ] privacy_checked 為 false 時不可 published
 - [ ] publish_status 為 published 時不可含個資
 - [ ] geo_precision 若為 exact_address，公開前應降精度
+- [ ] 地名應符合 `docs/local_terminology_style_guide.md`
