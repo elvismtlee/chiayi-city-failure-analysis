@@ -1,0 +1,50 @@
+sources:
+  cycc:
+    name: 嘉義市議會
+    base_url: https://www.cycc.gov.tw/
+    targets:
+      minutes:
+        name: 會議紀錄檢索
+        url: TBD
+        type: html_or_pdf
+        priority: high
+      question_videos:
+        name: 議員質詢影音專區
+        url: TBD
+        type: html_metadata
+        priority: high
+      agenda:
+        name: 議事日程表
+        url: TBD
+        type: html
+        priority: medium
+
+  chiayi_city_gov:
+    name: 嘉義市政府
+    base_url: https://www.chiayi.gov.tw/
+    targets:
+      petition:
+        name: 線上陳情 / 市政信箱
+        url: TBD
+        type: html_or_api
+        priority: high
+      service_1999:
+        name: 1999 服務資訊
+        url: TBD
+        type: html_or_statistical_report
+        priority: high
+
+  data_gov_tw:
+    name: 政府資料開放平台
+    base_url: https://data.gov.tw/
+    targets:
+      open_datasets:
+        name: 嘉義市相關開放資料
+        keywords:
+          - 嘉義市 1999
+          - 嘉義市 陳情
+          - 嘉義市 交通
+          - 嘉義市 道路
+          - 嘉義市 環保
+        type: csv_json_api
+        priority: high
