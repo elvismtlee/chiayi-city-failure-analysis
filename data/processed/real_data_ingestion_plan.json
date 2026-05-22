@@ -1,0 +1,65 @@
+{
+  "plan_id": "real-data-ingestion-plan",
+  "public_use_status": "internal_ingestion_plan",
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "source_count": 3,
+  "ready_source_count": 0,
+  "blocked_source_count": 3,
+  "sources": [
+    {
+      "source_id": "cycc_meetings",
+      "name": "嘉義市議會會議紀錄與議事資料",
+      "category": "council_records",
+      "status": "needs_source_url_review",
+      "crawl_enabled": false,
+      "base_url_count": 0,
+      "output_raw_dir": "data/raw/cycc_meetings",
+      "output_processed_dir": "data/processed/cycc_meetings",
+      "ready_for_crawl": false,
+      "blocking_reasons": [
+        "crawl_enabled is false; manual review required before crawling",
+        "base_urls is empty; no reviewed public source URL configured",
+        "source status is not ready_for_crawl or reviewed_public_source"
+      ]
+    },
+    {
+      "source_id": "chiayi_open_data_1999",
+      "name": "嘉義市 1999 或市民陳情公開統計資料",
+      "category": "citizen_complaint_statistics",
+      "status": "needs_source_url_review",
+      "crawl_enabled": false,
+      "base_url_count": 0,
+      "output_raw_dir": "data/raw/chiayi_1999",
+      "output_processed_dir": "data/processed/chiayi_1999",
+      "ready_for_crawl": false,
+      "blocking_reasons": [
+        "crawl_enabled is false; manual review required before crawling",
+        "base_urls is empty; no reviewed public source URL configured",
+        "source status is not ready_for_crawl or reviewed_public_source"
+      ]
+    },
+    {
+      "source_id": "chiayi_city_open_data",
+      "name": "嘉義市政府開放資料與局處公開統計",
+      "category": "city_open_data",
+      "status": "needs_dataset_inventory",
+      "crawl_enabled": false,
+      "base_url_count": 0,
+      "output_raw_dir": "data/raw/chiayi_open_data",
+      "output_processed_dir": "data/processed/chiayi_open_data",
+      "ready_for_crawl": false,
+      "blocking_reasons": [
+        "crawl_enabled is false; manual review required before crawling",
+        "base_urls is empty; no reviewed public source URL configured",
+        "source status is not ready_for_crawl or reviewed_public_source"
+      ]
+    }
+  ],
+  "next_actions": [
+    "Review official source URLs and terms before enabling any crawler.",
+    "Set crawl_enabled to true only after human review.",
+    "Keep raw crawled data internal until privacy and license review is complete.",
+    "Build source-specific fetchers only after the manifest entry is ready_for_crawl."
+  ]
+}
