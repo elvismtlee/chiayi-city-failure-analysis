@@ -13,6 +13,9 @@ REQUIRED_JSON_FILES = [
     "hotspots.geojson",
     "geocoding_review_queue.json",
     "transcript_review_queue.json",
+    "cycc_minutes_issue_candidates.json",
+    "weekly_summary_draft.json",
+    "policy_draft_candidates.json",
     "local_place_dictionary.json",
     "site_map.json",
 ]
@@ -35,6 +38,11 @@ VALID_GEOCODING_PRIORITY = {"high", "medium", "low"}
 VALID_TRANSCRIPT_STATUS = {"not_started", "queued", "transcribed", "reviewed", "rejected"}
 VALID_TRANSCRIPT_REVIEW_STATUS = {"unreviewed", "needs_metadata_review", "reviewed", "rejected"}
 VALID_TRANSCRIPT_PRIORITY = {"needs_metadata_review", "medium", "normal"}
+VALID_MINUTES_CONFIDENCE_LEVEL = {"sample_only"}
+VALID_MINUTES_FOLLOW_UP = {"manual_policy_review"}
+VALID_WEEKLY_PUBLIC_USE_STATUS = {"internal_weekly_draft"}
+VALID_POLICY_DRAFT_PUBLIC_USE_STATUS = {"internal_policy_draft"}
+VALID_POLICY_DRAFT_REVIEW_STATUS = {"needs_policy_review"}
 
 
 def load_json(filename: str):
@@ -234,6 +242,103 @@ def test_transcript_review_queue_schema() -> None:
         assert item["priority"] in VALID_TRANSCRIPT_PRIORITY
         assert item["recommended_action"] == "manual_transcript_or_asr_review"
         assert "不呼叫 Whisper" in item["notes"]
+
+
+def test_cycc_minutes_issue_candidates_schema() -> None:
+    candidates = load_json("cycc_minutes_issue_candidates.json")
+    assert isinstance(candidates, list)
+    assert candidates
+
+    required_fields = [
+        "candidate_id",
+        "reviewed_id",
+        "meeting_date",
+        "department",
+        "issue_title",
+        "issue_keywords",
+        "issue_summary",
+        "source_url",
+        "source_context",
+        "review_status",
+        "public_use_status",
+        "confidence_level",
+        "recommended_follow_up",
+        "notes",
+    ]
+    for index, item in enumerate(candidates):
+        assert isinstance(item, dict), f"minutes issue candidate #{index} must be an object"
+        for field in required_fields:
+            assert field in item, f"minutes issue candidate #{index} missing {field}"
+        assert item["candidate_id"].startswith("cycc-issue-")
+        assert item["reviewed_id"].startswith("cycc-reviewed-")
+        assert isinstance(item["issue_keywords"], list)
+        assert item["confidence_level"] in VALID_MINUTES_CONFIDENCE_LEVEL
+        assert item["recommended_follow_up"] in VALID_MINUTES_FOLLOW_UP
+        assert item["public_use_status"] == "internal_reviewed_sample"
+        assert "not official" in item["notes"].lower() or "sample" in item["notes"].lower()
+
+
+def test_weekly_summary_draft_schema() -> None:
+    summary = load_json("weekly_summary_draft.json")
+    assert isinstance(summary, dict)
+    for field in [
+        "summary_id",
+        "week_start",
+        "week_end",
+        "generated_at",
+        "source_files",
+        "total_candidates",
+        "department_summary",
+        "keyword_summary",
+        "top_issues",
+        "needs_review",
+        "suggested_policy_topics",
+        "public_use_status",
+        "notes",
+    ]:
+        assert field in summary
+    assert summary["summary_id"].startswith("weekly-summary-sample-")
+    assert "dashboard/data/cycc_minutes_issue_candidates.json" in summary["source_files"]
+    assert_number(summary["total_candidates"], "total_candidates")
+    assert summary["public_use_status"] in VALID_WEEKLY_PUBLIC_USE_STATUS
+    assert isinstance(summary["department_summary"], list)
+    assert isinstance(summary["keyword_summary"], list)
+    assert isinstance(summary["top_issues"], list)
+    assert isinstance(summary["needs_review"], list)
+    assert isinstance(summary["suggested_policy_topics"], list)
+    assert "internal draft" in summary["notes"].lower() or "not official" in summary["notes"].lower()
+
+
+def test_policy_draft_candidates_schema() -> None:
+    drafts = load_json("policy_draft_candidates.json")
+    assert isinstance(drafts, list)
+    assert drafts
+    for index, item in enumerate(drafts):
+        for field in [
+            "draft_id",
+            "source_candidate_id",
+            "issue_title",
+            "problem_statement",
+            "possible_root_causes",
+            "policy_options",
+            "first_action",
+            "responsible_department",
+            "source_urls",
+            "review_status",
+            "public_use_status",
+            "risk_notes",
+            "recommended_next_step",
+        ]:
+            assert field in item, f"policy draft #{index} missing {field}"
+        assert item["draft_id"].startswith("policy-draft-")
+        assert isinstance(item["possible_root_causes"], list)
+        assert isinstance(item["policy_options"], list)
+        assert len(item["policy_options"]) >= 3
+        assert isinstance(item["source_urls"], list)
+        assert item["review_status"] in VALID_POLICY_DRAFT_REVIEW_STATUS
+        assert item["public_use_status"] in VALID_POLICY_DRAFT_PUBLIC_USE_STATUS
+        assert item["recommended_next_step"] == "manual_policy_review"
+        assert "人工確認" in item["risk_notes"]
 
 
 def test_issue_trends_schema() -> None:

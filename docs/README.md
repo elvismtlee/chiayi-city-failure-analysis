@@ -88,6 +88,8 @@ dashboard/index.html
 | `dashboard/video-review.html` | 影音 metadata 與轉錄審核清單。 |
 | `dashboard/minutes-review.html` | 會議紀錄 fixture parser 人工審核清單。 |
 | `dashboard/minutes-issues.html` | 會議紀錄 reviewed sample 轉出的議題候選清單。 |
+| `dashboard/weekly-summary.html` | 內部每週市政議題摘要草稿。 |
+| `dashboard/policy-drafts.html` | 內部政策草稿候選清單。 |
 
 常用資料檔：
 
@@ -100,6 +102,8 @@ dashboard/index.html
 | `dashboard/data/cycc_minutes_review_queue.json` | 會議紀錄 fixture parser 待人工審核清單。 |
 | `data/processed/cycc_minutes_reviewed_sample.json` | 會議紀錄人工審核後的 sample data，不是正式結論。 |
 | `dashboard/data/cycc_minutes_issue_candidates.json` | reviewed sample data 轉出的會議紀錄議題候選。 |
+| `dashboard/data/weekly_summary_draft.json` | 從 issue candidates 產生的內部週報草稿。 |
+| `dashboard/data/policy_draft_candidates.json` | 從 weekly summary draft 產生的政策草稿候選。 |
 | `dashboard/data/site_map.json` | dashboard 導覽與頁面說明。 |
 
 常用 scripts：
@@ -108,6 +112,8 @@ dashboard/index.html
 |---|---|
 | `scripts/build_cycc_minutes_reviewed_sample.py` | 從會議紀錄 review queue 產生 reviewed sample data。 |
 | `scripts/build_cycc_minutes_issue_candidates.py` | 從 reviewed sample data 產生議題候選 JSON。 |
+| `scripts/build_weekly_summary_draft.py` | 從會議紀錄議題候選產生內部週報草稿。 |
+| `scripts/build_policy_draft_candidates.py` | 從週報草稿或議題候選產生政策草稿候選。 |
 
 ---
 
@@ -127,6 +133,10 @@ pytest -q tests/test_minutes_review_page.py
 pytest -q tests/test_build_cycc_minutes_reviewed_sample.py
 pytest -q tests/test_build_cycc_minutes_issue_candidates.py
 pytest -q tests/test_minutes_issues_page.py
+pytest -q tests/test_build_weekly_summary_draft.py
+pytest -q tests/test_build_policy_draft_candidates.py
+pytest -q tests/test_weekly_summary_page.py
+pytest -q tests/test_policy_drafts_page.py
 ```
 
 新增 PR 前應檢查：

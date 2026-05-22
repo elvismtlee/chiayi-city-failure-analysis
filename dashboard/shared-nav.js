@@ -5,6 +5,8 @@ const DASHBOARD_NAV_ITEMS = [
   { title: '影音轉錄審核', path: './video-review.html', file: 'video-review.html' },
   { title: '會議紀錄審核', path: './minutes-review.html', file: 'minutes-review.html' },
   { title: '會議紀錄議題', path: './minutes-issues.html', file: 'minutes-issues.html' },
+  { title: '每週摘要', path: './weekly-summary.html', file: 'weekly-summary.html' },
+  { title: '政策草稿', path: './policy-drafts.html', file: 'policy-drafts.html' },
   { title: '城市洞察分析', path: './insights.html', file: 'insights.html' },
   { title: '資料來源', path: './sources.html', file: 'sources.html' },
   { title: '方法論', path: './methodology.html', file: 'methodology.html' },
