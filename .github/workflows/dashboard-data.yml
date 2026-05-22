@@ -46,6 +46,8 @@ on:
       - "tests/test_daily_execution_page.py"
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
+      - "tests/test_weekly_summary_page.py"
+      - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
       - "tests/test_build_dashboard_health_check.py"
       - "tests/test_build_weekly_system_report.py"
@@ -103,6 +105,8 @@ on:
       - "tests/test_daily_execution_page.py"
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
+      - "tests/test_weekly_summary_page.py"
+      - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
       - "tests/test_build_dashboard_health_check.py"
       - "tests/test_build_weekly_system_report.py"
@@ -226,6 +230,8 @@ jobs:
           pytest -q tests/test_daily_execution_page.py
           pytest -q tests/test_public_review_page.py
           pytest -q tests/test_approved_materials_page.py
+          pytest -q tests/test_weekly_summary_page.py
+          pytest -q tests/test_policy_drafts_page.py
           pytest -q tests/test_build_command_center_overview.py
           pytest -q tests/test_build_dashboard_health_check.py
           pytest -q tests/test_build_weekly_system_report.py
