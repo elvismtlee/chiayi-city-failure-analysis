@@ -10,12 +10,13 @@
 |---|---|
 | `docs/issue_progress_matrix.md` | 總覽已完成、進行中、不要重做、下一步建議。 |
 | `docs/daily_ops_runbook.md` | 每日資料審核與營運操作節奏。 |
+| `docs/operator_workflow.md` | 一人團隊使用總控台、健康檢查、公開審核與已核准素材的每日流程。 |
 | `docs/review_workbench_sop.md` | 人工審核工作台共同 SOP。 |
 
 建議順序：
 
 ```text
-issue_progress_matrix.md -> daily_ops_runbook.md -> review_workbench_sop.md
+issue_progress_matrix.md -> daily_ops_runbook.md -> operator_workflow.md -> review_workbench_sop.md
 ```
 
 ---
@@ -43,6 +44,7 @@ issue_progress_matrix.md -> daily_ops_runbook.md -> review_workbench_sop.md
 | `docs/review_workbench_sop.md` | 統一座標審核、影音審核與未來會議紀錄解析審核流程。 |
 | `docs/video_review_sop.md` | 影音轉錄審核與 metadata 補齊流程。 |
 | `docs/daily_ops_runbook.md` | 每日與每週的實際操作清單。 |
+| `docs/operator_workflow.md` | 從 health check、command center、public review 到 approved materials 的每日操作流程。 |
 
 核心規則：
 
@@ -196,6 +198,7 @@ pytest -q tests/test_filming_checklists_page.py
 ```text
 先看 review_workbench_sop.md
 再看 daily_ops_runbook.md
+再看 operator_workflow.md
 再逐筆更新 queue 狀態
 ```
 
