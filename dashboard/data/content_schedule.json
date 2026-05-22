@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-05-23T01:30:11+08:00",
+  "public_use_status": "internal_content_schedule",
+  "notes": [
+    "Internal schedule draft only.",
+    "No automatic publishing.",
+    "Human review is required before public use."
+  ],
+  "items": [
+    {
+      "schedule_id": "schedule-001",
+      "date": "待排程",
+      "channel": "facebook",
+      "title": "城市故障分析週報草稿",
+      "status": "draft",
+      "review_required": true,
+      "source_issue": "嘉義市公開資料整理",
+      "source_id": "manual-sample",
+      "notes": "internal schedule draft / needs human review / manual publishing only"
+    }
+  ]
+}
