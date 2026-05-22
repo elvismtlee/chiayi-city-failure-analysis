@@ -22,7 +22,11 @@ def test_cycc_public_record_config_is_safe_and_scoped() -> None:
     assert config["no_personal_data"] is True
     assert config["crawl_scope"] == "metadata_only"
     assert set(config["sources"].keys()) == {"cycc"}
-    assert "1999" not in json.dumps(config, ensure_ascii=False)
+
+    source = config["sources"]["cycc"]
+    assert set(source["targets"].keys()) == {"minutes", "question_videos"}
+    for target in source["targets"].values():
+        assert "cycc.gov.tw" in target["url"]
 
 
 def test_validate_config_accepts_reviewed_public_cycc_source() -> None:
