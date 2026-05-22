@@ -8,13 +8,19 @@ on:
       - "scripts/build_geocoding_review_queue.py"
       - "scripts/build_transcript_review_queue.py"
       - "scripts/build_cycc_minutes_review_queue.py"
+      - "scripts/build_cycc_minutes_reviewed_sample.py"
+      - "scripts/build_cycc_minutes_issue_candidates.py"
       - "data/raw/cycc_question_video_metadata.csv"
       - "dashboard/data/**"
+      - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
       - "tests/test_build_geocoding_review_queue.py"
       - "tests/test_build_transcript_review_queue.py"
       - "tests/test_build_cycc_minutes_review_queue.py"
+      - "tests/test_build_cycc_minutes_reviewed_sample.py"
+      - "tests/test_build_cycc_minutes_issue_candidates.py"
+      - "tests/test_minutes_issues_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -28,13 +34,19 @@ on:
       - "scripts/build_geocoding_review_queue.py"
       - "scripts/build_transcript_review_queue.py"
       - "scripts/build_cycc_minutes_review_queue.py"
+      - "scripts/build_cycc_minutes_reviewed_sample.py"
+      - "scripts/build_cycc_minutes_issue_candidates.py"
       - "data/raw/cycc_question_video_metadata.csv"
       - "dashboard/data/**"
+      - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
       - "tests/test_build_geocoding_review_queue.py"
       - "tests/test_build_transcript_review_queue.py"
       - "tests/test_build_cycc_minutes_review_queue.py"
+      - "tests/test_build_cycc_minutes_reviewed_sample.py"
+      - "tests/test_build_cycc_minutes_issue_candidates.py"
+      - "tests/test_minutes_issues_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -79,6 +91,14 @@ jobs:
         run: |
           python scripts/build_cycc_minutes_review_queue.py
 
+      - name: Build CYCC minutes reviewed sample
+        run: |
+          python scripts/build_cycc_minutes_reviewed_sample.py
+
+      - name: Build CYCC minutes issue candidates
+        run: |
+          python scripts/build_cycc_minutes_issue_candidates.py
+
       - name: Validate dashboard JSON
         run: |
           python - <<'PY'
@@ -93,6 +113,7 @@ jobs:
               "geocoding_review_queue.json",
               "transcript_review_queue.json",
               "cycc_minutes_review_queue.json",
+              "cycc_minutes_issue_candidates.json",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -110,6 +131,9 @@ jobs:
           pytest -q tests/test_build_geocoding_review_queue.py
           pytest -q tests/test_build_transcript_review_queue.py
           pytest -q tests/test_build_cycc_minutes_review_queue.py
+          pytest -q tests/test_build_cycc_minutes_reviewed_sample.py
+          pytest -q tests/test_build_cycc_minutes_issue_candidates.py
+          pytest -q tests/test_minutes_issues_page.py
           pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py
