@@ -25,6 +25,33 @@ function renderSourcesTable(items) {
   `).join('');
 }
 
+function setText(selector, value) {
+  const node = document.querySelector(selector);
+  if (node) node.textContent = value;
+}
+
+function renderCrawlerStatus(report) {
+  const note = document.querySelector('[data-render="pipeline-note"]');
+  if (!note) return;
+
+  if (!report || !report.public_use_status) {
+    setText('[data-pipeline="status"]', '已建立');
+    setText('[data-pipeline="scope"]', 'metadata only');
+    setText('[data-pipeline="files"]', '尚未產出');
+    setText('[data-pipeline="records"]', '0');
+    note.innerHTML = '<strong>嘉義市議會公開資料 crawler 已進入程式碼主線。</strong>目前尚未偵測到正式抓取報告，代表尚未將 live crawl 產出提交到 dashboard。下一步是手動執行 crawler、人工審核輸出，再決定是否接入儀表板。';
+    return;
+  }
+
+  const outputFiles = report.output_files || [];
+  const recordCount = outputFiles.reduce((sum, item) => sum + Number(item.record_count || 0), 0);
+  setText('[data-pipeline="status"]', report.public_use_status === 'internal_crawl_report' ? '已有報告' : '待確認');
+  setText('[data-pipeline="scope"]', report.crawl_scope || 'metadata only');
+  setText('[data-pipeline="files"]', String(outputFiles.length));
+  setText('[data-pipeline="records"]', String(recordCount));
+  note.innerHTML = `<strong>已讀取 crawler 報告。</strong>最近抓取時間：${report.crawled_at || report.generated_at || '未標示'}。此資料仍為 internal metadata，需要人工審核後才可對外使用。`;
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -44,6 +71,8 @@ async function bootSitePages() {
   if (page === 'sources') {
     const sources = await loadJson('./data/data_sources.json', []);
     renderSourcesTable(sources);
+    const crawlerReport = await loadJson('./data/cycc_public_records_crawl_report.json', null);
+    renderCrawlerStatus(crawlerReport);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
