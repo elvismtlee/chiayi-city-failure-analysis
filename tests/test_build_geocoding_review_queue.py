@@ -1,7 +1,13 @@
 import json
 from pathlib import Path
 
-from scripts.build_geocoding_review_queue import build_queue, score_priority
+from scripts.build_geocoding_review_queue import (
+    build_queue,
+    build_suggested_query,
+    normalize_place_name,
+    score_priority,
+    write_queue,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +49,17 @@ def test_generated_geocoding_review_queue_exists_and_parses() -> None:
     data = load_queue()
     assert isinstance(data, list)
     assert data
+
+
+def test_write_queue_can_generate_json(tmp_path: Path) -> None:
+    output_path = tmp_path / "geocoding_review_queue.json"
+    queue = write_queue(output_path)
+
+    assert output_path.exists()
+    generated = json.loads(output_path.read_text(encoding="utf-8"))
+    assert generated == queue
+    assert isinstance(generated, list)
+    assert generated
 
 
 def test_build_queue_returns_review_candidates() -> None:
@@ -93,3 +110,9 @@ def test_queue_uses_local_approved_terms() -> None:
     content = QUEUE.read_text(encoding="utf-8")
     assert "文化路商圈" in content
     assert "文化路夜市" not in content
+
+
+def test_normalize_place_name_replaces_banned_local_term() -> None:
+    assert normalize_place_name("文化路夜市") == "文化路商圈"
+    assert "文化路夜市" not in build_suggested_query("西區", "文化路夜市")
+    assert "文化路商圈" in build_suggested_query("西區", "文化路夜市")
