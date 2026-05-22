@@ -5,19 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>資料來源與更新狀態｜嘉義城市故障分析中心</title>
   <style>
-    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}.nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.12)}.nav a.active{background:#fff;color:var(--dark);font-weight:800}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:780px;color:rgba(255,255,255,.9)}.wrap{padding:30px 24px 64px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:26px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);overflow:auto}table{width:100%;border-collapse:collapse;min-width:960px}th,td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);background:#f8fafc}.pill{display:inline-block;padding:5px 10px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:700;font-size:13px}.notice{line-height:1.8;color:#475569}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}
+    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--orange:#f97316}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:block;margin-bottom:34px}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:780px;color:rgba(255,255,255,.9)}.wrap{padding:30px 24px 64px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:26px}.section-title span{color:var(--muted);font-size:14px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);overflow:auto}.status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.status-card{background:#fff;border:1px solid rgba(15,118,110,.13);border-radius:22px;padding:20px;box-shadow:0 16px 42px rgba(15,23,42,.06)}.status-card .label{color:var(--muted);font-size:14px}.status-card .value{margin-top:8px;font-size:26px;font-weight:950;color:var(--dark)}.pipeline-note{line-height:1.8;color:#475569}.pipeline-note strong{color:#064e3b}table{width:100%;border-collapse:collapse;min-width:960px}th,td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);background:#f8fafc}.pill{display:inline-block;padding:5px 10px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:700;font-size:13px}.pill.pending{background:#fff7ed;color:#9a3412}.notice{line-height:1.8;color:#475569}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}@media(max-width:900px){.status-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.status-grid{grid-template-columns:1fr}.wrap{padding:24px 16px 56px}}
   </style>
 </head>
 <body data-page="sources">
-  <section class="hero"><div class="inner"><nav class="nav"><a href="./index.html">城市儀表板首頁</a><a href="./insights.html">城市洞察分析</a><a class="active" href="./sources.html">資料來源</a><a href="./methodology.html">方法論</a><a href="./reports.html">城市週報</a></nav><h1>資料來源與更新狀態</h1><p>公開資料、官方資訊與地方議題資料的整理狀態。所有資料都應標示來源、更新時間與資料限制。</p></div></section>
+  <section class="hero"><div class="inner"><nav class="nav"></nav><h1>資料來源與更新狀態</h1><p>公開資料、官方資訊與地方議題資料的整理狀態。所有資料都應標示來源、更新時間、資料限制與是否已完成人工審核。</p></div></section>
   <main class="wrap">
+    <div class="section-title"><h2>真實資料管線狀態</h2><span>CYCC public records crawler</span></div>
+    <section class="status-grid">
+      <article class="status-card"><div class="label">Crawler 狀態</div><div class="value" data-pipeline="status">讀取中</div></article>
+      <article class="status-card"><div class="label">抓取範圍</div><div class="value" data-pipeline="scope">metadata only</div></article>
+      <article class="status-card"><div class="label">產出檔案</div><div class="value" data-pipeline="files">–</div></article>
+      <article class="status-card"><div class="label">資料筆數</div><div class="value" data-pipeline="records">–</div></article>
+    </section>
+    <section class="card pipeline-note" style="margin-top:16px" data-render="pipeline-note">正在讀取真實資料管線狀態。</section>
+
     <div class="section-title"><h2>資料集狀態表</h2><span>data_sources.json</span></div>
     <section class="card"><table><thead><tr><th>資料來源</th><th>類型</th><th>狀態</th><th>最近更新</th><th>筆數</th><th>連結</th><th>資料限制</th></tr></thead><tbody data-render="sources"></tbody></table></section>
     <div class="section-title"><h2>公開聲明</h2></div>
-    <section class="card notice">本平台資料來自公開資訊、官方資料與原型資料整理。分析結果為城市治理與地方議題研究用途，不代表完整民意調查，也不作為個人評價結論。</section>
+    <section class="card notice">本平台資料來自公開資訊、官方資料與原型資料整理。分析結果為城市治理與地方議題研究用途，不代表完整民意調查，也不作為個人評價結論。真實資料 crawler 的輸出必須經人工審核後，才可作為對外說明素材。</section>
     <p class="footer-note">資料來源頁是本資料站的透明基礎。正式資料上線後，應持續更新來源、筆數、更新時間與處理狀態。</p>
   </main>
-  <script src="./shared-nav.js"></script>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="./site-pages.js"></script>
 </body>
 </html>
