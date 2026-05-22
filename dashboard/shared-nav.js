@@ -67,39 +67,51 @@ function findCurrentGroup(currentFile) {
   return DASHBOARD_NAV_GROUPS.find(group => group.items.some(item => item.file === currentFile));
 }
 
+function makeNavLink(item, currentFile, extraClass = '') {
+  const link = document.createElement('a');
+  link.href = item.path;
+  link.textContent = item.title;
+  link.className = extraClass;
+  if (item.file === currentFile) link.classList.add('active');
+  if (item.external) {
+    link.target = '_blank';
+    link.rel = 'noopener';
+  }
+  return link;
+}
+
 function renderSharedNav() {
   const nav = document.querySelector('.nav');
   if (!nav) return;
   const currentFile = getCurrentFileName();
-  nav.classList.add('grouped-nav');
+  const currentGroup = findCurrentGroup(currentFile) || DASHBOARD_NAV_GROUPS[0];
+  nav.className = 'nav dashboard-nav';
   nav.textContent = '';
+
+  const mainRow = document.createElement('div');
+  mainRow.className = 'dashboard-nav-main';
   DASHBOARD_NAV_GROUPS.forEach(group => {
-    const groupNode = document.createElement('div');
-    groupNode.className = `nav-group nav-group-${group.tone}`;
-    const isGroupActive = group.items.some(item => item.file === currentFile);
-    if (isGroupActive) groupNode.classList.add('active-group');
-
-    const label = document.createElement('div');
-    label.className = 'nav-group-label';
-    label.textContent = group.label;
-    groupNode.appendChild(label);
-
-    const links = document.createElement('div');
-    links.className = 'nav-group-links';
-    group.items.forEach(item => {
-      const link = document.createElement('a');
-      link.href = item.path;
-      link.textContent = item.title;
-      if (item.file === currentFile) link.className = 'active';
-      if (item.external) {
-        link.target = '_blank';
-        link.rel = 'noopener';
-      }
-      links.appendChild(link);
-    });
-    groupNode.appendChild(links);
-    nav.appendChild(groupNode);
+    const primaryItem = group.items[0];
+    const groupLink = document.createElement('a');
+    groupLink.href = primaryItem.path;
+    groupLink.textContent = group.label;
+    groupLink.className = `dashboard-nav-tab dashboard-nav-tab-${group.tone}`;
+    if (group.label === currentGroup.label) groupLink.classList.add('active');
+    mainRow.appendChild(groupLink);
   });
+
+  const subRow = document.createElement('div');
+  subRow.className = `dashboard-nav-sub dashboard-nav-sub-${currentGroup.tone}`;
+  const subLabel = document.createElement('span');
+  subLabel.className = 'dashboard-nav-sub-label';
+  subLabel.textContent = currentGroup.label;
+  subRow.appendChild(subLabel);
+  currentGroup.items.forEach(item => {
+    subRow.appendChild(makeNavLink(item, currentFile, 'dashboard-nav-link'));
+  });
+
+  nav.appendChild(mainRow);
+  nav.appendChild(subRow);
 }
 
 function renderBreadcrumb() {
@@ -129,12 +141,12 @@ function injectFooterStyle() {
   style.id = 'shared-nav-style';
   style.textContent = `
     .site-footer{max-width:1180px;margin:0 auto 42px;padding:0 24px;color:#64748b;font-size:14px;line-height:1.7}.site-footer p{border-top:1px solid rgba(15,118,110,.18);padding-top:18px;margin:0}
-    .grouped-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:28px}.nav-group{border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:10px;background:rgba(255,255,255,.10);backdrop-filter:blur(8px)}.nav-group.active-group{background:rgba(255,255,255,.18);box-shadow:0 14px 36px rgba(0,0,0,.16)}.nav-group-label{font-size:12px;letter-spacing:.12em;color:rgba(255,255,255,.72);margin:0 0 8px;font-weight:800}.nav-group-links{display:flex;flex-wrap:wrap;gap:7px}.nav-group a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 10px;font-size:14px;line-height:1;background:rgba(255,255,255,.08)}.nav-group a.active{background:#fff;color:#064e3b;font-weight:900;border-color:#fff}.nav-group-review a.active{color:#075985}.nav-group-content a.active{color:#581c87}.nav-group-publish a.active{color:#9a3412}.nav-group-system a.active{color:#334155}@media(max-width:760px){.grouped-nav{grid-template-columns:1fr}.nav-group-links{gap:8px}.nav-group a{font-size:13px}}
+    .hero .dashboard-nav,.dashboard-nav{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;margin:0 0 30px!important;padding:0!important;max-width:980px!important}.dashboard-nav a{text-decoration:none!important}.dashboard-nav-main{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important}.dashboard-nav-tab{display:flex!important;justify-content:center!important;align-items:center!important;min-height:42px!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.34)!important;background:rgba(255,255,255,.10)!important;color:rgba(255,255,255,.92)!important;font-weight:900!important;font-size:15px!important;letter-spacing:.04em!important;box-shadow:none!important}.dashboard-nav-tab.active{background:#fff!important;color:#064e3b!important;border-color:#fff!important;box-shadow:0 14px 34px rgba(0,0,0,.18)!important}.dashboard-nav-sub{display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:wrap!important;border:1px solid rgba(255,255,255,.26)!important;background:rgba(255,255,255,.10)!important;border-radius:22px!important;padding:10px!important;backdrop-filter:blur(8px)!important}.dashboard-nav-sub-label{display:inline-flex!important;align-items:center!important;border-radius:999px!important;background:rgba(255,255,255,.20)!important;color:#fff!important;font-size:12px!important;font-weight:950!important;letter-spacing:.12em!important;padding:8px 10px!important;white-space:nowrap!important}.dashboard-nav-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:34px!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.28)!important;background:rgba(255,255,255,.08)!important;color:#fff!important;padding:8px 12px!important;font-size:14px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important}.dashboard-nav-link.active{background:#fff!important;border-color:#fff!important;color:#064e3b!important;box-shadow:0 10px 22px rgba(0,0,0,.14)!important}.dashboard-nav-sub-review .dashboard-nav-link.active{color:#075985!important}.dashboard-nav-sub-content .dashboard-nav-link.active{color:#581c87!important}.dashboard-nav-sub-publish .dashboard-nav-link.active{color:#9a3412!important}.dashboard-nav-sub-system .dashboard-nav-link.active{color:#334155!important}@media(max-width:920px){.dashboard-nav-main{grid-template-columns:repeat(3,minmax(0,1fr))!important}.dashboard-nav-tab{font-size:14px!important}}@media(max-width:640px){.hero .dashboard-nav,.dashboard-nav{gap:10px!important;margin-bottom:22px!important}.dashboard-nav-main{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-nav-sub{align-items:flex-start!important}.dashboard-nav-sub-label{width:100%!important;justify-content:center!important}.dashboard-nav-link{font-size:13px!important;padding:8px 10px!important}}
   `;
   document.head.appendChild(style);
 }
 
+injectFooterStyle();
 renderSharedNav();
 renderBreadcrumb();
-injectFooterStyle();
 renderSharedFooter();
