@@ -1,4 +1,6 @@
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from scripts.crawl_cycc_public_records import (
@@ -87,3 +89,15 @@ def test_run_crawl_writes_report_without_live_network(tmp_path: Path) -> None:
     assert payload["no_auto_publish"] is True
     assert payload["output_dir"].endswith("/raw")
     assert {item["record_count"] for item in payload["output_files"]} == {1, 2}
+
+
+def test_script_can_be_invoked_directly_for_help() -> None:
+    result = subprocess.run(
+        [sys.executable, "scripts/crawl_cycc_public_records.py", "--help"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "Run CYCC public records metadata crawler" in result.stdout
