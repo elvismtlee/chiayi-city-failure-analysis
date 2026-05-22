@@ -1,0 +1,42 @@
+[
+  {
+    "script_id": "video-script-05969f6e1b3e",
+    "source_post_id": "social-facebook-05969f6e1b3e",
+    "issue_title": "市區道路安全與停車動線專案報告",
+    "hook": "一個地方議題，先從公開來源與現場脈絡看起。",
+    "opening_line": "今天先用 60 秒，整理「市區道路安全與停車動線專案報告」的內部草稿重點。",
+    "scene_plan": [
+      "一人可拍攝：面向鏡頭口播，說明這是內部草稿與待審核資料。",
+      "一人可拍攝：拍攝公開場域空景或桌面資料整理畫面。",
+      "一人可拍攝：收尾提醒需要人工 review 後才可對外使用。"
+    ],
+    "voiceover": "目前這份內容仍是 internal draft，依政策草稿候選整理 市區道路安全與停車動線專案報告 的問題脈絡。內容不代表正式結論，後續需確認來源、上下文與政策可行性。",
+    "subtitle_lines": ["內部短影音腳本草稿", "來源與上下文仍需人工 review", "不自動發布，對外使用前需審核"],
+    "call_to_action": "歡迎提供你觀察到的地方問題，作為後續人工整理參考。",
+    "source_urls": ["https://www.cycc.gov.tw/public/minutes/sample.html"],
+    "review_status": "needs_video_review",
+    "public_use_status": "internal_video_draft",
+    "risk_notes": "需人工確認來源、語氣、畫面權利與法遵；避免未經同意或造成誤解的素材使用。",
+    "recommended_next_step": "manual_video_review"
+  },
+  {
+    "script_id": "video-script-6561ea41c7c0",
+    "source_post_id": "social-facebook-6561ea41c7c0",
+    "issue_title": "人行空間與排水改善專案報告",
+    "hook": "一個地方議題，先從公開來源與現場脈絡看起。",
+    "opening_line": "今天先用 60 秒，整理「人行空間與排水改善專案報告」的內部草稿重點。",
+    "scene_plan": [
+      "一人可拍攝：面向鏡頭口播，說明這是內部草稿與待審核資料。",
+      "一人可拍攝：拍攝公開場域空景或桌面資料整理畫面。",
+      "一人可拍攝：收尾提醒需要人工 review 後才可對外使用。"
+    ],
+    "voiceover": "目前這份內容仍是 internal draft，依政策草稿候選整理 人行空間與排水改善專案報告 的問題脈絡。內容不代表正式結論，後續需確認來源、上下文與政策可行性。",
+    "subtitle_lines": ["內部短影音腳本草稿", "來源與上下文仍需人工 review", "不自動發布，對外使用前需審核"],
+    "call_to_action": "歡迎提供你觀察到的地方問題，作為後續人工整理參考。",
+    "source_urls": ["https://www.cycc.gov.tw/public/minutes/sample.pdf"],
+    "review_status": "needs_video_review",
+    "public_use_status": "internal_video_draft",
+    "risk_notes": "需人工確認來源、語氣、畫面權利與法遵；避免未經同意或造成誤解的素材使用。",
+    "recommended_next_step": "manual_video_review"
+  }
+]
