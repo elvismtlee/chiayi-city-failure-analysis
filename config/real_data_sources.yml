@@ -1,0 +1,90 @@
+# 嘉義市城市故障分析資料庫｜真實資料來源設定
+#
+# This manifest defines public-source ingestion targets. It does not contain
+# private complaints, donor data, volunteer data, credentials, or personal data.
+# Every source must be reviewed before automated crawling is enabled.
+
+project: chiayi_city_failure_analysis
+public_use_status: internal_source_manifest
+manual_review_required: true
+no_personal_data: true
+no_auto_publish: true
+timezone: Asia/Taipei
+
+sources:
+  - id: cycc_meetings
+    name: 嘉義市議會會議紀錄與議事資料
+    category: council_records
+    expected_content:
+      - council meeting metadata
+      - agenda text
+      - minutes text
+      - councilor question metadata when publicly available
+    source_type: public_web
+    status: needs_source_url_review
+    crawl_enabled: false
+    base_urls: []
+    allowed_file_types:
+      - html
+      - pdf
+      - doc
+      - docx
+    output_raw_dir: data/raw/cycc_meetings
+    output_processed_dir: data/processed/cycc_meetings
+    privacy_notes:
+      - Use public council records only.
+      - Do not infer private citizen identities from meeting content.
+      - Keep raw files internal until reviewed.
+
+  - id: chiayi_open_data_1999
+    name: 嘉義市 1999 或市民陳情公開統計資料
+    category: citizen_complaint_statistics
+    expected_content:
+      - public aggregate complaint categories
+      - time period summaries
+      - department level statistics when publicly available
+    source_type: public_open_data
+    status: needs_source_url_review
+    crawl_enabled: false
+    base_urls: []
+    allowed_file_types:
+      - csv
+      - json
+      - xlsx
+      - html
+    output_raw_dir: data/raw/chiayi_1999
+    output_processed_dir: data/processed/chiayi_1999
+    privacy_notes:
+      - Use aggregate or officially published public data only.
+      - Do not ingest private complaint text unless it is already public and legally reusable.
+      - Remove phone numbers, addresses, emails, and personal identifiers before dashboard use.
+
+  - id: chiayi_city_open_data
+    name: 嘉義市政府開放資料與局處公開統計
+    category: city_open_data
+    expected_content:
+      - public datasets related to transport, parking, public works, care, safety, environment, culture, and commerce
+    source_type: public_open_data
+    status: needs_dataset_inventory
+    crawl_enabled: false
+    base_urls: []
+    allowed_file_types:
+      - csv
+      - json
+      - xlsx
+      - html
+    output_raw_dir: data/raw/chiayi_open_data
+    output_processed_dir: data/processed/chiayi_open_data
+    privacy_notes:
+      - Prefer official open-data portals and clearly licensed datasets.
+      - Record source URL, retrieval time, and license notes.
+
+rules:
+  - id: manual_enable_only
+    description: Sources are disabled by default. A human must review URLs and terms before setting crawl_enabled to true.
+  - id: public_sources_only
+    description: Ingest public records, open data, or official pages only.
+  - id: no_private_personal_data
+    description: Do not store private citizen complaint details, donor data, volunteer lists, or contact information.
+  - id: no_auto_publish
+    description: Crawled data may update internal raw and processed files only; public outputs require human review.
