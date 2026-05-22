@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts.parse_cycc_minutes_sample import parse_all_fixtures
 
 
-ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "dashboard" / "data" / "cycc_minutes_review_queue.json"
 
 SENSITIVE_FIELDS = {"phone", "email", "address", "national_id", "id_number", "full_address"}
