@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260522234005",
-  "generated_at": "2026-05-22T23:40:05+08:00",
+  "check_id": "dashboard-health-20260522235235",
+  "generated_at": "2026-05-22T23:52:35+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/cycc_minutes_review_queue.json",
