@@ -116,7 +116,7 @@ dashboard/data/geocoding_review_queue.json
 審核重點：
 
 1. `place_name` 是否為嘉義市在地常用名稱。
-2. 是否避免使用不建議稱呼，例如把「文化路夜市」正規化為「文化路商圈」。
+2. 是否避免使用不建議稱呼，例如使用「文化路商圈」作為統一稱呼。
 3. `geo_precision` 是否仍為 `prototype`、`unknown` 或 `uncertain`。
 4. `review_status` 是否尚未人工確認。
 5. 地點是否能用公開地圖交叉檢查。
