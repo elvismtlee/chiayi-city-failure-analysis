@@ -24,6 +24,12 @@
     "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"
   },
   {
+    "title": "會議紀錄審核",
+    "path": "./minutes-review.html",
+    "level": 2,
+    "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"
+  },
+  {
     "title": "城市洞察分析",
     "path": "./insights.html",
     "level": 2,
