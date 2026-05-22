@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "dashboard" / "data"
 OUTPUT_FILE = DATA_DIR / "dashboard_health_check.json"
+TAIPEI_TZ = timezone(timedelta(hours=8))
 
 IMPORTANT_JSON = [
     "dashboard/data/cycc_minutes_review_queue.json",
@@ -51,13 +52,25 @@ IMPORTANT_JS = [
     "dashboard/command-center.js",
     "dashboard/health-check.js",
     "dashboard/weekly-system-report.js",
+    "dashboard/content-schedule.js",
+    "dashboard/daily-execution.js",
+    "dashboard/public-review.js",
+    "dashboard/approved-materials.js",
 ]
 
-NAV_LABELS = ["總控台", "健康檢查", "每週系統報告"]
+NAV_LABELS = [
+    "內容排程",
+    "每日執行",
+    "公開審核",
+    "已核准素材",
+    "總控台",
+    "健康檢查",
+    "每週系統報告",
+]
 
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    return datetime.now(TAIPEI_TZ).isoformat(timespec="seconds")
 
 
 def parse_json(path: Path) -> bool:
@@ -125,7 +138,7 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
 
     status = "ok" if not warnings else "needs_attention"
     return {
-        "check_id": f"dashboard-health-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+        "check_id": f"dashboard-health-{datetime.now(TAIPEI_TZ).strftime('%Y%m%d%H%M%S')}",
         "generated_at": now_iso(),
         "checked_files": checked_files,
         "missing_files": missing_files,
@@ -148,7 +161,7 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
 def main() -> dict[str, Any]:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     result = build_health_check(ROOT)
-    OUTPUT_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUTPUT_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return result
 
 
