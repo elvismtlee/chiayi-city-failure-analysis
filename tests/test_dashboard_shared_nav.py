@@ -13,6 +13,7 @@ DASHBOARD_PAGES = [
     "reports.html",
     "404.html",
 ]
+PUBLISH_PAGES = ["public-review.html", "approved-materials.html", "daily-execution.html"]
 
 
 def test_shared_nav_script_exists() -> None:
@@ -71,6 +72,14 @@ def test_key_pages_bust_shared_nav_cache() -> None:
     for page in ["index.html", "weekly-summary.html", "policy-drafts.html"]:
         content = (DASHBOARD_DIR / page).read_text(encoding="utf-8")
         assert './shared-nav.js?v=20260523-navux' in content
+
+
+def test_publish_pages_use_shared_nav_style() -> None:
+    for page in PUBLISH_PAGES:
+        content = (DASHBOARD_DIR / page).read_text(encoding="utf-8")
+        assert '.nav{display:block' in content
+        assert './shared-nav.js?v=20260523-navux' in content
+        assert '.nav{display:flex' not in content
 
 
 def test_dashboard_pages_load_shared_nav_script() -> None:
