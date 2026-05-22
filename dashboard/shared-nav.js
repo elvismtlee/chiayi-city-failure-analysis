@@ -4,6 +4,7 @@ const DASHBOARD_NAV_ITEMS = [
   { title: '座標審核', path: './geocoding-review.html', file: 'geocoding-review.html' },
   { title: '影音轉錄審核', path: './video-review.html', file: 'video-review.html' },
   { title: '會議紀錄審核', path: './minutes-review.html', file: 'minutes-review.html' },
+  { title: '會議紀錄議題', path: './minutes-issues.html', file: 'minutes-issues.html' },
   { title: '城市洞察分析', path: './insights.html', file: 'insights.html' },
   { title: '資料來源', path: './sources.html', file: 'sources.html' },
   { title: '方法論', path: './methodology.html', file: 'methodology.html' },

@@ -30,6 +30,12 @@
     "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"
   },
   {
+    "title": "會議紀錄議題",
+    "path": "./minutes-issues.html",
+    "level": 2,
+    "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"
+  },
+  {
     "title": "城市洞察分析",
     "path": "./insights.html",
     "level": 2,

@@ -87,6 +87,7 @@ dashboard/index.html
 | `dashboard/geocoding-review.html` | 座標人工審核清單。 |
 | `dashboard/video-review.html` | 影音 metadata 與轉錄審核清單。 |
 | `dashboard/minutes-review.html` | 會議紀錄 fixture parser 人工審核清單。 |
+| `dashboard/minutes-issues.html` | 會議紀錄 reviewed sample 轉出的議題候選清單。 |
 
 常用資料檔：
 
@@ -97,7 +98,16 @@ dashboard/index.html
 | `dashboard/data/geocoding_review_queue.json` | 待人工地理校正清單。 |
 | `dashboard/data/transcript_review_queue.json` | 待轉錄與 metadata 審核清單。 |
 | `dashboard/data/cycc_minutes_review_queue.json` | 會議紀錄 fixture parser 待人工審核清單。 |
+| `data/processed/cycc_minutes_reviewed_sample.json` | 會議紀錄人工審核後的 sample data，不是正式結論。 |
+| `dashboard/data/cycc_minutes_issue_candidates.json` | reviewed sample data 轉出的會議紀錄議題候選。 |
 | `dashboard/data/site_map.json` | dashboard 導覽與頁面說明。 |
+
+常用 scripts：
+
+| Script | 用途 |
+|---|---|
+| `scripts/build_cycc_minutes_reviewed_sample.py` | 從會議紀錄 review queue 產生 reviewed sample data。 |
+| `scripts/build_cycc_minutes_issue_candidates.py` | 從 reviewed sample data 產生議題候選 JSON。 |
 
 ---
 
@@ -114,6 +124,9 @@ pytest -q tests/test_video_review_page.py
 pytest -q tests/test_parse_cycc_minutes_sample.py
 pytest -q tests/test_build_cycc_minutes_review_queue.py
 pytest -q tests/test_minutes_review_page.py
+pytest -q tests/test_build_cycc_minutes_reviewed_sample.py
+pytest -q tests/test_build_cycc_minutes_issue_candidates.py
+pytest -q tests/test_minutes_issues_page.py
 ```
 
 新增 PR 前應檢查：
