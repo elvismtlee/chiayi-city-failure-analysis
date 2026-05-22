@@ -1,39 +1,36 @@
 {
-  "report_id": "weekly-system-20260522235241",
+  "report_id": "weekly-system-20260523023200",
   "week_start": "2026-05-18",
   "week_end": "2026-05-24",
-  "generated_at": "2026-05-22T23:52:41+08:00",
+  "generated_at": "2026-05-23T02:32:00+08:00",
   "source_files": [
     "dashboard/data/command_center_overview.json",
     "dashboard/data/dashboard_health_check.json",
     "dashboard/data/public_material_review_queue.json",
     "dashboard/data/approved_materials_sample.json"
   ],
-  "system_status": "needs_attention",
+  "system_status": "ok",
   "pipeline_summary": {
-    "available": 7,
-    "missing": 5,
+    "available": 12,
+    "missing": 0,
     "empty": 0,
     "total": 12
   },
   "review_backlog_summary": {
     "minutes_review": 2,
     "issue_candidates": 2,
-    "public_review": 0
+    "public_review": 1
   },
   "completed_outputs": {
     "approved_materials_count": 0,
-    "public_review_queue_count": 0
+    "public_review_queue_count": 1
   },
-  "warnings": [
-    "Missing: dashboard/data/public_material_review_queue.json",
-    "Missing: dashboard/data/approved_materials_sample.json"
-  ],
+  "warnings": [],
   "recommended_next_actions": [
-    "Resolve missing or empty dashboard inputs.",
     "Review public material queue manually before public use.",
     "Confirm approved materials retain approval notes.",
-    "Prepare manual publishing only after final human review."
+    "Prepare manual publishing only after final human review.",
+    "Keep dashboard outputs internal until human review is complete."
   ],
   "public_use_status": "internal_weekly_system_report",
   "notes": [
