@@ -1,0 +1,29 @@
+{
+  "public_use_status": "internal_crawl_report",
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "no_personal_data": true,
+  "crawl_scope": "metadata_only",
+  "source_id": "CYCC_PUBLIC_RECORDS",
+  "source_name": "嘉義市議會公開資料",
+  "config_path": "config/cycc_public_records.yml",
+  "output_dir": "data/raw",
+  "crawled_at": "2026-05-23T04:09:13+08:00",
+  "artifact": {
+    "workflow_run_id": 26309531647,
+    "artifact_id": 7169377174,
+    "artifact_name": "cycc-public-records-metadata",
+    "head_sha": "7e71a83b6d6782c916798e080bb0cba818f86aac",
+    "expires_at": "2026-06-05T20:09:13Z"
+  },
+  "output_files": [
+    {
+      "path": "data/raw/cycc_minutes_metadata.csv",
+      "record_count": 10
+    },
+    {
+      "path": "data/raw/cycc_question_video_metadata.csv",
+      "record_count": 131
+    }
+  ]
+}
