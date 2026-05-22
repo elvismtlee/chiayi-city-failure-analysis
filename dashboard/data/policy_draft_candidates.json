@@ -1,0 +1,48 @@
+[
+  {
+    "draft_id": "policy-draft-05969f6e1b3e",
+    "source_candidate_id": "cycc-issue-05969f6e1b3e",
+    "issue_title": "市區道路安全與停車動線專案報告",
+    "problem_statement": "依內部 sample 摘要整理：本段為模擬公開會議紀錄內容，討論市區道路安全、停車動線與行人環境改善。交通處說明將盤點學校周邊路口，並提出改善時程供議會後續追蹤。",
+    "possible_root_causes": [
+      "待確認：道路安全 相關成因需回查來源與局處脈絡。",
+      "待確認：停車動線 相關成因需回查來源與局處脈絡。",
+      "待確認：行人環境 相關成因需回查來源與局處脈絡。"
+    ],
+    "policy_options": [
+      "整理 市區道路安全與停車動線專案報告 的公開來源、日期與局處回應脈絡。",
+      "建立一頁式內部問題脈絡表，供 交通處 相關政策審核使用。",
+      "彙整可行改善方向、限制條件與後續追蹤欄位，先供人工審核。"
+    ],
+    "first_action": "人工確認來源與局處脈絡",
+    "responsible_department": "交通處",
+    "source_urls": ["https://www.cycc.gov.tw/public/minutes/sample.html"],
+    "review_status": "needs_policy_review",
+    "public_use_status": "internal_policy_draft",
+    "risk_notes": "需人工確認來源、上下文與法遵後，才可轉為對外素材。",
+    "recommended_next_step": "manual_policy_review"
+  },
+  {
+    "draft_id": "policy-draft-6561ea41c7c0",
+    "source_candidate_id": "cycc-issue-6561ea41c7c0",
+    "issue_title": "人行空間與排水改善專案報告",
+    "problem_statement": "依內部 sample 摘要整理：本段為模擬公開會議紀錄文字，討論人行空間、騎樓整平與排水改善。建設處說明將依公開會議紀錄所列議題，整理改善順序並回報後續處理進度。",
+    "possible_root_causes": [
+      "待確認：騎樓整平 相關成因需回查來源與局處脈絡。",
+      "待確認：排水改善 相關成因需回查來源與局處脈絡。",
+      "待確認：行人安全 相關成因需回查來源與局處脈絡。"
+    ],
+    "policy_options": [
+      "整理 人行空間與排水改善專案報告 的公開來源、日期與局處回應脈絡。",
+      "建立一頁式內部問題脈絡表，供 建設處 相關政策審核使用。",
+      "彙整可行改善方向、限制條件與後續追蹤欄位，先供人工審核。"
+    ],
+    "first_action": "人工確認來源與局處脈絡",
+    "responsible_department": "建設處",
+    "source_urls": ["https://www.cycc.gov.tw/public/minutes/sample.pdf"],
+    "review_status": "needs_policy_review",
+    "public_use_status": "internal_policy_draft",
+    "risk_notes": "需人工確認來源、上下文與法遵後，才可轉為對外素材。",
+    "recommended_next_step": "manual_policy_review"
+  }
+]

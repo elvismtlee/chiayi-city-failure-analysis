@@ -88,6 +88,11 @@ dashboard/index.html
 | `dashboard/video-review.html` | 影音 metadata 與轉錄審核清單。 |
 | `dashboard/minutes-review.html` | 會議紀錄 fixture parser 人工審核清單。 |
 | `dashboard/minutes-issues.html` | 會議紀錄 reviewed sample 轉出的議題候選清單。 |
+| `dashboard/weekly-summary.html` | 內部每週市政議題摘要草稿。 |
+| `dashboard/policy-drafts.html` | 內部政策草稿候選清單。 |
+| `dashboard/social-drafts.html` | 內部社群文案草稿清單。 |
+| `dashboard/video-scripts.html` | 內部短影音腳本草稿清單。 |
+| `dashboard/filming-checklists.html` | 內部拍攝清單候選。 |
 
 常用資料檔：
 
@@ -100,6 +105,11 @@ dashboard/index.html
 | `dashboard/data/cycc_minutes_review_queue.json` | 會議紀錄 fixture parser 待人工審核清單。 |
 | `data/processed/cycc_minutes_reviewed_sample.json` | 會議紀錄人工審核後的 sample data，不是正式結論。 |
 | `dashboard/data/cycc_minutes_issue_candidates.json` | reviewed sample data 轉出的會議紀錄議題候選。 |
+| `dashboard/data/weekly_summary_draft.json` | 從 issue candidates 產生的內部週報草稿。 |
+| `dashboard/data/policy_draft_candidates.json` | 從 weekly summary draft 產生的政策草稿候選。 |
+| `dashboard/data/social_post_drafts.json` | 從 policy draft candidates 產生的內部社群文案草稿。 |
+| `dashboard/data/short_video_script_drafts.json` | 從 social post drafts 產生的內部短影音腳本草稿。 |
+| `dashboard/data/filming_checklists.json` | 從 short video scripts 產生的內部拍攝清單。 |
 | `dashboard/data/site_map.json` | dashboard 導覽與頁面說明。 |
 
 常用 scripts：
@@ -108,6 +118,11 @@ dashboard/index.html
 |---|---|
 | `scripts/build_cycc_minutes_reviewed_sample.py` | 從會議紀錄 review queue 產生 reviewed sample data。 |
 | `scripts/build_cycc_minutes_issue_candidates.py` | 從 reviewed sample data 產生議題候選 JSON。 |
+| `scripts/build_weekly_summary_draft.py` | 從會議紀錄議題候選產生內部週報草稿。 |
+| `scripts/build_policy_draft_candidates.py` | 從週報草稿或議題候選產生政策草稿候選。 |
+| `scripts/build_social_post_drafts.py` | 從政策草稿候選產生社群文案草稿。 |
+| `scripts/build_short_video_script_drafts.py` | 從社群文案草稿產生短影音腳本草稿。 |
+| `scripts/build_filming_checklists.py` | 從短影音腳本草稿產生拍攝清單。 |
 
 ---
 
@@ -127,6 +142,12 @@ pytest -q tests/test_minutes_review_page.py
 pytest -q tests/test_build_cycc_minutes_reviewed_sample.py
 pytest -q tests/test_build_cycc_minutes_issue_candidates.py
 pytest -q tests/test_minutes_issues_page.py
+pytest -q tests/test_build_social_post_drafts.py
+pytest -q tests/test_build_short_video_script_drafts.py
+pytest -q tests/test_build_filming_checklists.py
+pytest -q tests/test_social_drafts_page.py
+pytest -q tests/test_video_scripts_page.py
+pytest -q tests/test_filming_checklists_page.py
 ```
 
 新增 PR 前應檢查：
@@ -135,8 +156,9 @@ pytest -q tests/test_minutes_issues_page.py
 2. 是否避免重複已合併功能。
 3. 是否通過 local terminology 檢查。
 4. 是否避免輸出敏感欄位。
-5. 是否避免把 prototype 或 AI 初稿標示為正式結論。
+5. 是否避免把 prototype、sample、draft 或 AI 初稿標示為正式結論。
 6. 是否沒有新增 credential、token、API key。
+7. 是否沒有接社群平台 API、自動發布或自動寄送。
 
 ---
 

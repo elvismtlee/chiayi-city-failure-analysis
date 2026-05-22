@@ -1,0 +1,44 @@
+[
+  {
+    "checklist_id": "filming-05969f6e1b3e",
+    "source_script_id": "video-script-05969f6e1b3e",
+    "issue_title": "市區道路安全與停車動線專案報告",
+    "shooting_goal": "拍出「市區道路安全與停車動線專案報告」的內部草稿說明素材，供人工審核後使用。",
+    "location_type": "street",
+    "scene_tasks": [
+      "確認拍攝地點是公開可拍攝場域，先做現場安全判斷。",
+      "錄製 30 到 60 秒口播，開頭說明是內部草稿素材。",
+      "補拍環境空景、資料整理畫面與不含私人資訊的細節畫面。"
+    ],
+    "a_roll_notes": "人物口播以清楚、溫和、可查證語氣說明，避免把草稿說成正式結論。",
+    "b_roll_notes": "補充畫面以公開場域空景與資料整理畫面為主，避開可識別私人資訊與未同意近距離人物。",
+    "props_needed": ["手機或相機", "簡短提詞稿", "收音設備", "來源與審核提示卡"],
+    "audio_notes": "拍攝前測試收音，避開車流與施工高噪音時段。",
+    "estimated_minutes": 30,
+    "review_status": "needs_filming_review",
+    "public_use_status": "internal_filming_plan",
+    "risk_notes": "需人工確認地點、影像權與安全；needs human review before public use.",
+    "recommended_next_step": "manual_filming_review"
+  },
+  {
+    "checklist_id": "filming-6561ea41c7c0",
+    "source_script_id": "video-script-6561ea41c7c0",
+    "issue_title": "人行空間與排水改善專案報告",
+    "shooting_goal": "拍出「人行空間與排水改善專案報告」的內部草稿說明素材，供人工審核後使用。",
+    "location_type": "street",
+    "scene_tasks": [
+      "確認拍攝地點是公開可拍攝場域，先做現場安全判斷。",
+      "錄製 30 到 60 秒口播，開頭說明是內部草稿素材。",
+      "補拍環境空景、資料整理畫面與不含私人資訊的細節畫面。"
+    ],
+    "a_roll_notes": "人物口播以清楚、溫和、可查證語氣說明，避免把草稿說成正式結論。",
+    "b_roll_notes": "補充畫面以公開場域空景與資料整理畫面為主，避開可識別私人資訊與未同意近距離人物。",
+    "props_needed": ["手機或相機", "簡短提詞稿", "收音設備", "來源與審核提示卡"],
+    "audio_notes": "拍攝前測試收音，避開車流與施工高噪音時段。",
+    "estimated_minutes": 30,
+    "review_status": "needs_filming_review",
+    "public_use_status": "internal_filming_plan",
+    "risk_notes": "需人工確認地點、影像權與安全；needs human review before public use.",
+    "recommended_next_step": "manual_filming_review"
+  }
+]

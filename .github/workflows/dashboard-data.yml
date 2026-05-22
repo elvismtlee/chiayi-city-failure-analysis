@@ -10,8 +10,12 @@ on:
       - "scripts/build_cycc_minutes_review_queue.py"
       - "scripts/build_cycc_minutes_reviewed_sample.py"
       - "scripts/build_cycc_minutes_issue_candidates.py"
-      - "data/raw/cycc_question_video_metadata.csv"
-      - "dashboard/data/**"
+      - "scripts/build_weekly_summary_draft.py"
+      - "scripts/build_policy_draft_candidates.py"
+      - "scripts/build_social_post_drafts.py"
+      - "scripts/build_short_video_script_drafts.py"
+      - "scripts/build_filming_checklists.py"
+      - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -21,6 +25,12 @@ on:
       - "tests/test_build_cycc_minutes_reviewed_sample.py"
       - "tests/test_build_cycc_minutes_issue_candidates.py"
       - "tests/test_minutes_issues_page.py"
+      - "tests/test_build_social_post_drafts.py"
+      - "tests/test_build_short_video_script_drafts.py"
+      - "tests/test_build_filming_checklists.py"
+      - "tests/test_social_drafts_page.py"
+      - "tests/test_video_scripts_page.py"
+      - "tests/test_filming_checklists_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -36,8 +46,12 @@ on:
       - "scripts/build_cycc_minutes_review_queue.py"
       - "scripts/build_cycc_minutes_reviewed_sample.py"
       - "scripts/build_cycc_minutes_issue_candidates.py"
-      - "data/raw/cycc_question_video_metadata.csv"
-      - "dashboard/data/**"
+      - "scripts/build_weekly_summary_draft.py"
+      - "scripts/build_policy_draft_candidates.py"
+      - "scripts/build_social_post_drafts.py"
+      - "scripts/build_short_video_script_drafts.py"
+      - "scripts/build_filming_checklists.py"
+      - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -47,6 +61,12 @@ on:
       - "tests/test_build_cycc_minutes_reviewed_sample.py"
       - "tests/test_build_cycc_minutes_issue_candidates.py"
       - "tests/test_minutes_issues_page.py"
+      - "tests/test_build_social_post_drafts.py"
+      - "tests/test_build_short_video_script_drafts.py"
+      - "tests/test_build_filming_checklists.py"
+      - "tests/test_social_drafts_page.py"
+      - "tests/test_video_scripts_page.py"
+      - "tests/test_filming_checklists_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -56,55 +76,46 @@ on:
 jobs:
   build-dashboard-data:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
       - name: Build dashboard data
-        run: |
-          python src/processors/build_dashboard_data.py
-
+        run: python src/processors/build_dashboard_data.py
       - name: Build hotspots GeoJSON
-        run: |
-          python scripts/build_hotspots_geojson.py
-
+        run: python scripts/build_hotspots_geojson.py
       - name: Build geocoding review queue
-        run: |
-          python scripts/build_geocoding_review_queue.py
-
+        run: python scripts/build_geocoding_review_queue.py
       - name: Build transcript review queue
-        run: |
-          python scripts/build_transcript_review_queue.py
-
+        run: python scripts/build_transcript_review_queue.py
       - name: Build CYCC minutes review queue
-        run: |
-          python scripts/build_cycc_minutes_review_queue.py
-
+        run: python scripts/build_cycc_minutes_review_queue.py
       - name: Build CYCC minutes reviewed sample
-        run: |
-          python scripts/build_cycc_minutes_reviewed_sample.py
-
+        run: python scripts/build_cycc_minutes_reviewed_sample.py
       - name: Build CYCC minutes issue candidates
-        run: |
-          python scripts/build_cycc_minutes_issue_candidates.py
-
+        run: python scripts/build_cycc_minutes_issue_candidates.py
+      - name: Build weekly summary draft
+        run: python scripts/build_weekly_summary_draft.py
+      - name: Build policy draft candidates
+        run: python scripts/build_policy_draft_candidates.py
+      - name: Build social post drafts
+        run: python scripts/build_social_post_drafts.py
+      - name: Build short video script drafts
+        run: python scripts/build_short_video_script_drafts.py
+      - name: Build filming checklists
+        run: python scripts/build_filming_checklists.py
       - name: Validate dashboard JSON
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-
           required = [
               "dashboard_summary.json",
               "issue_ranking.json",
@@ -114,6 +125,11 @@ jobs:
               "transcript_review_queue.json",
               "cycc_minutes_review_queue.json",
               "cycc_minutes_issue_candidates.json",
+              "weekly_summary_draft.json",
+              "policy_draft_candidates.json",
+              "social_post_drafts.json",
+              "short_video_script_drafts.json",
+              "filming_checklists.json",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -121,9 +137,8 @@ jobs:
               if not path.exists():
                   raise SystemExit(f"Missing {path}")
               json.loads(path.read_text(encoding="utf-8"))
-          print("Dashboard JSON, GeoJSON, geocoding, transcript, and CYCC minutes review queue files are valid.")
+          print("Dashboard JSON content draft files are valid.")
           PY
-
       - name: Run dashboard data tests
         run: |
           pytest -q tests/test_build_dashboard_data.py
@@ -134,6 +149,12 @@ jobs:
           pytest -q tests/test_build_cycc_minutes_reviewed_sample.py
           pytest -q tests/test_build_cycc_minutes_issue_candidates.py
           pytest -q tests/test_minutes_issues_page.py
+          pytest -q tests/test_build_social_post_drafts.py
+          pytest -q tests/test_build_short_video_script_drafts.py
+          pytest -q tests/test_build_filming_checklists.py
+          pytest -q tests/test_social_drafts_page.py
+          pytest -q tests/test_video_scripts_page.py
+          pytest -q tests/test_filming_checklists_page.py
           pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py

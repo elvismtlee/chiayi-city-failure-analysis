@@ -1,62 +1,17 @@
 [
-  {
-    "title": "城市儀表板首頁",
-    "path": "./index.html",
-    "level": 1,
-    "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"
-  },
-  {
-    "title": "城市熱點地圖",
-    "path": "./map.html",
-    "level": 2,
-    "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"
-  },
-  {
-    "title": "座標審核",
-    "path": "./geocoding-review.html",
-    "level": 2,
-    "description": "人工檢查 prototype 座標與地理校正候選清單。"
-  },
-  {
-    "title": "影音轉錄審核",
-    "path": "./video-review.html",
-    "level": 2,
-    "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"
-  },
-  {
-    "title": "會議紀錄審核",
-    "path": "./minutes-review.html",
-    "level": 2,
-    "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"
-  },
-  {
-    "title": "會議紀錄議題",
-    "path": "./minutes-issues.html",
-    "level": 2,
-    "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"
-  },
-  {
-    "title": "城市洞察分析",
-    "path": "./insights.html",
-    "level": 2,
-    "description": "AI 摘要、趨勢分析、局處負荷與議員議題分析。"
-  },
-  {
-    "title": "資料來源",
-    "path": "./sources.html",
-    "level": 2,
-    "description": "資料來源、更新狀態、資料筆數與資料限制。"
-  },
-  {
-    "title": "方法論",
-    "path": "./methodology.html",
-    "level": 2,
-    "description": "議題分類、城市故障分數、AI 摘要與資料限制。"
-  },
-  {
-    "title": "城市週報",
-    "path": "./reports.html",
-    "level": 2,
-    "description": "每週城市故障觀察報告列表。"
-  }
+  {"title": "城市儀表板首頁", "path": "./index.html", "level": 1, "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"},
+  {"title": "城市熱點地圖", "path": "./map.html", "level": 2, "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"},
+  {"title": "座標審核", "path": "./geocoding-review.html", "level": 2, "description": "人工檢查 prototype 座標與地理校正候選清單。"},
+  {"title": "影音轉錄審核", "path": "./video-review.html", "level": 2, "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"},
+  {"title": "會議紀錄審核", "path": "./minutes-review.html", "level": 2, "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"},
+  {"title": "會議紀錄議題", "path": "./minutes-issues.html", "level": 2, "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"},
+  {"title": "每週摘要", "path": "./weekly-summary.html", "level": 2, "description": "顯示內部每週市政議題摘要草稿與待人工審核清單。"},
+  {"title": "政策草稿", "path": "./policy-drafts.html", "level": 2, "description": "顯示內部政策草稿候選，供人工政策審核前使用。"},
+  {"title": "社群草稿", "path": "./social-drafts.html", "level": 2, "description": "顯示內部社群文案草稿，供人工溝通審核前使用。"},
+  {"title": "短影音腳本", "path": "./video-scripts.html", "level": 2, "description": "顯示內部短影音腳本草稿，供人工影音審核前使用。"},
+  {"title": "拍攝清單", "path": "./filming-checklists.html", "level": 2, "description": "顯示內部拍攝清單候選，供拍攝前人工確認。"},
+  {"title": "城市洞察分析", "path": "./insights.html", "level": 2, "description": "AI 摘要、趨勢分析、局處負荷與議員議題分析。"},
+  {"title": "資料來源", "path": "./sources.html", "level": 2, "description": "資料來源、更新狀態、資料筆數與資料限制。"},
+  {"title": "方法論", "path": "./methodology.html", "level": 2, "description": "議題分類、城市故障分數、AI 摘要與資料限制。"},
+  {"title": "城市週報", "path": "./reports.html", "level": 2, "description": "每週城市故障觀察報告列表。"}
 ]

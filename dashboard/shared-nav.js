@@ -5,6 +5,11 @@ const DASHBOARD_NAV_ITEMS = [
   { title: '影音轉錄審核', path: './video-review.html', file: 'video-review.html' },
   { title: '會議紀錄審核', path: './minutes-review.html', file: 'minutes-review.html' },
   { title: '會議紀錄議題', path: './minutes-issues.html', file: 'minutes-issues.html' },
+  { title: '每週摘要', path: './weekly-summary.html', file: 'weekly-summary.html' },
+  { title: '政策草稿', path: './policy-drafts.html', file: 'policy-drafts.html' },
+  { title: '社群草稿', path: './social-drafts.html', file: 'social-drafts.html' },
+  { title: '短影音腳本', path: './video-scripts.html', file: 'video-scripts.html' },
+  { title: '拍攝清單', path: './filming-checklists.html', file: 'filming-checklists.html' },
   { title: '城市洞察分析', path: './insights.html', file: 'insights.html' },
   { title: '資料來源', path: './sources.html', file: 'sources.html' },
   { title: '方法論', path: './methodology.html', file: 'methodology.html' },
@@ -43,10 +48,7 @@ function injectFooterStyle() {
   if (document.getElementById('shared-nav-style')) return;
   const style = document.createElement('style');
   style.id = 'shared-nav-style';
-  style.textContent = `
-    .site-footer{max-width:1180px;margin:0 auto 42px;padding:0 24px;color:#64748b;font-size:14px;line-height:1.7}
-    .site-footer p{border-top:1px solid rgba(15,118,110,.18);padding-top:18px;margin:0}
-  `;
+  style.textContent = `.site-footer{max-width:1180px;margin:0 auto 42px;padding:0 24px;color:#64748b;font-size:14px;line-height:1.7}.site-footer p{border-top:1px solid rgba(15,118,110,.18);padding-top:18px;margin:0}`;
   document.head.appendChild(style);
 }
 
