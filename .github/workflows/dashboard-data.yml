@@ -15,6 +15,10 @@ on:
       - "scripts/build_social_post_drafts.py"
       - "scripts/build_short_video_script_drafts.py"
       - "scripts/build_filming_checklists.py"
+      - "scripts/build_content_schedule.py"
+      - "scripts/build_daily_execution_list.py"
+      - "scripts/build_public_material_review_queue.py"
+      - "scripts/build_approved_materials_sample.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -31,9 +35,17 @@ on:
       - "tests/test_build_social_post_drafts.py"
       - "tests/test_build_short_video_script_drafts.py"
       - "tests/test_build_filming_checklists.py"
+      - "tests/test_build_content_schedule.py"
+      - "tests/test_build_daily_execution_list.py"
+      - "tests/test_build_public_material_review_queue.py"
+      - "tests/test_build_approved_materials_sample.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
+      - "tests/test_content_schedule_page.py"
+      - "tests/test_daily_execution_page.py"
+      - "tests/test_public_review_page.py"
+      - "tests/test_approved_materials_page.py"
       - "tests/test_build_command_center_overview.py"
       - "tests/test_build_dashboard_health_check.py"
       - "tests/test_build_weekly_system_report.py"
@@ -60,6 +72,10 @@ on:
       - "scripts/build_social_post_drafts.py"
       - "scripts/build_short_video_script_drafts.py"
       - "scripts/build_filming_checklists.py"
+      - "scripts/build_content_schedule.py"
+      - "scripts/build_daily_execution_list.py"
+      - "scripts/build_public_material_review_queue.py"
+      - "scripts/build_approved_materials_sample.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -76,9 +92,17 @@ on:
       - "tests/test_build_social_post_drafts.py"
       - "tests/test_build_short_video_script_drafts.py"
       - "tests/test_build_filming_checklists.py"
+      - "tests/test_build_content_schedule.py"
+      - "tests/test_build_daily_execution_list.py"
+      - "tests/test_build_public_material_review_queue.py"
+      - "tests/test_build_approved_materials_sample.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
+      - "tests/test_content_schedule_page.py"
+      - "tests/test_daily_execution_page.py"
+      - "tests/test_public_review_page.py"
+      - "tests/test_approved_materials_page.py"
       - "tests/test_build_command_center_overview.py"
       - "tests/test_build_dashboard_health_check.py"
       - "tests/test_build_weekly_system_report.py"
@@ -129,6 +153,14 @@ jobs:
         run: python scripts/build_short_video_script_drafts.py
       - name: Build filming checklists
         run: python scripts/build_filming_checklists.py
+      - name: Build content schedule
+        run: python scripts/build_content_schedule.py
+      - name: Build daily execution list
+        run: python scripts/build_daily_execution_list.py
+      - name: Build public material review queue
+        run: python scripts/build_public_material_review_queue.py
+      - name: Build approved materials sample
+        run: python scripts/build_approved_materials_sample.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -154,6 +186,10 @@ jobs:
               "social_post_drafts.json",
               "short_video_script_drafts.json",
               "filming_checklists.json",
+              "content_schedule.json",
+              "daily_execution_list.json",
+              "public_material_review_queue.json",
+              "approved_materials_sample.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -179,9 +215,17 @@ jobs:
           pytest -q tests/test_build_social_post_drafts.py
           pytest -q tests/test_build_short_video_script_drafts.py
           pytest -q tests/test_build_filming_checklists.py
+          pytest -q tests/test_build_content_schedule.py
+          pytest -q tests/test_build_daily_execution_list.py
+          pytest -q tests/test_build_public_material_review_queue.py
+          pytest -q tests/test_build_approved_materials_sample.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
+          pytest -q tests/test_content_schedule_page.py
+          pytest -q tests/test_daily_execution_page.py
+          pytest -q tests/test_public_review_page.py
+          pytest -q tests/test_approved_materials_page.py
           pytest -q tests/test_build_command_center_overview.py
           pytest -q tests/test_build_dashboard_health_check.py
           pytest -q tests/test_build_weekly_system_report.py
