@@ -2,16 +2,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from src.crawlers.cycc_metadata_crawler import CYCCMetadataCrawler
 
 
-ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "config" / "cycc_public_records.yml"
 DEFAULT_OUTPUT_DIR = ROOT / "data" / "raw"
 DEFAULT_REPORT_PATH = ROOT / "data" / "processed" / "cycc_public_records_crawl_report.json"
@@ -78,50 +82,35 @@ def validate_config(config: dict[str, Any]) -> dict[str, Any]:
         url = str(target.get("url", ""))
         if not url or not any(host in url for host in ALLOWED_HOST_SNIPPETS):
             raise ValueError(f"Target {name} must use a reviewed public CYCC URL.")
-
     return source
 
 
 def build_report(
-    result: dict[str, int],
+    output_counts: dict[str, int],
     source: dict[str, Any],
     config_path: Path,
     output_dir: Path,
 ) -> dict[str, Any]:
     return {
-        "report_id": f"cycc-public-records-{datetime.now(TAIPEI_TZ).strftime('%Y%m%d%H%M%S')}",
-        "generated_at": now_iso(),
         "public_use_status": "internal_crawl_report",
         "manual_review_required": True,
         "no_auto_publish": True,
         "no_personal_data": True,
+        "crawl_scope": "metadata_only",
         "source_id": source["source_id"],
         "source_name": source["name"],
-        "review_status": source["review_status"],
-        "crawl_scope": "metadata_only",
-        "config_file": to_posix_path(config_path),
+        "config_path": to_posix_path(config_path),
         "output_dir": to_posix_path(output_dir),
+        "crawled_at": now_iso(),
         "output_files": [
-            {
-                "file": to_posix_path(output_dir / filename),
-                "record_count": count,
-            }
-            for filename, count in sorted(result.items())
-        ],
-        "notes": [
-            "internal crawler output / needs human review / manual publishing only",
-            "CYCC public metadata only; no 1999 private complaint full text.",
-            "Do not publish crawled outputs without human review.",
+            {"path": to_posix_path(output_dir / filename), "record_count": count}
+            for filename, count in sorted(output_counts.items())
         ],
     }
 
 
-def write_report(report: dict[str, Any], report_path: Path = DEFAULT_REPORT_PATH) -> None:
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
 def run_crawl(
+    *,
     config_path: Path = DEFAULT_CONFIG,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     report_path: Path = DEFAULT_REPORT_PATH,
@@ -130,24 +119,20 @@ def run_crawl(
     config = load_config(config_path)
     source = validate_config(config)
     crawler = crawler_cls(config_path=config_path, output_dir=output_dir)
-    result = crawler.run()
-    report = build_report(result, source, config_path, output_dir)
-    write_report(report, report_path)
+    output_counts = crawler.run()
+    report = build_report(output_counts, source, config_path, output_dir)
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return report
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Crawl reviewed CYCC public metadata into internal raw CSV files.")
-    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
-    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
-    parser.add_argument("--report-path", default=str(DEFAULT_REPORT_PATH))
+    parser = argparse.ArgumentParser(description="Run CYCC public records metadata crawler.")
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--report", type=Path, default=DEFAULT_REPORT_PATH)
     args = parser.parse_args()
-
-    report = run_crawl(
-        config_path=Path(args.config),
-        output_dir=Path(args.output_dir),
-        report_path=Path(args.report_path),
-    )
+    report = run_crawl(config_path=args.config, output_dir=args.output_dir, report_path=args.report)
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
