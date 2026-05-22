@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-05-23T01:30:11+08:00",
+  "public_use_status": "internal_public_review_queue",
+  "notes": [
+    "Internal public material review queue only.",
+    "Materials are not approved until human review is complete.",
+    "Manual publishing only."
+  ],
+  "items": [
+    {
+      "review_id": "public-review-social-001",
+      "item_type": "social_post",
+      "title": "城市故障分析週報草稿",
+      "risk_level": "medium",
+      "review_status": "needs_review",
+      "evidence_status": "needs_source_check",
+      "source_id": "manual-sample",
+      "required_action": "人工確認來源、語氣、法遵與平台適用性。",
+      "notes": "未通過人工審核，不可公開使用。"
+    }
+  ]
+}
