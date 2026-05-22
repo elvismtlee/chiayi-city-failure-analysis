@@ -18,6 +18,12 @@
     "description": "人工檢查 prototype 座標與地理校正候選清單。"
   },
   {
+    "title": "影音轉錄審核",
+    "path": "./video-review.html",
+    "level": 2,
+    "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"
+  },
+  {
     "title": "城市洞察分析",
     "path": "./insights.html",
     "level": 2,
