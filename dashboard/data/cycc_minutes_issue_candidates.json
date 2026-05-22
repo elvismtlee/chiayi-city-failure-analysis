@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "cycc-issue-05969f6e1b3e",
+    "reviewed_id": "cycc-reviewed-05969f6e1b3e",
+    "meeting_date": "2026-05-01",
+    "department": "交通處",
+    "issue_title": "市區道路安全與停車動線專案報告",
+    "issue_keywords": [
+      "道路安全",
+      "停車動線",
+      "行人環境"
+    ],
+    "issue_summary": "依 reviewed sample 摘要：本段為模擬公開會議紀錄內容，討論市區道路安全、停車動線與行人環境改善。 交通處說明將盤點學校周邊路口，並提出改善時程供議會後續追蹤。",
+    "source_url": "https://www.cycc.gov.tw/public/minutes/sample.html",
+    "source_context": "Fixture-only public sample derived from https://www.cycc.gov.tw/public/minutes/sample.html; not a formal CYCC dataset.",
+    "review_status": "reviewed",
+    "public_use_status": "internal_reviewed_sample",
+    "confidence_level": "sample_only",
+    "recommended_follow_up": "manual_policy_review",
+    "notes": "derived from reviewed sample, not official public conclusion; requires manual policy review."
+  },
+  {
+    "candidate_id": "cycc-issue-6561ea41c7c0",
+    "reviewed_id": "cycc-reviewed-6561ea41c7c0",
+    "meeting_date": "2026-05-02",
+    "department": "建設處",
+    "issue_title": "人行空間與排水改善專案報告",
+    "issue_keywords": [
+      "騎樓整平",
+      "排水改善",
+      "行人安全"
+    ],
+    "issue_summary": "依 reviewed sample 摘要：本段為模擬公開會議紀錄文字，討論人行空間、騎樓整平與排水改善。 建設處說明將依公開會議紀錄所列議題，整理改善順序並回報後續處理進度。",
+    "source_url": "https://www.cycc.gov.tw/public/minutes/sample.pdf",
+    "source_context": "Fixture-only public sample derived from https://www.cycc.gov.tw/public/minutes/sample.pdf; not a formal CYCC dataset.",
+    "review_status": "reviewed",
+    "public_use_status": "internal_reviewed_sample",
+    "confidence_level": "sample_only",
+    "recommended_follow_up": "manual_policy_review",
+    "notes": "derived from reviewed sample, not official public conclusion; requires manual policy review."
+  }
+]
