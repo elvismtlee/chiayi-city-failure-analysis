@@ -1,0 +1,40 @@
+from pathlib import Path
+
+from scripts.plan_real_data_ingestion import build_plan, load_manifest
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "config" / "real_data_sources.yml"
+
+
+def test_real_data_source_manifest_is_internal_and_safe() -> None:
+    manifest = load_manifest(MANIFEST)
+    assert manifest["public_use_status"] == "internal_source_manifest"
+    assert manifest["manual_review_required"] is True
+    assert manifest["no_personal_data"] is True
+    assert manifest["no_auto_publish"] is True
+    assert manifest["timezone"] == "Asia/Taipei"
+
+
+def test_real_data_sources_are_disabled_until_reviewed() -> None:
+    manifest = load_manifest(MANIFEST)
+    sources = manifest["sources"]
+    assert sources
+    for source in sources:
+        assert source["crawl_enabled"] is False
+        assert source["status"] in {"needs_source_url_review", "needs_dataset_inventory"}
+        assert source["base_urls"] == []
+        assert source["output_raw_dir"].startswith("data/raw/")
+        assert source["output_processed_dir"].startswith("data/processed/")
+
+
+def test_build_plan_blocks_unreviewed_sources() -> None:
+    plan = build_plan(load_manifest(MANIFEST))
+    assert plan["public_use_status"] == "internal_ingestion_plan"
+    assert plan["manual_review_required"] is True
+    assert plan["no_auto_publish"] is True
+    assert plan["source_count"] >= 3
+    assert plan["ready_source_count"] == 0
+    assert plan["blocked_source_count"] == plan["source_count"]
+    for source in plan["sources"]:
+        assert source["ready_for_crawl"] is False
+        assert source["blocking_reasons"]
