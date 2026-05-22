@@ -1,0 +1,42 @@
+project: chiayi_city_failure_analysis
+public_use_status: internal_cycc_public_records_config
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+crawl_scope: metadata_only
+timezone: Asia/Taipei
+
+sources:
+  cycc:
+    source_id: CYCC_PUBLIC_RECORDS
+    name: 嘉義市議會公開資料
+    source_owner: 嘉義市議會
+    review_status: reviewed_public_source
+    crawl_enabled: true
+    access_method: public_web
+    base_urls:
+      - https://www.cycc.gov.tw/
+      - https://cycc.digital.th.gov.tw/
+    targets:
+      minutes:
+        name: 會議紀錄檢索
+        url: https://www.cycc.gov.tw/web/Download_file/listDownload_file.aspx?c0=3682
+        type: html_list
+        priority: highest
+      question_videos:
+        name: 議員質詢影音專區
+        url: https://www.cycc.gov.tw/web/UnitStaff_New/List.aspx?c0=4758
+        type: html_form_metadata
+        priority: high
+
+rules:
+  - id: public_records_only
+    description: Crawl public CYCC metadata only.
+  - id: metadata_only
+    description: Fetch metadata only; do not parse full complaint text or download large files by default.
+  - id: no_private_complaint_text
+    description: Do not ingest 1999 private complaint full text.
+  - id: no_personal_data
+    description: Do not store phone numbers, addresses, emails, donor data, volunteer data, or other personal identifiers.
+  - id: no_auto_publish
+    description: Crawled outputs remain internal raw data until human review.
