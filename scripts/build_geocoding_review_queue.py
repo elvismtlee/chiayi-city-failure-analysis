@@ -14,6 +14,9 @@ OUTPUT_JSON = DATA_DIR / "geocoding_review_queue.json"
 
 REVIEW_GEO_PRECISION = {"prototype", "unknown", "uncertain"}
 REVIEW_STATUS = {"prototype", "uncertain", "unreviewed"}
+PLACE_NAME_REPLACEMENTS = {
+    "文化路夜市": "文化路商圈",
+}
 SENSITIVE_KEYS = {
     "phone",
     "mobile",
@@ -59,8 +62,15 @@ def sanitize_query_part(value: Any) -> str:
     return " ".join(str(value or "").split())
 
 
+def normalize_place_name(value: Any) -> str:
+    place_name = sanitize_query_part(value)
+    for banned_term, preferred_term in PLACE_NAME_REPLACEMENTS.items():
+        place_name = place_name.replace(banned_term, preferred_term)
+    return place_name
+
+
 def build_suggested_query(district: str, place_name: str) -> str:
-    parts = ["嘉義市", sanitize_query_part(district), sanitize_query_part(place_name)]
+    parts = ["嘉義市", sanitize_query_part(district), normalize_place_name(place_name)]
     return " ".join(part for part in parts if part)
 
 
@@ -132,7 +142,7 @@ def build_queue() -> list[dict[str, Any]]:
 
         lng, lat = get_coordinates(feature)
         place_record = place_dictionary.get(candidate_id, {})
-        place_name = str(
+        place_name = normalize_place_name(
             properties.get("name")
             or place_record.get("display_name")
             or hotspot.get("name")
