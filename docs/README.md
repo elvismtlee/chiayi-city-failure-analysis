@@ -10,12 +10,13 @@
 |---|---|
 | `docs/issue_progress_matrix.md` | 總覽已完成、進行中、不要重做、下一步建議。 |
 | `docs/daily_ops_runbook.md` | 每日資料審核與營運操作節奏。 |
+| `docs/operator_workflow.md` | 一人團隊使用總控台、健康檢查、公開審核與已核准素材的每日流程。 |
 | `docs/review_workbench_sop.md` | 人工審核工作台共同 SOP。 |
 
 建議順序：
 
 ```text
-issue_progress_matrix.md -> daily_ops_runbook.md -> review_workbench_sop.md
+issue_progress_matrix.md -> daily_ops_runbook.md -> operator_workflow.md -> review_workbench_sop.md
 ```
 
 ---
@@ -43,6 +44,7 @@ issue_progress_matrix.md -> daily_ops_runbook.md -> review_workbench_sop.md
 | `docs/review_workbench_sop.md` | 統一座標審核、影音審核與未來會議紀錄解析審核流程。 |
 | `docs/video_review_sop.md` | 影音轉錄審核與 metadata 補齊流程。 |
 | `docs/daily_ops_runbook.md` | 每日與每週的實際操作清單。 |
+| `docs/operator_workflow.md` | 從 health check、command center、public review 到 approved materials 的每日操作流程。 |
 
 核心規則：
 
@@ -93,6 +95,9 @@ dashboard/index.html
 | `dashboard/social-drafts.html` | 內部社群文案草稿清單。 |
 | `dashboard/video-scripts.html` | 內部短影音腳本草稿清單。 |
 | `dashboard/filming-checklists.html` | 內部拍攝清單候選。 |
+| `dashboard/command-center.html` | 一人競選資料總控台，整合資料流狀態、審核 backlog、下一步與 warnings。 |
+| `dashboard/health-check.html` | Dashboard 健康檢查，檢查本地 JSON、頁面與導覽是否完整。 |
+| `dashboard/weekly-system-report.html` | 每週系統報告，彙整總控台與健康檢查狀態。 |
 
 常用資料檔：
 
@@ -110,6 +115,9 @@ dashboard/index.html
 | `dashboard/data/social_post_drafts.json` | 從 policy draft candidates 產生的內部社群文案草稿。 |
 | `dashboard/data/short_video_script_drafts.json` | 從 social post drafts 產生的內部短影音腳本草稿。 |
 | `dashboard/data/filming_checklists.json` | 從 short video scripts 產生的內部拍攝清單。 |
+| `dashboard/data/command_center_overview.json` | 一人競選總控台資料，internal dashboard / needs human review / manual publishing only。 |
+| `dashboard/data/dashboard_health_check.json` | Dashboard 本地檔案健康檢查資料，internal dashboard / needs human review / manual publishing only。 |
+| `dashboard/data/weekly_system_report.json` | 每週系統報告資料，internal dashboard / needs human review / manual publishing only。 |
 | `dashboard/data/site_map.json` | dashboard 導覽與頁面說明。 |
 
 常用 scripts：
@@ -123,6 +131,9 @@ dashboard/index.html
 | `scripts/build_social_post_drafts.py` | 從政策草稿候選產生社群文案草稿。 |
 | `scripts/build_short_video_script_drafts.py` | 從社群文案草稿產生短影音腳本草稿。 |
 | `scripts/build_filming_checklists.py` | 從短影音腳本草稿產生拍攝清單。 |
+| `scripts/build_command_center_overview.py` | 讀取既有本地 JSON，產生總控台 overview，缺檔轉為 warnings。 |
+| `scripts/build_dashboard_health_check.py` | 檢查重要 JSON、HTML、JS、site map 與 shared nav，產生健康檢查。 |
+| `scripts/build_weekly_system_report.py` | 讀取總控台、健康檢查、審核 queue 與 approved materials，產生每週系統報告。 |
 
 ---
 
@@ -187,6 +198,7 @@ pytest -q tests/test_filming_checklists_page.py
 ```text
 先看 review_workbench_sop.md
 再看 daily_ops_runbook.md
+再看 operator_workflow.md
 再逐筆更新 queue 狀態
 ```
 

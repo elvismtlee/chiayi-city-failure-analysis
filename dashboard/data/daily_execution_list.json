@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-05-23T01:30:11+08:00",
+  "public_use_status": "internal_daily_execution",
+  "notes": [
+    "Internal daily execution list only.",
+    "No automatic publishing.",
+    "No external platform API calls."
+  ],
+  "items": [
+    {
+      "priority": "P1",
+      "task": "檢查 health check 與 command center warnings",
+      "estimated_minutes": 10,
+      "status": "todo",
+      "related_dashboard": "health-check.html",
+      "notes": "先確認本地資料檔與頁面狀態，再進入審核。"
+    },
+    {
+      "priority": "P1",
+      "task": "審核 public review queue 中的待審素材",
+      "estimated_minutes": 30,
+      "status": "todo",
+      "related_dashboard": "public-review.html",
+      "notes": "未通過人工審核前不可公開使用。"
+    }
+  ]
+}

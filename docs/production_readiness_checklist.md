@@ -80,6 +80,7 @@ Dashboard Data workflow 應符合：
 2. needs human review。
 3. not official conclusion。
 4. manual publishing only。
+5. internal dashboard / needs human review / manual publishing only。
 
 ---
 
@@ -120,6 +121,7 @@ python scripts/build_public_material_review_queue.py
 python scripts/build_approved_materials_sample.py
 python scripts/build_command_center_overview.py
 python scripts/build_dashboard_health_check.py
+python scripts/build_weekly_system_report.py
 pytest -q
 ```
 

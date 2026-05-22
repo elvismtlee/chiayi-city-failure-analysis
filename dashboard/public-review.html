@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公開審核</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#f7fbf9;color:#172033}.hero{padding:34px 24px 42px;background:linear-gradient(135deg,#064e3b,#0f766e);color:#fff}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}.nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.12)}.nav a.active{background:#fff;color:#064e3b;font-weight:800}h1{font-size:clamp(34px,5vw,54px);margin:0 0 12px}.hero p{font-size:19px;line-height:1.7;max-width:900px;color:rgba(255,255,255,.9)}.wrap{padding:28px 24px 64px}.notice,.card{background:#fff;border:1px solid rgba(15,118,110,.16);border-radius:18px;padding:20px;box-shadow:0 16px 42px rgba(15,23,42,.06);margin-bottom:16px}.notice{border-left:6px solid #f97316;background:#fff7ed}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card h3{margin:0 0 10px}.meta{display:grid;gap:8px;color:#475569}.badge{display:inline-block;border-radius:999px;padding:4px 10px;background:#ffedd5;color:#9a3412;font-weight:800}.empty{color:#64748b;border:1px dashed #94a3b8;border-radius:18px;padding:22px;background:#fff}@media(max-width:760px){.wrap{padding:22px 16px 52px}}
+  </style>
+</head>
+<body>
+  <section class="hero"><div class="inner"><nav class="nav"></nav><h1>公開審核</h1><p>所有準備對外使用的素材，必須先進入人工審核佇列。未通過人工審核，不可公開使用。</p></div></section>
+  <main class="wrap">
+    <section class="notice">本頁是 internal review queue。needs human review / manual publishing only。這不是自動發布清單。</section>
+    <section class="grid" data-render="public-review"></section>
+  </main>
+  <script src="./shared-nav.js"></script>
+  <script src="./public-review.js"></script>
+</body>
+</html>

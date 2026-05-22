@@ -1,0 +1,64 @@
+{
+  "overview_id": "command-center-20260523023000",
+  "generated_at": "2026-05-23T02:30:00+08:00",
+  "source_files": [
+    "dashboard/data/cycc_minutes_review_queue.json",
+    "dashboard/data/cycc_minutes_reviewed_sample.json",
+    "dashboard/data/cycc_minutes_issue_candidates.json",
+    "dashboard/data/weekly_summary_draft.json",
+    "dashboard/data/policy_draft_candidates.json",
+    "dashboard/data/social_post_drafts.json",
+    "dashboard/data/short_video_script_drafts.json",
+    "dashboard/data/filming_checklists.json",
+    "dashboard/data/content_schedule.json",
+    "dashboard/data/daily_execution_list.json",
+    "dashboard/data/public_material_review_queue.json",
+    "dashboard/data/approved_materials_sample.json"
+  ],
+  "pipeline_status": [
+    {"name": "minutes review", "status": "available", "record_count": 2, "source_file": "dashboard/data/cycc_minutes_review_queue.json", "next_step": "Review queued meeting records."},
+    {"name": "reviewed minutes sample", "status": "available", "record_count": 2, "source_file": "dashboard/data/cycc_minutes_reviewed_sample.json", "next_step": "Use reviewed samples to improve extraction rules."},
+    {"name": "issue candidates", "status": "available", "record_count": 2, "source_file": "dashboard/data/cycc_minutes_issue_candidates.json", "next_step": "Review and approve issue candidates."},
+    {"name": "weekly summary", "status": "available", "record_count": 1, "source_file": "dashboard/data/weekly_summary_draft.json", "next_step": "Human review before publishing."},
+    {"name": "policy drafts", "status": "available", "record_count": 2, "source_file": "dashboard/data/policy_draft_candidates.json", "next_step": "Review policy language and evidence."},
+    {"name": "social drafts", "status": "available", "record_count": 6, "source_file": "dashboard/data/social_post_drafts.json", "next_step": "Manual review before use."},
+    {"name": "video scripts", "status": "available", "record_count": 2, "source_file": "dashboard/data/short_video_script_drafts.json", "next_step": "Human review before filming."},
+    {"name": "filming checklists", "status": "available", "record_count": 2, "source_file": "dashboard/data/filming_checklists.json", "next_step": "Confirm location and message."},
+    {"name": "content schedule", "status": "available", "record_count": 1, "source_file": "dashboard/data/content_schedule.json", "next_step": "Confirm schedule."},
+    {"name": "daily execution list", "status": "available", "record_count": 2, "source_file": "dashboard/data/daily_execution_list.json", "next_step": "Use as internal daily work list."},
+    {"name": "public review queue", "status": "available", "record_count": 1, "source_file": "dashboard/data/public_material_review_queue.json", "next_step": "Human approval required before public use."},
+    {"name": "approved materials", "status": "available", "record_count": 0, "source_file": "dashboard/data/approved_materials_sample.json", "next_step": "Empty approved materials is a valid state."}
+  ],
+  "key_counts": {
+    "minutes_review": 2,
+    "reviewed_minutes_sample": 2,
+    "issue_candidates": 2,
+    "weekly_summary": 1,
+    "policy_drafts": 2,
+    "social_drafts": 6,
+    "video_scripts": 2,
+    "filming_checklists": 2,
+    "content_schedule": 1,
+    "daily_execution_list": 2,
+    "public_review_queue": 1,
+    "approved_materials": 0
+  },
+  "review_backlog": {
+    "minutes_review": 2,
+    "issue_candidates": 2,
+    "public_review": 1
+  },
+  "next_actions": [
+    "Review public review queue items.",
+    "Move only reviewed materials into approved materials.",
+    "Use manual publishing only after final human approval.",
+    "Keep this dashboard internal until public materials are reviewed."
+  ],
+  "warnings": [],
+  "public_use_status": "internal_command_center",
+  "notes": [
+    "internal dashboard / needs human review / manual publishing only",
+    "Internal dashboard only.",
+    "Needs human review before any public use."
+  ]
+}
