@@ -63,6 +63,7 @@ notes
 8. `recommended_next_actions` 應是 list。
 9. `public_use_status` 應為 `internal_weekly_system_report`。
 10. `notes` 應提醒這是內部系統報告。
+11. `notes` 應標示 `internal dashboard / needs human review / manual publishing only`。
 
 ---
 
@@ -121,6 +122,7 @@ pytest -q
 4. 不呼叫外部 API。
 5. 報告清楚標示內部用途。
 6. warnings 能提醒資料仍需人工審核。
+7. 不自動發布。
 
 ---
 

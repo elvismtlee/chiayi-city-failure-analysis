@@ -60,6 +60,7 @@ notes
 6. 若有缺檔、空檔或 invalid JSON，status 應為 `needs_attention`。
 7. public_use_status 應為 `internal_health_check`。
 8. notes 應提醒這是內部健康檢查摘要。
+9. notes 應標示 `internal dashboard / needs human review / manual publishing only`。
 
 ---
 
@@ -119,6 +120,7 @@ pytest -q
 4. 不呼叫外部 API。
 5. 能偵測缺檔、空檔與 invalid JSON。
 6. 頁面清楚標示內部健康檢查。
+7. 不修改既有資料。
 
 ---
 

@@ -1,0 +1,45 @@
+{
+  "report_id": "weekly-system-20260522234005",
+  "week_start": "2026-05-18",
+  "week_end": "2026-05-24",
+  "generated_at": "2026-05-22T23:40:05+08:00",
+  "source_files": [
+    "dashboard/data/command_center_overview.json",
+    "dashboard/data/dashboard_health_check.json",
+    "dashboard/data/public_material_review_queue.json",
+    "dashboard/data/approved_materials_sample.json"
+  ],
+  "system_status": "needs_attention",
+  "pipeline_summary": {
+    "available": 7,
+    "missing": 5,
+    "empty": 0,
+    "total": 12
+  },
+  "review_backlog_summary": {
+    "minutes_review": 2,
+    "issue_candidates": 2,
+    "public_review": 0
+  },
+  "completed_outputs": {
+    "approved_materials_count": 0,
+    "public_review_queue_count": 0
+  },
+  "warnings": [
+    "Missing: dashboard/data/public_material_review_queue.json",
+    "Missing: dashboard/data/approved_materials_sample.json"
+  ],
+  "recommended_next_actions": [
+    "Resolve missing or empty dashboard inputs.",
+    "Review public material queue manually before public use.",
+    "Confirm approved materials retain approval notes.",
+    "Prepare manual publishing only after final human review."
+  ],
+  "public_use_status": "internal_weekly_system_report",
+  "notes": [
+    "internal dashboard / needs human review / manual publishing only",
+    "Internal weekly system report only.",
+    "Not public campaign material.",
+    "Needs human review and manual publishing only."
+  ]
+}

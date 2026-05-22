@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>競選資料總控台</title>
+  <style>
+    body { margin: 0; font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f7f8fa; color: #1f2933; }
+    header { background: #17324d; color: white; padding: 24px; }
+    nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+    nav a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.45); }
+    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    section { background: white; border: 1px solid #d9e2ec; border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .metric { border: 1px solid #d9e2ec; border-radius: 8px; padding: 14px; background: #fbfcfd; }
+    .metric strong { display: block; font-size: 28px; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e9f0; padding: 10px; text-align: left; vertical-align: top; }
+    .notice { background: #fff7ed; border-color: #fed7aa; }
+    .muted { color: #52606d; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>競選資料總控台</h1>
+    <p>internal dashboard / needs human review / manual publishing only</p>
+    <nav class="nav"></nav>
+  </header>
+  <main>
+    <section class="notice">
+      <strong>內部工作總覽：</strong>
+      這是內部總控台，不是民調，不是支持度調查，不自動發布；任何對外使用前都需要人工確認。
+    </section>
+    <section>
+      <h2>主要數量</h2>
+      <div id="key-counts" class="grid"></div>
+    </section>
+    <section>
+      <h2>Pipeline Status</h2>
+      <table>
+        <thead><tr><th>項目</th><th>狀態</th><th>數量</th><th>下一步</th></tr></thead>
+        <tbody id="pipeline-status"></tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Review Backlog</h2>
+      <div id="review-backlog" class="grid"></div>
+    </section>
+    <section>
+      <h2>Next Actions</h2>
+      <ul id="next-actions"></ul>
+    </section>
+    <section>
+      <h2>Warnings</h2>
+      <ul id="warnings"></ul>
+    </section>
+    <section>
+      <h2>Dashboard 入口</h2>
+      <div class="grid">
+        <a href="./index.html">首頁</a>
+        <a href="./health-check.html">健康檢查</a>
+        <a href="./weekly-system-report.html">每週系統報告</a>
+      </div>
+    </section>
+    <p class="muted">public_use_status: internal_command_center</p>
+  </main>
+  <script src="./shared-nav.js"></script>
+  <script src="./command-center.js"></script>
+</body>
+</html>

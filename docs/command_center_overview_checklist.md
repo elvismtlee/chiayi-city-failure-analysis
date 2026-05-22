@@ -151,6 +151,8 @@ pytest -q
 6. 不輸出私人資料欄位。
 7. 頁面清楚標示內部總覽。
 8. warnings 能提醒缺檔或資料仍為草稿。
+9. 所有輸出標示 `internal dashboard / needs human review / manual publishing only`。
+10. 不把 dashboard 說成民調或支持度調查。
 
 ---
 

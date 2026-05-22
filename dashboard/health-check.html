@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard 健康檢查</title>
+  <style>
+    body { margin: 0; font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f7f8fa; color: #1f2933; }
+    header { background: #17324d; color: white; padding: 24px; }
+    nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+    nav a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.45); }
+    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    section { background: white; border: 1px solid #d9e2ec; border-radius: 8px; padding: 18px; margin: 16px 0; }
+    .notice { background: #fff7ed; border-color: #fed7aa; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e9f0; padding: 10px; text-align: left; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard 健康檢查</h1>
+    <p>internal dashboard / needs human review / manual publishing only</p>
+    <nav class="nav"></nav>
+  </header>
+  <main>
+    <section class="notice">這是內部系統健康檢查，只檢查本地檔案，不代表資料內容已完成人工審核，不自動發布。</section>
+    <section><h2>整體 Status</h2><p id="status"></p><p id="checked-count"></p></section>
+    <section><h2>Missing Files</h2><ul id="missing-files"></ul></section>
+    <section><h2>Empty Files</h2><ul id="empty-files"></ul></section>
+    <section><h2>Invalid JSON Files</h2><ul id="invalid-json-files"></ul></section>
+    <section>
+      <h2>Page Checks</h2>
+      <table><thead><tr><th>頁面</th><th>存在</th><th>空白</th></tr></thead><tbody id="page-checks"></tbody></table>
+    </section>
+    <section>
+      <h2>Nav Checks</h2>
+      <table><thead><tr><th>項目</th><th>site_map</th><th>shared-nav</th></tr></thead><tbody id="nav-checks"></tbody></table>
+    </section>
+    <section><h2>Warnings</h2><ul id="warnings"></ul></section>
+  </main>
+  <script src="./shared-nav.js"></script>
+  <script src="./health-check.js"></script>
+</body>
+</html>

@@ -15,6 +15,9 @@ on:
       - "scripts/build_social_post_drafts.py"
       - "scripts/build_short_video_script_drafts.py"
       - "scripts/build_filming_checklists.py"
+      - "scripts/build_command_center_overview.py"
+      - "scripts/build_dashboard_health_check.py"
+      - "scripts/build_weekly_system_report.py"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -31,6 +34,12 @@ on:
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
+      - "tests/test_build_command_center_overview.py"
+      - "tests/test_build_dashboard_health_check.py"
+      - "tests/test_build_weekly_system_report.py"
+      - "tests/test_command_center_page.py"
+      - "tests/test_health_check_page.py"
+      - "tests/test_weekly_system_report_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -51,6 +60,9 @@ on:
       - "scripts/build_social_post_drafts.py"
       - "scripts/build_short_video_script_drafts.py"
       - "scripts/build_filming_checklists.py"
+      - "scripts/build_command_center_overview.py"
+      - "scripts/build_dashboard_health_check.py"
+      - "scripts/build_weekly_system_report.py"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -67,6 +79,12 @@ on:
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
+      - "tests/test_build_command_center_overview.py"
+      - "tests/test_build_dashboard_health_check.py"
+      - "tests/test_build_weekly_system_report.py"
+      - "tests/test_command_center_page.py"
+      - "tests/test_health_check_page.py"
+      - "tests/test_weekly_system_report_page.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -111,6 +129,12 @@ jobs:
         run: python scripts/build_short_video_script_drafts.py
       - name: Build filming checklists
         run: python scripts/build_filming_checklists.py
+      - name: Build command center overview
+        run: python scripts/build_command_center_overview.py
+      - name: Build dashboard health check
+        run: python scripts/build_dashboard_health_check.py
+      - name: Build weekly system report
+        run: python scripts/build_weekly_system_report.py
       - name: Validate dashboard JSON
         run: |
           python - <<'PY'
@@ -130,6 +154,9 @@ jobs:
               "social_post_drafts.json",
               "short_video_script_drafts.json",
               "filming_checklists.json",
+              "command_center_overview.json",
+              "dashboard_health_check.json",
+              "weekly_system_report.json",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -155,6 +182,12 @@ jobs:
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
+          pytest -q tests/test_build_command_center_overview.py
+          pytest -q tests/test_build_dashboard_health_check.py
+          pytest -q tests/test_build_weekly_system_report.py
+          pytest -q tests/test_command_center_page.py
+          pytest -q tests/test_health_check_page.py
+          pytest -q tests/test_weekly_system_report_page.py
           pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py
