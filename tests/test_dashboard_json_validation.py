@@ -13,6 +13,9 @@ REQUIRED_JSON_FILES = [
     "hotspots.geojson",
     "geocoding_review_queue.json",
     "transcript_review_queue.json",
+    "cycc_public_records_crawl_report.json",
+    "cycc_minutes_metadata.json",
+    "cycc_question_video_metadata.json",
     "local_place_dictionary.json",
     "site_map.json",
 ]
@@ -35,6 +38,7 @@ VALID_GEOCODING_PRIORITY = {"high", "medium", "low"}
 VALID_TRANSCRIPT_STATUS = {"not_started", "queued", "transcribed", "reviewed", "rejected"}
 VALID_TRANSCRIPT_REVIEW_STATUS = {"unreviewed", "needs_metadata_review", "reviewed", "rejected"}
 VALID_TRANSCRIPT_PRIORITY = {"needs_metadata_review", "medium", "normal"}
+VALID_CYCC_SOURCE_TYPES = {"minutes", "question_videos"}
 
 
 def load_json(filename: str):
@@ -293,6 +297,41 @@ def test_site_map_includes_hotspot_map_page() -> None:
     site_map = load_json("site_map.json")
     paths = {item["path"] for item in site_map}
     assert "./map.html" in paths
+
+
+def test_cycc_public_records_report_matches_dashboard_counts() -> None:
+    report = load_json("cycc_public_records_crawl_report.json")
+    counts = {item["path"]: item["record_count"] for item in report["output_files"]}
+    assert counts["data/raw/cycc_minutes_metadata.csv"] == 10
+    assert counts["data/raw/cycc_question_video_metadata.csv"] == 131
+    assert sum(counts.values()) == 141
+    assert report["manual_review_required"] is True
+    assert report["no_auto_publish"] is True
+    assert report["crawl_scope"] == "metadata_only"
+
+
+def test_cycc_metadata_dashboard_json_schema() -> None:
+    minutes = load_json("cycc_minutes_metadata.json")
+    videos = load_json("cycc_question_video_metadata.json")
+
+    assert minutes["total_count"] == 10
+    assert videos["total_count"] == 131
+    assert minutes["total_count"] + videos["total_count"] == 141
+
+    for payload, expected_source_type in [(minutes, "minutes"), (videos, "question_videos")]:
+        assert payload["public_use_status"] == "internal_metadata_table"
+        assert payload["manual_review_required"] is True
+        assert payload["no_auto_publish"] is True
+        assert payload["metadata_only"] is True
+        assert isinstance(payload["generated_at"], str)
+        assert payload["generated_at"].endswith("+08:00")
+        assert isinstance(payload["items"], list)
+        for item in payload["items"]:
+            assert item["source_type"] in VALID_CYCC_SOURCE_TYPES
+            assert item["source_type"] == expected_source_type
+            assert isinstance(item["title"], str) and item["title"].strip()
+            assert "review_status" in item
+            assert item["review_status"] == "manual_review_required"
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:

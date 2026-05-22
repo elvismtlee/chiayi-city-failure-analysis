@@ -12,6 +12,9 @@ OUTPUT_FILE = DATA_DIR / "dashboard_health_check.json"
 TAIPEI_TZ = timezone(timedelta(hours=8))
 
 IMPORTANT_JSON = [
+    "dashboard/data/cycc_public_records_crawl_report.json",
+    "dashboard/data/cycc_minutes_metadata.json",
+    "dashboard/data/cycc_question_video_metadata.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -31,6 +34,7 @@ IMPORTANT_JSON = [
 ]
 
 IMPORTANT_PAGES = [
+    "dashboard/cycc-metadata.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -49,6 +53,7 @@ IMPORTANT_PAGES = [
 
 IMPORTANT_JS = [
     "dashboard/shared-nav.js",
+    "dashboard/cycc-metadata.js",
     "dashboard/command-center.js",
     "dashboard/health-check.js",
     "dashboard/weekly-system-report.js",
@@ -59,6 +64,7 @@ IMPORTANT_JS = [
 ]
 
 NAV_LABELS = [
+    "議會公開 metadata",
     "內容排程",
     "每日執行",
     "公開審核",

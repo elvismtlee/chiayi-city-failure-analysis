@@ -2,6 +2,7 @@
   {"title": "城市儀表板首頁", "path": "./index.html", "level": 1, "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"},
   {"title": "城市熱點地圖", "path": "./map.html", "level": 2, "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"},
   {"title": "座標審核", "path": "./geocoding-review.html", "level": 2, "description": "人工檢查 prototype 座標與地理校正候選清單。"},
+  {"title": "議會公開 metadata", "path": "./cycc-metadata.html", "level": 2, "description": "內部審核用嘉義市議會公開 metadata 資料表與統計卡，人工審核後才能對外引用。"},
   {"title": "影音轉錄審核", "path": "./video-review.html", "level": 2, "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"},
   {"title": "會議紀錄審核", "path": "./minutes-review.html", "level": 2, "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"},
   {"title": "會議紀錄議題", "path": "./minutes-issues.html", "level": 2, "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"},

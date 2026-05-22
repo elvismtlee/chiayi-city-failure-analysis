@@ -15,6 +15,7 @@ const DASHBOARD_NAV_GROUPS = [
     items: [
       { title: '城市熱點地圖', path: './map.html', file: 'map.html' },
       { title: '座標審核', path: './geocoding-review.html', file: 'geocoding-review.html' },
+      { title: '議會公開 metadata', path: './cycc-metadata.html', file: 'cycc-metadata.html' },
       { title: '影音轉錄審核', path: './video-review.html', file: 'video-review.html' },
       { title: '會議紀錄審核', path: './minutes-review.html', file: 'minutes-review.html' },
       { title: '會議紀錄議題', path: './minutes-issues.html', file: 'minutes-issues.html' },

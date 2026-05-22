@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>議會公開 metadata 審核台</title>
+  <style>
+    :root{--green:#0f766e;--dark:#064e3b;--teal:#0f766e;--bg:#f7fbf9;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--amber:#9a3412;--blue:#075985}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:var(--bg)}.hero{padding:34px 24px 48px;color:#fff;background:radial-gradient(circle at 12% 16%,rgba(125,211,252,.24),transparent 24%),linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.12);letter-spacing:.12em;font-size:13px;text-transform:uppercase}.breadcrumb{margin:18px 0 10px;color:rgba(255,255,255,.78);font-weight:700}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:0 0 14px}.hero p{font-size:20px;line-height:1.8;max-width:920px;color:rgba(255,255,255,.92)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.hero-actions a{color:#064e3b;background:#fff;text-decoration:none;border-radius:999px;padding:12px 18px;font-weight:900}.hero-actions a.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}.wrap{padding:30px 24px 70px}.notice,.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:22px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.07)}.notice{border-left:6px solid var(--amber);line-height:1.8;margin-bottom:18px}.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:18px 0 22px}.kpi .label{color:var(--muted);font-size:14px}.kpi .value{font-size:30px;font-weight:950;color:var(--dark);margin-top:8px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 14px}.section-head h2{margin:0;font-size:26px}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:12px}.field{display:grid;gap:8px}.field label{font-size:14px;font-weight:800;color:var(--muted)}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;background:#fff;color:var(--text)}.meta-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.meta-card{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:18px}.meta-card strong{display:block;font-size:15px;color:var(--muted);margin-bottom:10px}.meta-card span{font-size:18px;font-weight:900;color:var(--dark);line-height:1.6}.table-wrap{overflow-x:auto;border-radius:22px}.metadata-table{width:100%;border-collapse:collapse;min-width:980px}.metadata-table th,.metadata-table td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.metadata-table th{background:#f8fafc;color:var(--muted);font-size:14px}.metadata-table td{font-size:15px;line-height:1.7}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:13px;font-weight:900;background:#ecfdf5;color:#065f46;border:1px solid #bbf7d0}.badge.review{background:#eff6ff;color:var(--blue);border-color:#bfdbfe}.badge.manual{background:#fff7ed;color:var(--amber);border-color:#fed7aa}.title-cell{display:grid;gap:6px}.title-cell small{color:var(--muted)}a{color:var(--teal);word-break:break-all}.empty{padding:24px;border:1px dashed rgba(15,118,110,.28);border-radius:20px;background:#fff;color:var(--muted)}@media(max-width:1100px){.kpi-grid,.meta-strip{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.hero{padding:26px 16px 40px}.wrap{padding:22px 16px 56px}.hero p{font-size:17px}.toolbar,.kpi-grid,.meta-strip{grid-template-columns:1fr}.section-head{display:block}}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="eyebrow">Chiayi Council Metadata</div>
+      <div class="breadcrumb" data-render="breadcrumb"></div>
+      <h1>議會公開 metadata 審核台</h1>
+      <p>這裡只整理嘉義市議會公開資料的 metadata，方便內部查詢與人工審核。它不是正式對外資料頁，也不會自動生成競選文案；任何引用前，都必須先人工確認來源、日期與脈絡。</p>
+      <div class="hero-actions"><a href="./minutes-review.html">查看會議紀錄審核</a><a class="secondary" href="./public-review.html">查看公開審核</a></div>
+    </div>
+  </section>
+  <main class="wrap">
+    <section class="notice">internal metadata / manual review required / manual publishing only。這裡只呈現公開 metadata，不含私人陳情全文，不含個資，也不是正式對外引用版本。</section>
+    <section class="kpi-grid">
+      <article class="card kpi"><div class="label">會議紀錄 metadata</div><div class="value" data-stat="minutes-count">–</div></article>
+      <article class="card kpi"><div class="label">質詢影音 metadata</div><div class="value" data-stat="videos-count">–</div></article>
+      <article class="card kpi"><div class="label">合計</div><div class="value" data-stat="total-count">–</div></article>
+      <article class="card kpi"><div class="label">最近抓取時間</div><div class="value" data-stat="latest-crawl">–</div></article>
+      <article class="card kpi"><div class="label">來源</div><div class="value" data-stat="source-name">–</div></article>
+    </section>
+    <section class="meta-strip">
+      <article class="meta-card"><strong>狀態</strong><span>內部 metadata，人工審核後才能對外引用</span></article>
+      <article class="meta-card"><strong>發布限制</strong><span>不自動發布，僅供內部研究與整理</span></article>
+      <article class="meta-card"><strong>資料範圍</strong><span>嘉義市議會公開資料，不含私人陳情全文</span></article>
+    </section>
+    <section class="section-head">
+      <div>
+        <h2>搜尋與篩選</h2>
+        <p>可依標題快速搜尋，也可切換會議紀錄或質詢影音。</p>
+      </div>
+    </section>
+    <section class="card">
+      <div class="toolbar">
+        <div class="field">
+          <label for="search-input">依 title 搜尋</label>
+          <input id="search-input" type="search" placeholder="輸入標題關鍵字" />
+        </div>
+        <div class="field">
+          <label for="source-filter">依 source_type 篩選</label>
+          <select id="source-filter">
+            <option value="all">全部</option>
+            <option value="minutes">minutes</option>
+            <option value="question_videos">question_videos</option>
+          </select>
+        </div>
+      </div>
+    </section>
+    <section class="section-head">
+      <div>
+        <h2>metadata 資料表</h2>
+        <p data-render="result-summary">讀取資料中…</p>
+      </div>
+    </section>
+    <section class="card table-wrap" data-render="table-area"></section>
+  </main>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./cycc-metadata.js"></script>
+</body>
+</html>

@@ -19,6 +19,7 @@ on:
       - "scripts/build_daily_execution_list.py"
       - "scripts/build_public_material_review_queue.py"
       - "scripts/build_approved_materials_sample.py"
+      - "scripts/build_cycc_metadata_dashboard_data.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -39,6 +40,7 @@ on:
       - "tests/test_build_daily_execution_list.py"
       - "tests/test_build_public_material_review_queue.py"
       - "tests/test_build_approved_materials_sample.py"
+      - "tests/test_build_cycc_metadata_dashboard_data.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -46,6 +48,7 @@ on:
       - "tests/test_daily_execution_page.py"
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
+      - "tests/test_cycc_metadata_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
@@ -78,6 +81,7 @@ on:
       - "scripts/build_daily_execution_list.py"
       - "scripts/build_public_material_review_queue.py"
       - "scripts/build_approved_materials_sample.py"
+      - "scripts/build_cycc_metadata_dashboard_data.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -98,6 +102,7 @@ on:
       - "tests/test_build_daily_execution_list.py"
       - "tests/test_build_public_material_review_queue.py"
       - "tests/test_build_approved_materials_sample.py"
+      - "tests/test_build_cycc_metadata_dashboard_data.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -105,6 +110,7 @@ on:
       - "tests/test_daily_execution_page.py"
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
+      - "tests/test_cycc_metadata_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
@@ -165,6 +171,8 @@ jobs:
         run: python scripts/build_public_material_review_queue.py
       - name: Build approved materials sample
         run: python scripts/build_approved_materials_sample.py
+      - name: Build CYCC metadata dashboard data
+        run: python scripts/build_cycc_metadata_dashboard_data.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -194,6 +202,8 @@ jobs:
               "daily_execution_list.json",
               "public_material_review_queue.json",
               "approved_materials_sample.json",
+              "cycc_minutes_metadata.json",
+              "cycc_question_video_metadata.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -223,6 +233,7 @@ jobs:
           pytest -q tests/test_build_daily_execution_list.py
           pytest -q tests/test_build_public_material_review_queue.py
           pytest -q tests/test_build_approved_materials_sample.py
+          pytest -q tests/test_build_cycc_metadata_dashboard_data.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
@@ -230,6 +241,7 @@ jobs:
           pytest -q tests/test_daily_execution_page.py
           pytest -q tests/test_public_review_page.py
           pytest -q tests/test_approved_materials_page.py
+          pytest -q tests/test_cycc_metadata_page.py
           pytest -q tests/test_weekly_summary_page.py
           pytest -q tests/test_policy_drafts_page.py
           pytest -q tests/test_build_command_center_overview.py
