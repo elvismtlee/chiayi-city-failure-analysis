@@ -238,3 +238,9 @@ parsed_from_fixture / unreviewed
 結論要保守，不能超出原文。
 城市有問題，就找真因；資料要能查證，說法要能負責。
 ```
+
+---
+
+## 十二、reviewed sample 與政策審核
+
+`data/processed/cycc_minutes_reviewed_sample.json` 只是人工審核流程的範例資料，用來示範 queue 如何進入 reviewed sample，再轉成議題候選。這些資料仍屬 sample data，不是正式結論；若要進入政策素材、對外圖文或週報草稿，必須再經人工政策審核，確認來源、上下文、用語與 public use 邊界都合格後才可使用。
