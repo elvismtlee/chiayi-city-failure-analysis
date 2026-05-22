@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "dashboard" / "data"
 OUTPUT_FILE = DATA_DIR / "command_center_overview.json"
+TAIPEI_TZ = timezone(timedelta(hours=8))
 
 PIPELINE_SOURCES = [
     ("minutes review", "cycc_minutes_review_queue.json", "Review queued meeting records."),
@@ -25,15 +26,9 @@ PIPELINE_SOURCES = [
     ("approved materials", "approved_materials_sample.json", "Keep approval notes with each output."),
 ]
 
-REVIEW_BACKLOG_FILES = {
-    "minutes_review": "cycc_minutes_review_queue.json",
-    "issue_candidates": "cycc_minutes_issue_candidates.json",
-    "public_review": "public_material_review_queue.json",
-}
-
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    return datetime.now(TAIPEI_TZ).isoformat(timespec="seconds")
 
 
 def read_json(path: Path) -> tuple[Any | None, str | None]:
@@ -70,7 +65,7 @@ def build_overview(root: Path = ROOT) -> dict[str, Any]:
 
     for name, filename, next_step in PIPELINE_SOURCES:
         path = data_dir / filename
-        source_files.append(str(path.relative_to(root)))
+        source_files.append(str(path.relative_to(root)).replace("\\", "/"))
         data, issue = read_json(path)
         record_count = count_records(data)
 
@@ -83,9 +78,6 @@ def build_overview(root: Path = ROOT) -> dict[str, Any]:
         elif issue == "invalid_json":
             status = "empty"
             warnings.append(f"Invalid JSON source file: dashboard/data/{filename}")
-        elif record_count == 0:
-            status = "empty"
-            warnings.append(f"No records found in source file: dashboard/data/{filename}")
         else:
             status = "available"
 
@@ -110,14 +102,14 @@ def build_overview(root: Path = ROOT) -> dict[str, Any]:
     }
 
     next_actions = [
-        "Review missing or empty upstream files before relying on the overview.",
+        "Review missing upstream files before relying on the overview.",
         "Confirm public review queue items with a human reviewer.",
         "Move only reviewed materials into approved materials.",
         "Use manual publishing only after final human approval.",
     ]
 
     return {
-        "overview_id": f"command-center-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+        "overview_id": f"command-center-{datetime.now(TAIPEI_TZ).strftime('%Y%m%d%H%M%S')}",
         "generated_at": now_iso(),
         "source_files": source_files,
         "pipeline_status": pipeline_status,
@@ -139,7 +131,7 @@ def build_overview(root: Path = ROOT) -> dict[str, Any]:
 def main() -> dict[str, Any]:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     overview = build_overview(ROOT)
-    OUTPUT_FILE.write_text(json.dumps(overview, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUTPUT_FILE.write_text(json.dumps(overview, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return overview
 
 
