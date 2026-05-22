@@ -1,0 +1,116 @@
+{
+  "summary_id": "weekly-summary-sample-2026-05-22",
+  "week_start": "2026-05-18",
+  "week_end": "2026-05-24",
+  "generated_at": "2026-05-22",
+  "source_files": [
+    "dashboard/data/cycc_minutes_issue_candidates.json"
+  ],
+  "total_candidates": 2,
+  "department_summary": [
+    {
+      "name": "交通處",
+      "count": 1
+    },
+    {
+      "name": "建設處",
+      "count": 1
+    }
+  ],
+  "keyword_summary": [
+    {
+      "name": "停車動線",
+      "count": 1
+    },
+    {
+      "name": "排水改善",
+      "count": 1
+    },
+    {
+      "name": "行人安全",
+      "count": 1
+    },
+    {
+      "name": "行人環境",
+      "count": 1
+    },
+    {
+      "name": "道路安全",
+      "count": 1
+    },
+    {
+      "name": "騎樓整平",
+      "count": 1
+    }
+  ],
+  "top_issues": [
+    {
+      "source_candidate_id": "cycc-issue-05969f6e1b3e",
+      "issue_title": "市區道路安全與停車動線專案報告",
+      "department": "交通處",
+      "issue_keywords": [
+        "道路安全",
+        "停車動線",
+        "行人環境"
+      ],
+      "source_url": "https://www.cycc.gov.tw/public/minutes/sample.html",
+      "review_status": "reviewed",
+      "confidence_level": "sample_only",
+      "summary": "依 reviewed sample 摘要：本段為模擬公開會議紀錄內容，討論市區道路安全、停車動線與行人環境改善。 交通處說明將盤點學校周邊路口，並提出改善時程供議會後續追蹤。"
+    },
+    {
+      "source_candidate_id": "cycc-issue-6561ea41c7c0",
+      "issue_title": "人行空間與排水改善專案報告",
+      "department": "建設處",
+      "issue_keywords": [
+        "騎樓整平",
+        "排水改善",
+        "行人安全"
+      ],
+      "source_url": "https://www.cycc.gov.tw/public/minutes/sample.pdf",
+      "review_status": "reviewed",
+      "confidence_level": "sample_only",
+      "summary": "依 reviewed sample 摘要：本段為模擬公開會議紀錄文字，討論人行空間、騎樓整平與排水改善。 建設處說明將依公開會議紀錄所列議題，整理改善順序並回報後續處理進度。"
+    }
+  ],
+  "needs_review": [
+    {
+      "source_candidate_id": "cycc-issue-05969f6e1b3e",
+      "issue_title": "市區道路安全與停車動線專案報告",
+      "review_reason": "需要人工確認來源、上下文與政策可用性。",
+      "recommended_next_step": "manual_policy_review"
+    },
+    {
+      "source_candidate_id": "cycc-issue-6561ea41c7c0",
+      "issue_title": "人行空間與排水改善專案報告",
+      "review_reason": "需要人工確認來源、上下文與政策可用性。",
+      "recommended_next_step": "manual_policy_review"
+    }
+  ],
+  "suggested_policy_topics": [
+    {
+      "source_candidate_id": "cycc-issue-05969f6e1b3e",
+      "topic_title": "初步政策討論：市區道路安全與停車動線專案報告",
+      "keywords": [
+        "道路安全",
+        "停車動線",
+        "行人環境"
+      ],
+      "rationale": "由 issue candidate 的標題與關鍵字整理，僅供內部政策審核前參考。",
+      "review_status": "needs_policy_review"
+    },
+    {
+      "source_candidate_id": "cycc-issue-6561ea41c7c0",
+      "topic_title": "初步政策討論：人行空間與排水改善專案報告",
+      "keywords": [
+        "騎樓整平",
+        "排水改善",
+        "行人安全"
+      ],
+      "rationale": "由 issue candidate 的標題與關鍵字整理，僅供內部政策審核前參考。",
+      "review_status": "needs_policy_review"
+    }
+  ],
+  "public_use_status": "internal_weekly_draft",
+  "notes": "internal draft; not official conclusion; requires human review before public use."
+}
