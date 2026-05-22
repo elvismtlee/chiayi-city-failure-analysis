@@ -7,12 +7,14 @@ on:
       - "scripts/build_hotspots_geojson.py"
       - "scripts/build_geocoding_review_queue.py"
       - "scripts/build_transcript_review_queue.py"
+      - "scripts/build_cycc_minutes_review_queue.py"
       - "data/raw/cycc_question_video_metadata.csv"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
       - "tests/test_build_geocoding_review_queue.py"
       - "tests/test_build_transcript_review_queue.py"
+      - "tests/test_build_cycc_minutes_review_queue.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -25,12 +27,14 @@ on:
       - "scripts/build_hotspots_geojson.py"
       - "scripts/build_geocoding_review_queue.py"
       - "scripts/build_transcript_review_queue.py"
+      - "scripts/build_cycc_minutes_review_queue.py"
       - "data/raw/cycc_question_video_metadata.csv"
       - "dashboard/data/**"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
       - "tests/test_build_geocoding_review_queue.py"
       - "tests/test_build_transcript_review_queue.py"
+      - "tests/test_build_cycc_minutes_review_queue.py"
       - "tests/test_dashboard_json_validation.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
@@ -71,6 +75,10 @@ jobs:
         run: |
           python scripts/build_transcript_review_queue.py
 
+      - name: Build CYCC minutes review queue
+        run: |
+          python scripts/build_cycc_minutes_review_queue.py
+
       - name: Validate dashboard JSON
         run: |
           python - <<'PY'
@@ -84,6 +92,7 @@ jobs:
               "hotspots.geojson",
               "geocoding_review_queue.json",
               "transcript_review_queue.json",
+              "cycc_minutes_review_queue.json",
           ]
           data_dir = Path("dashboard/data")
           for filename in required:
@@ -91,7 +100,7 @@ jobs:
               if not path.exists():
                   raise SystemExit(f"Missing {path}")
               json.loads(path.read_text(encoding="utf-8"))
-          print("Dashboard JSON, GeoJSON, geocoding review queue, and transcript review queue files are valid.")
+          print("Dashboard JSON, GeoJSON, geocoding, transcript, and CYCC minutes review queue files are valid.")
           PY
 
       - name: Run dashboard data tests
@@ -100,6 +109,7 @@ jobs:
           pytest -q tests/test_build_hotspots_geojson.py
           pytest -q tests/test_build_geocoding_review_queue.py
           pytest -q tests/test_build_transcript_review_queue.py
+          pytest -q tests/test_build_cycc_minutes_review_queue.py
           pytest -q tests/test_dashboard_json_validation.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py

@@ -86,6 +86,7 @@ dashboard/index.html
 | `dashboard/insights.html` | 議題趨勢與洞察。 |
 | `dashboard/geocoding-review.html` | 座標人工審核清單。 |
 | `dashboard/video-review.html` | 影音 metadata 與轉錄審核清單。 |
+| `dashboard/minutes-review.html` | 會議紀錄 fixture parser 人工審核清單。 |
 
 常用資料檔：
 
@@ -95,6 +96,7 @@ dashboard/index.html
 | `dashboard/data/hotspots.geojson` | Leaflet 地圖使用的 GeoJSON。 |
 | `dashboard/data/geocoding_review_queue.json` | 待人工地理校正清單。 |
 | `dashboard/data/transcript_review_queue.json` | 待轉錄與 metadata 審核清單。 |
+| `dashboard/data/cycc_minutes_review_queue.json` | 會議紀錄 fixture parser 待人工審核清單。 |
 | `dashboard/data/site_map.json` | dashboard 導覽與頁面說明。 |
 
 ---
@@ -110,6 +112,8 @@ pytest -q tests/test_dashboard_shared_nav.py
 pytest -q tests/test_geocoding_review_page.py
 pytest -q tests/test_video_review_page.py
 pytest -q tests/test_parse_cycc_minutes_sample.py
+pytest -q tests/test_build_cycc_minutes_review_queue.py
+pytest -q tests/test_minutes_review_page.py
 ```
 
 新增 PR 前應檢查：
