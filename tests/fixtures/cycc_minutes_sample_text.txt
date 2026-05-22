@@ -1,0 +1,11 @@
+source_id: CYCC_MINUTES_FIXTURE_TEXT
+meeting_name: 嘉義市議會第 11 屆第 4 次定期會模擬紀錄
+meeting_date: 2026-05-02
+councilor_name: 測試議員乙
+department: 建設處
+agenda_item: 人行空間與排水改善專案報告
+issue_keywords: 騎樓整平, 排水改善, 行人安全
+source_url: https://www.cycc.gov.tw/public/minutes/sample.pdf
+raw_text:
+本段為模擬公開會議紀錄文字，討論人行空間、騎樓整平與排水改善。
+建設處說明將依公開會議紀錄所列議題，整理改善順序並回報後續處理進度。
