@@ -8,6 +8,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_PATH = ROOT / "dashboard" / "data" / "cycc_minutes_review_queue.json"
 OUTPUT_PATH = ROOT / "data" / "processed" / "cycc_minutes_reviewed_sample.json"
+DASHBOARD_OUTPUT_PATH = ROOT / "dashboard" / "data" / "cycc_minutes_reviewed_sample.json"
 
 REVIEWED_AT = "2026-05-22"
 REVIEWER = "campaign_ops"
@@ -107,16 +108,21 @@ def build_reviewed_sample(records: list[dict[str, Any]] | None = None) -> list[d
     return [build_reviewed_item(item) for item in source_records if is_fixture_sample(item)]
 
 
-def write_reviewed_sample(output_path: Path = OUTPUT_PATH) -> list[dict[str, Any]]:
+def write_reviewed_sample(
+    output_path: Path = OUTPUT_PATH,
+    dashboard_output_path: Path | None = DASHBOARD_OUTPUT_PATH,
+) -> list[dict[str, Any]]:
     sample = build_reviewed_sample()
+    serialized = json.dumps(sample, ensure_ascii=False, indent=2) + "\n"
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(sample, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    output_path.write_text(serialized, encoding="utf-8")
+    if dashboard_output_path is not None:
+        dashboard_output_path.parent.mkdir(parents=True, exist_ok=True)
+        dashboard_output_path.write_text(serialized, encoding="utf-8")
     return sample
 
 
 if __name__ == "__main__":
     rows = write_reviewed_sample()
     print(f"Wrote {len(rows)} reviewed sample rows to {OUTPUT_PATH.relative_to(ROOT)}")
+    print(f"Wrote {len(rows)} reviewed sample rows to {DASHBOARD_OUTPUT_PATH.relative_to(ROOT)}")
