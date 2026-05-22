@@ -56,6 +56,23 @@ def test_shared_nav_contains_disclosure() -> None:
     assert "不代表完整民意調查" in content
 
 
+def test_shared_nav_uses_two_level_grouped_navigation() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "dashboard-nav-main" in content
+    assert "dashboard-nav-sub" in content
+    assert "dashboard-nav-tab" in content
+    assert "dashboard-nav-link" in content
+    assert "grid-template-columns:repeat(5" in content
+    for label in ["總覽", "資料審核", "內容產出", "發布管理", "系統說明"]:
+        assert label in content
+
+
+def test_key_pages_bust_shared_nav_cache() -> None:
+    for page in ["index.html", "weekly-summary.html", "policy-drafts.html"]:
+        content = (DASHBOARD_DIR / page).read_text(encoding="utf-8")
+        assert './shared-nav.js?v=20260523-navux' in content
+
+
 def test_dashboard_pages_load_shared_nav_script() -> None:
     for page in DASHBOARD_PAGES:
         content = (DASHBOARD_DIR / page).read_text(encoding="utf-8")
