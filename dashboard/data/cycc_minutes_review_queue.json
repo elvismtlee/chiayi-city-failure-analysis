@@ -1,0 +1,40 @@
+[
+  {
+    "queue_id": "cycc-minutes-05969f6e1b3e",
+    "source_id": "CYCC_MINUTES_FIXTURE_HTML",
+    "meeting_name": "嘉義市議會第 11 屆第 3 次定期會模擬紀錄",
+    "meeting_date": "2026-05-01",
+    "councilor_name": "測試議員甲",
+    "department": "交通處",
+    "agenda_item": "市區道路安全與停車動線專案報告",
+    "issue_keywords": ["道路安全", "停車動線", "行人環境"],
+    "source_url": "https://www.cycc.gov.tw/public/minutes/sample.html",
+    "raw_text_excerpt": "本段為模擬公開會議紀錄內容，討論市區道路安全、停車動線與行人環境改善。 交通處說明將盤點學校周邊路口，並提出改善時程供議會後續追蹤。",
+    "raw_hash": "05969f6e1b3e1cc718d8e260c9d274ffc4d5e08219b206b3414c6d4622bf3e84",
+    "parser_status": "parsed_from_fixture",
+    "review_status": "unreviewed",
+    "review_priority": "normal",
+    "needs_manual_review": true,
+    "recommended_action": "manual_minutes_review",
+    "notes": "fixture-only parser prototype output; this record has not been manually reviewed and must not be used as an official analysis result."
+  },
+  {
+    "queue_id": "cycc-minutes-6561ea41c7c0",
+    "source_id": "CYCC_MINUTES_FIXTURE_TEXT",
+    "meeting_name": "嘉義市議會第 11 屆第 4 次定期會模擬紀錄",
+    "meeting_date": "2026-05-02",
+    "councilor_name": "測試議員乙",
+    "department": "建設處",
+    "agenda_item": "人行空間與排水改善專案報告",
+    "issue_keywords": ["騎樓整平", "排水改善", "行人安全"],
+    "source_url": "https://www.cycc.gov.tw/public/minutes/sample.pdf",
+    "raw_text_excerpt": "本段為模擬公開會議紀錄文字，討論人行空間、騎樓整平與排水改善。 建設處說明將依公開會議紀錄所列議題，整理改善順序並回報後續處理進度。",
+    "raw_hash": "6561ea41c7c00339370962444783e5a30ece6e3c2a15b3b498c6e5018e64e085",
+    "parser_status": "parsed_from_fixture",
+    "review_status": "unreviewed",
+    "review_priority": "normal",
+    "needs_manual_review": true,
+    "recommended_action": "manual_minutes_review",
+    "notes": "fixture-only parser prototype output; this record has not been manually reviewed and must not be used as an official analysis result."
+  }
+]
