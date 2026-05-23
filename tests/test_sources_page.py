@@ -31,3 +31,9 @@ def test_sources_links_to_open_data_crawler_specs() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-crawler-specs.html' in content
     assert '前往 Crawler 規格草稿' in content
+
+
+def test_sources_links_to_open_data_human_review() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-human-review.html' in content
+    assert '前往人工審核工作簿' in content

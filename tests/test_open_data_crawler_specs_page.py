@@ -28,3 +28,9 @@ def test_site_pages_renders_open_data_crawler_spec_drafts() -> None:
     assert "openDataCrawlerSpecSearch" in content
     assert "openDataCrawlerSpecStatus" in content
     assert "openDataCrawlerSpecFetchMethod" in content
+
+
+def test_open_data_crawler_specs_page_links_to_human_review() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-human-review.html" in content
+    assert "進入人工審核工作簿" in content

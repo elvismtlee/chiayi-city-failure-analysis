@@ -32,3 +32,9 @@ def test_open_data_top10_tasks_page_links_to_crawler_specs() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-crawler-specs.html" in content
     assert "建立 Crawler 規格草稿" in content
+
+
+def test_open_data_top10_tasks_page_links_to_human_review() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-human-review.html" in content
+    assert "進入人工審核工作簿" in content
