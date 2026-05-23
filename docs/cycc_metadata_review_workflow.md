@@ -72,6 +72,7 @@ review_status: needs_review
 
 - 保持 manual_review_required。
 - 保持 no_auto_publish。
+- 保持不自動發布。
 - 保持 metadata_only，除非另有人工審核後的衍生資料檔。
 - 對外引用前保留原始連結。
 
