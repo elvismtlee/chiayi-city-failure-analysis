@@ -21,17 +21,17 @@
     <div class="section-title"><h2>審核提醒</h2><span>internal metadata / manual review required</span></div>
     <section class="card notice" data-render="cycc-note">正在讀取 CYCC crawl report。</section>
 
-    <div class="section-title"><h2>資料表預備區</h2><span>等待 raw CSV 轉 JSON 後顯示逐筆資料</span></div>
+    <div class="section-title"><h2>逐筆 metadata 資料表</h2><span data-render="cycc-summary">讀取 141 筆逐筆 metadata 中…</span></div>
     <section class="card">
       <div class="controls">
-        <input id="cyccSearch" placeholder="搜尋標題；JSON 接入後可用" />
+        <input id="cyccSearch" placeholder="搜尋 title" />
         <select id="cyccType"><option value="all">全部類型</option><option value="minutes">會議紀錄</option><option value="question_videos">質詢影音</option></select>
       </div>
-      <table><thead><tr><th>source_type</th><th>title</th><th>date</th><th>source_url / detail_url</th><th>review_status</th></tr></thead><tbody data-render="cycc-table"><tr><td colspan="5">目前已接入 summary report。下一步將 artifact 內 CSV 轉為 JSON 後，顯示 141 筆逐筆 metadata。</td></tr></tbody></table>
+      <table><thead><tr><th>source_type</th><th>title</th><th>date</th><th>source_url / detail_url</th><th>view_count</th><th>review_status</th></tr></thead><tbody data-render="cycc-table"><tr><td colspan="6">正在載入逐筆 metadata。</td></tr></tbody></table>
     </section>
 
     <div class="section-title"><h2>下一步</h2></div>
-    <section class="card notice"><strong>下一個工程任務：</strong>把 artifact 內的 `cycc_minutes_metadata.csv` 與 `cycc_question_video_metadata.csv` 轉為 dashboard JSON，並在本頁啟用搜尋、篩選與逐筆人工審核欄位。</section>
+    <section class="card notice"><strong>使用提醒：</strong>本頁只顯示 internal metadata，所有資料都維持 manual review required / no auto publish。不得把 metadata 直接改寫成指控、結論或競選文案。</section>
   </main>
   <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="./site-pages.js"></script>
