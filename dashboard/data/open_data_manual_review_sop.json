@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-05-23T22:40:51+08:00",
+  "public_use_status": "internal_manual_review_sop",
+  "source_result_template_count": 10,
+  "total_tasks": 10,
+  "review_days": {
+    "day_1": 3,
+    "day_2": 4,
+    "day_3": 3
+  },
+  "review_batches": {
+    "batch_1_high_priority": 3,
+    "batch_2_standard": 4,
+    "batch_3_follow_up": 3
+  },
+  "topic_groups": {
+    "culture_events": 1,
+    "public_works_environment": 3,
+    "social_welfare": 5,
+    "traffic_parking": 1
+  },
+  "estimated_total_minutes": 285,
+  "crawler_execution_allowed": false,
+  "engineering_review_allowed_count": 0,
+  "no_live_crawler": true,
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "no_personal_data": true,
+  "sop": {
+    "sop_id": "open-data-manual-review-sop-001",
+    "sop_title": "官方資料第一批人工審核 SOP",
+    "review_scope": "第一批 10 筆官方資料來源人工審核流程",
+    "source_result_template_file": "dashboard/data/open_data_manual_review_result_template.json",
+    "total_tasks": 10,
+    "review_days": {
+      "day_1": 3,
+      "day_2": 4,
+      "day_3": 3
+    },
+    "daily_batches": [
+      {
+        "review_day": "day_1",
+        "task_count": 3,
+        "estimated_minutes_total": 90,
+        "items": [
+          {
+            "result_id": "open-data-manual-review-result-01",
+            "title": "嘉義市兒童課後照顧服務據點",
+            "topic_group": "social_welfare",
+            "source_owner": "嘉義市政府社會處",
+            "source_url": "https://data.gov.tw/dataset/95735",
+            "review_batch": "batch_1_high_priority",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          },
+          {
+            "result_id": "open-data-manual-review-result-02",
+            "title": "嘉義市社區整體照顧服務體系",
+            "topic_group": "social_welfare",
+            "source_owner": "嘉義市政府社會處",
+            "source_url": "https://data.gov.tw/dataset/95733",
+            "review_batch": "batch_1_high_priority",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          },
+          {
+            "result_id": "open-data-manual-review-result-03",
+            "title": "嘉義市社區照顧關懷據點",
+            "topic_group": "social_welfare",
+            "source_owner": "嘉義市政府社會處",
+            "source_url": "https://data.gov.tw/dataset/52404",
+            "review_batch": "batch_1_high_priority",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          }
+        ]
+      },
+      {
+        "review_day": "day_2",
+        "task_count": 4,
+        "estimated_minutes_total": 120,
+        "items": [
+          {
+            "result_id": "open-data-manual-review-result-04",
+            "title": "嘉義市社會福利服務中心",
+            "topic_group": "social_welfare",
+            "source_owner": "嘉義市政府社會處兒少及婦女福利科",
+            "source_url": "https://data.gov.tw/dataset/139121",
+            "review_batch": "batch_2_standard",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          },
+          {
+            "result_id": "open-data-manual-review-result-05",
+            "title": "嘉義市老人福利機構",
+            "topic_group": "social_welfare",
+            "source_owner": "嘉義市政府社會處",
+            "source_url": "https://data.gov.tw/dataset/27399",
+            "review_batch": "batch_2_standard",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          },
+          {
+            "result_id": "open-data-manual-review-result-06",
+            "title": "嘉義市公園綠地清冊",
+            "topic_group": "public_works_environment",
+            "source_owner": "嘉義市政府建設處公園管理科",
+            "source_url": "https://data.gov.tw/en/datasets/52349",
+            "review_batch": "batch_2_standard",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          },
+          {
+            "result_id": "open-data-manual-review-result-07",
+            "title": "空氣品質小時值－嘉義市嘉義站",
+            "topic_group": "public_works_environment",
+            "source_owner": "環境部環境資訊科技司",
+            "source_url": "https://data.moenv.gov.tw/dataset/detail/AQX_P_230",
+            "review_batch": "batch_2_standard",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          }
+        ]
+      },
+      {
+        "review_day": "day_3",
+        "task_count": 3,
+        "estimated_minutes_total": 75,
+        "items": [
+          {
+            "result_id": "open-data-manual-review-result-08",
+            "title": "嘉義市藝文場域",
+            "topic_group": "culture_events",
+            "source_owner": "嘉義市政府文化局或相關單位",
+            "source_url": "https://data.gov.tw/en/datasets/52546",
+            "review_batch": "batch_3_follow_up",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 20
+          },
+          {
+            "result_id": "open-data-manual-review-result-09",
+            "title": "嘉義市公有路外停車場資訊",
+            "topic_group": "traffic_parking",
+            "source_owner": "嘉義市政府交通處",
+            "source_url": "https://data.chiayi.gov.tw/opendata/dataset/metadata?oid=d206db33-3ae7-489e-b709-5555222fb767",
+            "review_batch": "batch_3_follow_up",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 25
+          },
+          {
+            "result_id": "open-data-manual-review-result-10",
+            "title": "嘉義市重要環保統計資料",
+            "topic_group": "public_works_environment",
+            "source_owner": "環境部統計處",
+            "source_url": "https://data.moenv.gov.tw/dataset/detail/STAT_P_22",
+            "review_batch": "batch_3_follow_up",
+            "recommended_next_action": "collect_missing_evidence",
+            "result_status": "not_started",
+            "reviewer_decision": "not_decided",
+            "crawler_execution_allowed": false,
+            "engineering_review_allowed": false,
+            "estimated_minutes": 30
+          }
+        ]
+      }
+    ],
+    "step_groups": [
+      "before_review",
+      "source_identity_review",
+      "license_terms_review",
+      "format_review",
+      "risk_review",
+      "evidence_recording",
+      "result_template_update",
+      "completion_handoff"
+    ],
+    "pre_review_checklist": [
+      "確認只做人工審核，不執行 crawler",
+      "確認不下載私人陳情全文",
+      "確認不收集姓名、電話、email、地址等個資",
+      "準備人工截圖或文字紀錄工具",
+      "開啟 dashboard/open-data-review-evidence.html",
+      "開啟 dashboard/open-data-manual-review-results.html"
+    ],
+    "per_source_review_steps": [
+      "開啟 source_url",
+      "記錄來源頁標題或 dataset title",
+      "確認是否為官方來源",
+      "確認 source_owner 是否一致",
+      "確認授權或使用條款",
+      "確認資料格式",
+      "確認更新頻率",
+      "檢查是否含個資",
+      "檢查是否含私人陳情全文",
+      "不執行 crawler",
+      "不自動發布"
+    ],
+    "evidence_recording_steps": [
+      "記錄 source_url",
+      "記錄 page_title_or_dataset_title",
+      "記錄 official_owner",
+      "記錄 license_or_terms_summary",
+      "記錄 available_format",
+      "記錄 update_cadence_observed",
+      "記錄 personal_data_risk_observed",
+      "記錄 private_complaint_risk_observed",
+      "記錄 reviewed_at",
+      "記錄 reviewer_notes"
+    ],
+    "result_template_fill_steps": [
+      "更新 source_opened_result",
+      "更新 official_source_result",
+      "更新 license_terms_result",
+      "更新 format_result",
+      "更新 update_cadence_result",
+      "更新 personal_data_result",
+      "更新 private_complaint_result",
+      "填寫 evidence_summary",
+      "填寫 reviewer_notes",
+      "選擇 reviewer_decision",
+      "保持 crawler_execution_allowed false",
+      "保持 engineering_review_allowed false"
+    ],
+    "safety_checklist": [
+      "no live crawler",
+      "no personal data",
+      "no private complaint full text",
+      "no auto publish",
+      "no automated email",
+      "manual review only",
+      "crawler_execution_allowed remains false",
+      "engineering_review_allowed remains false"
+    ],
+    "completion_checklist": [
+      "已人工開啟 source_url",
+      "已記錄來源頁標題或 dataset title",
+      "已人工確認官方來源",
+      "已人工記錄授權或條款摘要",
+      "已人工確認可用格式",
+      "已人工確認更新頻率",
+      "已人工確認個資風險",
+      "已人工確認私人陳情全文風險",
+      "已填寫 reviewer_notes",
+      "crawler_execution_allowed 仍為 false",
+      "engineering_review_allowed 仍為 false"
+    ],
+    "handoff_next_actions": [
+      "update_human_review_workbook_later",
+      "update_engineering_checklist_later",
+      "prepare_manual_review_summary_later",
+      "block_item_if_risk_found",
+      "request_follow_up_if_license_unclear"
+    ],
+    "crawler_execution_allowed": false,
+    "engineering_review_allowed": false,
+    "notes": "manual review only / no live crawler / no auto publish / no personal data"
+  }
+}

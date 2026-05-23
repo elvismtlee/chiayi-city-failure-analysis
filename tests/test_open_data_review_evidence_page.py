@@ -35,3 +35,9 @@ def test_open_data_review_evidence_page_links_to_manual_review_result_template()
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-manual-review-results.html" in content
     assert "建立審核結果輸入表" in content
+
+
+def test_open_data_review_evidence_page_links_to_manual_review_sop() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-manual-review-sop.html" in content
+    assert "查看人工審核 SOP" in content

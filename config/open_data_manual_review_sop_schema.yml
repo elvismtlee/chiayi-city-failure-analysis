@@ -1,0 +1,36 @@
+public_use_status: internal_manual_review_sop_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+required_fields:
+  - sop_id
+  - sop_title
+  - review_scope
+  - source_result_template_file
+  - total_tasks
+  - review_days
+  - daily_batches
+  - step_groups
+  - pre_review_checklist
+  - per_source_review_steps
+  - evidence_recording_steps
+  - result_template_fill_steps
+  - safety_checklist
+  - completion_checklist
+  - handoff_next_actions
+  - crawler_execution_allowed
+  - engineering_review_allowed
+  - notes
+step_groups:
+  - before_review
+  - source_identity_review
+  - license_terms_review
+  - format_review
+  - risk_review
+  - evidence_recording
+  - result_template_update
+  - completion_handoff

@@ -1,0 +1,28 @@
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PAGE = ROOT / "dashboard" / "open-data-manual-review-sop.html"
+SITE_JS = ROOT / "dashboard" / "site-pages.js"
+
+
+def test_open_data_manual_review_sop_page_exists_with_required_sections() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "官方資料第一批人工審核 SOP" in content
+    assert "openDataManualReviewSop" in content
+    assert "day_1" in content
+    assert "day_2" in content
+    assert "day_3" in content
+    assert "manual review" in content
+    assert "no auto publish" in content
+    assert "no live crawler" in content
+    assert "crawler_execution_allowed" in content
+    assert "engineering_review_allowed" in content
+    assert './shared-nav.js?v=20260523-navux' in content
+
+
+def test_site_pages_renders_open_data_manual_review_sop() -> None:
+    content = SITE_JS.read_text(encoding="utf-8")
+    assert "./data/open_data_manual_review_sop.json" in content
+    assert "setupOpenDataManualReviewSop" in content
+    assert "open-data-manual-review-sop" in content
