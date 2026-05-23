@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>資料源人工檢查工作台</title>
+  <style>
+    :root{--green:#0f766e;--green-deep:#064e3b;--mint:#ecfdf5;--soft:#f6fffb;--text:#172033;--muted:#64748b;--line:rgba(15,118,110,.13);--card:#fff;--shadow:0 20px 56px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#effcf7 0%,#f8fafc 35%,#f8fafc 100%)}
+    .hero{padding:36px 24px 64px;background:radial-gradient(circle at 12% 14%,rgba(255,255,255,.18),transparent 26%),radial-gradient(circle at 90% 10%,rgba(167,243,208,.15),transparent 18%),linear-gradient(135deg,#064e3b,#0f766e);color:#fff}
+    .inner,.wrap{max-width:1180px;margin:auto}
+    .nav{display:block;margin-bottom:28px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);gap:22px;align-items:stretch}
+    .hero-panel,.panel,.source-card,.check-item,.step,.quick-link{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
+    .hero-copy{padding:28px;border:1px solid rgba(255,255,255,.18);border-radius:28px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px)}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);font-weight:900;font-size:13px;letter-spacing:.04em}
+    h1{font-size:clamp(40px,6vw,70px);line-height:1.03;margin:18px 0 14px}
+    .hero-copy p{margin:0;max-width:860px;font-size:clamp(18px,2.3vw,24px);line-height:1.8;color:rgba(255,255,255,.92)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;font-weight:900;text-decoration:none}
+    .btn.primary{background:#fff;color:var(--green-deep)}
+    .btn.secondary{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff}
+    .hero-panel{padding:24px;color:var(--text);background:linear-gradient(180deg,#ffffff,#f4fffb)}
+    .hero-panel h2{margin:0 0 8px;font-size:20px;color:var(--green-deep)}
+    .hero-panel p{margin:0;color:#475569;line-height:1.75}
+    .hero-panel ul{margin:14px 0 0;padding-left:18px;color:#475569;line-height:1.75}
+    .wrap{padding:34px 24px 72px}
+    .section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:34px 0 16px}
+    .section-title h2{margin:0;font-size:30px}
+    .section-title span{color:var(--muted);font-size:14px}
+    .grid{display:grid;gap:16px}
+    .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .step{padding:20px;background:linear-gradient(180deg,#fff,#f6fffb)}
+    .step .dot{width:36px;height:36px;border-radius:999px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:950;margin-bottom:12px}
+    .step b{display:block;font-size:19px;margin-bottom:8px;color:var(--green-deep)}
+    .step span{display:block;font-size:15px;color:#475569;line-height:1.75}
+    .check-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .check-item{padding:18px;background:linear-gradient(180deg,#fff,#fbfffd)}
+    .check-item code{display:block;font-size:14px;color:#0f766e;font-weight:900;margin-bottom:8px}
+    .check-item p{margin:0;color:#475569;line-height:1.7;font-size:14px}
+    .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .source-card{padding:22px;background:linear-gradient(180deg,#fff,#f8fdfa)}
+    .source-top{display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:12px}
+    .source-card h3{margin:0;font-size:24px;line-height:1.35}
+    .source-meta{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .tag{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;background:#ecfdf5;border:1px solid rgba(15,118,110,.12);color:#065f46;font-size:13px;font-weight:900}
+    .source-card p{margin:0;color:#475569;line-height:1.75}
+    .source-card dl{margin:16px 0 0;display:grid;grid-template-columns:108px 1fr;gap:8px 12px;font-size:14px}
+    .source-card dt{color:var(--muted);font-weight:800}
+    .source-card dd{margin:0;color:#1f2937}
+    .source-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .source-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:999px;text-decoration:none;font-weight:900}
+    .source-actions .primary{background:var(--green);color:#fff}
+    .source-actions .ghost{background:#effcf7;color:var(--green-deep);border:1px solid rgba(15,118,110,.14)}
+    .sample{padding:24px}
+    .sample .sample-badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:#ecfdf5;color:#065f46;font-size:13px;font-weight:900}
+    .sample h3{margin:14px 0 12px;font-size:24px}
+    .sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin-top:16px}
+    .sample-grid div{padding:14px 16px;border-radius:18px;background:#f8fafc;border:1px solid rgba(15,118,110,.08)}
+    .sample-grid strong{display:block;color:#0f766e;margin-bottom:6px;font-size:14px}
+    .sample-note{margin-top:16px;color:#475569;line-height:1.8}
+    .two-col{grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr)}
+    .panel{padding:24px}
+    .panel h3{margin:0 0 12px;font-size:22px;color:var(--green-deep)}
+    .panel p{margin:0;color:#475569;line-height:1.8}
+    .list{margin:0;padding-left:20px;color:#475569;line-height:1.9}
+    .safety-list{display:flex;gap:10px;flex-wrap:wrap}
+    .safety-pill{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;background:#ecfdf5;border:1px solid rgba(15,118,110,.12);color:#065f46;font-weight:900}
+    .quick-links{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .quick-link{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 18px;text-decoration:none;color:var(--green-deep);font-weight:900;background:linear-gradient(180deg,#fff,#f6fffb)}
+    .footnote{margin-top:26px;color:var(--muted);font-size:14px;line-height:1.8}
+    @media(max-width:1040px){.hero-grid,.two-col,.check-grid,.cards,.quick-links{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
+    @media(max-width:720px){.hero{padding:30px 16px 48px}.wrap{padding:26px 16px 56px}.hero-grid,.two-col,.check-grid,.cards,.quick-links,.sample-grid{grid-template-columns:1fr}.hero-actions{display:grid;grid-template-columns:1fr}.btn,.source-actions a{width:100%}}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="badge-row">
+            <span class="badge">資料源人工檢查工作台</span>
+            <span class="badge">manual review required</span>
+            <span class="badge">no live crawler</span>
+          </div>
+          <h1>資料源人工檢查工作台</h1>
+          <p>在啟動任何爬蟲之前，我們先人工打開官方資料來源，確認它是不是官方資料、資料格式是什麼、有沒有個資風險、未來能不能整理成資料庫。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#cards">開始看資料源卡片</a>
+            <a class="btn secondary" href="./open-data-inventory.html">回到官方資料盤點</a>
+            <a class="btn secondary" href="./health-check.html">查看健康檢查</a>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <h2>這個頁面是幹嘛的</h2>
+          <p>它把原本太抽象的人工審核流程，縮成一個一般人也能照著做的工作台。你只要挑一筆官方資料來源，人工打開頁面，填完 8 個欄位，就能留下清楚的檢查結果。</p>
+          <ul>
+            <li>先看哪個官方資料來源</li>
+            <li>再打開哪個 URL</li>
+            <li>看完要填哪幾個欄位</li>
+            <li>最後留下可以回填的檢查結果</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-title">
+      <h2>今天真正要做什麼</h2>
+      <span>只做人工檢查，不做任何程式抓取</span>
+    </div>
+    <section class="grid steps">
+      <article class="step">
+        <div class="dot">1</div>
+        <b>打開一筆官方 URL</b>
+        <span>從下方卡片挑一筆官方資料來源，直接人工點開，確認這個網址真的是官方提供的頁面或資料集入口。</span>
+      </article>
+      <article class="step">
+        <div class="dot">2</div>
+        <b>看頁面上有什麼資料</b>
+        <span>記下頁面標題、官方單位、資料格式，以及肉眼可以看到的主要欄位或資訊內容。</span>
+      </article>
+      <article class="step">
+        <div class="dot">3</div>
+        <b>填 8 個檢查欄位</b>
+        <span>把檢查結果填成一致格式，留下下一步建議，並維持 crawler_execution_allowed = false。</span>
+      </article>
+    </section>
+
+    <div class="section-title">
+      <h2>今天會填的 8 個欄位</h2>
+      <span>每一筆資料源只要先完成這 8 個欄位</span>
+    </div>
+    <section class="grid check-grid">
+      <article class="check-item"><code>source_title</code><p>頁面標題或資料集名稱，看完就照你眼前看到的名稱填。</p></article>
+      <article class="check-item"><code>source_owner</code><p>誰提供這份資料，例如嘉義市政府交通處、文化局、社會處。</p></article>
+      <article class="check-item"><code>source_url</code><p>你人工打開的網址，保留原始來源入口。</p></article>
+      <article class="check-item"><code>is_official_source</code><p>這是不是官方來源，先填 yes / no / unsure 都可以。</p></article>
+      <article class="check-item"><code>data_format</code><p>資料長什麼樣子，例如 CSV、HTML 頁面、JSON API 或 PDF。</p></article>
+      <article class="check-item"><code>visible_fields</code><p>頁面上目前看得到哪些欄位，例如停車場名稱、地址、更新日期。</p></article>
+      <article class="check-item"><code>privacy_risk</code><p>有沒有個資或私人陳情全文風險，可先填 low / medium / high。</p></article>
+      <article class="check-item"><code>recommended_next_action</code><p>這筆資料檢查完後建議做什麼，例如繼續人工盤點、等補欄位、暫不處理。</p></article>
+    </section>
+
+    <div class="section-title" id="cards">
+      <h2>資料源卡片</h2>
+      <span>整理自 open_data_url_inventory.json 的代表性來源</span>
+    </div>
+    <section class="grid cards">
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市公有路外停車場資訊</h3>
+            <div class="source-meta">
+              <span class="tag">交通停車</span>
+              <span class="tag">CSV metadata page</span>
+              <span class="tag">待人工檢查</span>
+            </div>
+          </div>
+          <span class="tag">下一步：打開官方頁面</span>
+        </div>
+        <p>先確認這是不是嘉義市政府交通處的正式資料入口，再看 metadata 頁面寫了哪些欄位和更新頻率。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府交通處</dd>
+          <dt>URL</dt><dd>https://data.chiayi.gov.tw/opendata/dataset/metadata?oid=d206db33-3ae7-489e-b709-5555222fb767</dd>
+          <dt>資料類型</dt><dd>dataset_metadata_page</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>確認是否為官方資料、列出可見欄位、評估低風險再往下整理。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://data.chiayi.gov.tw/opendata/dataset/metadata?oid=d206db33-3ae7-489e-b709-5555222fb767" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市社區整體照顧服務體系</h3>
+            <div class="source-meta">
+              <span class="tag">社會福利</span>
+              <span class="tag">CSV / XML</span>
+              <span class="tag">待人工檢查</span>
+            </div>
+          </div>
+          <span class="tag">下一步：確認公開欄位</span>
+        </div>
+        <p>這筆資料適合先看公開據點資訊，不碰個案或訪視資料，確認資料頁到底提供哪些公開欄位。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府社會處</dd>
+          <dt>URL</dt><dd>https://data.gov.tw/dataset/95733</dd>
+          <dt>資料類型</dt><dd>national_open_data_dataset</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>確認是否只有公開據點資料，若有隱私風險就標成 medium 以上。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://data.gov.tw/dataset/95733" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市藝文場域</h3>
+            <div class="source-meta">
+              <span class="tag">文化活動</span>
+              <span class="tag">CSV</span>
+              <span class="tag">待人工檢查</span>
+            </div>
+          </div>
+          <span class="tag">下一步：確認場域欄位</span>
+        </div>
+        <p>這筆通常會是公開場域資料，重點是確認資料名稱、地點、類型等欄位是否真的可見且夠完整。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府文化局或相關單位</dd>
+          <dt>URL</dt><dd>https://data.gov.tw/en/datasets/52546</dd>
+          <dt>資料類型</dt><dd>national_open_data_dataset</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>確認可見欄位是否足以做場域盤點，再決定後續資料整理方式。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://data.gov.tw/en/datasets/52546" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市公園綠地清冊</h3>
+            <div class="source-meta">
+              <span class="tag">公共工程與環境</span>
+              <span class="tag">CSV</span>
+              <span class="tag">待人工檢查</span>
+            </div>
+          </div>
+          <span class="tag">下一步：確認更新週期</span>
+        </div>
+        <p>這筆適合用來看公園與綠地分布，但要先確認資料集頁面真的有名稱、位置、更新資訊這些基本欄位。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府建設處公園管理科</dd>
+          <dt>URL</dt><dd>https://data.gov.tw/en/datasets/52349</dd>
+          <dt>資料類型</dt><dd>national_open_data_dataset</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>確認格式與更新頻率，若只有下載檔連結也要先記錄。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://data.gov.tw/en/datasets/52349" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市政府 1999 便民服務專線說明</h3>
+            <div class="source-meta">
+              <span class="tag">陳情與服務入口</span>
+              <span class="tag">HTML service page</span>
+              <span class="tag">高風險提醒</span>
+            </div>
+          </div>
+          <span class="tag">下一步：只看制度說明</span>
+        </div>
+        <p>這類頁面只能檢查公開制度與服務說明，絕對不能抓私人陳情全文，也不能擷取個資欄位。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府智慧科技處</dd>
+          <dt>URL</dt><dd>https://it.chiayi.gov.tw/News_Content.aspx?n=9497&s=814298</dd>
+          <dt>資料類型</dt><dd>official_service_page</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>只填制度與公開欄位，若看到個案內容或私密欄位，直接標 high risk。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://it.chiayi.gov.tw/News_Content.aspx?n=9497&s=814298" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+
+      <article class="source-card">
+        <div class="source-top">
+          <div>
+            <h3>嘉義市公共圖書館網站</h3>
+            <div class="source-meta">
+              <span class="tag">文化活動</span>
+              <span class="tag">HTML portal</span>
+              <span class="tag">待人工檢查</span>
+            </div>
+          </div>
+          <span class="tag">下一步：確認公開頁面範圍</span>
+        </div>
+        <p>圖書館網站通常是公開入口頁，先確認活動、館舍、服務時間這些欄位可不可以整理成資料，不碰會員資料。</p>
+        <dl>
+          <dt>官方單位</dt><dd>嘉義市政府文化局</dd>
+          <dt>URL</dt><dd>https://library.chiayi.gov.tw/</dd>
+          <dt>資料類型</dt><dd>official_portal_page</dd>
+          <dt>目前狀態</dt><dd>needs_manual_url_review</dd>
+          <dt>下一步</dt><dd>確認頁面上有哪些公開欄位可記錄，並標示未來可能的整理方向。</dd>
+        </dl>
+        <div class="source-actions">
+          <a class="primary" href="https://library.chiayi.gov.tw/" target="_blank" rel="noopener">人工檢查這筆</a>
+          <a class="ghost" href="./open-data-inventory.html">回盤點頁查看</a>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-title">
+      <h2>範例填寫結果</h2>
+      <span>不是 schema，而是一筆資料實際該怎麼寫</span>
+    </div>
+    <section class="sample panel">
+      <span class="sample-badge">示意填寫，不代表已完成真實審核</span>
+      <h3>範例：嘉義市公有路外停車場資訊</h3>
+      <p>下面這筆示範的重點，是讓使用者知道「看完頁面之後到底要留下哪些文字」，不是宣告這筆資料已經審核完成。</p>
+      <div class="sample-grid">
+        <div><strong>source_title</strong>嘉義市公有路外停車場資訊</div>
+        <div><strong>source_owner</strong>嘉義市政府交通處</div>
+        <div><strong>source_url</strong>https://data.chiayi.gov.tw/opendata/dataset/metadata?oid=d206db33-3ae7-489e-b709-5555222fb767</div>
+        <div><strong>is_official_source</strong>yes，因為網域是 data.chiayi.gov.tw，且頁面顯示官方單位。</div>
+        <div><strong>data_format</strong>CSV metadata page</div>
+        <div><strong>visible_fields</strong>示意可寫：停車場名稱、地址、車位數、收費方式、更新日期。</div>
+        <div><strong>privacy_risk</strong>low，因為看起來是公共停車設施資訊，不是個人資料。</div>
+        <div><strong>recommended_next_action</strong>繼續人工確認欄位名稱，之後再評估是否適合整理成結構化資料。</div>
+      </div>
+      <p class="sample-note">這筆範例要達成的效果很簡單：看完官方頁面後，你可以用白話把判斷寫下來，而不是只留下看不懂的技術欄位名稱。</p>
+    </section>
+
+    <section class="grid two-col">
+      <article class="panel">
+        <h3>審完這一筆，會得到什麼結果</h3>
+        <ul class="list">
+          <li>知道這是不是官方來源，而不是只是看起來像官方。</li>
+          <li>知道資料格式是 CSV、HTML 頁面、JSON API 還是其他格式。</li>
+          <li>知道目前肉眼看得到哪些欄位，未來有沒有機會整理成資料表。</li>
+          <li>知道這筆資料的個資或隱私風險高不高。</li>
+          <li>知道下一步是繼續人工整理，還是先停下來不要碰。</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>為什麼目前還不能開 crawler</h3>
+        <p>因為現在還在資料源人工檢查階段。很多官方頁面只是入口頁、說明頁或服務頁，還沒有人工確認它們適不適合整理成資料。只要還沒完成這一層檢查，就不能把任何資料標成 approved_for_crawling，也不能讓 crawler_execution_allowed 變成 true。</p>
+      </article>
+    </section>
+
+    <div class="section-title">
+      <h2>安全邊界</h2>
+      <span>這些規則現在都還是硬邊界</span>
+    </div>
+    <section class="panel">
+      <div class="safety-list">
+        <span class="safety-pill">目前不啟動 live crawler</span>
+        <span class="safety-pill">no source_url requests</span>
+        <span class="safety-pill">不抓私人陳情全文</span>
+        <span class="safety-pill">不抓個資</span>
+        <span class="safety-pill">不自動發布</span>
+        <span class="safety-pill">不自動寄信</span>
+        <span class="safety-pill">approved_for_crawling 不可自動設定</span>
+        <span class="safety-pill">crawler_execution_allowed = false</span>
+        <span class="safety-pill">engineering_review_allowed = false</span>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>快速入口</h2>
+      <span>需要時再回到原本的技術頁</span>
+    </div>
+    <section class="grid quick-links">
+      <a class="quick-link" href="./open-data-inventory.html">官方資料盤點</a>
+      <a class="quick-link" href="./open-data-review.html">官方資料審核</a>
+      <a class="quick-link" href="./open-data-day1-operation-board.html">Day 1 操作看板</a>
+      <a class="quick-link" href="./open-data-day1-review-form.html">Day 1 審核表單</a>
+      <a class="quick-link" href="./open-data-manual-review-patches.html">回填 Patch 草稿</a>
+      <a class="quick-link" href="./command-center.html">總控台</a>
+      <a class="quick-link" href="./project-landing.html">公開展示頁</a>
+      <a class="quick-link" href="./health-check.html">健康檢查</a>
+    </section>
+
+    <p class="footnote">這個頁面刻意把原本抽象的人工審核流程，翻成一般人也能操作的資料源檢查工作台。它不會自動抓資料、不會自動改狀態，也不代表任何資料已審核完成。</p>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+</body>
+</html>

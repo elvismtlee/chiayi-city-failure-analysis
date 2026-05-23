@@ -5,6 +5,7 @@
   {"title": "座標審核", "path": "./geocoding-review.html", "level": 2, "description": "人工檢查 prototype 座標與地理校正候選清單。"},
   {"title": "CYCC 公開資料審核", "path": "./cycc-review.html", "level": 2, "description": "顯示嘉義市議會公開 metadata 的內部逐筆審核表與統計卡。"},
   {"title": "開放資料盤點", "path": "./open-data-inventory.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "第二批真實資料來源 URL 盤點與人工審核頁。"},
+  {"title": "資料源檢查工作台", "path": "./source-verification-workspace.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "把官方資料人工審核改成白話的資料源檢查流程：打開官方 URL、確認格式與風險、填 8 個欄位。"},
   {"title": "官方資料審核", "path": "./open-data-review.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料 URL 人工審核佇列，仍未進入 live crawler。"},
   {"title": "Readiness評分", "path": "./open-data-readiness.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料來源 readiness 內部評分與排序，仍未進入 live crawler。"},
   {"title": "Top10審核任務", "path": "./open-data-top10-tasks.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "一人團隊優先處理的官方資料人工審核任務清單，僅供內部工作排序。"},

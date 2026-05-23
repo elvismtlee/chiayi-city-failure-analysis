@@ -48,6 +48,7 @@ IMPORTANT_JSON = [
 
 IMPORTANT_PAGES = [
     "dashboard/project-landing.html",
+    "dashboard/source-verification-workspace.html",
     "dashboard/open-data-inventory.html",
     "dashboard/open-data-review.html",
     "dashboard/open-data-readiness.html",
@@ -105,6 +106,7 @@ IMPORTANT_DOCS = [
 
 NAV_LABELS = [
     "公開展示頁",
+    "資料源檢查工作台",
     "開放資料盤點",
     "官方資料審核",
     "Readiness評分",
