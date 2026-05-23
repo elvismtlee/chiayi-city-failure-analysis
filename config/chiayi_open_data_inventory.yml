@@ -1,0 +1,109 @@
+project: chiayi_city_failure_analysis
+public_use_status: internal_open_data_inventory
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+timezone: Asia/Taipei
+
+inventory:
+  - id: chiayi_city_open_data_portal
+    name: 嘉義市政府開放資料盤點
+    source_owner: 嘉義市政府及所屬局處
+    source_type: open_data_portal
+    review_status: needs_dataset_url_review
+    priority: highest
+    expected_topics:
+      - traffic
+      - parking
+      - public_works
+      - social_welfare
+      - elderly_care
+      - children_youth
+      - culture_events
+      - commerce
+      - public_safety
+      - environment
+    dashboard_use:
+      - data_source_catalog
+      - issue_context
+      - policy_background
+    next_action: Build a dataset URL inventory before creating any crawler.
+
+  - id: chiayi_transport_parking
+    name: 交通與停車資料候選
+    source_owner: 嘉義市政府交通處
+    source_type: official_department_data
+    review_status: needs_dataset_url_review
+    priority: highest
+    expected_topics:
+      - parking_lots
+      - parking_spaces
+      - bus_routes
+      - public_bike_stations
+      - traffic_safety
+    dashboard_use:
+      - hotspot_context
+      - transport_issue_review
+      - west_district_life_issues
+    next_action: Identify official datasets and licenses.
+
+  - id: chiayi_social_welfare
+    name: 長照、兒少與社福資料候選
+    source_owner: 嘉義市政府社會處及相關局處
+    source_type: official_department_data
+    review_status: needs_dataset_url_review
+    priority: high
+    expected_topics:
+      - long_term_care_sites
+      - elderly_services
+      - child_youth_services
+      - social_welfare_facilities
+    dashboard_use:
+      - life_issue_context
+      - policy_background
+    next_action: Inventory official public aggregate datasets only.
+
+  - id: chiayi_culture_events
+    name: 文化活動與場館資料候選
+    source_owner: 嘉義市政府文化局及相關單位
+    source_type: official_department_data
+    review_status: needs_dataset_url_review
+    priority: high
+    expected_topics:
+      - public_events
+      - libraries
+      - museums
+      - cultural_assets
+      - exhibition_spaces
+    dashboard_use:
+      - culture_issue_context
+      - event_calendar_context
+    next_action: Identify stable official event and venue data sources.
+
+  - id: chiayi_public_works_environment
+    name: 公共工程、環境與城市維護資料候選
+    source_owner: 嘉義市政府建設處、工務處、環保局及相關單位
+    source_type: official_department_data
+    review_status: needs_dataset_url_review
+    priority: medium
+    expected_topics:
+      - road_works
+      - sidewalks
+      - drainage
+      - parks
+      - waste_management
+      - environmental_quality
+    dashboard_use:
+      - failure_analysis_context
+      - department_context
+    next_action: Inventory datasets that can support public works and environment issue context.
+
+rules:
+  - id: inventory_first
+    description: Build and review dataset URLs before any crawler is enabled.
+  - id: official_sources_only
+    description: Prefer official government open data or official department pages.
+  - id: aggregate_or_public_only
+    description: Use public aggregate datasets and avoid private records.
+  - id: manual_review_before_dashboard
+    description: Add datasets to dashboard only after human review.
