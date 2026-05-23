@@ -1,64 +1,645 @@
 {
-  "check_id": "dashboard-health-20260523210414",
-  "generated_at": "2026-05-23T21:04:14+08:00",
+  "check_id": "dashboard-health-20260523214021",
+  "generated_at": "2026-05-23T21:40:21+08:00",
   "checked_files": [
-    {"file": "dashboard/data/open_data_url_inventory.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_url_review_queue.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_readiness_report.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_top10_review_tasks.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_crawler_spec_drafts.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_human_review_workbook.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_engineering_review_checklist.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_review_session_planner.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/open_data_review_evidence_pack.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/site_map.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/open-data-inventory.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-review.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-readiness.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-top10-tasks.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-crawler-specs.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-human-review.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-engineering-review.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-review-sessions.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/open-data-review-evidence.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/shared-nav.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/site-pages.js", "exists": true, "empty": false, "valid_json": null}
+    {
+      "file": "dashboard/data/open_data_url_inventory.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_url_review_queue.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_readiness_report.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_top10_review_tasks.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_crawler_spec_drafts.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_human_review_workbook.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_engineering_review_checklist.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_review_session_planner.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_review_evidence_pack.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_manual_review_result_template.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_review_queue.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_reviewed_sample.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_issue_candidates.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/weekly_summary_draft.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/policy_draft_candidates.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/social_post_drafts.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/short_video_script_drafts.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/filming_checklists.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/content_schedule.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/daily_execution_list.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/public_material_review_queue.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/approved_materials_sample.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/command_center_overview.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/dashboard_health_check.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/weekly_system_report.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/site_map.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/open-data-inventory.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-readiness.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-top10-tasks.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-crawler-specs.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-human-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-engineering-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-review-sessions.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-review-evidence.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-manual-review-results.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/minutes-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/minutes-issues.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-summary.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/policy-drafts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/social-drafts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/video-scripts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/filming-checklists.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/content-schedule.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/daily-execution.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/public-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/approved-materials.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/command-center.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/health-check.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-system-report.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/shared-nav.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/site-pages.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/command-center.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/health-check.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-system-report.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/content-schedule.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/daily-execution.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/public-review.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/approved-materials.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    }
   ],
   "missing_files": [],
   "empty_files": [],
   "invalid_json_files": [],
   "page_checks": [
-    {"page": "dashboard/open-data-inventory.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-review.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-readiness.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-top10-tasks.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-crawler-specs.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-human-review.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-engineering-review.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-review-sessions.html", "exists": true, "empty": false},
-    {"page": "dashboard/open-data-review-evidence.html", "exists": true, "empty": false}
+    {
+      "page": "dashboard/open-data-inventory.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-readiness.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-top10-tasks.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-crawler-specs.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-human-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-engineering-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-review-sessions.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-review-evidence.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-manual-review-results.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/minutes-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/minutes-issues.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/weekly-summary.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/policy-drafts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/social-drafts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/video-scripts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/filming-checklists.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/content-schedule.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/daily-execution.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/public-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/approved-materials.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/command-center.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/health-check.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/weekly-system-report.html",
+      "exists": true,
+      "empty": false
+    }
   ],
   "nav_checks": [
-    {"name": "開放資料盤點", "in_site_map": true, "in_shared_nav": true},
-    {"name": "官方資料審核", "in_site_map": true, "in_shared_nav": true},
-    {"name": "Readiness評分", "in_site_map": true, "in_shared_nav": true},
-    {"name": "Top10審核任務", "in_site_map": true, "in_shared_nav": true},
-    {"name": "Crawler規格草稿", "in_site_map": true, "in_shared_nav": true},
-    {"name": "人工審核工作簿", "in_site_map": true, "in_shared_nav": true},
-    {"name": "工程審查清單", "in_site_map": true, "in_shared_nav": true},
-    {"name": "人工審核執行", "in_site_map": true, "in_shared_nav": true},
-    {"name": "審核證據包", "in_site_map": true, "in_shared_nav": true}
+    {
+      "name": "開放資料盤點",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "官方資料審核",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "Readiness評分",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "Top10審核任務",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "Crawler規格草稿",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "人工審核工作簿",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "工程審查清單",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "人工審核執行",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "審核證據包",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "審核結果輸入",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "內容排程",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "每日執行",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "公開審核",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "已核准素材",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "總控台",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "健康檢查",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "每週系統報告",
+      "in_site_map": true,
+      "in_shared_nav": true
+    }
   ],
   "data_status_checks": [
-    {"name": "open_data_url_inventory", "path": "dashboard/data/open_data_url_inventory.json", "expected_public_use_status": "internal_url_inventory", "actual_public_use_status": "internal_url_inventory", "ok": true},
-    {"name": "open_data_url_review_queue", "path": "dashboard/data/open_data_url_review_queue.json", "expected_public_use_status": "internal_url_review_queue", "actual_public_use_status": "internal_url_review_queue", "ok": true},
-    {"name": "open_data_readiness_report", "path": "dashboard/data/open_data_readiness_report.json", "expected_public_use_status": "internal_readiness_report", "actual_public_use_status": "internal_readiness_report", "ok": true},
-    {"name": "open_data_top10_review_tasks", "path": "dashboard/data/open_data_top10_review_tasks.json", "expected_public_use_status": "internal_top10_review_tasks", "actual_public_use_status": "internal_top10_review_tasks", "ok": true},
-    {"name": "open_data_crawler_spec_drafts", "path": "dashboard/data/open_data_crawler_spec_drafts.json", "expected_public_use_status": "internal_crawler_spec_drafts", "actual_public_use_status": "internal_crawler_spec_drafts", "ok": true},
-    {"name": "open_data_human_review_workbook", "path": "dashboard/data/open_data_human_review_workbook.json", "expected_public_use_status": "internal_human_review_workbook", "actual_public_use_status": "internal_human_review_workbook", "ok": true},
-    {"name": "open_data_engineering_review_checklist", "path": "dashboard/data/open_data_engineering_review_checklist.json", "expected_public_use_status": "internal_engineering_review_checklist", "actual_public_use_status": "internal_engineering_review_checklist", "ok": true},
-    {"name": "open_data_review_session_planner", "path": "dashboard/data/open_data_review_session_planner.json", "expected_public_use_status": "internal_review_session_planner", "actual_public_use_status": "internal_review_session_planner", "ok": true},
-    {"name": "open_data_review_evidence_pack", "path": "dashboard/data/open_data_review_evidence_pack.json", "expected_public_use_status": "internal_review_evidence_pack", "actual_public_use_status": "internal_review_evidence_pack", "ok": true}
+    {
+      "name": "open_data_url_inventory",
+      "path": "dashboard/data/open_data_url_inventory.json",
+      "expected_public_use_status": "internal_url_inventory",
+      "actual_public_use_status": "internal_url_inventory",
+      "ok": true
+    },
+    {
+      "name": "open_data_url_review_queue",
+      "path": "dashboard/data/open_data_url_review_queue.json",
+      "expected_public_use_status": "internal_url_review_queue",
+      "actual_public_use_status": "internal_url_review_queue",
+      "ok": true
+    },
+    {
+      "name": "open_data_readiness_report",
+      "path": "dashboard/data/open_data_readiness_report.json",
+      "expected_public_use_status": "internal_readiness_report",
+      "actual_public_use_status": "internal_readiness_report",
+      "ok": true
+    },
+    {
+      "name": "open_data_top10_review_tasks",
+      "path": "dashboard/data/open_data_top10_review_tasks.json",
+      "expected_public_use_status": "internal_top10_review_tasks",
+      "actual_public_use_status": "internal_top10_review_tasks",
+      "ok": true
+    },
+    {
+      "name": "open_data_crawler_spec_drafts",
+      "path": "dashboard/data/open_data_crawler_spec_drafts.json",
+      "expected_public_use_status": "internal_crawler_spec_drafts",
+      "actual_public_use_status": "internal_crawler_spec_drafts",
+      "ok": true
+    },
+    {
+      "name": "open_data_human_review_workbook",
+      "path": "dashboard/data/open_data_human_review_workbook.json",
+      "expected_public_use_status": "internal_human_review_workbook",
+      "actual_public_use_status": "internal_human_review_workbook",
+      "ok": true
+    },
+    {
+      "name": "open_data_engineering_review_checklist",
+      "path": "dashboard/data/open_data_engineering_review_checklist.json",
+      "expected_public_use_status": "internal_engineering_review_checklist",
+      "actual_public_use_status": "internal_engineering_review_checklist",
+      "ok": true
+    },
+    {
+      "name": "open_data_review_session_planner",
+      "path": "dashboard/data/open_data_review_session_planner.json",
+      "expected_public_use_status": "internal_review_session_planner",
+      "actual_public_use_status": "internal_review_session_planner",
+      "ok": true
+    },
+    {
+      "name": "open_data_review_evidence_pack",
+      "path": "dashboard/data/open_data_review_evidence_pack.json",
+      "expected_public_use_status": "internal_review_evidence_pack",
+      "actual_public_use_status": "internal_review_evidence_pack",
+      "ok": true
+    },
+    {
+      "name": "open_data_manual_review_result_template",
+      "path": "dashboard/data/open_data_manual_review_result_template.json",
+      "expected_public_use_status": "internal_manual_review_result_template",
+      "actual_public_use_status": "internal_manual_review_result_template",
+      "ok": true
+    }
   ],
   "warnings": [],
   "status": "ok",
