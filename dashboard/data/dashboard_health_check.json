@@ -1,73 +1,387 @@
 {
-  "check_id": "dashboard-health-20260523022100",
-  "generated_at": "2026-05-23T02:21:00+08:00",
+  "check_id": "dashboard-health-20260523111123",
+  "generated_at": "2026-05-23T11:11:23+08:00",
   "checked_files": [
-    {"file": "dashboard/data/cycc_minutes_review_queue.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/cycc_minutes_reviewed_sample.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/cycc_minutes_issue_candidates.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/weekly_summary_draft.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/policy_draft_candidates.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/social_post_drafts.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/short_video_script_drafts.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/filming_checklists.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/content_schedule.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/daily_execution_list.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/public_material_review_queue.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/approved_materials_sample.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/command_center_overview.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/dashboard_health_check.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/weekly_system_report.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/data/site_map.json", "exists": true, "empty": false, "valid_json": true},
-    {"file": "dashboard/minutes-review.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/minutes-issues.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/weekly-summary.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/policy-drafts.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/social-drafts.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/video-scripts.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/filming-checklists.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/content-schedule.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/daily-execution.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/public-review.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/approved-materials.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/command-center.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/health-check.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/weekly-system-report.html", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/shared-nav.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/command-center.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/health-check.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/weekly-system-report.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/content-schedule.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/daily-execution.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/public-review.js", "exists": true, "empty": false, "valid_json": null},
-    {"file": "dashboard/approved-materials.js", "exists": true, "empty": false, "valid_json": null}
+    {
+      "file": "dashboard/data/cycc_public_records_crawl_report.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_metadata.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_question_video_metadata.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_review_queue.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_reviewed_sample.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/cycc_minutes_issue_candidates.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/weekly_summary_draft.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/policy_draft_candidates.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/social_post_drafts.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/short_video_script_drafts.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/filming_checklists.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/content_schedule.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/daily_execution_list.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/public_material_review_queue.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/approved_materials_sample.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/command_center_overview.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/dashboard_health_check.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/weekly_system_report.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/site_map.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/cycc-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/minutes-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/minutes-issues.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-summary.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/policy-drafts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/social-drafts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/video-scripts.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/filming-checklists.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/content-schedule.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/daily-execution.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/public-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/approved-materials.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/command-center.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/health-check.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-system-report.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/shared-nav.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/site-pages.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/command-center.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/health-check.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/weekly-system-report.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/content-schedule.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/daily-execution.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/public-review.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/approved-materials.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    }
   ],
   "missing_files": [],
   "empty_files": [],
   "invalid_json_files": [],
   "page_checks": [
-    {"page": "dashboard/minutes-review.html", "exists": true, "empty": false},
-    {"page": "dashboard/minutes-issues.html", "exists": true, "empty": false},
-    {"page": "dashboard/weekly-summary.html", "exists": true, "empty": false},
-    {"page": "dashboard/policy-drafts.html", "exists": true, "empty": false},
-    {"page": "dashboard/social-drafts.html", "exists": true, "empty": false},
-    {"page": "dashboard/video-scripts.html", "exists": true, "empty": false},
-    {"page": "dashboard/filming-checklists.html", "exists": true, "empty": false},
-    {"page": "dashboard/content-schedule.html", "exists": true, "empty": false},
-    {"page": "dashboard/daily-execution.html", "exists": true, "empty": false},
-    {"page": "dashboard/public-review.html", "exists": true, "empty": false},
-    {"page": "dashboard/approved-materials.html", "exists": true, "empty": false},
-    {"page": "dashboard/command-center.html", "exists": true, "empty": false},
-    {"page": "dashboard/health-check.html", "exists": true, "empty": false},
-    {"page": "dashboard/weekly-system-report.html", "exists": true, "empty": false}
+    {
+      "page": "dashboard/cycc-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/minutes-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/minutes-issues.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/weekly-summary.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/policy-drafts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/social-drafts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/video-scripts.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/filming-checklists.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/content-schedule.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/daily-execution.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/public-review.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/approved-materials.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/command-center.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/health-check.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/weekly-system-report.html",
+      "exists": true,
+      "empty": false
+    }
   ],
   "nav_checks": [
-    {"name": "內容排程", "in_site_map": true, "in_shared_nav": true},
-    {"name": "每日執行", "in_site_map": true, "in_shared_nav": true},
-    {"name": "公開審核", "in_site_map": true, "in_shared_nav": true},
-    {"name": "已核准素材", "in_site_map": true, "in_shared_nav": true},
-    {"name": "總控台", "in_site_map": true, "in_shared_nav": true},
-    {"name": "健康檢查", "in_site_map": true, "in_shared_nav": true},
-    {"name": "每週系統報告", "in_site_map": true, "in_shared_nav": true}
+    {
+      "name": "CYCC 公開資料審核",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "內容排程",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "每日執行",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "公開審核",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "已核准素材",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "總控台",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "健康檢查",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "每週系統報告",
+      "in_site_map": true,
+      "in_shared_nav": true
+    }
   ],
   "warnings": [],
   "status": "ok",

@@ -30,6 +30,10 @@ function setText(selector, value) {
   if (node) node.textContent = value;
 }
 
+function valueOrPending(value) {
+  return value === undefined || value === null || value === '' ? '待補' : String(value);
+}
+
 function renderCrawlerStatus(report) {
   const note = document.querySelector('[data-render="pipeline-note"]');
   if (!note) return;
@@ -81,6 +85,93 @@ function renderCyccReview(report) {
   note.innerHTML = `<strong>已接入嘉義市議會公開資料 summary report。</strong>最近抓取時間：${report.crawled_at || '未標示'}。目前只顯示內部 metadata 統計，不公開 raw CSV，不自動發布，不產生競選文案。人工審核狀態：${report.manual_review_required ? 'required' : 'not marked'}。`;
 }
 
+function normalizeCyccMetadata(minutesPayload, videosPayload) {
+  const minutes = Array.isArray(minutesPayload?.items) ? minutesPayload.items : [];
+  const videos = Array.isArray(videosPayload?.items) ? videosPayload.items : [];
+  return [...minutes, ...videos];
+}
+
+function filterCyccMetadata(items) {
+  const query = String(document.querySelector('#cyccSearch')?.value || '').trim().toLowerCase();
+  const type = String(document.querySelector('#cyccType')?.value || 'all');
+  return items.filter(item => {
+    const title = String(item.title || '').toLowerCase();
+    const matchQuery = !query || title.includes(query);
+    const matchType = type === 'all' || item.source_type === type;
+    return matchQuery && matchType;
+  });
+}
+
+function renderCyccMetadataTable(items) {
+  const tbody = document.querySelector('[data-render="cycc-table"]');
+  const summary = document.querySelector('[data-render="cycc-summary"]');
+  if (!tbody) return;
+  tbody.textContent = '';
+  if (summary) summary.textContent = `目前顯示 ${items.length} 筆逐筆 metadata`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 6;
+    cell.textContent = '目前沒有符合條件的 metadata。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const sourceType = document.createElement('td');
+    const sourcePill = document.createElement('span');
+    sourcePill.className = 'pill';
+    sourcePill.textContent = valueOrPending(item.source_type);
+    sourceType.appendChild(sourcePill);
+
+    const title = document.createElement('td');
+    title.textContent = valueOrPending(item.title);
+
+    const date = document.createElement('td');
+    date.textContent = valueOrPending(item.date || item.published_at || item.updated_at);
+
+    const urls = document.createElement('td');
+    const sourceLink = document.createElement('a');
+    sourceLink.href = valueOrPending(item.source_url);
+    sourceLink.target = '_blank';
+    sourceLink.rel = 'noopener';
+    sourceLink.textContent = 'source';
+    urls.appendChild(sourceLink);
+    if (item.detail_url && item.detail_url !== item.source_url) {
+      urls.appendChild(document.createTextNode(' / '));
+      const detailLink = document.createElement('a');
+      detailLink.href = item.detail_url;
+      detailLink.target = '_blank';
+      detailLink.rel = 'noopener';
+      detailLink.textContent = 'detail';
+      urls.appendChild(detailLink);
+    }
+
+    const viewCount = document.createElement('td');
+    viewCount.textContent = valueOrPending(item.view_count);
+
+    const reviewStatus = document.createElement('td');
+    reviewStatus.textContent = valueOrPending(item.review_status);
+
+    row.append(sourceType, title, date, urls, viewCount, reviewStatus);
+    tbody.appendChild(row);
+  });
+}
+
+function setupCyccReviewTable(minutesPayload, videosPayload) {
+  const allItems = normalizeCyccMetadata(minutesPayload, videosPayload);
+  const render = () => renderCyccMetadataTable(filterCyccMetadata(allItems));
+  const searchInput = document.querySelector('#cyccSearch');
+  const typeSelect = document.querySelector('#cyccType');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (typeSelect) typeSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -104,8 +195,13 @@ async function bootSitePages() {
     renderCrawlerStatus(crawlerReport);
   }
   if (page === 'cycc-review') {
-    const crawlerReport = await loadJson('./data/cycc_public_records_crawl_report.json', null);
+    const [crawlerReport, minutesPayload, videosPayload] = await Promise.all([
+      loadJson('./data/cycc_public_records_crawl_report.json', null),
+      loadJson('./data/cycc_minutes_metadata.json', { items: [] }),
+      loadJson('./data/cycc_question_video_metadata.json', { items: [] }),
+    ]);
     renderCyccReview(crawlerReport);
+    setupCyccReviewTable(minutesPayload, videosPayload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
