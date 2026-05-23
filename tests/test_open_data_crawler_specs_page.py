@@ -34,3 +34,9 @@ def test_open_data_crawler_specs_page_links_to_human_review() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-human-review.html" in content
     assert "進入人工審核工作簿" in content
+
+
+def test_open_data_crawler_specs_page_links_to_engineering_review() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-engineering-review.html" in content
+    assert "查看工程審查清單" in content

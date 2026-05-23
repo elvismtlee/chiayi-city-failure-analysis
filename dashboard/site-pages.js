@@ -223,6 +223,16 @@ function approvalGateStatusClass(status) {
   return 'pill';
 }
 
+function engineeringReviewStatusClass(status) {
+  if (status === 'rejected' || status === 'blocked_by_risk_review') return 'pill risk';
+  if (
+    status === 'blocked_by_source_review' ||
+    status === 'blocked_by_license_review' ||
+    status === 'blocked_by_format_review'
+  ) return 'pill warn';
+  return 'pill';
+}
+
 function setOpenDataKpi(payload) {
   const counts = payload?.topic_groups || {};
   setText('[data-open-data="total"]', String(payload?.total_count || 0));
@@ -1060,6 +1070,163 @@ function setupOpenDataHumanReview(payload) {
   render();
 }
 
+function setOpenDataEngineeringReviewKpi(payload) {
+  const statusCounts = payload?.engineering_review_status_counts || {};
+  const items = Array.isArray(payload?.checklists) ? payload.checklists : [];
+  const blockedGateCount = items.reduce((sum, item) => {
+    const gateKeys = Object.keys(item).filter(key => key.endsWith('_gate'));
+    return sum + gateKeys.filter(key => ['blocked', 'needs_review'].includes(String(item[key]))).length;
+  }, 0);
+  setText('[data-open-engineering-review="total"]', String(payload?.total_count || 0));
+  setText('[data-open-engineering-review="waiting"]', String(statusCounts.waiting_for_human_review || 0));
+  setText('[data-open-engineering-review="ready"]', String(statusCounts.ready_for_engineering_review || 0));
+  setText('[data-open-engineering-review="engineering"]', String(payload?.engineering_review_allowed_count || 0));
+  setText(
+    '[data-open-engineering-review="crawler-disabled"]',
+    String(items.filter(item => item.crawler_execution_allowed === false).length),
+  );
+  setText('[data-open-engineering-review="gates"]', String(blockedGateCount));
+  setText('[data-render="open-data-engineering-review-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataEngineeringReviewNote(payload) {
+  const note = document.querySelector('[data-render="open-data-engineering-review-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是 engineering review checklist。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` 清單數：${payload?.total_count || 0}。狀態：internal_engineering_review_checklist。這不是 crawler，不啟動 live crawler，不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文，不自動發布。engineering_review_allowed 預設 false，crawler_execution_allowed 永遠 false，必須人工審核完成後另開 PR 才能改變狀態。`,
+  );
+}
+
+function filterOpenDataEngineeringReview(items) {
+  const query = String(document.querySelector('#openDataEngineeringReviewSearch')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataEngineeringReviewTopicGroup')?.value || 'all');
+  const status = String(document.querySelector('#openDataEngineeringReviewStatus')?.value || 'all');
+  const fetchMethod = String(document.querySelector('#openDataEngineeringReviewFetchMethod')?.value || 'all');
+  const sourceGate = String(document.querySelector('#openDataEngineeringReviewSourceGate')?.value || 'all');
+  return items.filter(item => {
+    const haystack = [
+      String(item.title || ''),
+      String(item.source_owner || ''),
+      String(item.next_action || ''),
+      String(item.engineering_notes || ''),
+    ].join(' ').toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    const matchesStatus = status === 'all' || item.engineering_review_status === status;
+    const matchesFetchMethod = fetchMethod === 'all' || item.proposed_fetch_method === fetchMethod;
+    const matchesSourceGate = sourceGate === 'all' || item.source_review_gate === sourceGate;
+    return matchesQuery && matchesGroup && matchesStatus && matchesFetchMethod && matchesSourceGate;
+  });
+}
+
+function renderOpenDataEngineeringReviewTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-engineering-review-table"]');
+  const summary = document.querySelector('[data-render="open-data-engineering-review-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆工程審查清單`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 14;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的工程審查清單。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const statusCell = document.createElement('td');
+    const statusPill = document.createElement('span');
+    statusPill.className = engineeringReviewStatusClass(item.engineering_review_status);
+    statusPill.textContent = valueOrPending(item.engineering_review_status);
+    statusCell.appendChild(statusPill);
+
+    const topicCell = document.createElement('td');
+    const topicPill = document.createElement('span');
+    topicPill.className = 'pill';
+    topicPill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(topicPill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const fetchCell = createCell(item.proposed_fetch_method);
+    const sourceGateCell = createCell(item.source_review_gate);
+    const licenseGateCell = createCell(item.license_review_gate);
+    const formatGateCell = createCell(item.format_review_gate);
+    const personalGateCell = createCell(item.personal_data_gate);
+    const complaintGateCell = createCell(item.private_complaint_gate);
+    const engineeringCell = createCell(item.engineering_review_allowed ? 'true' : 'false');
+    const crawlerCell = createCell(item.crawler_execution_allowed ? 'true' : 'false');
+    const actionCell = createCell(item.next_action, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      statusCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      fetchCell,
+      sourceGateCell,
+      licenseGateCell,
+      formatGateCell,
+      personalGateCell,
+      complaintGateCell,
+      engineeringCell,
+      crawlerCell,
+      actionCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataEngineeringReview(payload) {
+  const items = Array.isArray(payload?.checklists) ? payload.checklists : [];
+  setOpenDataEngineeringReviewKpi(payload);
+  renderOpenDataEngineeringReviewNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataEngineeringReview(items).sort((a, b) => {
+      if (a.engineering_review_status !== b.engineering_review_status) {
+        return String(a.engineering_review_status).localeCompare(String(b.engineering_review_status));
+      }
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataEngineeringReviewTable(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataEngineeringReviewSearch');
+  const groupSelect = document.querySelector('#openDataEngineeringReviewTopicGroup');
+  const statusSelect = document.querySelector('#openDataEngineeringReviewStatus');
+  const methodSelect = document.querySelector('#openDataEngineeringReviewFetchMethod');
+  const sourceGateSelect = document.querySelector('#openDataEngineeringReviewSourceGate');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (methodSelect) methodSelect.addEventListener('change', render);
+  if (sourceGateSelect) sourceGateSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -1180,6 +1347,23 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataHumanReview(payload);
+  }
+  if (page === 'open-data-engineering-review') {
+    const payload = await loadJson('./data/open_data_engineering_review_checklist.json', {
+      generated_at: '',
+      public_use_status: 'internal_engineering_review_checklist',
+      total_count: 0,
+      topic_groups: {},
+      engineering_review_status_counts: {},
+      engineering_review_allowed_count: 0,
+      checklists: [],
+      crawler_execution_allowed: false,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataEngineeringReview(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

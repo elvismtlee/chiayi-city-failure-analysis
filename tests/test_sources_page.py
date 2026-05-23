@@ -37,3 +37,9 @@ def test_sources_links_to_open_data_human_review() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-human-review.html' in content
     assert '前往人工審核工作簿' in content
+
+
+def test_sources_links_to_open_data_engineering_review() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-engineering-review.html' in content
+    assert '前往工程審查清單' in content

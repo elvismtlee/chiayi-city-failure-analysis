@@ -1,0 +1,76 @@
+public_use_status: internal_engineering_review_checklist_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+
+required_fields:
+  - checklist_id
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - proposed_fetch_method
+  - proposed_parser_type
+  - engineering_review_status
+  - engineering_review_allowed
+  - crawler_execution_allowed
+  - source_review_gate
+  - license_review_gate
+  - format_review_gate
+  - personal_data_gate
+  - private_complaint_gate
+  - terms_gate
+  - parser_design_gate
+  - output_schema_gate
+  - rate_limit_gate
+  - rollback_plan_gate
+  - logging_plan_gate
+  - human_approval_gate
+  - engineering_blockers
+  - engineering_notes
+  - next_action
+  - safety_notes
+
+engineering_review_status:
+  - not_started
+  - waiting_for_human_review
+  - blocked_by_source_review
+  - blocked_by_license_review
+  - blocked_by_format_review
+  - blocked_by_risk_review
+  - ready_for_engineering_review
+  - rejected
+
+gate_status:
+  - not_checked
+  - passed
+  - failed
+  - needs_review
+  - blocked
+
+next_action:
+  - wait_for_human_review
+  - verify_source_review_result
+  - verify_license_review_result
+  - verify_format_review_result
+  - verify_risk_review_result
+  - draft_parser_design_later
+  - block_item
+  - prepare_engineering_review_later
+
+safety_rules:
+  - crawler_execution_allowed 永遠 false。
+  - engineering_review_allowed 預設 false。
+  - 如果 open_data_human_review_workbook.json 內 engineering_review_allowed = false，這裡也必須 false。
+  - 如果 human review 尚未完成，engineering_review_status 必須是 waiting_for_human_review 或 blocked_by_source_review。
+  - 不可新增 approved_for_crawling。
+  - 不可新增 live_crawler。
+  - 不可建立真正 crawler。
