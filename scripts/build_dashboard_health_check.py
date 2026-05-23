@@ -18,6 +18,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_top10_review_tasks.json",
     "dashboard/data/open_data_crawler_spec_drafts.json",
     "dashboard/data/open_data_human_review_workbook.json",
+    "dashboard/data/open_data_engineering_review_checklist.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -43,6 +44,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-top10-tasks.html",
     "dashboard/open-data-crawler-specs.html",
     "dashboard/open-data-human-review.html",
+    "dashboard/open-data-engineering-review.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -78,6 +80,7 @@ NAV_LABELS = [
     "Top10審核任務",
     "Crawler規格草稿",
     "人工審核工作簿",
+    "工程審查清單",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -234,6 +237,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_human_review_workbook",
                 "actual_public_use_status": open_data_human_review.get("public_use_status"),
                 "ok": open_data_human_review.get("public_use_status") == "internal_human_review_workbook",
+            }
+        )
+    open_data_engineering_review_path = root / "dashboard" / "data" / "open_data_engineering_review_checklist.json"
+    if open_data_engineering_review_path.exists() and open_data_engineering_review_path.stat().st_size > 0:
+        try:
+            open_data_engineering_review = json.loads(open_data_engineering_review_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_engineering_review = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_engineering_review_checklist",
+                "path": "dashboard/data/open_data_engineering_review_checklist.json",
+                "expected_public_use_status": "internal_engineering_review_checklist",
+                "actual_public_use_status": open_data_engineering_review.get("public_use_status"),
+                "ok": open_data_engineering_review.get("public_use_status") == "internal_engineering_review_checklist",
             }
         )
 
