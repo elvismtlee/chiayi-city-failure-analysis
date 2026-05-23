@@ -20,7 +20,7 @@ def test_cycc_review_page_is_summary_first() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "summary report" in content
     assert "raw CSV" in content
-    assert "不自動產生競選文案" in content
+    assert "不會自動產生競選文案" in content
     assert "141 筆逐筆 metadata" in content
 
 
