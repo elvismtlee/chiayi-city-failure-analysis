@@ -2286,6 +2286,244 @@ function setupOpenDataDay1ReviewForm(payload) {
   renderOpenDataDay1ReviewFormTable(items, payload);
 }
 
+function setOpenDataDay1OperationBoardKpi(payload) {
+  const cards = Array.isArray(payload?.kpi_cards) ? payload.kpi_cards : [];
+  const node = document.querySelector('[data-render="open-data-day1-operation-kpis"]');
+  if (!node) return;
+  node.textContent = '';
+  cards.forEach(card => {
+    const article = document.createElement('article');
+    article.className = 'card kpi-card';
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = valueOrPending(card.label);
+    const value = document.createElement('div');
+    value.className = 'value';
+    value.textContent = String(card.value);
+    article.append(label, value);
+    node.appendChild(article);
+  });
+  setText('[data-render="open-data-day1-operation-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataDay1OperationBoardNote(payload) {
+  const node = document.querySelector('[data-render="open-data-day1-operation-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是操作看板，不是實際審核結果，也不是 crawler。',
+    'operation board only / not actual review result / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `board_status：${valueOrPending(payload?.board_status)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function renderOpenDataDay1OperationBoardTimeline(steps) {
+  const node = document.querySelector('[data-render="open-data-day1-operation-timeline"]');
+  if (!node) return;
+  node.textContent = '';
+  steps.forEach((step, index) => {
+    const article = document.createElement('article');
+    article.className = 'timeline-step';
+    const no = document.createElement('div');
+    no.className = 'step-no';
+    no.textContent = `step ${index + 1}`;
+    const title = document.createElement('h3');
+    title.textContent = valueOrPending(step);
+    article.append(no, title);
+    node.appendChild(article);
+  });
+}
+
+function createListBlock(titleText, items) {
+  const block = document.createElement('section');
+  block.className = 'task-section-block';
+  const title = document.createElement('h4');
+  title.textContent = titleText;
+  const list = document.createElement('ul');
+  (items || []).forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = valueOrPending(item);
+    list.appendChild(li);
+  });
+  block.append(title, list);
+  return block;
+}
+
+function renderOpenDataDay1OperationBoardTaskCards(items, payload) {
+  const node = document.querySelector('[data-render="open-data-day1-operation-task-cards"]');
+  const summary = document.querySelector('[data-render="open-data-day1-operation-summary"]');
+  if (!node) return;
+  if (summary) {
+    summary.textContent = `今天共有 ${items.length} 張 task card，全部都是 day_1 的人工審核草稿。`;
+  }
+  node.textContent = '';
+  items.forEach(item => {
+    const article = document.createElement('article');
+    article.className = 'card task-card';
+
+    const header = document.createElement('div');
+    header.className = 'task-header';
+    const number = document.createElement('span');
+    number.className = 'task-number';
+    number.textContent = String(item.task_number);
+    const titleWrap = document.createElement('div');
+    const title = document.createElement('h3');
+    title.className = 'task-title';
+    title.textContent = valueOrPending(item.title);
+    const badgeRow = document.createElement('div');
+    badgeRow.className = 'badge-row';
+    [
+      { cls: 'status', text: valueOrPending(item.current_status) },
+      { cls: 'flag', text: valueOrPending(item.topic_group) },
+      { cls: 'warn', text: `${valueOrPending(item.estimated_minutes)} 分鐘` },
+    ].forEach(badgeItem => {
+      const badge = document.createElement('span');
+      badge.className = `badge ${badgeItem.cls}`;
+      badge.textContent = badgeItem.text;
+      badgeRow.appendChild(badge);
+    });
+    titleWrap.append(title, badgeRow);
+    header.append(number, titleWrap);
+
+    const meta = document.createElement('div');
+    meta.className = 'task-meta';
+    [
+      ['source_owner', item.source_owner],
+      ['packet_reference', item.packet_reference],
+      ['patch_reference', item.patch_reference],
+      ['form_reference', item.form_reference],
+    ].forEach(([labelText, valueText]) => {
+      const box = document.createElement('div');
+      box.className = 'meta-box';
+      const label = document.createElement('span');
+      label.className = 'label';
+      label.textContent = labelText;
+      const value = document.createElement('span');
+      value.className = 'value';
+      value.textContent = valueOrPending(valueText);
+      box.append(label, value);
+      meta.appendChild(box);
+    });
+
+    const actions = document.createElement('div');
+    actions.className = 'task-actions';
+    const sourceButton = document.createElement('a');
+    sourceButton.className = 'btn';
+    sourceButton.href = valueOrPending(item.source_url);
+    sourceButton.target = '_blank';
+    sourceButton.rel = 'noopener';
+    sourceButton.textContent = '人工開啟 source_url';
+    const formButton = document.createElement('a');
+    formButton.className = 'btn ghost';
+    formButton.href = './open-data-day1-review-form.html';
+    formButton.textContent = '查看表單草稿';
+    const patchButton = document.createElement('a');
+    patchButton.className = 'btn ghost';
+    patchButton.href = './open-data-manual-review-patches.html';
+    patchButton.textContent = '查看回填 Patch';
+    actions.append(sourceButton, formButton, patchButton);
+
+    const stack = document.createElement('div');
+    stack.className = 'section-stack';
+    stack.append(
+      createListBlock('manual_steps', item.manual_steps),
+      createListBlock('form_sections_to_fill', item.form_sections_to_fill),
+    );
+
+    const footer = document.createElement('div');
+    footer.className = 'task-footer';
+    const left = document.createElement('div');
+    left.className = 'footer-box';
+    const leftTitle = document.createElement('h4');
+    leftTitle.textContent = '安全提醒';
+    const leftText = document.createElement('p');
+    leftText.textContent = valueOrPending(item.safety_notes);
+    left.append(leftTitle, leftText);
+    const right = document.createElement('div');
+    right.className = 'footer-box';
+    const rightTitle = document.createElement('h4');
+    rightTitle.textContent = 'blocked_fields';
+    const rightText = document.createElement('p');
+    rightText.textContent = Array.isArray(item.blocked_fields)
+      ? item.blocked_fields.join(', ')
+      : valueOrPending(item.blocked_fields);
+    right.append(rightTitle, rightText);
+    footer.append(left, right);
+
+    article.append(header, meta, actions, stack, footer);
+    node.appendChild(article);
+  });
+}
+
+function renderOpenDataDay1OperationBoardList(selector, items, ordered = false) {
+  const node = document.querySelector(selector);
+  if (!node) return;
+  node.textContent = '';
+  (items || []).forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = valueOrPending(item);
+    node.appendChild(li);
+  });
+}
+
+function renderOpenDataDay1OperationBoardTable(items) {
+  const tbody = document.querySelector('[data-render="open-data-day1-operation-table"]');
+  if (!tbody) return;
+  tbody.textContent = '';
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 9;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有可顯示的 Day 1 operation tasks。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    const numberCell = createCell(item.task_number);
+    const titleCell = createCell(item.title);
+    const topicCell = createCell(item.topic_group);
+    const ownerCell = createCell(item.source_owner);
+    const minutesCell = createCell(item.estimated_minutes);
+    const statusCell = createCell(item.current_status);
+    const decisionCell = createCell(item.reviewer_decision);
+    const actionCell = createCell(item.recommended_next_action, 'compact');
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+    row.append(numberCell, titleCell, topicCell, ownerCell, minutesCell, statusCell, decisionCell, actionCell, urlCell);
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataDay1OperationBoard(payload) {
+  const taskCards = Array.isArray(payload?.task_cards) ? payload.task_cards : [];
+  setOpenDataDay1OperationBoardKpi(payload);
+  renderOpenDataDay1OperationBoardNote(payload);
+  renderOpenDataDay1OperationBoardTimeline(Array.isArray(payload?.workflow_steps) ? payload.workflow_steps : []);
+  renderOpenDataDay1OperationBoardTaskCards(taskCards, payload);
+  renderOpenDataDay1OperationBoardList('[data-render="open-data-day1-operation-notes"]', payload?.operation_notes || []);
+  renderOpenDataDay1OperationBoardList('[data-render="open-data-day1-operation-next-actions"]', payload?.next_actions || [], true);
+  renderOpenDataDay1OperationBoardList('[data-render="open-data-day1-operation-safety"]', payload?.safety_checklist || []);
+  renderOpenDataDay1OperationBoardList('[data-render="open-data-day1-operation-blocked-fields"]', payload?.blocked_fields || []);
+  renderOpenDataDay1OperationBoardTable(taskCards);
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -2581,6 +2819,29 @@ async function bootSitePages() {
       forms: [],
     });
     setupOpenDataDay1ReviewForm(payload);
+  }
+  if (page === 'open-data-day1-operation-board') {
+    const payload = await loadJson('./data/open_data_day1_manual_review_operation_board.json', {
+      generated_at: '',
+      public_use_status: 'internal_day1_manual_review_operation_board',
+      operation_board_only: true,
+      not_actual_review_result: true,
+      review_day: 'day_1',
+      total_tasks: 0,
+      board_status: 'draft_not_started',
+      kpi_cards: [],
+      workflow_steps: [],
+      safety_checklist: [],
+      task_cards: [],
+      next_actions: [],
+      crawler_execution_allowed: false,
+      engineering_review_allowed_count: 0,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataDay1OperationBoard(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

@@ -38,3 +38,9 @@ def test_open_data_manual_review_patches_links_to_day1_review_form() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-day1-review-form.html" in content
     assert "查看 Day1 審核表單" in content
+
+
+def test_open_data_manual_review_patches_links_to_day1_operation_board() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-day1-operation-board.html" in content
+    assert "進入 Day1 操作看板" in content

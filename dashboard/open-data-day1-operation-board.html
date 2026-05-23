@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 1 人工審核操作看板｜嘉義城市故障分析中心</title>
+  <style>
+    :root{--green:#0f766e;--green-dark:#064e3b;--green-soft:#dff8ef;--green-pale:#ecfdf5;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc;--shadow:0 22px 60px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f0fbf7,#f8fafc)}.hero{padding:38px 24px 54px;color:#fff;background:radial-gradient(circle at top left,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,#064e3b,#0f766e 58%,#14b8a6)}.inner,.wrap{max-width:1240px;margin:auto}.nav{display:block;margin-bottom:34px}.breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(255,255,255,.14);padding:8px 12px;font-size:14px;font-weight:800;margin-bottom:18px}h1{font-size:clamp(38px,5.4vw,64px);line-height:1.05;margin:0 0 14px}.hero-copy{max-width:980px;font-size:20px;line-height:1.75;color:rgba(255,255,255,.94)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.hero-btn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;font-weight:900;text-decoration:none}.hero-btn{background:#fff;color:#0f766e}.hero-btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}.wrap{padding:28px 24px 64px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:32px 0 16px}.section-head h2{margin:0;font-size:28px}.section-head span{color:var(--muted);font-size:14px}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,118,110,.12);border-radius:26px;padding:22px;box-shadow:var(--shadow)}.kpi-card .label{color:var(--muted);font-size:14px}.kpi-card .value{margin-top:10px;font-size:31px;font-weight:950;color:var(--green-dark)}.notice{line-height:1.85;color:#475569}.notice strong{color:var(--green-dark)}.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.timeline-step{position:relative;padding:18px 18px 18px 20px;border-radius:24px;background:linear-gradient(180deg,#fff,#f7fffb);border:1px solid rgba(15,118,110,.14);box-shadow:0 14px 32px rgba(15,23,42,.07)}.timeline-step::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:5px;border-radius:999px;background:#14b8a6}.timeline-step .step-no{font-size:12px;font-weight:900;letter-spacing:.08em;color:#0f766e;text-transform:uppercase}.timeline-step h3{margin:10px 0 0;font-size:18px;line-height:1.45}.task-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.task-card{display:flex;flex-direction:column;gap:18px;padding:24px;overflow:hidden}.task-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.task-number{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-weight:950}.task-title{margin:0;font-size:24px;line-height:1.3}.task-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.meta-box{padding:14px 16px;border-radius:18px;background:var(--sand);border:1px solid rgba(15,118,110,.08)}.meta-box .label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}.meta-box .value{font-size:16px;font-weight:800;line-height:1.5;word-break:break-word}.badge-row{display:flex;gap:10px;flex-wrap:wrap}.badge{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:900}.badge.status{background:#dff8ef;color:#065f46}.badge.flag{background:#eff6ff;color:#1d4ed8}.badge.warn{background:#fff7ed;color:#b45309}.task-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{background:#0f766e;color:#fff}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.list-card ul,.list-card ol{margin:0;padding-left:20px;color:#475569;line-height:1.8}.list-card li+li{margin-top:6px}.section-stack{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.task-section-block{padding:16px 18px;border-radius:20px;background:var(--green-pale);border:1px solid rgba(15,118,110,.10)}.task-section-block h4{margin:0 0 10px;font-size:17px}.task-section-block ul{margin:0;padding-left:18px;color:#36536b;line-height:1.75}.task-footer{display:grid;grid-template-columns:1fr 1fr;gap:14px}.footer-box{padding:16px 18px;border-radius:20px;background:#fff;border:1px solid rgba(15,118,110,.12)}.footer-box h4{margin:0 0 8px;font-size:16px}.footer-box p,.footer-box code{margin:0;color:#36536b;line-height:1.75;word-break:break-word}.table-shell{overflow:auto;border-radius:22px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--sand);color:var(--muted);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{padding:26px 8px;color:var(--muted)}.boundary-grid{grid-template-columns:1fr 1fr}.boundary-card ul{margin:0;padding-left:20px;color:#475569;line-height:1.8}.boundary-card li+li{margin-top:6px}@media(max-width:1180px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.task-grid{grid-template-columns:1fr}.section-stack,.boundary-grid{grid-template-columns:1fr}}@media(max-width:720px){.wrap{padding:24px 16px 56px}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.timeline{grid-template-columns:1fr}.task-meta,.task-footer{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body data-page="open-data-day1-operation-board">
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="breadcrumb" data-render="breadcrumb"></div>
+      <div class="eyebrow">Day 1 / manual review only / internal board</div>
+      <h1>Day 1 人工審核操作看板</h1>
+      <p class="hero-copy">這是操作看板，不是實際審核結果，也不是 crawler。今天只整理 3 筆要人工審的官方資料來源，讓使用者一打開 dashboard 就知道要審哪 3 筆、每筆要做什麼、要填什麼、目前仍然只是草稿。不啟動 live crawler（no live crawler）、不對 source_url 發出網路請求、不抓個資、不抓私人陳情全文、不自動發布（no auto publish）。crawler_execution_allowed 永遠 false，engineering_review_allowed 預設 false。</p>
+      <div class="hero-actions">
+        <a class="hero-btn" href="./open-data-day1-review-form.html">回 Day1 審核表單</a>
+        <a class="hero-btn ghost" href="./open-data-manual-review-packets.html">回人工審核工作包</a>
+        <a class="hero-btn ghost" href="./sources.html">回資料來源與更新狀態</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap" id="openDataDay1OperationBoard">
+    <div class="section-head">
+      <h2>今日概覽</h2>
+      <span data-render="open-data-day1-operation-updated">讀取中</span>
+    </div>
+    <section class="grid kpi-grid" data-render="open-data-day1-operation-kpis">
+      <article class="card kpi-card"><div class="label">今日任務數</div><div class="value">–</div></article>
+    </section>
+
+    <div class="section-head">
+      <h2>安全邊界</h2>
+      <span>operation board only / draft_not_started</span>
+    </div>
+    <section class="card notice" data-render="open-data-day1-operation-note">正在讀取 Day 1 操作看板。</section>
+
+    <div class="section-head">
+      <h2>今日流程 timeline</h2>
+      <span>一步一步完成 3 筆人工審核草稿</span>
+    </div>
+    <section class="timeline" data-render="open-data-day1-operation-timeline">
+      <article class="timeline-step"><div class="step-no">step 1</div><h3>讀取中</h3></article>
+    </section>
+
+    <div class="section-head">
+      <h2>3 張大型 task cards</h2>
+      <span data-render="open-data-day1-operation-summary">正在整理今天的任務卡。</span>
+    </div>
+    <section class="grid task-grid" data-render="open-data-day1-operation-task-cards">
+      <article class="card task-card"><div class="task-header"><span class="task-number">1</span><h3 class="task-title">讀取中</h3></div></article>
+    </section>
+
+    <div class="section-head">
+      <h2>操作說明區</h2>
+      <span>今天應該怎麼做</span>
+    </div>
+    <section class="grid section-stack">
+      <article class="card list-card">
+        <h3>操作說明</h3>
+        <ul data-render="open-data-day1-operation-notes">
+          <li>正在載入操作說明。</li>
+        </ul>
+      </article>
+      <article class="card list-card">
+        <h3>今日 next actions</h3>
+        <ol data-render="open-data-day1-operation-next-actions">
+          <li>正在載入 next actions。</li>
+        </ol>
+      </article>
+    </section>
+
+    <div class="section-head">
+      <h2>安全邊界區</h2>
+      <span>今天任何操作都不能跨過這些線</span>
+    </div>
+    <section class="grid boundary-grid">
+      <article class="card boundary-card">
+        <h3>安全 checklist</h3>
+        <ul data-render="open-data-day1-operation-safety">
+          <li>正在載入安全 checklist。</li>
+        </ul>
+      </article>
+      <article class="card boundary-card">
+        <h3>blocked_fields</h3>
+        <ul data-render="open-data-day1-operation-blocked-fields">
+          <li>正在載入 blocked fields。</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="section-head">
+      <h2>每日任務 table</h2>
+      <span>快速檢查今天的 3 筆任務</span>
+    </div>
+    <section class="card">
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>task_number</th>
+              <th>title</th>
+              <th>topic_group</th>
+              <th>source_owner</th>
+              <th>estimated_minutes</th>
+              <th>current_status</th>
+              <th>reviewer_decision</th>
+              <th>recommended_next_action</th>
+              <th>source_url</th>
+            </tr>
+          </thead>
+          <tbody data-render="open-data-day1-operation-table">
+            <tr><td colspan="9" class="empty">正在載入 Day 1 task table。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <h2>返回入口</h2>
+      <span>相關頁面快速切換</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn" href="./sources.html">回資料來源</a>
+      <a class="btn ghost" href="./open-data-day1-review-form.html">回 Day1 審核表單</a>
+      <a class="btn ghost" href="./open-data-day1-sample-results.html">回 Day1 填寫範例</a>
+      <a class="btn ghost" href="./open-data-manual-review-patches.html">回回填 Patch 草稿</a>
+      <a class="btn ghost" href="./open-data-manual-review-packets.html">回人工審核工作包</a>
+      <a class="btn ghost" href="./open-data-manual-review-sop.html">回人工審核 SOP</a>
+      <a class="btn secondary" href="./index.html">回儀表板首頁</a>
+    </div>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./site-pages.js"></script>
+</body>
+</html>

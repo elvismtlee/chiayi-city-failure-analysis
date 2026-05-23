@@ -1,0 +1,35 @@
+public_use_status: internal_day1_manual_review_operation_board_schema
+manual_review_required: true
+operation_board_only: true
+not_actual_review_result: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+required_fields:
+  - board_id
+  - board_title
+  - review_day
+  - source_execution_packets_file
+  - source_patch_drafts_file
+  - source_sample_results_file
+  - source_form_draft_file
+  - total_tasks
+  - board_status
+  - task_cards
+  - kpi_cards
+  - workflow_steps
+  - safety_checklist
+  - operation_notes
+  - next_actions
+  - blocked_fields
+  - crawler_execution_allowed
+  - engineering_review_allowed
+board_status_values:
+  - draft_not_started
+  - ready_for_manual_operation
+  - in_manual_review_later
+  - completed_manual_review_later
+  - blocked_later

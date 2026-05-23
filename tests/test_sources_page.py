@@ -91,3 +91,9 @@ def test_sources_links_to_open_data_day1_review_form() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-day1-review-form.html' in content
     assert '前往 Day1 審核表單' in content
+
+
+def test_sources_links_to_open_data_day1_operation_board() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-day1-operation-board.html' in content
+    assert '前往 Day1 操作看板' in content

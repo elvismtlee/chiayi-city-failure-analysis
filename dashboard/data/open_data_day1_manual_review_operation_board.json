@@ -1,0 +1,247 @@
+{
+  "generated_at": "2026-05-24T01:49:32+08:00",
+  "public_use_status": "internal_day1_manual_review_operation_board",
+  "operation_board_only": true,
+  "not_actual_review_result": true,
+  "board_id": "open-data-day1-manual-review-operation-board",
+  "board_title": "Day 1 人工審核操作看板",
+  "review_day": "day_1",
+  "source_execution_packets_file": "dashboard/data/open_data_manual_review_execution_packets.json",
+  "source_patch_drafts_file": "dashboard/data/open_data_manual_review_result_patch_drafts.json",
+  "source_sample_results_file": "dashboard/data/open_data_day1_sample_manual_review_results.json",
+  "source_form_draft_file": "dashboard/data/open_data_day1_manual_review_form_draft.json",
+  "total_tasks": 3,
+  "board_status": "draft_not_started",
+  "kpi_cards": [
+    {
+      "label": "今日任務數",
+      "value": 3,
+      "unit": "tasks"
+    },
+    {
+      "label": "預估時間",
+      "value": 90,
+      "unit": "分鐘"
+    },
+    {
+      "label": "表單草稿數",
+      "value": 3,
+      "unit": "forms"
+    },
+    {
+      "label": "sample_only",
+      "value": true,
+      "unit": "flag"
+    },
+    {
+      "label": "crawler_execution_allowed",
+      "value": false,
+      "unit": "flag"
+    },
+    {
+      "label": "engineering_review_allowed_count",
+      "value": 0,
+      "unit": "count"
+    }
+  ],
+  "workflow_steps": [
+    "打開 Day 1 工作包",
+    "逐筆人工開啟 source_url",
+    "記錄來源頁標題",
+    "確認是否官方來源",
+    "記錄授權或使用條款",
+    "記錄格式與更新頻率",
+    "檢查是否有個資或私人陳情全文",
+    "填寫 Day 1 審核表單草稿",
+    "保持 crawler_execution_allowed false",
+    "另開 PR 回填人工審核結果"
+  ],
+  "safety_checklist": [
+    "這是操作看板，不是實際審核結果",
+    "這不是 crawler",
+    "不啟動 live crawler",
+    "不對 source_url 發出網路請求",
+    "不抓個資",
+    "不抓私人陳情全文",
+    "不自動發布",
+    "crawler_execution_allowed 永遠 false",
+    "engineering_review_allowed 預設 false"
+  ],
+  "task_cards": [
+    {
+      "task_number": 1,
+      "title": "嘉義市兒童課後照顧服務據點",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95735",
+      "estimated_minutes": 30,
+      "packet_reference": "open-data-manual-review-day_1",
+      "patch_reference": "open-data-manual-review-patch-01",
+      "sample_reference": "open-data-day1-sample-01",
+      "form_reference": "open-data-day1-form-01",
+      "current_status": "draft_not_started",
+      "reviewer_decision": "not_decided",
+      "recommended_next_action": "collect_missing_evidence",
+      "manual_steps": [
+        "人工開啟 source_url",
+        "記錄 page_title_or_dataset_title",
+        "確認 official_owner",
+        "檢查 license_or_terms_summary",
+        "檢查 available_format",
+        "記錄 update_cadence_observed",
+        "檢查 personal_data_risk_observed",
+        "檢查 private_complaint_risk_observed",
+        "填寫 reviewer_notes",
+        "不執行 crawler"
+      ],
+      "form_sections_to_fill": [
+        "reviewer_fields",
+        "source_identity_section",
+        "license_terms_section",
+        "format_section",
+        "update_cadence_section",
+        "risk_review_section",
+        "evidence_summary_section",
+        "reviewer_decision_section",
+        "follow_up_section"
+      ],
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false
+    },
+    {
+      "task_number": 2,
+      "title": "嘉義市社區整體照顧服務體系",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95733",
+      "estimated_minutes": 30,
+      "packet_reference": "open-data-manual-review-day_1",
+      "patch_reference": "open-data-manual-review-patch-02",
+      "sample_reference": "open-data-day1-sample-02",
+      "form_reference": "open-data-day1-form-02",
+      "current_status": "draft_not_started",
+      "reviewer_decision": "not_decided",
+      "recommended_next_action": "collect_missing_evidence",
+      "manual_steps": [
+        "人工開啟 source_url",
+        "記錄 page_title_or_dataset_title",
+        "確認 official_owner",
+        "檢查 license_or_terms_summary",
+        "檢查 available_format",
+        "記錄 update_cadence_observed",
+        "檢查 personal_data_risk_observed",
+        "檢查 private_complaint_risk_observed",
+        "填寫 reviewer_notes",
+        "不執行 crawler"
+      ],
+      "form_sections_to_fill": [
+        "reviewer_fields",
+        "source_identity_section",
+        "license_terms_section",
+        "format_section",
+        "update_cadence_section",
+        "risk_review_section",
+        "evidence_summary_section",
+        "reviewer_decision_section",
+        "follow_up_section"
+      ],
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false
+    },
+    {
+      "task_number": 3,
+      "title": "嘉義市社區照顧關懷據點",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/52404",
+      "estimated_minutes": 30,
+      "packet_reference": "open-data-manual-review-day_1",
+      "patch_reference": "open-data-manual-review-patch-03",
+      "sample_reference": "open-data-day1-sample-03",
+      "form_reference": "open-data-day1-form-03",
+      "current_status": "draft_not_started",
+      "reviewer_decision": "not_decided",
+      "recommended_next_action": "collect_missing_evidence",
+      "manual_steps": [
+        "人工開啟 source_url",
+        "記錄 page_title_or_dataset_title",
+        "確認 official_owner",
+        "檢查 license_or_terms_summary",
+        "檢查 available_format",
+        "記錄 update_cadence_observed",
+        "檢查 personal_data_risk_observed",
+        "檢查 private_complaint_risk_observed",
+        "填寫 reviewer_notes",
+        "不執行 crawler"
+      ],
+      "form_sections_to_fill": [
+        "reviewer_fields",
+        "source_identity_section",
+        "license_terms_section",
+        "format_section",
+        "update_cadence_section",
+        "risk_review_section",
+        "evidence_summary_section",
+        "reviewer_decision_section",
+        "follow_up_section"
+      ],
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false
+    }
+  ],
+  "blocked_fields": [
+    "crawler_execution_allowed",
+    "engineering_review_allowed",
+    "approved_for_crawling",
+    "live_crawler",
+    "reviewer_decision_ready_for_engineering_review",
+    "review_status_completed",
+    "official_source_verified_without_manual_review"
+  ],
+  "operation_notes": [
+    "本頁只整理 day_1 的 3 筆人工審核任務。",
+    "所有結果仍是草稿，僅示範今天要做什麼、要填什麼。",
+    "source_url 只允許人工點開查看，不做任何自動請求。"
+  ],
+  "next_actions": [
+    "先開啟 Day 1 工作包與 Day 1 審核表單草稿並排查看。",
+    "逐筆記錄來源頁標題、授權條款、格式、更新頻率與風險觀察。",
+    "完成後再另開 PR 回填人工審核結果，不直接改成完成狀態。"
+  ],
+  "crawler_execution_allowed": false,
+  "engineering_review_allowed_count": 0,
+  "no_live_crawler": true,
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "no_personal_data": true
+}

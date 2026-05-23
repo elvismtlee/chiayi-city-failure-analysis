@@ -25,3 +25,9 @@ def test_site_pages_renders_open_data_day1_review_form() -> None:
     assert "./data/open_data_day1_manual_review_form_draft.json" in content
     assert "setupOpenDataDay1ReviewForm" in content
     assert "open-data-day1-review-form" in content
+
+
+def test_open_data_day1_review_form_links_to_day1_operation_board() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-day1-operation-board.html" in content
+    assert "進入 Day1 操作看板" in content

@@ -29,6 +29,7 @@ REQUIRED_JSON_FILES = [
     "open_data_manual_review_result_patch_drafts.json",
     "open_data_day1_sample_manual_review_results.json",
     "open_data_day1_manual_review_form_draft.json",
+    "open_data_day1_manual_review_operation_board.json",
     "site_map.json",
 ]
 
@@ -326,6 +327,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     manual_review_patches = load_json("open_data_manual_review_result_patch_drafts.json")
     day1_sample_results = load_json("open_data_day1_sample_manual_review_results.json")
     day1_review_form = load_json("open_data_day1_manual_review_form_draft.json")
+    day1_operation_board = load_json("open_data_day1_manual_review_operation_board.json")
     assert inventory["public_use_status"] == "internal_url_inventory"
     assert review_queue["public_use_status"] == "internal_url_review_queue"
     assert readiness["public_use_status"] == "internal_readiness_report"
@@ -341,6 +343,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     assert manual_review_patches["public_use_status"] == "internal_manual_review_result_patch_drafts"
     assert day1_sample_results["public_use_status"] == "internal_day1_sample_manual_review_results"
     assert day1_review_form["public_use_status"] == "internal_day1_manual_review_form_draft"
+    assert day1_operation_board["public_use_status"] == "internal_day1_manual_review_operation_board"
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:
