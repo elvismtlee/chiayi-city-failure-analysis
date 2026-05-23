@@ -1,0 +1,79 @@
+public_use_status: internal_top10_review_tasks_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+
+source_file: dashboard/data/open_data_readiness_report.json
+output_file: dashboard/data/open_data_top10_review_tasks.json
+
+task_selection_rules:
+  exclude_readiness_levels:
+    - blocked
+  prefer_readiness_levels:
+    - high
+    - medium
+  sort_by:
+    - readiness_score_desc
+    - topic_priority
+  topic_priority:
+    - traffic_parking
+    - social_welfare
+    - public_works_environment
+    - culture_events
+    - complaints_service
+  top_count: 10
+
+required_fields:
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - expected_format
+  - license_status
+  - update_cadence
+  - readiness_score
+  - readiness_level
+  - crawler_stage
+  - review_priority
+  - estimated_review_minutes
+  - review_steps
+  - acceptance_criteria
+  - safety_checklist
+  - review_status
+  - assigned_to
+  - reviewed_at
+  - reviewer_notes
+  - next_action
+
+review_priority:
+  - P1
+  - P2
+  - P3
+
+review_status:
+  - not_started
+  - source_opened
+  - source_verified
+  - license_checked
+  - format_checked
+  - ready_for_next_review
+  - blocked
+
+next_action:
+  - verify_source_url
+  - check_license
+  - inspect_download_format
+  - document_update_cadence
+  - mark_not_suitable
+  - prepare_crawler_spec_later
+
+safety_rules:
+  crawler_candidate_is_not_permission: true
+  top10_is_internal_work_order: true
+  never_live_crawl: true
+  never_auto_publish: true
+  never_collect_personal_data: true
+  never_collect_private_complaint_text: true
