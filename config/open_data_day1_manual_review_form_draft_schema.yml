@@ -1,0 +1,42 @@
+public_use_status: internal_day1_manual_review_form_draft_schema
+manual_review_required: true
+form_draft_only: true
+not_actual_review_result: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+
+required_fields:
+  - form_id
+  - sample_id
+  - patch_id
+  - result_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - review_day
+  - form_status
+  - reviewer_fields
+  - source_identity_section
+  - license_terms_section
+  - format_section
+  - update_cadence_section
+  - risk_review_section
+  - evidence_summary_section
+  - reviewer_decision_section
+  - follow_up_section
+  - blocked_fields
+  - safety_notes
+  - crawler_execution_allowed
+  - engineering_review_allowed
+
+form_status_values:
+  - draft_not_started
+  - ready_for_manual_fill
+  - filled_manually_later
+  - needs_follow_up_later
+  - blocked_later

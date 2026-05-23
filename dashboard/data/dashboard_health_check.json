@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524004232",
-  "generated_at": "2026-05-24T00:42:32+08:00",
+  "check_id": "dashboard-health-20260524011312",
+  "generated_at": "2026-05-24T01:13:12+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -82,6 +82,12 @@
     },
     {
       "file": "dashboard/data/open_data_day1_sample_manual_review_results.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_day1_manual_review_form_draft.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -267,6 +273,12 @@
       "valid_json": null
     },
     {
+      "file": "dashboard/open-data-day1-review-form.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
       "file": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false,
@@ -445,6 +457,12 @@
       "exists": true,
       "empty": false,
       "valid_json": null
+    },
+    {
+      "file": "docs/open_data_day1_manual_review_forms/day_1_manual_review_form_draft.md",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
     }
   ],
   "missing_files": [],
@@ -518,6 +536,11 @@
     },
     {
       "page": "dashboard/open-data-day1-sample-results.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-day1-review-form.html",
       "exists": true,
       "empty": false
     },
@@ -664,6 +687,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "Day1審核表單",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -796,6 +824,13 @@
       "path": "dashboard/data/open_data_day1_sample_manual_review_results.json",
       "expected_public_use_status": "internal_day1_sample_manual_review_results",
       "actual_public_use_status": "internal_day1_sample_manual_review_results",
+      "ok": true
+    },
+    {
+      "name": "open_data_day1_manual_review_form_draft",
+      "path": "dashboard/data/open_data_day1_manual_review_form_draft.json",
+      "expected_public_use_status": "internal_day1_manual_review_form_draft",
+      "actual_public_use_status": "internal_day1_manual_review_form_draft",
       "ok": true
     }
   ],

@@ -32,3 +32,9 @@ def test_open_data_manual_review_packets_links_to_patch_drafts() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-manual-review-patches.html" in content
     assert "建立回填 Patch 草稿" in content
+
+
+def test_open_data_manual_review_packets_links_to_day1_review_form() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-day1-review-form.html" in content
+    assert "查看 Day1 審核表單" in content

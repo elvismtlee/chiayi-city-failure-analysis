@@ -1,0 +1,318 @@
+{
+  "generated_at": "2026-05-24T01:13:12+08:00",
+  "public_use_status": "internal_day1_manual_review_form_draft",
+  "form_draft_only": true,
+  "not_actual_review_result": true,
+  "source_sample_count": 3,
+  "source_sample_file": "dashboard/data/open_data_day1_sample_manual_review_results.json",
+  "total_count": 3,
+  "review_day": "day_1",
+  "topic_groups": {
+    "social_welfare": 3
+  },
+  "form_status_counts": {
+    "draft_not_started": 3
+  },
+  "crawler_execution_allowed": false,
+  "engineering_review_allowed_count": 0,
+  "no_live_crawler": true,
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "no_personal_data": true,
+  "forms": [
+    {
+      "form_id": "open-data-day1-form-01",
+      "sample_id": "open-data-day1-sample-01",
+      "patch_id": "open-data-manual-review-patch-01",
+      "result_id": "open-data-manual-review-result-01",
+      "title": "嘉義市兒童課後照顧服務據點",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95735",
+      "review_day": "day_1",
+      "form_status": "draft_not_started",
+      "reviewer_fields": {
+        "reviewer_name": "",
+        "reviewed_at": "",
+        "reviewer_notes": "",
+        "evidence_summary": "",
+        "reviewer_decision": "not_decided",
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "source_identity_section": {
+        "source_url": "https://data.gov.tw/dataset/95735",
+        "page_title_or_dataset_title": "",
+        "official_owner": "嘉義市政府社會處",
+        "source_owner_matches": "",
+        "source_identity_notes": ""
+      },
+      "license_terms_section": {
+        "license_or_terms_found": "",
+        "license_or_terms_summary": "",
+        "license_terms_result": "",
+        "license_terms_notes": ""
+      },
+      "format_section": {
+        "available_format": "",
+        "format_result": "",
+        "downloadable_file_observed": "",
+        "format_notes": ""
+      },
+      "update_cadence_section": {
+        "update_cadence_observed": "",
+        "update_cadence_result": "",
+        "last_updated_observed": "",
+        "update_notes": ""
+      },
+      "risk_review_section": {
+        "personal_data_result": "",
+        "personal_data_risk_observed": "",
+        "private_complaint_result": "",
+        "private_complaint_risk_observed": "",
+        "risk_notes": ""
+      },
+      "evidence_summary_section": {
+        "evidence_summary": "",
+        "source_page_screenshot_note": "",
+        "license_terms_screenshot_note": "",
+        "format_or_download_link_note": "",
+        "risk_review_note": ""
+      },
+      "reviewer_decision_section": {
+        "reviewer_decision": "not_decided",
+        "allowed_values": [
+          "not_decided",
+          "source_verified_but_not_engineering_ready",
+          "needs_follow_up",
+          "not_suitable"
+        ],
+        "disallowed_values": [
+          "ready_for_engineering_review_later",
+          "approved_for_crawling"
+        ]
+      },
+      "follow_up_section": {
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "human_approval_required": true,
+      "no_live_crawler": true,
+      "manual_review_required": true,
+      "no_auto_publish": true,
+      "no_personal_data": true,
+      "form_draft_only": true,
+      "not_actual_review_result": true
+    },
+    {
+      "form_id": "open-data-day1-form-02",
+      "sample_id": "open-data-day1-sample-02",
+      "patch_id": "open-data-manual-review-patch-02",
+      "result_id": "open-data-manual-review-result-02",
+      "title": "嘉義市社區整體照顧服務體系",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95733",
+      "review_day": "day_1",
+      "form_status": "draft_not_started",
+      "reviewer_fields": {
+        "reviewer_name": "",
+        "reviewed_at": "",
+        "reviewer_notes": "",
+        "evidence_summary": "",
+        "reviewer_decision": "not_decided",
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "source_identity_section": {
+        "source_url": "https://data.gov.tw/dataset/95733",
+        "page_title_or_dataset_title": "",
+        "official_owner": "嘉義市政府社會處",
+        "source_owner_matches": "",
+        "source_identity_notes": ""
+      },
+      "license_terms_section": {
+        "license_or_terms_found": "",
+        "license_or_terms_summary": "",
+        "license_terms_result": "",
+        "license_terms_notes": ""
+      },
+      "format_section": {
+        "available_format": "",
+        "format_result": "",
+        "downloadable_file_observed": "",
+        "format_notes": ""
+      },
+      "update_cadence_section": {
+        "update_cadence_observed": "",
+        "update_cadence_result": "",
+        "last_updated_observed": "",
+        "update_notes": ""
+      },
+      "risk_review_section": {
+        "personal_data_result": "",
+        "personal_data_risk_observed": "",
+        "private_complaint_result": "",
+        "private_complaint_risk_observed": "",
+        "risk_notes": ""
+      },
+      "evidence_summary_section": {
+        "evidence_summary": "",
+        "source_page_screenshot_note": "",
+        "license_terms_screenshot_note": "",
+        "format_or_download_link_note": "",
+        "risk_review_note": ""
+      },
+      "reviewer_decision_section": {
+        "reviewer_decision": "not_decided",
+        "allowed_values": [
+          "not_decided",
+          "source_verified_but_not_engineering_ready",
+          "needs_follow_up",
+          "not_suitable"
+        ],
+        "disallowed_values": [
+          "ready_for_engineering_review_later",
+          "approved_for_crawling"
+        ]
+      },
+      "follow_up_section": {
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "human_approval_required": true,
+      "no_live_crawler": true,
+      "manual_review_required": true,
+      "no_auto_publish": true,
+      "no_personal_data": true,
+      "form_draft_only": true,
+      "not_actual_review_result": true
+    },
+    {
+      "form_id": "open-data-day1-form-03",
+      "sample_id": "open-data-day1-sample-03",
+      "patch_id": "open-data-manual-review-patch-03",
+      "result_id": "open-data-manual-review-result-03",
+      "title": "嘉義市社區照顧關懷據點",
+      "topic_group": "social_welfare",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/52404",
+      "review_day": "day_1",
+      "form_status": "draft_not_started",
+      "reviewer_fields": {
+        "reviewer_name": "",
+        "reviewed_at": "",
+        "reviewer_notes": "",
+        "evidence_summary": "",
+        "reviewer_decision": "not_decided",
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "source_identity_section": {
+        "source_url": "https://data.gov.tw/dataset/52404",
+        "page_title_or_dataset_title": "",
+        "official_owner": "嘉義市政府社會處",
+        "source_owner_matches": "",
+        "source_identity_notes": ""
+      },
+      "license_terms_section": {
+        "license_or_terms_found": "",
+        "license_or_terms_summary": "",
+        "license_terms_result": "",
+        "license_terms_notes": ""
+      },
+      "format_section": {
+        "available_format": "",
+        "format_result": "",
+        "downloadable_file_observed": "",
+        "format_notes": ""
+      },
+      "update_cadence_section": {
+        "update_cadence_observed": "",
+        "update_cadence_result": "",
+        "last_updated_observed": "",
+        "update_notes": ""
+      },
+      "risk_review_section": {
+        "personal_data_result": "",
+        "personal_data_risk_observed": "",
+        "private_complaint_result": "",
+        "private_complaint_risk_observed": "",
+        "risk_notes": ""
+      },
+      "evidence_summary_section": {
+        "evidence_summary": "",
+        "source_page_screenshot_note": "",
+        "license_terms_screenshot_note": "",
+        "format_or_download_link_note": "",
+        "risk_review_note": ""
+      },
+      "reviewer_decision_section": {
+        "reviewer_decision": "not_decided",
+        "allowed_values": [
+          "not_decided",
+          "source_verified_but_not_engineering_ready",
+          "needs_follow_up",
+          "not_suitable"
+        ],
+        "disallowed_values": [
+          "ready_for_engineering_review_later",
+          "approved_for_crawling"
+        ]
+      },
+      "follow_up_section": {
+        "follow_up_required": false,
+        "follow_up_reason": "",
+        "recommended_next_action": "collect_missing_evidence"
+      },
+      "blocked_fields": [
+        "crawler_execution_allowed",
+        "engineering_review_allowed",
+        "approved_for_crawling",
+        "live_crawler",
+        "reviewer_decision_ready_for_engineering_review",
+        "review_status_completed",
+        "official_source_verified_without_manual_review"
+      ],
+      "safety_notes": "form draft only / not actual review result / no live crawler / no request to source_url / no personal data / no private complaint full text / no auto publish",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "human_approval_required": true,
+      "no_live_crawler": true,
+      "manual_review_required": true,
+      "no_auto_publish": true,
+      "no_personal_data": true,
+      "form_draft_only": true,
+      "not_actual_review_result": true
+    }
+  ]
+}
