@@ -25,3 +25,9 @@ def test_open_data_inventory_page_links_to_readiness() -> None:
     content = PAGE.read_text(encoding='utf-8')
     assert './open-data-readiness.html' in content
     assert '查看 Readiness 評分' in content
+
+
+def test_open_data_inventory_page_links_to_top10_tasks() -> None:
+    content = PAGE.read_text(encoding='utf-8')
+    assert './open-data-top10-tasks.html' in content
+    assert '查看 Top 10 審核任務' in content

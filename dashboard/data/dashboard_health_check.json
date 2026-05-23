@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260523163153",
-  "generated_at": "2026-05-23T16:31:53+08:00",
+  "check_id": "dashboard-health-20260523174907",
+  "generated_at": "2026-05-23T17:49:07+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -16,6 +16,12 @@
     },
     {
       "file": "dashboard/data/open_data_readiness_report.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_top10_review_tasks.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -130,6 +136,12 @@
     },
     {
       "file": "dashboard/open-data-readiness.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-top10-tasks.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -293,6 +305,11 @@
       "empty": false
     },
     {
+      "page": "dashboard/open-data-top10-tasks.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false
@@ -380,6 +397,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "Top10審核任務",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -435,6 +457,13 @@
       "path": "dashboard/data/open_data_readiness_report.json",
       "expected_public_use_status": "internal_readiness_report",
       "actual_public_use_status": "internal_readiness_report",
+      "ok": true
+    },
+    {
+      "name": "open_data_top10_review_tasks",
+      "path": "dashboard/data/open_data_top10_review_tasks.json",
+      "expected_public_use_status": "internal_top10_review_tasks",
+      "actual_public_use_status": "internal_top10_review_tasks",
       "ok": true
     }
   ],

@@ -205,6 +205,12 @@ function readinessLevelClass(level) {
   return 'pill';
 }
 
+function reviewPriorityClass(priority) {
+  if (priority === 'P3') return 'pill p3';
+  if (priority === 'P2') return 'pill p2';
+  return 'pill';
+}
+
 function setOpenDataKpi(payload) {
   const counts = payload?.topic_groups || {};
   setText('[data-open-data="total"]', String(payload?.total_count || 0));
@@ -594,6 +600,147 @@ function setupOpenDataReadiness(payload) {
   render();
 }
 
+function setOpenDataTop10Kpi(payload) {
+  const groups = payload?.topic_groups || {};
+  const priorities = payload?.review_priority_counts || {};
+  const levels = payload?.readiness_levels || {};
+  setText('[data-open-top10="total"]', String(payload?.total_count || 0));
+  setText('[data-open-top10="p1"]', String(priorities.P1 || 0));
+  setText('[data-open-top10="p2"]', String(priorities.P2 || 0));
+  setText('[data-open-top10="p3"]', String(priorities.P3 || 0));
+  setText('[data-open-top10="high"]', String(levels.high || 0));
+  setText('[data-open-top10="complaints"]', String(groups.complaints_service || 0));
+  setText('[data-render="open-data-top10-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataTop10Note(payload) {
+  const note = document.querySelector('[data-render="open-data-top10-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是人工審核任務清單。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` Top 10 總數：${payload?.total_count || 0}。狀態：internal_top10_review_tasks。這不是 crawler，不啟動 live crawler，不抓個資，不抓私人陳情全文，不自動發布。Top 10 只是內部工作排序，crawler_candidate 或 readiness_score 都不代表批准爬取。`,
+  );
+}
+
+function filterOpenDataTop10Tasks(items) {
+  const query = String(document.querySelector('#openDataTop10Search')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataTop10TopicGroup')?.value || 'all');
+  const priority = String(document.querySelector('#openDataTop10Priority')?.value || 'all');
+  const status = String(document.querySelector('#openDataTop10Status')?.value || 'all');
+  return items.filter(item => {
+    const haystack = [
+      String(item.title || ''),
+      String(item.source_owner || ''),
+      String(item.next_action || ''),
+      String(item.reviewer_notes || ''),
+    ].join(' ').toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    const matchesPriority = priority === 'all' || item.review_priority === priority;
+    const matchesStatus = status === 'all' || item.review_status === status;
+    return matchesQuery && matchesGroup && matchesPriority && matchesStatus;
+  });
+}
+
+function renderOpenDataTop10Table(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-top10-table"]');
+  const summary = document.querySelector('[data-render="open-data-top10-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆 Top 10 任務`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 11;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的 Top 10 任務。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const priorityCell = document.createElement('td');
+    const priorityPill = document.createElement('span');
+    priorityPill.className = reviewPriorityClass(item.review_priority);
+    priorityPill.textContent = valueOrPending(item.review_priority);
+    priorityCell.appendChild(priorityPill);
+
+    const scoreCell = createCell(item.readiness_score);
+
+    const topicCell = document.createElement('td');
+    const topicPill = document.createElement('span');
+    topicPill.className = 'pill';
+    topicPill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(topicPill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const formatCell = createCell(item.expected_format);
+    const licenseCell = createCell(item.license_status);
+    const minutesCell = createCell(item.estimated_review_minutes);
+    const statusCell = createCell(item.review_status);
+    const actionCell = createCell(item.next_action, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      priorityCell,
+      scoreCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      formatCell,
+      licenseCell,
+      minutesCell,
+      statusCell,
+      actionCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataTop10Tasks(payload) {
+  const items = Array.isArray(payload?.tasks) ? payload.tasks : [];
+  setOpenDataTop10Kpi(payload);
+  renderOpenDataTop10Note(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataTop10Tasks(items).sort((a, b) => {
+      if (a.review_priority !== b.review_priority) return String(a.review_priority).localeCompare(String(b.review_priority));
+      if (b.readiness_score !== a.readiness_score) return b.readiness_score - a.readiness_score;
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataTop10Table(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataTop10Search');
+  const groupSelect = document.querySelector('#openDataTop10TopicGroup');
+  const prioritySelect = document.querySelector('#openDataTop10Priority');
+  const statusSelect = document.querySelector('#openDataTop10Status');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  if (prioritySelect) prioritySelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -663,6 +810,22 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataReadiness(payload);
+  }
+  if (page === 'open-data-top10-tasks') {
+    const payload = await loadJson('./data/open_data_top10_review_tasks.json', {
+      generated_at: '',
+      public_use_status: 'internal_top10_review_tasks',
+      total_count: 0,
+      topic_groups: {},
+      readiness_levels: {},
+      review_priority_counts: {},
+      tasks: [],
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataTop10Tasks(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
