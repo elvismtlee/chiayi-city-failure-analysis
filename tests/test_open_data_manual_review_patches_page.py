@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_manual_review_patches() -> None:
     assert "./data/open_data_manual_review_result_patch_drafts.json" in content
     assert "setupOpenDataManualReviewPatches" in content
     assert "openDataManualReviewPatchDay" in content
+
+
+def test_open_data_manual_review_patches_links_to_day1_sample_results() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-day1-sample-results.html" in content
+    assert "查看 Day1 填寫範例" in content
