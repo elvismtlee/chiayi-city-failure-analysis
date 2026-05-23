@@ -1,0 +1,60 @@
+public_use_status: internal_top10_review_tasks_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+
+task_selection_rules:
+  - 來源：dashboard/data/open_data_readiness_report.json
+  - 優先選 readiness_level = high
+  - 再依 readiness_score 由高到低排序
+  - complaints_service 類型可以列入，但必須自動加上更高安全提醒
+  - blocked 不可列入 Top 10
+  - crawler_stage 不可為 live crawler
+  - crawler_candidate 即使是 true，也不代表批准爬取
+
+required_fields:
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - expected_format
+  - license_status
+  - update_cadence
+  - readiness_score
+  - readiness_level
+  - crawler_stage
+  - review_priority
+  - estimated_review_minutes
+  - review_steps
+  - acceptance_criteria
+  - safety_checklist
+  - review_status
+  - assigned_to
+  - reviewed_at
+  - reviewer_notes
+  - next_action
+
+review_priority:
+  - P1
+  - P2
+  - P3
+
+review_status:
+  - not_started
+  - source_opened
+  - source_verified
+  - license_checked
+  - format_checked
+  - ready_for_next_review
+  - blocked
+
+next_action:
+  - verify_source_url
+  - check_license
+  - inspect_download_format
+  - document_update_cadence
+  - mark_not_suitable
+  - prepare_crawler_spec_later

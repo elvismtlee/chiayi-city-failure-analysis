@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top 10 官方資料人工審核任務｜嘉義城市故障分析中心</title>
+  <style>
+    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc;--amber:#fef3c7;--rose:#ffe4e6}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:block;margin-bottom:34px}.breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:920px;color:rgba(255,255,255,.92)}.wrap{padding:30px 24px 64px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:26px}.section-title span{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08)}.stat .label{color:var(--muted);font-size:14px}.stat .value{margin-top:8px;font-size:30px;font-weight:950;color:var(--dark)}.notice{line-height:1.8;color:#475569}.notice strong{color:#064e3b}.action-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#0f766e;color:#fff;text-decoration:none;font-weight:900;padding:12px 16px}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.controls{display:grid;grid-template-columns:1.2fr repeat(3,minmax(0,220px));gap:12px;margin:0 0 16px}.controls input,.controls select{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;font-size:16px;background:#fff}.table-shell{overflow:auto;border-radius:20px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1380px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);background:var(--sand);font-size:14px}.pill{display:inline-block;padding:6px 11px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:800;font-size:13px}.pill.p2{background:var(--amber);color:#92400e}.pill.p3{background:var(--rose);color:#9f1239}.summary{color:var(--muted);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{color:var(--muted);padding:24px 4px}.compact{white-space:pre-wrap;word-break:break-word}@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}}@media(max-width:720px){.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.wrap{padding:24px 16px 56px}}
+  </style>
+</head>
+<body data-page="open-data-top10-tasks">
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="breadcrumb" data-render="breadcrumb"></div>
+      <h1>Top 10 官方資料人工審核任務</h1>
+      <p>這是人工審核任務清單，不是 crawler。這一頁只幫一人團隊安排優先順序，不啟動 live crawler（no live crawler），不抓個資，不抓私人陳情全文，不自動發布（no auto publish）。Top 10 只是內部工作排序，不代表正式評價或結論。</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-title"><h2>任務概覽</h2><span data-render="open-data-top10-updated">讀取中</span></div>
+    <section class="grid">
+      <article class="card stat"><div class="label">Top 10 任務總數</div><div class="value" data-open-top10="total">–</div></article>
+      <article class="card stat"><div class="label">P1 任務數</div><div class="value" data-open-top10="p1">–</div></article>
+      <article class="card stat"><div class="label">P2 任務數</div><div class="value" data-open-top10="p2">–</div></article>
+      <article class="card stat"><div class="label">P3 任務數</div><div class="value" data-open-top10="p3">–</div></article>
+      <article class="card stat"><div class="label">high readiness 任務數</div><div class="value" data-open-top10="high">–</div></article>
+      <article class="card stat"><div class="label">complaints_service 任務數</div><div class="value" data-open-top10="complaints">–</div></article>
+    </section>
+
+    <div class="section-title"><h2>安全提醒</h2><span>internal top10 review tasks / manual review required</span></div>
+    <section class="card notice" data-render="open-data-top10-note">正在讀取 Top 10 任務。</section>
+    <div class="action-row">
+      <a class="btn" href="./sources.html">回資料來源與更新狀態</a>
+      <a class="btn ghost" href="./open-data-inventory.html">回官方開放資料 URL 盤點</a>
+      <a class="btn ghost" href="./open-data-review.html">回官方資料 URL 人工審核</a>
+      <a class="btn ghost" href="./open-data-readiness.html">回 Readiness 評分</a>
+      <a class="btn secondary" href="./index.html">回儀表板首頁</a>
+    </div>
+
+    <div class="section-title"><h2>逐筆人工審核任務</h2><span class="summary" data-render="open-data-top10-summary">正在讀取 Top 10 任務。</span></div>
+    <section class="card">
+      <div class="controls">
+        <input id="openDataTop10Search" placeholder="搜尋 title / source_owner / next_action / reviewer_notes" />
+        <select id="openDataTop10TopicGroup">
+          <option value="all">全部 topic_group</option>
+          <option value="traffic_parking">traffic_parking</option>
+          <option value="social_welfare">social_welfare</option>
+          <option value="culture_events">culture_events</option>
+          <option value="public_works_environment">public_works_environment</option>
+          <option value="complaints_service">complaints_service</option>
+        </select>
+        <select id="openDataTop10Priority">
+          <option value="all">全部 review_priority</option>
+          <option value="P1">P1</option>
+          <option value="P2">P2</option>
+          <option value="P3">P3</option>
+        </select>
+        <select id="openDataTop10Status">
+          <option value="all">全部 review_status</option>
+          <option value="not_started">not_started</option>
+          <option value="source_opened">source_opened</option>
+          <option value="source_verified">source_verified</option>
+          <option value="license_checked">license_checked</option>
+          <option value="format_checked">format_checked</option>
+          <option value="ready_for_next_review">ready_for_next_review</option>
+          <option value="blocked">blocked</option>
+        </select>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>review_priority</th>
+              <th>readiness_score</th>
+              <th>topic_group</th>
+              <th>title</th>
+              <th>source_owner</th>
+              <th>expected_format</th>
+              <th>license_status</th>
+              <th>estimated_review_minutes</th>
+              <th>review_status</th>
+              <th>next_action</th>
+              <th>source_url</th>
+            </tr>
+          </thead>
+          <tbody data-render="open-data-top10-table">
+            <tr><td colspan="11" class="empty">正在載入 Top 10 任務。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./site-pages.js"></script>
+</body>
+</html>

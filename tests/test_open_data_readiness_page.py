@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_readiness_report() -> None:
     assert "openDataReadinessSearch" in content
     assert "openDataReadinessLevel" in content
     assert "openDataReadinessStage" in content
+
+
+def test_open_data_readiness_page_links_to_top10_tasks() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-top10-tasks.html" in content
+    assert "產生 Top 10 審核任務" in content

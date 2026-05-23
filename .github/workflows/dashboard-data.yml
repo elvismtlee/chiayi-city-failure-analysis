@@ -23,12 +23,14 @@ on:
       - "scripts/build_open_data_url_inventory.py"
       - "scripts/build_open_data_url_review_queue.py"
       - "scripts/build_open_data_readiness_report.py"
+      - "scripts/build_open_data_top10_review_tasks.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
       - "config/chiayi_open_data_url_inventory.yml"
       - "config/open_data_url_review_queue_schema.yml"
       - "config/open_data_readiness_score_schema.yml"
+      - "config/open_data_top10_review_tasks_schema.yml"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -53,6 +55,8 @@ on:
       - "tests/test_build_open_data_url_review_queue.py"
       - "tests/test_open_data_readiness_score_schema.py"
       - "tests/test_build_open_data_readiness_report.py"
+      - "tests/test_open_data_top10_review_tasks_schema.py"
+      - "tests/test_build_open_data_top10_review_tasks.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -64,6 +68,7 @@ on:
       - "tests/test_open_data_inventory_page.py"
       - "tests/test_open_data_review_page.py"
       - "tests/test_open_data_readiness_page.py"
+      - "tests/test_open_data_top10_tasks_page.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -101,12 +106,14 @@ on:
       - "scripts/build_open_data_url_inventory.py"
       - "scripts/build_open_data_url_review_queue.py"
       - "scripts/build_open_data_readiness_report.py"
+      - "scripts/build_open_data_top10_review_tasks.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
       - "config/chiayi_open_data_url_inventory.yml"
       - "config/open_data_url_review_queue_schema.yml"
       - "config/open_data_readiness_score_schema.yml"
+      - "config/open_data_top10_review_tasks_schema.yml"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -131,6 +138,8 @@ on:
       - "tests/test_build_open_data_url_review_queue.py"
       - "tests/test_open_data_readiness_score_schema.py"
       - "tests/test_build_open_data_readiness_report.py"
+      - "tests/test_open_data_top10_review_tasks_schema.py"
+      - "tests/test_build_open_data_top10_review_tasks.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -142,6 +151,7 @@ on:
       - "tests/test_open_data_inventory_page.py"
       - "tests/test_open_data_review_page.py"
       - "tests/test_open_data_readiness_page.py"
+      - "tests/test_open_data_top10_tasks_page.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -211,6 +221,8 @@ jobs:
         run: python scripts/build_open_data_url_review_queue.py
       - name: Build open data readiness report
         run: python scripts/build_open_data_readiness_report.py
+      - name: Build open data top10 review tasks
+        run: python scripts/build_open_data_top10_review_tasks.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -246,6 +258,7 @@ jobs:
               "open_data_url_inventory.json",
               "open_data_url_review_queue.json",
               "open_data_readiness_report.json",
+              "open_data_top10_review_tasks.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -282,6 +295,8 @@ jobs:
           pytest -q tests/test_build_open_data_url_review_queue.py
           pytest -q tests/test_open_data_readiness_score_schema.py
           pytest -q tests/test_build_open_data_readiness_report.py
+          pytest -q tests/test_open_data_top10_review_tasks_schema.py
+          pytest -q tests/test_build_open_data_top10_review_tasks.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
@@ -293,6 +308,7 @@ jobs:
           pytest -q tests/test_open_data_inventory_page.py
           pytest -q tests/test_open_data_review_page.py
           pytest -q tests/test_open_data_readiness_page.py
+          pytest -q tests/test_open_data_top10_tasks_page.py
           pytest -q tests/test_sources_page.py
           pytest -q tests/test_weekly_summary_page.py
           pytest -q tests/test_policy_drafts_page.py
