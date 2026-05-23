@@ -1,0 +1,4 @@
+deploy_check=2026-05-24T04:20:50+08:00
+status=launch_ready
+entry=index.html
+pages_workflow=.github/workflows/pages.yml
