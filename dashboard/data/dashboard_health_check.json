@@ -1,7 +1,13 @@
 {
-  "check_id": "dashboard-health-20260524015134",
-  "generated_at": "2026-05-24T01:51:34+08:00",
+  "check_id": "dashboard-health-20260524022139",
+  "generated_at": "2026-05-24T02:21:39+08:00",
   "checked_files": [
+    {
+      "file": "dashboard/data/home_visible_mvp_summary.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
     {
       "file": "dashboard/data/open_data_url_inventory.json",
       "exists": true,
@@ -195,6 +201,12 @@
       "valid_json": true
     },
     {
+      "file": "dashboard/index.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
       "file": "dashboard/open-data-inventory.html",
       "exists": true,
       "empty": false,
@@ -381,6 +393,12 @@
       "valid_json": null
     },
     {
+      "file": "dashboard/home-visible-mvp.js",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
       "file": "dashboard/site-pages.js",
       "exists": true,
       "empty": false,
@@ -481,6 +499,11 @@
   "empty_files": [],
   "invalid_json_files": [],
   "page_checks": [
+    {
+      "page": "dashboard/index.html",
+      "exists": true,
+      "empty": false
+    },
     {
       "page": "dashboard/open-data-inventory.html",
       "exists": true,
@@ -860,6 +883,13 @@
       "path": "dashboard/data/open_data_day1_manual_review_operation_board.json",
       "expected_public_use_status": "internal_day1_manual_review_operation_board",
       "actual_public_use_status": "internal_day1_manual_review_operation_board",
+      "ok": true
+    },
+    {
+      "name": "home_visible_mvp_summary",
+      "path": "dashboard/data/home_visible_mvp_summary.json",
+      "expected_public_use_status": "internal_visible_mvp_home_summary",
+      "actual_public_use_status": "internal_visible_mvp_home_summary",
       "ok": true
     }
   ],

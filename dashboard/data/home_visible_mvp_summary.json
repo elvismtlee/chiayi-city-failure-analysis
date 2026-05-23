@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-05-24T02:19:37+08:00",
+  "public_use_status": "internal_visible_mvp_home_summary",
+  "status": "internal_review",
+  "no_live_crawler": true,
+  "manual_review_required": true,
+  "no_auto_publish": true,
+  "no_personal_data": true,
+  "crawler_execution_allowed": false,
+  "engineering_review_allowed_count": 0,
+  "completed_modules": [
+    "官方資料盤點",
+    "Top 10 人工審核任務",
+    "Crawler spec 草稿",
+    "人工審核工作簿",
+    "工程審查清單",
+    "Evidence Pack",
+    "人工審核結果輸入表",
+    "人工審核 SOP",
+    "人工審核工作包",
+    "回填 Patch 草稿",
+    "Day 1 填寫範例",
+    "Day 1 審核表單草稿"
+  ],
+  "visible_kpis": {
+    "official_url_inventory_count": 29,
+    "top10_review_tasks_count": 10,
+    "day1_task_count": 3,
+    "day1_estimated_minutes": 90,
+    "patch_draft_count": 10,
+    "sample_result_count": 3,
+    "manual_review_form_count": 3,
+    "health_status": "ok"
+  },
+  "next_actions": [
+    "完成 Day 1 人工審核",
+    "填寫 Day 1 表單",
+    "產生回填 PR",
+    "更新人工審核結果",
+    "才能進入 engineering review"
+  ],
+  "safety_notes": [
+    "no live crawler",
+    "no personal data",
+    "no private complaint full text",
+    "no auto publish",
+    "manual review required",
+    "crawler_execution_allowed = false",
+    "engineering_review_allowed = false"
+  ]
+}

@@ -12,6 +12,7 @@ OUTPUT_FILE = DATA_DIR / "dashboard_health_check.json"
 TAIPEI_TZ = timezone(timedelta(hours=8))
 
 IMPORTANT_JSON = [
+    "dashboard/data/home_visible_mvp_summary.json",
     "dashboard/data/open_data_url_inventory.json",
     "dashboard/data/open_data_url_review_queue.json",
     "dashboard/data/open_data_readiness_report.json",
@@ -47,6 +48,7 @@ IMPORTANT_JSON = [
 ]
 
 IMPORTANT_PAGES = [
+    "dashboard/index.html",
     "dashboard/open-data-inventory.html",
     "dashboard/open-data-review.html",
     "dashboard/open-data-readiness.html",
@@ -81,6 +83,7 @@ IMPORTANT_PAGES = [
 
 IMPORTANT_JS = [
     "dashboard/shared-nav.js",
+    "dashboard/home-visible-mvp.js",
     "dashboard/site-pages.js",
     "dashboard/command-center.js",
     "dashboard/health-check.js",
@@ -425,6 +428,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_day1_manual_review_operation_board",
                 "actual_public_use_status": open_data_day1_operation_board.get("public_use_status"),
                 "ok": open_data_day1_operation_board.get("public_use_status") == "internal_day1_manual_review_operation_board",
+            }
+        )
+    home_visible_mvp_summary_path = root / "dashboard" / "data" / "home_visible_mvp_summary.json"
+    if home_visible_mvp_summary_path.exists() and home_visible_mvp_summary_path.stat().st_size > 0:
+        try:
+            home_visible_mvp_summary = json.loads(home_visible_mvp_summary_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            home_visible_mvp_summary = {}
+        data_status_checks.append(
+            {
+                "name": "home_visible_mvp_summary",
+                "path": "dashboard/data/home_visible_mvp_summary.json",
+                "expected_public_use_status": "internal_visible_mvp_home_summary",
+                "actual_public_use_status": home_visible_mvp_summary.get("public_use_status"),
+                "ok": home_visible_mvp_summary.get("public_use_status") == "internal_visible_mvp_home_summary",
             }
         )
 

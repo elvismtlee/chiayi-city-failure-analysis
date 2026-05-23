@@ -30,6 +30,7 @@ REQUIRED_JSON_FILES = [
     "open_data_day1_sample_manual_review_results.json",
     "open_data_day1_manual_review_form_draft.json",
     "open_data_day1_manual_review_operation_board.json",
+    "home_visible_mvp_summary.json",
     "site_map.json",
 ]
 
@@ -328,6 +329,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     day1_sample_results = load_json("open_data_day1_sample_manual_review_results.json")
     day1_review_form = load_json("open_data_day1_manual_review_form_draft.json")
     day1_operation_board = load_json("open_data_day1_manual_review_operation_board.json")
+    home_visible_mvp_summary = load_json("home_visible_mvp_summary.json")
     assert inventory["public_use_status"] == "internal_url_inventory"
     assert review_queue["public_use_status"] == "internal_url_review_queue"
     assert readiness["public_use_status"] == "internal_readiness_report"
@@ -344,6 +346,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     assert day1_sample_results["public_use_status"] == "internal_day1_sample_manual_review_results"
     assert day1_review_form["public_use_status"] == "internal_day1_manual_review_form_draft"
     assert day1_operation_board["public_use_status"] == "internal_day1_manual_review_operation_board"
+    assert home_visible_mvp_summary["public_use_status"] == "internal_visible_mvp_home_summary"
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:
