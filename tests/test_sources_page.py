@@ -73,3 +73,9 @@ def test_sources_links_to_open_data_manual_review_packets() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-manual-review-packets.html' in content
     assert '前往人工審核工作包' in content
+
+
+def test_sources_links_to_open_data_manual_review_patches() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-manual-review-patches.html' in content
+    assert '前往回填 Patch 草稿' in content

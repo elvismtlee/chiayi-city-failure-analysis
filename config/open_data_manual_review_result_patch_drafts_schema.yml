@@ -1,0 +1,51 @@
+public_use_status: internal_manual_review_result_patch_drafts_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+required_fields:
+  - patch_id
+  - result_id
+  - evidence_pack_id
+  - session_task_id
+  - checklist_id
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - review_day
+  - review_batch
+  - patch_status
+  - source_result_patch
+  - evidence_patch
+  - human_review_workbook_patch
+  - engineering_checklist_patch
+  - fields_requiring_manual_input
+  - blocked_fields
+  - reviewer_notes_required
+  - safety_notes
+  - crawler_execution_allowed
+  - engineering_review_allowed
+  - next_action
+patch_status_values:
+  - draft_not_started
+  - waiting_for_manual_review
+  - manual_result_entered
+  - needs_follow_up
+  - blocked
+  - ready_for_manual_patch_review
+next_action_values:
+  - wait_for_manual_review
+  - enter_manual_result
+  - verify_evidence_summary
+  - prepare_human_review_patch_later
+  - prepare_engineering_checklist_patch_later
+  - mark_needs_follow_up
+  - block_item

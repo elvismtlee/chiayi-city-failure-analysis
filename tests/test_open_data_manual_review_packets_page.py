@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_manual_review_packets() -> None:
     assert "./data/open_data_manual_review_execution_packets.json" in content
     assert "setupOpenDataManualReviewPackets" in content
     assert "open-data-manual-review-packets" in content
+
+
+def test_open_data_manual_review_packets_links_to_patch_drafts() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-manual-review-patches.html" in content
+    assert "建立回填 Patch 草稿" in content
