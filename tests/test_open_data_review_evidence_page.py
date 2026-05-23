@@ -29,3 +29,9 @@ def test_site_pages_renders_open_data_review_evidence_pack() -> None:
     assert "openDataReviewEvidenceSearch" in content
     assert "openDataReviewEvidenceDay" in content
     assert "openDataReviewEvidenceBatch" in content
+
+
+def test_open_data_review_evidence_page_links_to_manual_review_result_template() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-manual-review-results.html" in content
+    assert "建立審核結果輸入表" in content

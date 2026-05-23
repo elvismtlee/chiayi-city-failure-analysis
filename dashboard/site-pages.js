@@ -1541,6 +1541,183 @@ function setupOpenDataReviewEvidence(payload) {
   render();
 }
 
+function manualReviewResultStatusClass(status) {
+  if (status === 'blocked') return 'pill risk';
+  if (status === 'needs_follow_up' || status === 'in_progress') return 'pill warn';
+  return 'pill';
+}
+
+function setOpenDataManualReviewResultKpi(payload) {
+  const items = Array.isArray(payload?.results) ? payload.results : [];
+  setText('[data-open-manual-review-result="total"]', String(payload?.total_count ?? 0));
+  setText(
+    '[data-open-manual-review-result="not-started"]',
+    String(payload?.result_status_counts?.not_started ?? 0),
+  );
+  setText(
+    '[data-open-manual-review-result="not-decided"]',
+    String(payload?.reviewer_decision_counts?.not_decided ?? 0),
+  );
+  setText(
+    '[data-open-manual-review-result="follow-up"]',
+    String(items.filter(item => item.follow_up_required === true).length),
+  );
+  setText(
+    '[data-open-manual-review-result="engineering"]',
+    String(payload?.engineering_review_allowed_count ?? 0),
+  );
+  const crawlerDisabled = items.filter(item => item.crawler_execution_allowed === false).length;
+  setText('[data-open-manual-review-result="crawler-disabled"]', String(crawlerDisabled));
+  setText('[data-render="open-data-manual-review-result-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataManualReviewResultNote(payload) {
+  const node = document.querySelector('[data-render="open-data-manual-review-result-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是人工審核結果輸入表，不是 crawler。',
+    'manual review required / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function filterOpenDataManualReviewResults(items) {
+  const keyword = normalizedValue(document.querySelector('#openDataManualReviewResultSearch')?.value);
+  const reviewDay = document.querySelector('#openDataManualReviewResultDay')?.value || 'all';
+  const reviewBatch = document.querySelector('#openDataManualReviewResultBatch')?.value || 'all';
+  const resultStatus = document.querySelector('#openDataManualReviewResultStatus')?.value || 'all';
+  const decision = document.querySelector('#openDataManualReviewResultDecision')?.value || 'all';
+  const topicGroup = document.querySelector('#openDataManualReviewResultTopicGroup')?.value || 'all';
+
+  return items.filter(item => {
+    if (reviewDay !== 'all' && item.review_day !== reviewDay) return false;
+    if (reviewBatch !== 'all' && item.review_batch !== reviewBatch) return false;
+    if (resultStatus !== 'all' && item.result_status !== resultStatus) return false;
+    if (decision !== 'all' && item.reviewer_decision !== decision) return false;
+    if (topicGroup !== 'all' && item.topic_group !== topicGroup) return false;
+    if (!keyword) return true;
+
+    const haystack = [
+      item.title,
+      item.source_owner,
+      item.recommended_next_action,
+      item.reviewer_notes,
+    ].map(normalizedValue).join(' ');
+    return haystack.includes(keyword);
+  });
+}
+
+function renderOpenDataManualReviewResultTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-manual-review-result-table"]');
+  const summary = document.querySelector('[data-render="open-data-manual-review-result-summary"]');
+  if (!tbody) return;
+
+  if (summary) {
+    summary.textContent = `共 ${totalCount} 筆 result template，篩選後 ${items.length} 筆。`;
+  }
+
+  tbody.textContent = '';
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 15;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的人工審核結果模板。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const statusCell = document.createElement('td');
+    const statusPill = document.createElement('span');
+    statusPill.className = manualReviewResultStatusClass(item.result_status);
+    statusPill.textContent = valueOrPending(item.result_status);
+    statusCell.appendChild(statusPill);
+
+    const decisionCell = createCell(item.reviewer_decision);
+    const dayCell = createCell(item.review_day);
+    const batchCell = createCell(item.review_batch);
+    const topicCell = createCell(item.topic_group);
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const sourceOpenedCell = createCell(item.source_opened_result);
+    const officialSourceCell = createCell(item.official_source_result);
+    const licenseCell = createCell(item.license_terms_result);
+    const formatCell = createCell(item.format_result);
+    const personalCell = createCell(item.personal_data_result);
+    const complaintCell = createCell(item.private_complaint_result);
+    const actionCell = createCell(item.recommended_next_action, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      statusCell,
+      decisionCell,
+      dayCell,
+      batchCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      sourceOpenedCell,
+      officialSourceCell,
+      licenseCell,
+      formatCell,
+      personalCell,
+      complaintCell,
+      actionCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataManualReviewResults(payload) {
+  const items = Array.isArray(payload?.results) ? payload.results : [];
+  setOpenDataManualReviewResultKpi(payload);
+  renderOpenDataManualReviewResultNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataManualReviewResults(items).sort((a, b) => {
+      if (a.review_day !== b.review_day) {
+        return String(a.review_day || '').localeCompare(String(b.review_day || ''));
+      }
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataManualReviewResultTable(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataManualReviewResultSearch');
+  const daySelect = document.querySelector('#openDataManualReviewResultDay');
+  const batchSelect = document.querySelector('#openDataManualReviewResultBatch');
+  const statusSelect = document.querySelector('#openDataManualReviewResultStatus');
+  const decisionSelect = document.querySelector('#openDataManualReviewResultDecision');
+  const groupSelect = document.querySelector('#openDataManualReviewResultTopicGroup');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (daySelect) daySelect.addEventListener('change', render);
+  if (batchSelect) batchSelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (decisionSelect) decisionSelect.addEventListener('change', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -1717,6 +1894,26 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataReviewEvidence(payload);
+  }
+  if (page === 'open-data-manual-review-results') {
+    const payload = await loadJson('./data/open_data_manual_review_result_template.json', {
+      generated_at: '',
+      public_use_status: 'internal_manual_review_result_template',
+      total_count: 0,
+      review_days: {},
+      review_batches: {},
+      topic_groups: {},
+      result_status_counts: {},
+      reviewer_decision_counts: {},
+      engineering_review_allowed_count: 0,
+      results: [],
+      crawler_execution_allowed: false,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataManualReviewResults(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

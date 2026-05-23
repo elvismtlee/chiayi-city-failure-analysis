@@ -1,0 +1,70 @@
+public_use_status: internal_manual_review_result_template_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+required_fields:
+  - result_id
+  - evidence_pack_id
+  - session_task_id
+  - checklist_id
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - review_day
+  - review_batch
+  - result_status
+  - reviewer_name
+  - reviewed_at
+  - source_opened_result
+  - official_source_result
+  - license_terms_result
+  - format_result
+  - update_cadence_result
+  - personal_data_result
+  - private_complaint_result
+  - evidence_summary
+  - reviewer_decision
+  - reviewer_notes
+  - follow_up_required
+  - follow_up_reason
+  - recommended_next_action
+  - crawler_execution_allowed
+  - engineering_review_allowed
+  - safety_notes
+  - evidence_summary_template
+  - result_checklist
+result_status_values:
+  - not_started
+  - in_progress
+  - completed_manual_review_only
+  - needs_follow_up
+  - blocked
+reviewer_decision_values:
+  - not_decided
+  - source_verified_but_not_engineering_ready
+  - needs_follow_up
+  - not_suitable
+  - ready_for_engineering_review_later
+recommended_next_action_values:
+  - collect_missing_evidence
+  - update_human_review_workbook_later
+  - update_engineering_checklist_later
+  - mark_needs_follow_up
+  - block_item
+  - prepare_engineering_review_later
+safety_rules:
+  - crawler_execution_allowed must stay false
+  - engineering_review_allowed defaults to false
+  - ready_for_engineering_review_later does not auto-enable engineering review
+  - approved_for_crawling is forbidden
+  - live_crawler is forbidden
+  - reviewer_name stays blank until a human fills it manually

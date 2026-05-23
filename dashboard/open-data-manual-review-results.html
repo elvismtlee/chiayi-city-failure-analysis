@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>官方資料人工審核結果輸入表｜嘉義城市故障分析中心</title>
+  <style>
+    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc;--amber:#fef3c7;--rose:#ffe4e6}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1240px;margin:auto}.nav{display:block;margin-bottom:34px}.breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:980px;color:rgba(255,255,255,.92)}.wrap{padding:30px 24px 64px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:26px}.section-title span{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08)}.stat .label{color:var(--muted);font-size:14px}.stat .value{margin-top:8px;font-size:30px;font-weight:950;color:var(--dark)}.notice{line-height:1.8;color:#475569}.notice strong{color:#064e3b}.action-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#0f766e;color:#fff;text-decoration:none;font-weight:900;padding:12px 16px}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.controls{display:grid;grid-template-columns:1.2fr repeat(5,minmax(0,190px));gap:12px;margin:0 0 16px}.controls input,.controls select{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;font-size:16px;background:#fff}.table-shell{overflow:auto;border-radius:20px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1880px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);background:var(--sand);font-size:14px}.pill{display:inline-block;padding:6px 11px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:800;font-size:13px}.pill.warn{background:var(--amber);color:#92400e}.pill.risk{background:var(--rose);color:#9f1239}.summary{color:var(--muted);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{color:var(--muted);padding:24px 4px}.compact{white-space:pre-wrap;word-break:break-word}@media(max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}}@media(max-width:720px){.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.wrap{padding:24px 16px 56px}}
+  </style>
+</head>
+<body data-page="open-data-manual-review-results">
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="breadcrumb" data-render="breadcrumb"></div>
+      <h1>官方資料人工審核結果輸入表</h1>
+      <p>這是人工審核結果輸入表，不是 crawler。這一頁只用來建立人工審核結果填寫模板，不啟動 live crawler（no live crawler），不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文，不自動發布（no auto publish）。crawler_execution_allowed 永遠 false，engineering_review_allowed 預設 false，本頁只用來建立人工審核結果填寫模板。</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-title"><h2>Result Template 概覽</h2><span data-render="open-data-manual-review-result-updated">讀取中</span></div>
+    <section class="grid">
+      <article class="card stat"><div class="label">result template 總數</div><div class="value" data-open-manual-review-result="total">–</div></article>
+      <article class="card stat"><div class="label">not_started 數</div><div class="value" data-open-manual-review-result="not-started">–</div></article>
+      <article class="card stat"><div class="label">not_decided 數</div><div class="value" data-open-manual-review-result="not-decided">–</div></article>
+      <article class="card stat"><div class="label">follow_up_required 數</div><div class="value" data-open-manual-review-result="follow-up">–</div></article>
+      <article class="card stat"><div class="label">engineering_review_allowed_count</div><div class="value" data-open-manual-review-result="engineering">–</div></article>
+      <article class="card stat"><div class="label">crawler_execution_allowed = false 數</div><div class="value" data-open-manual-review-result="crawler-disabled">–</div></article>
+    </section>
+
+    <div class="section-title"><h2>安全提醒</h2><span>internal manual review result template / manual review required</span></div>
+    <section class="card notice" data-render="open-data-manual-review-result-note">正在讀取人工審核結果輸入表。</section>
+    <div class="action-row">
+      <a class="btn" href="./sources.html">回資料來源與更新狀態</a>
+      <a class="btn ghost" href="./open-data-inventory.html">回官方開放資料 URL 盤點</a>
+      <a class="btn ghost" href="./open-data-review.html">回官方資料 URL 人工審核</a>
+      <a class="btn ghost" href="./open-data-readiness.html">回 Readiness 評分</a>
+      <a class="btn ghost" href="./open-data-top10-tasks.html">回 Top 10 審核任務</a>
+      <a class="btn ghost" href="./open-data-crawler-specs.html">回 Crawler 規格草稿</a>
+      <a class="btn ghost" href="./open-data-human-review.html">回人工審核工作簿</a>
+      <a class="btn ghost" href="./open-data-engineering-review.html">回工程審查清單</a>
+      <a class="btn ghost" href="./open-data-review-sessions.html">回人工審核執行工作台</a>
+      <a class="btn ghost" href="./open-data-review-evidence.html">回審核證據包</a>
+      <a class="btn secondary" href="./index.html">回儀表板首頁</a>
+    </div>
+
+    <div class="section-title"><h2>逐筆人工審核結果模板</h2><span class="summary" data-render="open-data-manual-review-result-summary">正在讀取人工審核結果輸入表。</span></div>
+    <section class="card">
+      <div class="controls">
+        <input id="openDataManualReviewResultSearch" placeholder="搜尋 title / source_owner / recommended_next_action / reviewer_notes" />
+        <select id="openDataManualReviewResultDay">
+          <option value="all">全部 review_day</option>
+          <option value="day_1">day_1</option>
+          <option value="day_2">day_2</option>
+          <option value="day_3">day_3</option>
+        </select>
+        <select id="openDataManualReviewResultBatch">
+          <option value="all">全部 review_batch</option>
+          <option value="batch_1_high_priority">batch_1_high_priority</option>
+          <option value="batch_2_standard">batch_2_standard</option>
+          <option value="batch_3_follow_up">batch_3_follow_up</option>
+        </select>
+        <select id="openDataManualReviewResultStatus">
+          <option value="all">全部 result_status</option>
+          <option value="not_started">not_started</option>
+          <option value="in_progress">in_progress</option>
+          <option value="completed_manual_review_only">completed_manual_review_only</option>
+          <option value="needs_follow_up">needs_follow_up</option>
+          <option value="blocked">blocked</option>
+        </select>
+        <select id="openDataManualReviewResultDecision">
+          <option value="all">全部 reviewer_decision</option>
+          <option value="not_decided">not_decided</option>
+          <option value="source_verified_but_not_engineering_ready">source_verified_but_not_engineering_ready</option>
+          <option value="needs_follow_up">needs_follow_up</option>
+          <option value="not_suitable">not_suitable</option>
+          <option value="ready_for_engineering_review_later">ready_for_engineering_review_later</option>
+        </select>
+        <select id="openDataManualReviewResultTopicGroup">
+          <option value="all">全部 topic_group</option>
+          <option value="traffic_parking">traffic_parking</option>
+          <option value="social_welfare">social_welfare</option>
+          <option value="culture_events">culture_events</option>
+          <option value="public_works_environment">public_works_environment</option>
+          <option value="complaints_service">complaints_service</option>
+        </select>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>result_status</th>
+              <th>reviewer_decision</th>
+              <th>review_day</th>
+              <th>review_batch</th>
+              <th>topic_group</th>
+              <th>title</th>
+              <th>source_owner</th>
+              <th>source_opened_result</th>
+              <th>official_source_result</th>
+              <th>license_terms_result</th>
+              <th>format_result</th>
+              <th>personal_data_result</th>
+              <th>private_complaint_result</th>
+              <th>recommended_next_action</th>
+              <th>source_url</th>
+            </tr>
+          </thead>
+          <tbody data-render="open-data-manual-review-result-table">
+            <tr><td colspan="15" class="empty">正在載入人工審核結果輸入表。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./site-pages.js"></script>
+</body>
+</html>
