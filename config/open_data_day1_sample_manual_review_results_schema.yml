@@ -1,0 +1,46 @@
+public_use_status: internal_day1_sample_manual_review_results_schema
+manual_review_required: true
+sample_only: true
+not_actual_review_result: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+
+required_fields:
+  - sample_id
+  - patch_id
+  - result_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - review_day
+  - sample_status
+  - sample_source_opened_result
+  - sample_official_source_result
+  - sample_license_terms_result
+  - sample_format_result
+  - sample_update_cadence_result
+  - sample_personal_data_result
+  - sample_private_complaint_result
+  - sample_evidence_summary
+  - sample_reviewer_decision
+  - sample_reviewer_notes
+  - sample_follow_up_required
+  - sample_follow_up_reason
+  - sample_recommended_next_action
+  - fields_not_changed
+  - blocked_fields
+  - safety_notes
+  - crawler_execution_allowed
+  - engineering_review_allowed
+
+sample_status_values:
+  - sample_not_actual_review
+  - sample_for_training_only
+
+sample_reviewer_decision_default: not_decided
+sample_recommended_next_action_default: collect_missing_evidence

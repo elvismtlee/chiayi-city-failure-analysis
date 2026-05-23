@@ -33,6 +33,7 @@ on:
       - "scripts/build_open_data_manual_review_sop.py"
       - "scripts/build_open_data_manual_review_execution_packets.py"
       - "scripts/build_open_data_manual_review_result_patch_drafts.py"
+      - "scripts/build_open_data_day1_sample_manual_review_results.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -49,9 +50,11 @@ on:
       - "config/open_data_manual_review_sop_schema.yml"
       - "config/open_data_manual_review_execution_packets_schema.yml"
       - "config/open_data_manual_review_result_patch_drafts_schema.yml"
+      - "config/open_data_day1_sample_manual_review_results_schema.yml"
       - "dashboard/**"
       - "docs/open_data_manual_review_packets/**"
       - "docs/open_data_manual_review_patch_drafts/**"
+      - "docs/open_data_day1_sample_results/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -95,6 +98,8 @@ on:
       - "tests/test_build_open_data_manual_review_execution_packets.py"
       - "tests/test_open_data_manual_review_result_patch_drafts_schema.py"
       - "tests/test_build_open_data_manual_review_result_patch_drafts.py"
+      - "tests/test_open_data_day1_sample_manual_review_results_schema.py"
+      - "tests/test_build_open_data_day1_sample_manual_review_results.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -118,6 +123,8 @@ on:
       - "tests/test_manual_review_packet_docs.py"
       - "tests/test_open_data_manual_review_patches_page.py"
       - "tests/test_manual_review_patch_docs.py"
+      - "tests/test_open_data_day1_sample_results_page.py"
+      - "tests/test_day1_sample_manual_review_docs.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -165,6 +172,7 @@ on:
       - "scripts/build_open_data_manual_review_sop.py"
       - "scripts/build_open_data_manual_review_execution_packets.py"
       - "scripts/build_open_data_manual_review_result_patch_drafts.py"
+      - "scripts/build_open_data_day1_sample_manual_review_results.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -181,9 +189,11 @@ on:
       - "config/open_data_manual_review_sop_schema.yml"
       - "config/open_data_manual_review_execution_packets_schema.yml"
       - "config/open_data_manual_review_result_patch_drafts_schema.yml"
+      - "config/open_data_day1_sample_manual_review_results_schema.yml"
       - "dashboard/**"
       - "docs/open_data_manual_review_packets/**"
       - "docs/open_data_manual_review_patch_drafts/**"
+      - "docs/open_data_day1_sample_results/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -227,6 +237,8 @@ on:
       - "tests/test_build_open_data_manual_review_execution_packets.py"
       - "tests/test_open_data_manual_review_result_patch_drafts_schema.py"
       - "tests/test_build_open_data_manual_review_result_patch_drafts.py"
+      - "tests/test_open_data_day1_sample_manual_review_results_schema.py"
+      - "tests/test_build_open_data_day1_sample_manual_review_results.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -250,6 +262,8 @@ on:
       - "tests/test_manual_review_packet_docs.py"
       - "tests/test_open_data_manual_review_patches_page.py"
       - "tests/test_manual_review_patch_docs.py"
+      - "tests/test_open_data_day1_sample_results_page.py"
+      - "tests/test_day1_sample_manual_review_docs.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -339,6 +353,8 @@ jobs:
         run: python scripts/build_open_data_manual_review_execution_packets.py
       - name: Build open data manual review result patch drafts
         run: python scripts/build_open_data_manual_review_result_patch_drafts.py
+      - name: Build open data day1 sample manual review results
+        run: python scripts/build_open_data_day1_sample_manual_review_results.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -384,6 +400,7 @@ jobs:
               "open_data_manual_review_sop.json",
               "open_data_manual_review_execution_packets.json",
               "open_data_manual_review_result_patch_drafts.json",
+              "open_data_day1_sample_manual_review_results.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -440,6 +457,8 @@ jobs:
           pytest -q tests/test_build_open_data_manual_review_execution_packets.py
           pytest -q tests/test_open_data_manual_review_result_patch_drafts_schema.py
           pytest -q tests/test_build_open_data_manual_review_result_patch_drafts.py
+          pytest -q tests/test_open_data_day1_sample_manual_review_results_schema.py
+          pytest -q tests/test_build_open_data_day1_sample_manual_review_results.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
@@ -463,6 +482,8 @@ jobs:
           pytest -q tests/test_manual_review_packet_docs.py
           pytest -q tests/test_open_data_manual_review_patches_page.py
           pytest -q tests/test_manual_review_patch_docs.py
+          pytest -q tests/test_open_data_day1_sample_results_page.py
+          pytest -q tests/test_day1_sample_manual_review_docs.py
           pytest -q tests/test_sources_page.py
           pytest -q tests/test_weekly_summary_page.py
           pytest -q tests/test_policy_drafts_page.py
