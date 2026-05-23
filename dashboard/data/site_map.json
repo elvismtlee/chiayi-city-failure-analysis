@@ -17,6 +17,7 @@
   {"title": "人工審核工作包", "path": "./open-data-manual-review-packets.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料人工審核工作包，將 SOP 與結果模板整理成 day_1、day_2、day_3 三個可執行工作包。"},
   {"title": "回填 Patch 草稿", "path": "./open-data-manual-review-patches.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "人工審核完成後的結果回填 Patch 草稿，用來描述 result template、human review workbook 與 engineering checklist 的未來人工更新方向。"},
   {"title": "Day1填寫範例", "path": "./open-data-day1-sample-results.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "Day 1 人工審核填寫範例，僅示範欄位如何填寫，不代表真實人工審核完成。"},
+  {"title": "Day1審核表單", "path": "./open-data-day1-review-form.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "Day 1 人工審核表單草稿，僅示範人工審核時要填哪些欄位，不代表真實人工審核完成。"},
   {"title": "影音轉錄審核", "path": "./video-review.html", "level": 2, "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"},
   {"title": "會議紀錄審核", "path": "./minutes-review.html", "level": 2, "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"},
   {"title": "會議紀錄議題", "path": "./minutes-issues.html", "level": 2, "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"},

@@ -2193,6 +2193,99 @@ function setupOpenDataDay1SampleResults(payload) {
   renderOpenDataDay1SampleResultsTable(items, payload);
 }
 
+function setOpenDataDay1ReviewFormKpi(payload) {
+  const items = Array.isArray(payload?.forms) ? payload.forms : [];
+  const formStatusCounts = payload?.form_status_counts || {};
+  setText('[data-open-day1-review-form="total"]', String(payload?.total_count ?? 0));
+  setText('[data-open-day1-review-form="form-draft-only"]', payload?.form_draft_only === true ? 'true' : valueOrPending(payload?.form_draft_only));
+  setText('[data-open-day1-review-form="not-actual"]', payload?.not_actual_review_result === true ? 'true' : valueOrPending(payload?.not_actual_review_result));
+  setText('[data-open-day1-review-form="status"]', String(formStatusCounts.draft_not_started ?? 0));
+  setText(
+    '[data-open-day1-review-form="crawler-disabled"]',
+    String(items.filter(item => item.crawler_execution_allowed === false).length),
+  );
+  setText('[data-open-day1-review-form="engineering-count"]', String(payload?.engineering_review_allowed_count ?? 0));
+  setText('[data-render="open-data-day1-review-form-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataDay1ReviewFormNote(payload) {
+  const node = document.querySelector('[data-render="open-data-day1-review-form-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是 form draft，不是實際審核結果，也不是 crawler。',
+    'form draft only / not actual review result / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function renderOpenDataDay1ReviewFormTable(items, payload) {
+  const tbody = document.querySelector('[data-render="open-data-day1-review-form-table"]');
+  const summary = document.querySelector('[data-render="open-data-day1-review-form-summary"]');
+  if (!tbody) return;
+  if (summary) {
+    summary.textContent = `顯示 ${items.length} 筆 ${valueOrPending(payload?.review_day)} 的 form rows。`;
+  }
+  tbody.textContent = '';
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 10;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有可顯示的 Day 1 form rows。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    const statusCell = createCell(item.form_status);
+    const titleCell = createCell(item.title);
+    const topicCell = createCell(item.topic_group);
+    const ownerCell = createCell(item.source_owner);
+    const decisionCell = createCell(item.reviewer_decision_section?.reviewer_decision);
+    const followUpCell = createCell(item.follow_up_section?.follow_up_required === true ? 'true' : 'false');
+    const actionCell = createCell(item.follow_up_section?.recommended_next_action, 'compact');
+    const crawlerCell = createCell(item.crawler_execution_allowed === false ? 'false' : valueOrPending(item.crawler_execution_allowed));
+    const engineeringCell = createCell(item.engineering_review_allowed === false ? 'false' : valueOrPending(item.engineering_review_allowed));
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+    row.append(
+      statusCell,
+      titleCell,
+      topicCell,
+      ownerCell,
+      decisionCell,
+      followUpCell,
+      actionCell,
+      crawlerCell,
+      engineeringCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataDay1ReviewForm(payload) {
+  const items = Array.isArray(payload?.forms) ? payload.forms : [];
+  setOpenDataDay1ReviewFormKpi(payload);
+  renderOpenDataDay1ReviewFormNote(payload);
+  renderOpenDataDay1ReviewFormTable(items, payload);
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -2468,6 +2561,26 @@ async function bootSitePages() {
       samples: [],
     });
     setupOpenDataDay1SampleResults(payload);
+  }
+  if (page === 'open-data-day1-review-form') {
+    const payload = await loadJson('./data/open_data_day1_manual_review_form_draft.json', {
+      generated_at: '',
+      public_use_status: 'internal_day1_manual_review_form_draft',
+      form_draft_only: true,
+      not_actual_review_result: true,
+      total_count: 0,
+      review_day: 'day_1',
+      topic_groups: {},
+      form_status_counts: {},
+      crawler_execution_allowed: false,
+      engineering_review_allowed_count: 0,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+      forms: [],
+    });
+    setupOpenDataDay1ReviewForm(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
