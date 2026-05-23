@@ -30,3 +30,9 @@ def test_site_pages_renders_open_data_manual_review_result_template() -> None:
     assert "openDataManualReviewResultSearch" in content
     assert "openDataManualReviewResultDay" in content
     assert "openDataManualReviewResultBatch" in content
+
+
+def test_open_data_manual_review_results_links_to_manual_review_sop() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-manual-review-sop.html" in content
+    assert "查看人工審核 SOP" in content

@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260523214021",
-  "generated_at": "2026-05-23T21:40:21+08:00",
+  "check_id": "dashboard-health-20260523224051",
+  "generated_at": "2026-05-23T22:40:51+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -58,6 +58,12 @@
     },
     {
       "file": "dashboard/data/open_data_manual_review_result_template.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_manual_review_sop.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -214,6 +220,12 @@
     },
     {
       "file": "dashboard/open-data-manual-review-results.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-manual-review-sop.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -412,6 +424,11 @@
       "empty": false
     },
     {
+      "page": "dashboard/open-data-manual-review-sop.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false
@@ -534,6 +551,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "人工審核 SOP",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -638,6 +660,13 @@
       "path": "dashboard/data/open_data_manual_review_result_template.json",
       "expected_public_use_status": "internal_manual_review_result_template",
       "actual_public_use_status": "internal_manual_review_result_template",
+      "ok": true
+    },
+    {
+      "name": "open_data_manual_review_sop",
+      "path": "dashboard/data/open_data_manual_review_sop.json",
+      "expected_public_use_status": "internal_manual_review_sop",
+      "actual_public_use_status": "internal_manual_review_sop",
       "ok": true
     }
   ],

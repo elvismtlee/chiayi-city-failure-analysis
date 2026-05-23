@@ -18,6 +18,7 @@ DASHBOARD_PAGES = [
     "open-data-review-sessions.html",
     "open-data-review-evidence.html",
     "open-data-manual-review-results.html",
+    "open-data-manual-review-sop.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -53,6 +54,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./open-data-review-sessions.html",
         "./open-data-review-evidence.html",
         "./open-data-manual-review-results.html",
+        "./open-data-manual-review-sop.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -137,6 +139,12 @@ def test_shared_nav_contains_open_data_manual_review_result_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "審核結果輸入" in content
     assert "./open-data-manual-review-results.html" in content
+
+
+def test_shared_nav_contains_open_data_manual_review_sop_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "人工審核 SOP" in content
+    assert "./open-data-manual-review-sop.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:

@@ -22,6 +22,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_review_session_planner.json",
     "dashboard/data/open_data_review_evidence_pack.json",
     "dashboard/data/open_data_manual_review_result_template.json",
+    "dashboard/data/open_data_manual_review_sop.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -51,6 +52,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-review-sessions.html",
     "dashboard/open-data-review-evidence.html",
     "dashboard/open-data-manual-review-results.html",
+    "dashboard/open-data-manual-review-sop.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -90,6 +92,7 @@ NAV_LABELS = [
     "人工審核執行",
     "審核證據包",
     "審核結果輸入",
+    "人工審核 SOP",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -306,6 +309,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_manual_review_result_template",
                 "actual_public_use_status": open_data_manual_review_result.get("public_use_status"),
                 "ok": open_data_manual_review_result.get("public_use_status") == "internal_manual_review_result_template",
+            }
+        )
+    open_data_manual_review_sop_path = root / "dashboard" / "data" / "open_data_manual_review_sop.json"
+    if open_data_manual_review_sop_path.exists() and open_data_manual_review_sop_path.stat().st_size > 0:
+        try:
+            open_data_manual_review_sop = json.loads(open_data_manual_review_sop_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_manual_review_sop = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_manual_review_sop",
+                "path": "dashboard/data/open_data_manual_review_sop.json",
+                "expected_public_use_status": "internal_manual_review_sop",
+                "actual_public_use_status": open_data_manual_review_sop.get("public_use_status"),
+                "ok": open_data_manual_review_sop.get("public_use_status") == "internal_manual_review_sop",
             }
         )
 
