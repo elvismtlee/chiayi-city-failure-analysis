@@ -5,7 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Day 1 人工審核操作看板｜嘉義城市故障分析中心</title>
   <style>
-    :root{--green:#0f766e;--green-dark:#064e3b;--green-soft:#dff8ef;--green-pale:#ecfdf5;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc;--shadow:0 22px 60px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f0fbf7,#f8fafc)}.hero{padding:38px 24px 54px;color:#fff;background:radial-gradient(circle at top left,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,#064e3b,#0f766e 58%,#14b8a6)}.inner,.wrap{max-width:1240px;margin:auto}.nav{display:block;margin-bottom:34px}.breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:rgba(255,255,255,.14);padding:8px 12px;font-size:14px;font-weight:800;margin-bottom:18px}h1{font-size:clamp(38px,5.4vw,64px);line-height:1.05;margin:0 0 14px}.hero-copy{max-width:980px;font-size:20px;line-height:1.75;color:rgba(255,255,255,.94)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.hero-btn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;font-weight:900;text-decoration:none}.hero-btn{background:#fff;color:#0f766e}.hero-btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}.wrap{padding:28px 24px 64px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:32px 0 16px}.section-head h2{margin:0;font-size:28px}.section-head span{color:var(--muted);font-size:14px}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,118,110,.12);border-radius:26px;padding:22px;box-shadow:var(--shadow)}.kpi-card .label{color:var(--muted);font-size:14px}.kpi-card .value{margin-top:10px;font-size:31px;font-weight:950;color:var(--green-dark)}.notice{line-height:1.85;color:#475569}.notice strong{color:var(--green-dark)}.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.timeline-step{position:relative;padding:18px 18px 18px 20px;border-radius:24px;background:linear-gradient(180deg,#fff,#f7fffb);border:1px solid rgba(15,118,110,.14);box-shadow:0 14px 32px rgba(15,23,42,.07)}.timeline-step::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:5px;border-radius:999px;background:#14b8a6}.timeline-step .step-no{font-size:12px;font-weight:900;letter-spacing:.08em;color:#0f766e;text-transform:uppercase}.timeline-step h3{margin:10px 0 0;font-size:18px;line-height:1.45}.task-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.task-card{display:flex;flex-direction:column;gap:18px;padding:24px;overflow:hidden}.task-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.task-number{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-weight:950}.task-title{margin:0;font-size:24px;line-height:1.3}.task-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.meta-box{padding:14px 16px;border-radius:18px;background:var(--sand);border:1px solid rgba(15,118,110,.08)}.meta-box .label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}.meta-box .value{font-size:16px;font-weight:800;line-height:1.5;word-break:break-word}.badge-row{display:flex;gap:10px;flex-wrap:wrap}.badge{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:900}.badge.status{background:#dff8ef;color:#065f46}.badge.flag{background:#eff6ff;color:#1d4ed8}.badge.warn{background:#fff7ed;color:#b45309}.task-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{background:#0f766e;color:#fff}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.list-card ul,.list-card ol{margin:0;padding-left:20px;color:#475569;line-height:1.8}.list-card li+li{margin-top:6px}.section-stack{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.task-section-block{padding:16px 18px;border-radius:20px;background:var(--green-pale);border:1px solid rgba(15,118,110,.10)}.task-section-block h4{margin:0 0 10px;font-size:17px}.task-section-block ul{margin:0;padding-left:18px;color:#36536b;line-height:1.75}.task-footer{display:grid;grid-template-columns:1fr 1fr;gap:14px}.footer-box{padding:16px 18px;border-radius:20px;background:#fff;border:1px solid rgba(15,118,110,.12)}.footer-box h4{margin:0 0 8px;font-size:16px}.footer-box p,.footer-box code{margin:0;color:#36536b;line-height:1.75;word-break:break-word}.table-shell{overflow:auto;border-radius:22px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--sand);color:var(--muted);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{padding:26px 8px;color:var(--muted)}.boundary-grid{grid-template-columns:1fr 1fr}.boundary-card ul{margin:0;padding-left:20px;color:#475569;line-height:1.8}.boundary-card li+li{margin-top:6px}@media(max-width:1180px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.task-grid{grid-template-columns:1fr}.section-stack,.boundary-grid{grid-template-columns:1fr}}@media(max-width:720px){.wrap{padding:24px 16px 56px}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.timeline{grid-template-columns:1fr}.task-meta,.task-footer{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}}
+    :root{--green:#0f766e;--green-dark:#064e3b;--green-soft:#dff8ef;--green-pale:#ecfdf5;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc;--amber:#b45309;--blue:#1d4ed8;--shadow:0 22px 60px rgba(15,23,42,.10)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#eefcf7 0%,#f8fafc 42%,#ffffff 100%)}
+    a{color:inherit}
+    .hero{position:relative;overflow:hidden;padding:36px 24px 58px;color:#fff;background:radial-gradient(circle at 10% 12%,rgba(255,255,255,.20),transparent 26%),radial-gradient(circle at 88% 12%,rgba(94,234,212,.22),transparent 24%),linear-gradient(135deg,#052e2b,#064e3b 48%,#0f766e 100%)}
+    .hero::after{content:"";position:absolute;right:-120px;bottom:-170px;width:520px;height:320px;border-radius:999px;background:rgba(255,255,255,.10);transform:rotate(-12deg)}
+    .inner,.wrap{max-width:1240px;margin:auto;position:relative;z-index:1}
+    .nav{display:block;margin-bottom:32px}
+    .breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:8px 13px;font-size:14px;font-weight:900;margin-bottom:18px;letter-spacing:.03em}
+    .eyebrow::before{content:"";width:10px;height:10px;border-radius:99px;background:#86efac;box-shadow:0 0 0 7px rgba(134,239,172,.14)}
+    h1{font-size:clamp(38px,5.4vw,66px);line-height:1.04;margin:0 0 14px;letter-spacing:-.04em}
+    .hero-copy{max-width:980px;font-size:clamp(17px,2vw,21px);line-height:1.78;color:rgba(255,255,255,.94)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.hero-btn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;font-weight:900;text-decoration:none}.hero-btn{background:#fff;color:#0f766e;box-shadow:0 14px 30px rgba(0,0,0,.12)}.hero-btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .hero-dock{display:grid;grid-template-columns:1.2fr repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}.dock-card{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.12);border-radius:22px;padding:16px;backdrop-filter:blur(8px)}.dock-card b{display:block;color:rgba(255,255,255,.72);font-size:13px;margin-bottom:8px;letter-spacing:.05em}.dock-card span{display:block;font-size:22px;font-weight:950;line-height:1.25}.dock-card code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#dcfce7;background:rgba(255,255,255,.12);border-radius:8px;padding:2px 6px}
+    .wrap{padding:30px 24px 66px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:32px 0 16px}.section-head h2{margin:0;font-size:clamp(24px,3vw,31px);letter-spacing:-.03em}.section-head span{color:var(--muted);font-size:14px;line-height:1.6}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,118,110,.12);border-radius:26px;padding:22px;box-shadow:var(--shadow)}.kpi-card{position:relative;overflow:hidden}.kpi-card::after{content:"";position:absolute;right:-30px;top:-34px;width:92px;height:92px;border-radius:999px;background:rgba(15,118,110,.08)}.kpi-card .label{color:var(--muted);font-size:14px;font-weight:800}.kpi-card .value{margin-top:10px;font-size:34px;font-weight:950;color:var(--green-dark);letter-spacing:-.04em}.notice{line-height:1.85;color:#475569}.notice strong{color:var(--green-dark)}
+    .ops-panel{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.ops-main{background:linear-gradient(135deg,#ecfdf5,#fff);border-left:8px solid var(--green)}.ops-main h3,.ops-side h3{margin:0 0 10px;font-size:22px}.ops-main p,.ops-side p{margin:0;color:#475569;line-height:1.8}.ops-side{display:grid;gap:12px}.status-chip{display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:18px;background:#fff;border:1px solid rgba(15,118,110,.12);padding:14px}.status-chip b{color:var(--green-dark)}.status-chip span{font-weight:950;color:var(--amber)}
+    .timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.timeline-step{position:relative;padding:19px 18px 18px 20px;border-radius:24px;background:linear-gradient(180deg,#fff,#f7fffb);border:1px solid rgba(15,118,110,.14);box-shadow:0 14px 32px rgba(15,23,42,.07)}.timeline-step::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:5px;border-radius:999px;background:#14b8a6}.timeline-step .step-no{font-size:12px;font-weight:900;letter-spacing:.08em;color:#0f766e;text-transform:uppercase}.timeline-step h3{margin:10px 0 0;font-size:18px;line-height:1.45}.timeline-note{margin-top:10px;color:#475569;font-size:14px;line-height:1.6}
+    .review-rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.rail-card{background:#fff;border:1px solid rgba(15,118,110,.12);border-radius:22px;padding:17px;box-shadow:0 14px 32px rgba(15,23,42,.06)}.rail-card b{display:block;color:var(--green-dark);font-size:17px;margin-bottom:7px}.rail-card span{display:block;color:#475569;line-height:1.62;font-size:14px}.rail-card .rail-no{width:32px;height:32px;border-radius:999px;background:#dff8ef;color:#064e3b;display:grid;place-items:center;font-weight:950;margin-bottom:10px}
+    .task-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.task-card{display:flex;flex-direction:column;gap:18px;padding:24px;overflow:hidden}.task-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.task-number{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-weight:950}.task-title{margin:0;font-size:24px;line-height:1.3}.task-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.meta-box{padding:14px 16px;border-radius:18px;background:var(--sand);border:1px solid rgba(15,118,110,.08)}.meta-box .label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}.meta-box .value{font-size:16px;font-weight:800;line-height:1.5;word-break:break-word}.badge-row{display:flex;gap:10px;flex-wrap:wrap}.badge{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:900}.badge.status{background:#dff8ef;color:#065f46}.badge.flag{background:#eff6ff;color:#1d4ed8}.badge.warn{background:#fff7ed;color:#b45309}.task-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{background:#0f766e;color:#fff}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.list-card ul,.list-card ol{margin:0;padding-left:20px;color:#475569;line-height:1.8}.list-card li+li{margin-top:6px}.section-stack{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.task-section-block{padding:16px 18px;border-radius:20px;background:var(--green-pale);border:1px solid rgba(15,118,110,.10)}.task-section-block h4{margin:0 0 10px;font-size:17px}.task-section-block ul{margin:0;padding-left:18px;color:#36536b;line-height:1.75}.task-footer{display:grid;grid-template-columns:1fr 1fr;gap:14px}.footer-box{padding:16px 18px;border-radius:20px;background:#fff;border:1px solid rgba(15,118,110,.12)}.footer-box h4{margin:0 0 8px;font-size:16px}.footer-box p,.footer-box code{margin:0;color:#36536b;line-height:1.75;word-break:break-word}.table-shell{overflow:auto;border-radius:22px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--sand);color:var(--muted);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{padding:26px 8px;color:var(--muted)}.boundary-grid{grid-template-columns:1fr 1fr}.boundary-card ul{margin:0;padding-left:20px;color:#475569;line-height:1.8}.boundary-card li+li{margin-top:6px}.quick-return{display:flex;gap:10px;flex-wrap:wrap}
+    @media(max-width:1180px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-dock{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.review-rail{grid-template-columns:repeat(2,minmax(0,1fr))}.task-grid{grid-template-columns:1fr}.ops-panel,.section-stack,.boundary-grid{grid-template-columns:1fr}}
+    @media(max-width:720px){.hero{padding:28px 16px 46px}.wrap{padding:24px 16px 56px}.hero-dock,.kpi-grid,.timeline,.review-rail{grid-template-columns:1fr}.task-meta,.task-footer{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.hero-actions,.quick-return{display:grid;grid-template-columns:1fr}.hero-btn,.btn{width:100%}}
   </style>
 </head>
 <body data-page="open-data-day1-operation-board">
@@ -19,8 +40,14 @@
       <div class="hero-actions">
         <a class="hero-btn" href="./open-data-day1-review-form.html">回 Day1 審核表單</a>
         <a class="hero-btn ghost" href="./open-data-manual-review-packets.html">回人工審核工作包</a>
-        <a class="hero-btn ghost" href="./sources.html">回資料來源與更新狀態</a>
+        <a class="hero-btn ghost" href="./project-landing.html">回公開展示頁</a>
       </div>
+      <section class="hero-dock" aria-label="Day 1 操作狀態">
+        <div class="dock-card"><b>BOARD MODE</b><span>manual review only</span></div>
+        <div class="dock-card"><b>TASKS</b><span>3 筆</span></div>
+        <div class="dock-card"><b>TIMEBOX</b><span>90 分鐘</span></div>
+        <div class="dock-card"><b>CRAWLER</b><span><code>false</code></span></div>
+      </section>
     </div>
   </section>
 
@@ -34,17 +61,37 @@
     </section>
 
     <div class="section-head">
-      <h2>安全邊界</h2>
-      <span>operation board only / draft_not_started</span>
+      <h2>作戰儀表</h2>
+      <span>先守安全邊界，再做人工審核</span>
     </div>
-    <section class="card notice" data-render="open-data-day1-operation-note">正在讀取 Day 1 操作看板。</section>
+    <section class="ops-panel">
+      <article class="card notice ops-main" data-render="open-data-day1-operation-note">正在讀取 Day 1 操作看板。</article>
+      <aside class="card ops-side" aria-label="Day 1 狀態提示">
+        <h3>今天只做 3 件事</h3>
+        <p>打開工作包、人工看來源、填審核表。所有結果都要等回填 PR，不直接改成 approved。</p>
+        <div class="status-chip"><b>crawler_execution_allowed</b><span>false</span></div>
+        <div class="status-chip"><b>engineering_review_allowed</b><span>false</span></div>
+        <div class="status-chip"><b>public_use_status</b><span>draft_not_started</span></div>
+      </aside>
+    </section>
 
     <div class="section-head">
       <h2>今日流程 timeline</h2>
       <span>一步一步完成 3 筆人工審核草稿</span>
     </div>
     <section class="timeline" data-render="open-data-day1-operation-timeline">
-      <article class="timeline-step"><div class="step-no">step 1</div><h3>讀取中</h3></article>
+      <article class="timeline-step"><div class="step-no">step 1</div><h3>讀取中</h3><p class="timeline-note">正在載入流程。</p></article>
+    </section>
+
+    <div class="section-head">
+      <h2>人工審核檢查節點</h2>
+      <span>每一筆資料源都照同一套標準看</span>
+    </div>
+    <section class="review-rail">
+      <article class="rail-card"><div class="rail-no">1</div><b>來源是否官方</b><span>只確認公開來源與資料頁，不對來源網址發出自動請求。</span></article>
+      <article class="rail-card"><div class="rail-no">2</div><b>資料是否可整理</b><span>記錄格式、欄位、更新頻率與人工可讀性。</span></article>
+      <article class="rail-card"><div class="rail-no">3</div><b>風險是否可控</b><span>個資、私人陳情全文、授權與誤用風險都先標記。</span></article>
+      <article class="rail-card"><div class="rail-no">4</div><b>結果如何回填</b><span>審核完成後用 patch draft 與 PR 流程回填，不直接覆寫。</span></article>
     </section>
 
     <div class="section-head">
@@ -124,8 +171,9 @@
       <h2>返回入口</h2>
       <span>相關頁面快速切換</span>
     </div>
-    <div class="hero-actions">
-      <a class="btn" href="./sources.html">回資料來源</a>
+    <div class="quick-return">
+      <a class="btn" href="./project-landing.html">回公開展示頁</a>
+      <a class="btn ghost" href="./sources.html">回資料來源</a>
       <a class="btn ghost" href="./open-data-day1-review-form.html">回 Day1 審核表單</a>
       <a class="btn ghost" href="./open-data-day1-sample-results.html">回 Day1 填寫範例</a>
       <a class="btn ghost" href="./open-data-manual-review-patches.html">回回填 Patch 草稿</a>
