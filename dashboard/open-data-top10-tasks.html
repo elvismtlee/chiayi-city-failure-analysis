@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top 10 官方資料人工審核任務｜嘉義城市故障分析中心</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#f3fbf7;color:#172033}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:block;margin-bottom:34px}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:900px;color:rgba(255,255,255,.92)}.wrap{padding:30px 24px 64px}.card{background:#fff;border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);margin:18px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.value{font-size:30px;font-weight:950;color:#064e3b}.controls{display:grid;grid-template-columns:1.2fr repeat(3,220px);gap:12px;margin:0 0 16px}.controls input,.controls select{border:1px solid #dbe5df;border-radius:16px;padding:13px 14px;font-size:16px}.btn{display:inline-flex;border-radius:999px;background:#0f766e;color:#fff;text-decoration:none;font-weight:900;padding:12px 16px;margin:4px}table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid #dbe5df;text-align:left}th{color:#64748b;background:#f8fafc}.table-shell{overflow:auto}.notice{line-height:1.8;color:#475569}@media(max-width:800px){.grid,.controls{grid-template-columns:1fr}}
+  </style>
+</head>
+<body data-page="open-data-top10-tasks">
+  <section class="hero"><div class="inner"><nav class="nav"></nav><div data-render="breadcrumb"></div><h1>Top 10 官方資料人工審核任務</h1><p>這是人工審核任務清單，不是 crawler。Top 10 只是內部工作排序，不代表正式評價或結論；不啟動 live crawler，不抓個資，不抓私人陳情全文，不自動發布。</p></div></section>
+  <main class="wrap">
+    <section class="grid">
+      <article class="card"><div>Top 10 任務總數</div><div class="value" data-top10="total">10</div></article>
+      <article class="card"><div>P1 任務數</div><div class="value" data-top10="p1">–</div></article>
+      <article class="card"><div>high readiness 任務數</div><div class="value" data-top10="high">–</div></article>
+    </section>
+    <section class="card notice">manual review required / no auto publish / no live crawler。任何資料進入 crawler spec 前，必須人工確認 source_url、官方來源、授權、格式與個資風險。</section>
+    <div><a class="btn" href="./sources.html">回資料來源</a><a class="btn" href="./open-data-inventory.html">回 URL 盤點</a><a class="btn" href="./open-data-review.html">回 URL 審核</a><a class="btn" href="./open-data-readiness.html">回 Readiness 評分</a><a class="btn" href="./index.html">回首頁</a></div>
+    <section class="card"><div class="controls"><input id="openDataTop10Search" placeholder="搜尋 title / source_owner / next_action / reviewer_notes"><select id="openDataTop10TopicGroup"><option value="all">全部 topic_group</option></select><select id="openDataTop10Priority"><option value="all">全部 priority</option></select><select id="openDataTop10Status"><option value="all">全部 review_status</option></select></div><div class="table-shell"><table><thead><tr><th>review_priority</th><th>readiness_score</th><th>topic_group</th><th>title</th><th>source_owner</th><th>expected_format</th><th>license_status</th><th>estimated_review_minutes</th><th>review_status</th><th>next_action</th><th>source_url</th></tr></thead><tbody data-render="open-data-top10-tasks"><tr><td colspan="11">請讀取 dashboard/data/open_data_top10_review_tasks.json。</td></tr></tbody></table></div></section>
+  </main>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./site-pages.js"></script>
+</body>
+</html>
