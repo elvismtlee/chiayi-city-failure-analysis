@@ -14,6 +14,7 @@ REQUIRED_JSON_FILES = [
     "geocoding_review_queue.json",
     "transcript_review_queue.json",
     "local_place_dictionary.json",
+    "open_data_url_inventory.json",
     "site_map.json",
 ]
 
@@ -293,6 +294,12 @@ def test_site_map_includes_hotspot_map_page() -> None:
     site_map = load_json("site_map.json")
     paths = {item["path"] for item in site_map}
     assert "./map.html" in paths
+
+
+def test_open_data_url_inventory_has_internal_status() -> None:
+    inventory = load_json("open_data_url_inventory.json")
+    assert inventory["public_use_status"] == "internal_url_inventory"
+    assert inventory["total_count"] >= 20
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:
