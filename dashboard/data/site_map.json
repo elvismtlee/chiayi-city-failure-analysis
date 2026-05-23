@@ -14,6 +14,7 @@
   {"title": "審核證據包", "path": "./open-data-review-evidence.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料人工審核證據包草稿，僅供人工記錄來源、授權、格式與風險證據。"},
   {"title": "審核結果輸入", "path": "./open-data-manual-review-results.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料人工審核結果輸入模板，僅供人工整理 evidence pack 後的審核結果。"},
   {"title": "人工審核 SOP", "path": "./open-data-manual-review-sop.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料第一批人工審核 SOP，協助一人團隊依 day_1、day_2、day_3 批次完成 10 筆人工審核流程。"},
+  {"title": "人工審核工作包", "path": "./open-data-manual-review-packets.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "官方資料人工審核工作包，將 SOP 與結果模板整理成 day_1、day_2、day_3 三個可執行工作包。"},
   {"title": "影音轉錄審核", "path": "./video-review.html", "level": 2, "description": "檢查議員質詢影音 metadata，整理待轉錄候選清單。"},
   {"title": "會議紀錄審核", "path": "./minutes-review.html", "level": 2, "description": "檢查 fixture-only 會議紀錄 parser 產生的人工審核候選清單。"},
   {"title": "會議紀錄議題", "path": "./minutes-issues.html", "level": 2, "description": "顯示 reviewed sample data 轉出的會議紀錄議題候選清單。"},

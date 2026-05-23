@@ -1870,6 +1870,110 @@ function setupOpenDataManualReviewSop(payload) {
   renderOpenDataManualReviewSopTable(dailyBatches);
 }
 
+function setOpenDataManualReviewPacketsKpi(payload) {
+  const reviewDays = payload?.review_days || {};
+  const packets = Array.isArray(payload?.packets) ? payload.packets : [];
+  const taskCards = packets.flatMap(packet => Array.isArray(packet?.task_cards) ? packet.task_cards : []);
+  setText('[data-open-manual-review-packets="total"]', String(payload?.total_tasks ?? 0));
+  setText('[data-open-manual-review-packets="packet-count"]', String(payload?.packet_count ?? 0));
+  setText('[data-open-manual-review-packets="day_1"]', String(reviewDays.day_1 ?? 0));
+  setText('[data-open-manual-review-packets="day_2"]', String(reviewDays.day_2 ?? 0));
+  setText('[data-open-manual-review-packets="day_3"]', String(reviewDays.day_3 ?? 0));
+  setText('[data-open-manual-review-packets="minutes"]', String(payload?.estimated_total_minutes ?? 0));
+  setText(
+    '[data-open-manual-review-packets="crawler-disabled"]',
+    String(taskCards.filter(item => item.crawler_execution_allowed === false).length),
+  );
+  setText('[data-render="open-data-manual-review-packets-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataManualReviewPacketsNote(payload) {
+  const node = document.querySelector('[data-render="open-data-manual-review-packets-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是人工審核工作包，不是 crawler。',
+    'manual review required / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function renderOpenDataManualReviewPacketCards(packets) {
+  const node = document.querySelector('[data-render="open-data-manual-review-packets-cards"]');
+  const summary = document.querySelector('[data-render="open-data-manual-review-packets-summary"]');
+  if (!node) return;
+  if (summary) {
+    summary.textContent = `共有 ${packets.length} 個工作包，依 day_1、day_2、day_3 安排人工審核。`;
+  }
+  node.textContent = '';
+  packets.forEach(packet => {
+    const card = document.createElement('article');
+    card.className = 'card packet-card';
+    const title = document.createElement('h3');
+    title.textContent = valueOrPending(packet.review_day);
+    const desc = document.createElement('p');
+    desc.textContent = `${valueOrPending(packet.task_count)} 筆任務，預估 ${valueOrPending(packet.estimated_minutes_total)} 分鐘，批次：${valueOrPending(packet.review_batch)}`;
+    card.append(title, desc);
+    node.appendChild(card);
+  });
+}
+
+function renderOpenDataManualReviewPacketsTable(packets) {
+  const tbody = document.querySelector('[data-render="open-data-manual-review-packets-table"]');
+  if (!tbody) return;
+  tbody.textContent = '';
+  const items = [];
+  packets.forEach(packet => {
+    (packet.task_cards || []).forEach(task => items.push({ ...task, review_day: packet.review_day }));
+  });
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 9;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有可顯示的人工審核工作包任務。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    const dayCell = createCell(item.review_day);
+    const batchCell = createCell(item.review_batch);
+    const titleCell = createCell(item.title);
+    const topicCell = createCell(item.topic_group);
+    const ownerCell = createCell(item.source_owner);
+    const actionCell = createCell(item.recommended_next_action, 'compact');
+    const statusCell = createCell(item.result_status);
+    const decisionCell = createCell(item.reviewer_decision);
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+    row.append(dayCell, batchCell, titleCell, topicCell, ownerCell, actionCell, statusCell, decisionCell, urlCell);
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataManualReviewPackets(payload) {
+  const packets = Array.isArray(payload?.packets) ? payload.packets : [];
+  setOpenDataManualReviewPacketsKpi(payload);
+  renderOpenDataManualReviewPacketsNote(payload);
+  renderOpenDataManualReviewPacketCards(packets);
+  renderOpenDataManualReviewPacketsTable(packets);
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -2085,6 +2189,27 @@ async function bootSitePages() {
       sop: { daily_batches: [] },
     });
     setupOpenDataManualReviewSop(payload);
+  }
+  if (page === 'open-data-manual-review-packets') {
+    const payload = await loadJson('./data/open_data_manual_review_execution_packets.json', {
+      generated_at: '',
+      public_use_status: 'internal_manual_review_execution_packets',
+      total_tasks: 0,
+      packet_count: 0,
+      review_days: {},
+      review_batches: {},
+      topic_groups: {},
+      estimated_total_minutes: 0,
+      packet_status_counts: {},
+      crawler_execution_allowed: false,
+      engineering_review_allowed_count: 0,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+      packets: [],
+    });
+    setupOpenDataManualReviewPackets(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

@@ -23,6 +23,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_review_evidence_pack.json",
     "dashboard/data/open_data_manual_review_result_template.json",
     "dashboard/data/open_data_manual_review_sop.json",
+    "dashboard/data/open_data_manual_review_execution_packets.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -53,6 +54,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-review-evidence.html",
     "dashboard/open-data-manual-review-results.html",
     "dashboard/open-data-manual-review-sop.html",
+    "dashboard/open-data-manual-review-packets.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -81,6 +83,12 @@ IMPORTANT_JS = [
     "dashboard/approved-materials.js",
 ]
 
+IMPORTANT_DOCS = [
+    "docs/open_data_manual_review_packets/day_1_packet.md",
+    "docs/open_data_manual_review_packets/day_2_packet.md",
+    "docs/open_data_manual_review_packets/day_3_packet.md",
+]
+
 NAV_LABELS = [
     "開放資料盤點",
     "官方資料審核",
@@ -93,6 +101,7 @@ NAV_LABELS = [
     "審核證據包",
     "審核結果輸入",
     "人工審核 SOP",
+    "人工審核工作包",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -132,7 +141,7 @@ def check_file(root: Path, relative: str, invalid_json_files: list[str]) -> dict
 
 
 def build_health_check(root: Path = ROOT) -> dict[str, Any]:
-    checked_targets = IMPORTANT_JSON + IMPORTANT_PAGES + IMPORTANT_JS
+    checked_targets = IMPORTANT_JSON + IMPORTANT_PAGES + IMPORTANT_JS + IMPORTANT_DOCS
     invalid_json_files: list[str] = []
     checked_files = [check_file(root, target, invalid_json_files) for target in checked_targets]
     missing_files = [item["file"] for item in checked_files if not item["exists"]]
@@ -324,6 +333,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_manual_review_sop",
                 "actual_public_use_status": open_data_manual_review_sop.get("public_use_status"),
                 "ok": open_data_manual_review_sop.get("public_use_status") == "internal_manual_review_sop",
+            }
+        )
+    open_data_manual_review_packets_path = root / "dashboard" / "data" / "open_data_manual_review_execution_packets.json"
+    if open_data_manual_review_packets_path.exists() and open_data_manual_review_packets_path.stat().st_size > 0:
+        try:
+            open_data_manual_review_packets = json.loads(open_data_manual_review_packets_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_manual_review_packets = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_manual_review_execution_packets",
+                "path": "dashboard/data/open_data_manual_review_execution_packets.json",
+                "expected_public_use_status": "internal_manual_review_execution_packets",
+                "actual_public_use_status": open_data_manual_review_packets.get("public_use_status"),
+                "ok": open_data_manual_review_packets.get("public_use_status") == "internal_manual_review_execution_packets",
             }
         )
 

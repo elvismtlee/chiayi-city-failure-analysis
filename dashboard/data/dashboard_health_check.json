@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260523224051",
-  "generated_at": "2026-05-23T22:40:51+08:00",
+  "check_id": "dashboard-health-20260523233321",
+  "generated_at": "2026-05-23T23:33:21+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -64,6 +64,12 @@
     },
     {
       "file": "dashboard/data/open_data_manual_review_sop.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_manual_review_execution_packets.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -231,6 +237,12 @@
       "valid_json": null
     },
     {
+      "file": "dashboard/open-data-manual-review-packets.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
       "file": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false,
@@ -367,6 +379,24 @@
       "exists": true,
       "empty": false,
       "valid_json": null
+    },
+    {
+      "file": "docs/open_data_manual_review_packets/day_1_packet.md",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "docs/open_data_manual_review_packets/day_2_packet.md",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "docs/open_data_manual_review_packets/day_3_packet.md",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
     }
   ],
   "missing_files": [],
@@ -425,6 +455,11 @@
     },
     {
       "page": "dashboard/open-data-manual-review-sop.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-manual-review-packets.html",
       "exists": true,
       "empty": false
     },
@@ -556,6 +591,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "人工審核工作包",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -667,6 +707,13 @@
       "path": "dashboard/data/open_data_manual_review_sop.json",
       "expected_public_use_status": "internal_manual_review_sop",
       "actual_public_use_status": "internal_manual_review_sop",
+      "ok": true
+    },
+    {
+      "name": "open_data_manual_review_execution_packets",
+      "path": "dashboard/data/open_data_manual_review_execution_packets.json",
+      "expected_public_use_status": "internal_manual_review_execution_packets",
+      "actual_public_use_status": "internal_manual_review_execution_packets",
       "ok": true
     }
   ],

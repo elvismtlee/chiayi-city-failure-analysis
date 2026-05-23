@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_manual_review_sop() -> None:
     assert "./data/open_data_manual_review_sop.json" in content
     assert "setupOpenDataManualReviewSop" in content
     assert "open-data-manual-review-sop" in content
+
+
+def test_open_data_manual_review_sop_links_to_manual_review_packets() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-manual-review-packets.html" in content
+    assert "進入人工審核工作包" in content

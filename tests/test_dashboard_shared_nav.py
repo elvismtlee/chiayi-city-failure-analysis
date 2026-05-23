@@ -19,6 +19,7 @@ DASHBOARD_PAGES = [
     "open-data-review-evidence.html",
     "open-data-manual-review-results.html",
     "open-data-manual-review-sop.html",
+    "open-data-manual-review-packets.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -55,6 +56,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./open-data-review-evidence.html",
         "./open-data-manual-review-results.html",
         "./open-data-manual-review-sop.html",
+        "./open-data-manual-review-packets.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -80,6 +82,7 @@ def test_shared_nav_contains_open_data_labels() -> None:
         "審核證據包",
         "審核結果輸入",
         "人工審核 SOP",
+        "人工審核工作包",
     ]:
         assert label in content
 
