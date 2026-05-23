@@ -1,0 +1,86 @@
+public_use_status: internal_review_queue_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+
+source_datasets:
+  - dashboard/data/cycc_minutes_metadata.json
+  - dashboard/data/cycc_question_video_metadata.json
+
+required_fields:
+  - record_id
+  - source_type
+  - title
+  - date
+  - source_url
+  - detail_url
+  - review_status
+  - reviewer
+  - reviewed_at
+  - source_verified
+  - original_content_reviewed
+  - citation_ready
+  - public_summary_allowed
+  - caution_notes
+
+review_statuses:
+  - needs_review
+  - source_verified
+  - content_reviewed
+  - citation_ready
+  - needs_context
+  - do_not_use_publicly
+
+field_rules:
+  record_id:
+    required: true
+    description: Stable ID from dashboard metadata.
+  source_type:
+    required: true
+    allowed_values:
+      - minutes
+      - question_videos
+  review_status:
+    required: true
+    default: needs_review
+  reviewer:
+    required_for_public_use: true
+  reviewed_at:
+    required_for_public_use: true
+    timezone: Asia/Taipei
+  source_verified:
+    required_for_public_use: true
+    must_be_true_for_status:
+      - source_verified
+      - content_reviewed
+      - citation_ready
+  original_content_reviewed:
+    required_for_public_use: true
+    must_be_true_for_status:
+      - content_reviewed
+      - citation_ready
+  citation_ready:
+    required_for_public_use: true
+    must_be_true_for_status:
+      - citation_ready
+  public_summary_allowed:
+    default: false
+    may_be_true_only_when:
+      - citation_ready
+  caution_notes:
+    required: true
+    description: Record ambiguity, missing context, neutral wording reminders, or reason not to cite publicly.
+
+public_use_gate:
+  allowed_public_status:
+    - citation_ready
+  forbidden_public_status:
+    - needs_review
+    - source_verified
+    - content_reviewed
+    - needs_context
+    - do_not_use_publicly
+  require_source_link: true
+  require_neutral_summary: true
+  require_no_personal_data: true
+  require_no_auto_publish: true
