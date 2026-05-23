@@ -20,9 +20,11 @@ on:
       - "scripts/build_public_material_review_queue.py"
       - "scripts/build_approved_materials_sample.py"
       - "scripts/build_cycc_metadata_dashboard_data.py"
+      - "scripts/build_open_data_url_inventory.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
+      - "config/chiayi_open_data_url_inventory.yml"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -41,6 +43,8 @@ on:
       - "tests/test_build_public_material_review_queue.py"
       - "tests/test_build_approved_materials_sample.py"
       - "tests/test_build_cycc_metadata_dashboard_data.py"
+      - "tests/test_open_data_url_inventory.py"
+      - "tests/test_build_open_data_url_inventory.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -49,6 +53,8 @@ on:
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
       - "tests/test_cycc_review_page.py"
+      - "tests/test_open_data_inventory_page.py"
+      - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
@@ -82,9 +88,11 @@ on:
       - "scripts/build_public_material_review_queue.py"
       - "scripts/build_approved_materials_sample.py"
       - "scripts/build_cycc_metadata_dashboard_data.py"
+      - "scripts/build_open_data_url_inventory.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
+      - "config/chiayi_open_data_url_inventory.yml"
       - "dashboard/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
@@ -103,6 +111,8 @@ on:
       - "tests/test_build_public_material_review_queue.py"
       - "tests/test_build_approved_materials_sample.py"
       - "tests/test_build_cycc_metadata_dashboard_data.py"
+      - "tests/test_open_data_url_inventory.py"
+      - "tests/test_build_open_data_url_inventory.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -111,6 +121,8 @@ on:
       - "tests/test_public_review_page.py"
       - "tests/test_approved_materials_page.py"
       - "tests/test_cycc_review_page.py"
+      - "tests/test_open_data_inventory_page.py"
+      - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
       - "tests/test_build_command_center_overview.py"
@@ -173,6 +185,8 @@ jobs:
         run: python scripts/build_approved_materials_sample.py
       - name: Build CYCC metadata dashboard data
         run: python scripts/build_cycc_metadata_dashboard_data.py
+      - name: Build open data URL inventory
+        run: python scripts/build_open_data_url_inventory.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -205,6 +219,7 @@ jobs:
               "cycc_public_records_crawl_report.json",
               "cycc_minutes_metadata.json",
               "cycc_question_video_metadata.json",
+              "open_data_url_inventory.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -235,6 +250,8 @@ jobs:
           pytest -q tests/test_build_public_material_review_queue.py
           pytest -q tests/test_build_approved_materials_sample.py
           pytest -q tests/test_build_cycc_metadata_dashboard_data.py
+          pytest -q tests/test_open_data_url_inventory.py
+          pytest -q tests/test_build_open_data_url_inventory.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
@@ -243,6 +260,8 @@ jobs:
           pytest -q tests/test_public_review_page.py
           pytest -q tests/test_approved_materials_page.py
           pytest -q tests/test_cycc_review_page.py
+          pytest -q tests/test_open_data_inventory_page.py
+          pytest -q tests/test_sources_page.py
           pytest -q tests/test_weekly_summary_page.py
           pytest -q tests/test_policy_drafts_page.py
           pytest -q tests/test_build_command_center_overview.py

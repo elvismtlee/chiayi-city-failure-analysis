@@ -12,6 +12,7 @@ OUTPUT_FILE = DATA_DIR / "dashboard_health_check.json"
 TAIPEI_TZ = timezone(timedelta(hours=8))
 
 IMPORTANT_JSON = [
+    "dashboard/data/open_data_url_inventory.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -31,6 +32,7 @@ IMPORTANT_JSON = [
 ]
 
 IMPORTANT_PAGES = [
+    "dashboard/open-data-inventory.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -49,6 +51,7 @@ IMPORTANT_PAGES = [
 
 IMPORTANT_JS = [
     "dashboard/shared-nav.js",
+    "dashboard/site-pages.js",
     "dashboard/command-center.js",
     "dashboard/health-check.js",
     "dashboard/weekly-system-report.js",
@@ -59,6 +62,7 @@ IMPORTANT_JS = [
 ]
 
 NAV_LABELS = [
+    "開放資料盤點",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -126,6 +130,23 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
         for label in NAV_LABELS
     ]
 
+    data_status_checks = []
+    open_data_inventory_path = root / "dashboard" / "data" / "open_data_url_inventory.json"
+    if open_data_inventory_path.exists() and open_data_inventory_path.stat().st_size > 0:
+        try:
+            open_data_inventory = json.loads(open_data_inventory_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_inventory = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_url_inventory",
+                "path": "dashboard/data/open_data_url_inventory.json",
+                "expected_public_use_status": "internal_url_inventory",
+                "actual_public_use_status": open_data_inventory.get("public_use_status"),
+                "ok": open_data_inventory.get("public_use_status") == "internal_url_inventory",
+            }
+        )
+
     warnings = []
     warnings.extend(f"Missing file: {path}" for path in missing_files)
     warnings.extend(f"Empty file: {path}" for path in empty_files)
@@ -134,6 +155,11 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
         f"Navigation entry missing: {item['name']}"
         for item in nav_checks
         if not item["in_site_map"] or not item["in_shared_nav"]
+    )
+    warnings.extend(
+        f"Unexpected public_use_status: {item['path']}"
+        for item in data_status_checks
+        if not item["ok"]
     )
 
     status = "ok" if not warnings else "needs_attention"
@@ -146,6 +172,7 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
         "invalid_json_files": invalid_json_files,
         "page_checks": page_checks,
         "nav_checks": nav_checks,
+        "data_status_checks": data_status_checks,
         "warnings": warnings,
         "status": status,
         "public_use_status": "internal_health_check",
