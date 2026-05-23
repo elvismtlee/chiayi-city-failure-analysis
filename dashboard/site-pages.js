@@ -1387,6 +1387,160 @@ function setupOpenDataReviewSessions(payload) {
   render();
 }
 
+function evidenceStatusClass(status) {
+  if (status === 'blocked') return 'pill risk';
+  if (status === 'needs_follow_up' || status === 'collecting') return 'pill warn';
+  return 'pill';
+}
+
+function setOpenDataReviewEvidenceKpi(payload) {
+  const dayCounts = payload?.review_days || {};
+  setText('[data-open-review-evidence="total"]', String(payload?.total_count ?? 0));
+  setText('[data-open-review-evidence="not-started"]', String(payload?.evidence_status_counts?.not_started ?? 0));
+  setText('[data-open-review-evidence="day-1"]', String(dayCounts.day_1 ?? 0));
+  setText('[data-open-review-evidence="day-2"]', String(dayCounts.day_2 ?? 0));
+  setText('[data-open-review-evidence="day-3"]', String(dayCounts.day_3 ?? 0));
+  const crawlerDisabled = Array.isArray(payload?.evidence_packs)
+    ? payload.evidence_packs.filter(item => item.crawler_execution_allowed === false).length
+    : 0;
+  setText('[data-open-review-evidence="crawler-disabled"]', String(crawlerDisabled));
+  setText('[data-render="open-data-review-evidence-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataReviewEvidenceNote(payload) {
+  const node = document.querySelector('[data-render="open-data-review-evidence-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是人工審核證據包，不是 crawler。',
+    'manual review required / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function filterOpenDataReviewEvidence(items) {
+  const keyword = normalizedValue(document.querySelector('#openDataReviewEvidenceSearch')?.value);
+  const reviewDay = document.querySelector('#openDataReviewEvidenceDay')?.value || 'all';
+  const reviewBatch = document.querySelector('#openDataReviewEvidenceBatch')?.value || 'all';
+  const status = document.querySelector('#openDataReviewEvidenceStatus')?.value || 'all';
+  const topicGroup = document.querySelector('#openDataReviewEvidenceTopicGroup')?.value || 'all';
+
+  return items.filter(item => {
+    if (reviewDay !== 'all' && item.review_day !== reviewDay) return false;
+    if (reviewBatch !== 'all' && item.review_batch !== reviewBatch) return false;
+    if (status !== 'all' && item.evidence_status !== status) return false;
+    if (topicGroup !== 'all' && item.topic_group !== topicGroup) return false;
+    if (!keyword) return true;
+
+    const haystack = [
+      item.title,
+      item.source_owner,
+      item.next_action,
+      item.reviewer_summary_template,
+    ].map(normalizedValue).join(' ');
+    return haystack.includes(keyword);
+  });
+}
+
+function renderOpenDataReviewEvidenceTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-review-evidence-table"]');
+  const summary = document.querySelector('[data-render="open-data-review-evidence-summary"]');
+  if (!tbody) return;
+
+  if (summary) {
+    summary.textContent = `共 ${totalCount} 筆 evidence pack，篩選後 ${items.length} 筆。`;
+  }
+
+  tbody.textContent = '';
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 11;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的審核證據包。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    const statusCell = document.createElement('td');
+    const statusPill = document.createElement('span');
+    statusPill.className = evidenceStatusClass(item.evidence_status);
+    statusPill.textContent = valueOrPending(item.evidence_status);
+    statusCell.appendChild(statusPill);
+
+    const dayCell = createCell(item.review_day);
+    const batchCell = createCell(item.review_batch);
+    const topicCell = createCell(item.topic_group);
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const requiredCell = createCell(String(Array.isArray(item.required_evidence_items) ? item.required_evidence_items.length : 0));
+    const placeholderCell = createCell(String(Array.isArray(item.evidence_file_placeholders) ? item.evidence_file_placeholders.length : 0));
+    const notesCell = createCell(item.reviewer_notes_required ? 'true' : 'false');
+    const actionCell = createCell(item.next_action, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      statusCell,
+      dayCell,
+      batchCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      requiredCell,
+      placeholderCell,
+      notesCell,
+      actionCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataReviewEvidence(payload) {
+  const items = Array.isArray(payload?.evidence_packs) ? payload.evidence_packs : [];
+  setOpenDataReviewEvidenceKpi(payload);
+  renderOpenDataReviewEvidenceNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataReviewEvidence(items).sort((a, b) => {
+      if (a.review_day !== b.review_day) {
+        return String(a.review_day || '').localeCompare(String(b.review_day || ''));
+      }
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataReviewEvidenceTable(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataReviewEvidenceSearch');
+  const daySelect = document.querySelector('#openDataReviewEvidenceDay');
+  const batchSelect = document.querySelector('#openDataReviewEvidenceBatch');
+  const statusSelect = document.querySelector('#openDataReviewEvidenceStatus');
+  const groupSelect = document.querySelector('#openDataReviewEvidenceTopicGroup');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (daySelect) daySelect.addEventListener('change', render);
+  if (batchSelect) batchSelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -1544,6 +1698,25 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataReviewSessions(payload);
+  }
+  if (page === 'open-data-review-evidence') {
+    const payload = await loadJson('./data/open_data_review_evidence_pack.json', {
+      generated_at: '',
+      public_use_status: 'internal_review_evidence_pack',
+      total_count: 0,
+      review_days: {},
+      review_batches: {},
+      topic_groups: {},
+      evidence_status_counts: {},
+      engineering_review_allowed_count: 0,
+      evidence_packs: [],
+      crawler_execution_allowed: false,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataReviewEvidence(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

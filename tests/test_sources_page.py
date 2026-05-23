@@ -49,3 +49,9 @@ def test_sources_links_to_open_data_review_sessions() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-review-sessions.html' in content
     assert '前往人工審核執行工作台' in content
+
+
+def test_sources_links_to_open_data_review_evidence() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-review-evidence.html' in content
+    assert '前往審核證據包' in content

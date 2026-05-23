@@ -29,3 +29,9 @@ def test_site_pages_renders_open_data_review_session_planner() -> None:
     assert "openDataReviewSessionSearch" in content
     assert "openDataReviewSessionDay" in content
     assert "openDataReviewSessionBatch" in content
+
+
+def test_open_data_review_sessions_page_links_to_evidence_pack() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-review-evidence.html" in content
+    assert "建立審核證據包" in content

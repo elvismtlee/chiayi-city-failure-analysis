@@ -1,0 +1,68 @@
+public_use_status: internal_review_evidence_pack_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+
+required_fields:
+  - evidence_pack_id
+  - session_task_id
+  - checklist_id
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - review_day
+  - review_batch
+  - evidence_status
+  - required_evidence_items
+  - evidence_file_placeholders
+  - source_identity_evidence
+  - license_evidence
+  - format_evidence
+  - update_cadence_evidence
+  - personal_data_evidence
+  - private_complaint_evidence
+  - reviewer_notes_required
+  - reviewer_summary_template
+  - acceptance_criteria
+  - evidence_blockers
+  - next_action
+  - crawler_execution_allowed
+  - engineering_review_allowed
+  - safety_notes
+
+evidence_status:
+  - not_started
+  - collecting
+  - evidence_recorded
+  - needs_follow_up
+  - blocked
+  - completed_for_manual_review_only
+
+next_action:
+  - collect_source_identity_evidence
+  - collect_license_evidence
+  - collect_format_evidence
+  - collect_risk_evidence
+  - write_reviewer_summary
+  - mark_needs_follow_up
+  - block_item
+  - update_manual_workbook_later
+
+safety_rules:
+  - crawler_execution_allowed 永遠 false。
+  - engineering_review_allowed 預設 false。
+  - evidence pack 不可包含個資欄位。
+  - evidence pack 不可要求下載私人陳情全文。
+  - evidence pack 只能要求記錄來源頁標題、官方單位、授權條款摘要、格式、更新頻率、風險觀察。
+  - 不可新增 live_crawler。
+  - 不可新增 approved_for_crawling。
+  - 不可對 source_url 發出網路請求。

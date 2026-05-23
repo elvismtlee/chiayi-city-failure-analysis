@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260523201212",
-  "generated_at": "2026-05-23T20:12:12+08:00",
+  "check_id": "dashboard-health-20260523205247",
+  "generated_at": "2026-05-23T20:52:47+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -49,6 +49,12 @@
       "exists": true,
       "empty": false,
       "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_review_evidence_pack.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": false
     },
     {
       "file": "dashboard/data/cycc_minutes_review_queue.json",
@@ -195,6 +201,12 @@
       "valid_json": null
     },
     {
+      "file": "dashboard/open-data-review-evidence.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
       "file": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false,
@@ -335,7 +347,9 @@
   ],
   "missing_files": [],
   "empty_files": [],
-  "invalid_json_files": [],
+  "invalid_json_files": [
+    "dashboard/data/open_data_review_evidence_pack.json"
+  ],
   "page_checks": [
     {
       "page": "dashboard/open-data-inventory.html",
@@ -374,6 +388,11 @@
     },
     {
       "page": "dashboard/open-data-review-sessions.html",
+      "exists": true,
+      "empty": false
+    },
+    {
+      "page": "dashboard/open-data-review-evidence.html",
       "exists": true,
       "empty": false
     },
@@ -490,6 +509,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "審核證據包",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -581,10 +605,19 @@
       "expected_public_use_status": "internal_review_session_planner",
       "actual_public_use_status": "internal_review_session_planner",
       "ok": true
+    },
+    {
+      "name": "open_data_review_evidence_pack",
+      "path": "dashboard/data/open_data_review_evidence_pack.json",
+      "expected_public_use_status": "internal_review_evidence_pack",
+      "actual_public_use_status": "internal_review_evidence_pack",
+      "ok": true
     }
   ],
-  "warnings": [],
-  "status": "ok",
+  "warnings": [
+    "Invalid JSON file: dashboard/data/open_data_review_evidence_pack.json"
+  ],
+  "status": "needs_attention",
   "public_use_status": "internal_health_check",
   "notes": [
     "internal dashboard / needs human review / manual publishing only",
