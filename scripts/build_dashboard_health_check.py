@@ -27,6 +27,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_manual_review_result_patch_drafts.json",
     "dashboard/data/open_data_day1_sample_manual_review_results.json",
     "dashboard/data/open_data_day1_manual_review_form_draft.json",
+    "dashboard/data/open_data_day1_manual_review_operation_board.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -61,6 +62,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-manual-review-patches.html",
     "dashboard/open-data-day1-sample-results.html",
     "dashboard/open-data-day1-review-form.html",
+    "dashboard/open-data-day1-operation-board.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -116,6 +118,7 @@ NAV_LABELS = [
     "回填 Patch 草稿",
     "Day1填寫範例",
     "Day1審核表單",
+    "Day1操作看板",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -407,6 +410,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_day1_manual_review_form_draft",
                 "actual_public_use_status": open_data_day1_review_form.get("public_use_status"),
                 "ok": open_data_day1_review_form.get("public_use_status") == "internal_day1_manual_review_form_draft",
+            }
+        )
+    open_data_day1_operation_board_path = root / "dashboard" / "data" / "open_data_day1_manual_review_operation_board.json"
+    if open_data_day1_operation_board_path.exists() and open_data_day1_operation_board_path.stat().st_size > 0:
+        try:
+            open_data_day1_operation_board = json.loads(open_data_day1_operation_board_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_day1_operation_board = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_day1_manual_review_operation_board",
+                "path": "dashboard/data/open_data_day1_manual_review_operation_board.json",
+                "expected_public_use_status": "internal_day1_manual_review_operation_board",
+                "actual_public_use_status": open_data_day1_operation_board.get("public_use_status"),
+                "ok": open_data_day1_operation_board.get("public_use_status") == "internal_day1_manual_review_operation_board",
             }
         )
 

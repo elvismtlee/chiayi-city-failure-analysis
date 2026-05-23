@@ -23,6 +23,7 @@ DASHBOARD_PAGES = [
     "open-data-manual-review-patches.html",
     "open-data-day1-sample-results.html",
     "open-data-day1-review-form.html",
+    "open-data-day1-operation-board.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -63,6 +64,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./open-data-manual-review-patches.html",
         "./open-data-day1-sample-results.html",
         "./open-data-day1-review-form.html",
+        "./open-data-day1-operation-board.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -92,6 +94,7 @@ def test_shared_nav_contains_open_data_labels() -> None:
         "回填 Patch 草稿",
         "Day1填寫範例",
         "Day1審核表單",
+        "Day1操作看板",
     ]:
         assert label in content
 

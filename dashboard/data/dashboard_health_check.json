@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524011312",
-  "generated_at": "2026-05-24T01:13:12+08:00",
+  "check_id": "dashboard-health-20260524015134",
+  "generated_at": "2026-05-24T01:51:34+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -88,6 +88,12 @@
     },
     {
       "file": "dashboard/data/open_data_day1_manual_review_form_draft.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_day1_manual_review_operation_board.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -274,6 +280,12 @@
     },
     {
       "file": "dashboard/open-data-day1-review-form.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-day1-operation-board.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -545,6 +557,11 @@
       "empty": false
     },
     {
+      "page": "dashboard/open-data-day1-operation-board.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false
@@ -692,6 +709,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "Day1操作看板",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -831,6 +853,13 @@
       "path": "dashboard/data/open_data_day1_manual_review_form_draft.json",
       "expected_public_use_status": "internal_day1_manual_review_form_draft",
       "actual_public_use_status": "internal_day1_manual_review_form_draft",
+      "ok": true
+    },
+    {
+      "name": "open_data_day1_manual_review_operation_board",
+      "path": "dashboard/data/open_data_day1_manual_review_operation_board.json",
+      "expected_public_use_status": "internal_day1_manual_review_operation_board",
+      "actual_public_use_status": "internal_day1_manual_review_operation_board",
       "ok": true
     }
   ],
