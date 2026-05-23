@@ -219,7 +219,7 @@ function renderOpenDataInventoryNote(payload) {
   note.appendChild(strong);
   appendText(
     note,
-    ` 來源數：${payload?.total_count || 0}。來源：嘉義市政府與官方公開資料入口。狀態：internal URL inventory，manual review required。這一階段只審核 URL，不啟動 crawler，不抓個資、不抓私人陳情、不自動發布。`,
+    ` 來源數：${payload?.total_count || 0}。來源：嘉義市政府與官方公開資料入口。狀態：internal_url_inventory，manual review required。這一階段只審核 URL，不啟動 live crawler，不抓個資、不抓私人陳情全文、不自動發布，no auto publish。`,
   );
 }
 

@@ -11,9 +11,11 @@ def test_open_data_inventory_page_exists_with_controls_and_safety_labels() -> No
     assert "嘉義市官方開放資料 URL 盤點" in content
     assert "id=\"openDataSearch\"" in content
     assert "id=\"openDataTopicGroup\"" in content
-    assert "internal / manual review required" in content
-    assert "不啟動 crawler" in content
+    assert "internal_url_inventory" in content
+    assert "manual review required" in content
+    assert "不啟動 live crawler" in content
     assert "不抓個資" in content
+    assert "不抓私人陳情全文" in content
     assert "no auto publish" in content
     assert './shared-nav.js?v=20260523-navux' in content
 
