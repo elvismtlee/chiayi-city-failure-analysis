@@ -61,82 +61,24 @@ def test_shared_nav_contains_required_pages() -> None:
         assert page in content
 
 
-def test_shared_nav_contains_hotspot_map_label() -> None:
+def test_shared_nav_contains_open_data_labels() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "城市熱點地圖" in content
-    assert "map.html" in content
-
-
-def test_shared_nav_contains_geocoding_review_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "座標審核" in content
-    assert "geocoding-review.html" in content
-
-
-def test_shared_nav_contains_cycc_review_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "CYCC公開資料" in content
-    assert "cycc-review.html" in content
-
-
-def test_shared_nav_contains_open_data_inventory_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "開放資料盤點" in content
-    assert "./open-data-inventory.html" in content
-
-
-def test_shared_nav_contains_open_data_review_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "官方資料審核" in content
-    assert "./open-data-review.html" in content
-
-
-def test_shared_nav_contains_open_data_readiness_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "Readiness評分" in content
-    assert "./open-data-readiness.html" in content
-
-
-def test_shared_nav_contains_open_data_top10_tasks_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "Top10審核任務" in content
-    assert "./open-data-top10-tasks.html" in content
-
-
-def test_shared_nav_contains_open_data_crawler_specs_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "Crawler規格草稿" in content
-    assert "./open-data-crawler-specs.html" in content
-
-
-def test_shared_nav_contains_open_data_human_review_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "人工審核工作簿" in content
-    assert "./open-data-human-review.html" in content
-
-
-def test_shared_nav_contains_open_data_engineering_review_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "工程審查清單" in content
-    assert "./open-data-engineering-review.html" in content
-
-
-def test_shared_nav_contains_open_data_review_sessions_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "人工審核執行" in content
-    assert "./open-data-review-sessions.html" in content
-
-
-def test_shared_nav_contains_open_data_review_evidence_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "審核證據包" in content
-    assert "./open-data-review-evidence.html" in content
-
-
-def test_shared_nav_contains_open_data_manual_review_result_label() -> None:
-    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
-    assert "審核結果輸入" in content
-    assert "./open-data-manual-review-results.html" in content
+    for label in [
+        "城市熱點地圖",
+        "座標審核",
+        "CYCC公開資料",
+        "開放資料盤點",
+        "官方資料審核",
+        "Readiness評分",
+        "Top10審核任務",
+        "Crawler規格草稿",
+        "人工審核工作簿",
+        "工程審查清單",
+        "人工審核執行",
+        "審核證據包",
+        "審核結果輸入",
+    ]:
+        assert label in content
 
 
 def test_shared_nav_contains_disclosure() -> None:
@@ -154,6 +96,18 @@ def test_shared_nav_uses_two_level_grouped_navigation() -> None:
     assert "grid-template-columns:repeat(5" in content
     for label in ["總覽", "資料審核", "內容產出", "發布管理", "系統說明"]:
         assert label in content
+
+
+def test_shared_nav_sub_buttons_have_normalized_size() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert ".dashboard-nav-sub-label,.dashboard-nav-link" in content
+    assert "height:42px!important" in content
+    assert "min-height:42px!important" in content
+    assert "font-size:16px!important" in content
+    assert "line-height:1!important" in content
+    assert "white-space:nowrap!important" in content
+    assert ".dashboard-nav-tab.active,.dashboard-nav-link.active" in content
+    assert ".active{background:#fff" not in content
 
 
 def test_key_pages_bust_shared_nav_cache() -> None:
