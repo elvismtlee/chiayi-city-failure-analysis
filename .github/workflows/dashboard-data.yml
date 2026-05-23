@@ -56,6 +56,7 @@ on:
       - "config/open_data_day1_manual_review_form_draft_schema.yml"
       - "config/open_data_day1_manual_review_operation_board_schema.yml"
       - "dashboard/**"
+      - "docs/launch_qa_checklist.md"
       - "docs/open_data_manual_review_packets/**"
       - "docs/open_data_manual_review_patch_drafts/**"
       - "docs/open_data_day1_sample_results/**"
@@ -149,6 +150,7 @@ on:
       - "tests/test_health_check_page.py"
       - "tests/test_weekly_system_report_page.py"
       - "tests/test_dashboard_json_validation.py"
+      - "tests/test_dashboard_launch_links.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
       - ".github/workflows/dashboard-data.yml"
@@ -209,6 +211,7 @@ on:
       - "config/open_data_day1_manual_review_form_draft_schema.yml"
       - "config/open_data_day1_manual_review_operation_board_schema.yml"
       - "dashboard/**"
+      - "docs/launch_qa_checklist.md"
       - "docs/open_data_manual_review_packets/**"
       - "docs/open_data_manual_review_patch_drafts/**"
       - "docs/open_data_day1_sample_results/**"
@@ -302,6 +305,7 @@ on:
       - "tests/test_health_check_page.py"
       - "tests/test_weekly_system_report_page.py"
       - "tests/test_dashboard_json_validation.py"
+      - "tests/test_dashboard_launch_links.py"
       - "tests/test_local_terminology.py"
       - "tests/test_local_place_dictionary.py"
       - ".github/workflows/dashboard-data.yml"
@@ -537,5 +541,6 @@ jobs:
           pytest -q tests/test_health_check_page.py
           pytest -q tests/test_weekly_system_report_page.py
           pytest -q tests/test_dashboard_json_validation.py
+          pytest -q tests/test_dashboard_launch_links.py
           pytest -q tests/test_local_terminology.py
           pytest -q tests/test_local_place_dictionary.py
