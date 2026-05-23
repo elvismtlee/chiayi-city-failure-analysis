@@ -21,6 +21,7 @@ REQUIRED_JSON_FILES = [
     "open_data_crawler_spec_drafts.json",
     "open_data_human_review_workbook.json",
     "open_data_engineering_review_checklist.json",
+    "open_data_review_session_planner.json",
     "site_map.json",
 ]
 
@@ -310,6 +311,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     crawler_specs = load_json("open_data_crawler_spec_drafts.json")
     human_review = load_json("open_data_human_review_workbook.json")
     engineering_review = load_json("open_data_engineering_review_checklist.json")
+    review_sessions = load_json("open_data_review_session_planner.json")
     assert inventory["public_use_status"] == "internal_url_inventory"
     assert review_queue["public_use_status"] == "internal_url_review_queue"
     assert readiness["public_use_status"] == "internal_readiness_report"
@@ -317,6 +319,7 @@ def test_open_data_inventory_and_review_queue_statuses() -> None:
     assert crawler_specs["public_use_status"] == "internal_crawler_spec_drafts"
     assert human_review["public_use_status"] == "internal_human_review_workbook"
     assert engineering_review["public_use_status"] == "internal_engineering_review_checklist"
+    assert review_sessions["public_use_status"] == "internal_review_session_planner"
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:

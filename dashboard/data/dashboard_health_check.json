@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260523193001",
-  "generated_at": "2026-05-23T19:30:01+08:00",
+  "check_id": "dashboard-health-20260523201212",
+  "generated_at": "2026-05-23T20:12:12+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -40,6 +40,12 @@
     },
     {
       "file": "dashboard/data/open_data_engineering_review_checklist.json",
+      "exists": true,
+      "empty": false,
+      "valid_json": true
+    },
+    {
+      "file": "dashboard/data/open_data_review_session_planner.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -178,6 +184,12 @@
     },
     {
       "file": "dashboard/open-data-engineering-review.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/open-data-review-sessions.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -361,6 +373,11 @@
       "empty": false
     },
     {
+      "page": "dashboard/open-data-review-sessions.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/minutes-review.html",
       "exists": true,
       "empty": false
@@ -468,6 +485,11 @@
       "in_shared_nav": true
     },
     {
+      "name": "人工審核執行",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
       "name": "內容排程",
       "in_site_map": true,
       "in_shared_nav": true
@@ -551,6 +573,13 @@
       "path": "dashboard/data/open_data_engineering_review_checklist.json",
       "expected_public_use_status": "internal_engineering_review_checklist",
       "actual_public_use_status": "internal_engineering_review_checklist",
+      "ok": true
+    },
+    {
+      "name": "open_data_review_session_planner",
+      "path": "dashboard/data/open_data_review_session_planner.json",
+      "expected_public_use_status": "internal_review_session_planner",
+      "actual_public_use_status": "internal_review_session_planner",
       "ok": true
     }
   ],
