@@ -12,6 +12,7 @@ DASHBOARD_PAGES = [
     "open-data-review.html",
     "open-data-readiness.html",
     "open-data-top10-tasks.html",
+    "open-data-crawler-specs.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -41,6 +42,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./open-data-review.html",
         "./open-data-readiness.html",
         "./open-data-top10-tasks.html",
+        "./open-data-crawler-specs.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -89,6 +91,12 @@ def test_shared_nav_contains_open_data_top10_tasks_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "Top10審核任務" in content
     assert "./open-data-top10-tasks.html" in content
+
+
+def test_shared_nav_contains_open_data_crawler_specs_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "Crawler規格草稿" in content
+    assert "./open-data-crawler-specs.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:

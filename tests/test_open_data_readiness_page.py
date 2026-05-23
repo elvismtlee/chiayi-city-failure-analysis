@@ -32,3 +32,9 @@ def test_open_data_readiness_page_links_to_top10_tasks() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-top10-tasks.html" in content
     assert "產生 Top 10 審核任務" in content
+
+
+def test_open_data_readiness_page_links_to_crawler_specs() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-crawler-specs.html" in content
+    assert "查看 Crawler 規格草稿" in content
