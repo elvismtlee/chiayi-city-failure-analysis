@@ -1974,6 +1974,132 @@ function setupOpenDataManualReviewPackets(payload) {
   renderOpenDataManualReviewPacketsTable(packets);
 }
 
+function filterOpenDataManualReviewPatches(items) {
+  const dayValue = document.querySelector('#openDataManualReviewPatchDay')?.value || '';
+  const statusValue = document.querySelector('#openDataManualReviewPatchStatus')?.value || '';
+  const groupValue = document.querySelector('#openDataManualReviewPatchTopicGroup')?.value || '';
+
+  return items.filter(item => {
+    if (dayValue && item.review_day !== dayValue) return false;
+    if (statusValue && item.patch_status !== statusValue) return false;
+    if (groupValue && item.topic_group !== groupValue) return false;
+    return true;
+  });
+}
+
+function setOpenDataManualReviewPatchesKpi(payload) {
+  const reviewDays = payload?.review_days || {};
+  const patches = Array.isArray(payload?.patches) ? payload.patches : [];
+  const patchStatusCounts = payload?.patch_status_counts || {};
+  setText('[data-open-manual-review-patches="total"]', String(payload?.total_count ?? 0));
+  setText('[data-open-manual-review-patches="day_1"]', String(reviewDays.day_1 ?? 0));
+  setText('[data-open-manual-review-patches="day_2"]', String(reviewDays.day_2 ?? 0));
+  setText('[data-open-manual-review-patches="day_3"]', String(reviewDays.day_3 ?? 0));
+  setText('[data-open-manual-review-patches="drafts"]', String(patchStatusCounts.draft_not_started ?? 0));
+  setText(
+    '[data-open-manual-review-patches="crawler-disabled"]',
+    String(patches.filter(item => item.crawler_execution_allowed === false).length),
+  );
+  setText('[data-render="open-data-manual-review-patches-updated"]', formatUpdatedText(payload?.generated_at));
+}
+
+function renderOpenDataManualReviewPatchesNote(payload) {
+  const node = document.querySelector('[data-render="open-data-manual-review-patches-note"]');
+  if (!node) return;
+  node.textContent = '';
+  const lines = [
+    `public_use_status：${valueOrPending(payload?.public_use_status)}`,
+    '這是 patch draft，不是 crawler。',
+    'manual review required / no auto publish / no live crawler。',
+    '不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文。',
+    `engineering_review_allowed_count：${valueOrPending(payload?.engineering_review_allowed_count)}`,
+    `crawler_execution_allowed：${payload?.crawler_execution_allowed === false ? 'false' : valueOrPending(payload?.crawler_execution_allowed)}`,
+  ];
+  lines.forEach((text, index) => {
+    if (index > 0) node.appendChild(document.createElement('br'));
+    node.appendChild(document.createTextNode(text));
+  });
+}
+
+function renderOpenDataManualReviewPatchesTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-manual-review-patches-table"]');
+  const summary = document.querySelector('[data-render="open-data-manual-review-patches-summary"]');
+  if (!tbody) return;
+  if (summary) {
+    summary.textContent = `顯示 ${items.length} / ${totalCount} 筆回填 Patch 草稿。`;
+  }
+  tbody.textContent = '';
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 11;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合篩選條件的回填 Patch 草稿。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    const statusCell = createCell(item.patch_status);
+    const dayCell = createCell(item.review_day);
+    const batchCell = createCell(item.review_batch);
+    const titleCell = createCell(item.title);
+    const topicCell = createCell(item.topic_group);
+    const ownerCell = createCell(item.source_owner);
+    const actionCell = createCell(item.next_action, 'compact');
+    const notesRequiredCell = createCell(item.reviewer_notes_required === true ? 'true' : 'false');
+    const crawlerCell = createCell(item.crawler_execution_allowed === false ? 'false' : valueOrPending(item.crawler_execution_allowed));
+    const engineeringCell = createCell(item.engineering_review_allowed === false ? 'false' : valueOrPending(item.engineering_review_allowed));
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+    row.append(
+      statusCell,
+      dayCell,
+      batchCell,
+      titleCell,
+      topicCell,
+      ownerCell,
+      actionCell,
+      notesRequiredCell,
+      crawlerCell,
+      engineeringCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataManualReviewPatches(payload) {
+  const items = Array.isArray(payload?.patches) ? payload.patches : [];
+  setOpenDataManualReviewPatchesKpi(payload);
+  renderOpenDataManualReviewPatchesNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataManualReviewPatches(items).sort((a, b) => {
+      if (a.review_day !== b.review_day) {
+        return String(a.review_day || '').localeCompare(String(b.review_day || ''));
+      }
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataManualReviewPatchesTable(filtered, items.length);
+  };
+
+  const daySelect = document.querySelector('#openDataManualReviewPatchDay');
+  const statusSelect = document.querySelector('#openDataManualReviewPatchStatus');
+  const groupSelect = document.querySelector('#openDataManualReviewPatchTopicGroup');
+  if (daySelect) daySelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -2210,6 +2336,25 @@ async function bootSitePages() {
       packets: [],
     });
     setupOpenDataManualReviewPackets(payload);
+  }
+  if (page === 'open-data-manual-review-patches') {
+    const payload = await loadJson('./data/open_data_manual_review_result_patch_drafts.json', {
+      generated_at: '',
+      public_use_status: 'internal_manual_review_result_patch_drafts',
+      total_count: 0,
+      review_days: {},
+      review_batches: {},
+      topic_groups: {},
+      patch_status_counts: {},
+      crawler_execution_allowed: false,
+      engineering_review_allowed_count: 0,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+      patches: [],
+    });
+    setupOpenDataManualReviewPatches(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

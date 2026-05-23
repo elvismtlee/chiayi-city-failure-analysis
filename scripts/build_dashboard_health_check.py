@@ -24,6 +24,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_manual_review_result_template.json",
     "dashboard/data/open_data_manual_review_sop.json",
     "dashboard/data/open_data_manual_review_execution_packets.json",
+    "dashboard/data/open_data_manual_review_result_patch_drafts.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -55,6 +56,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-manual-review-results.html",
     "dashboard/open-data-manual-review-sop.html",
     "dashboard/open-data-manual-review-packets.html",
+    "dashboard/open-data-manual-review-patches.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -87,6 +89,9 @@ IMPORTANT_DOCS = [
     "docs/open_data_manual_review_packets/day_1_packet.md",
     "docs/open_data_manual_review_packets/day_2_packet.md",
     "docs/open_data_manual_review_packets/day_3_packet.md",
+    "docs/open_data_manual_review_patch_drafts/day_1_patch_drafts.md",
+    "docs/open_data_manual_review_patch_drafts/day_2_patch_drafts.md",
+    "docs/open_data_manual_review_patch_drafts/day_3_patch_drafts.md",
 ]
 
 NAV_LABELS = [
@@ -102,6 +107,7 @@ NAV_LABELS = [
     "審核結果輸入",
     "人工審核 SOP",
     "人工審核工作包",
+    "回填 Patch 草稿",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -348,6 +354,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_manual_review_execution_packets",
                 "actual_public_use_status": open_data_manual_review_packets.get("public_use_status"),
                 "ok": open_data_manual_review_packets.get("public_use_status") == "internal_manual_review_execution_packets",
+            }
+        )
+    open_data_manual_review_patch_drafts_path = root / "dashboard" / "data" / "open_data_manual_review_result_patch_drafts.json"
+    if open_data_manual_review_patch_drafts_path.exists() and open_data_manual_review_patch_drafts_path.stat().st_size > 0:
+        try:
+            open_data_manual_review_patch_drafts = json.loads(open_data_manual_review_patch_drafts_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_manual_review_patch_drafts = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_manual_review_result_patch_drafts",
+                "path": "dashboard/data/open_data_manual_review_result_patch_drafts.json",
+                "expected_public_use_status": "internal_manual_review_result_patch_drafts",
+                "actual_public_use_status": open_data_manual_review_patch_drafts.get("public_use_status"),
+                "ok": open_data_manual_review_patch_drafts.get("public_use_status") == "internal_manual_review_result_patch_drafts",
             }
         )
 

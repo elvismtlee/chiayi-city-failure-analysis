@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>人工審核結果回填 Patch 草稿｜嘉義城市故障分析中心</title>
+  <style>
+    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--sand:#f8fafc}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1240px;margin:auto}.nav{display:block;margin-bottom:34px}.breadcrumb{font-size:14px;color:rgba(255,255,255,.82);margin-bottom:14px}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:980px;color:rgba(255,255,255,.92)}.wrap{padding:30px 24px 64px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:26px}.section-title span{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08)}.stat .label{color:var(--muted);font-size:14px}.stat .value{margin-top:8px;font-size:30px;font-weight:950;color:var(--dark)}.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.filters label{display:grid;gap:6px;font-size:14px;color:var(--muted)}.filters select{width:100%;border-radius:14px;border:1px solid rgba(15,118,110,.18);padding:12px 14px;font:inherit;background:#fff;color:var(--text)}.notice{line-height:1.8;color:#475569}.action-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#0f766e;color:#fff;text-decoration:none;font-weight:900;padding:12px 16px}.btn.secondary{background:#e0f2f1;color:#064e3b}.btn.ghost{background:#fff;border:1px solid rgba(15,118,110,.18);color:#0f766e}.table-shell{overflow:auto;border-radius:20px;border:1px solid rgba(15,118,110,.12)}table{width:100%;border-collapse:collapse;min-width:1280px;background:#fff}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);background:var(--sand);font-size:14px}.url-link{color:#0f766e;font-weight:700;word-break:break-word}.empty{color:var(--muted);padding:24px 4px}@media(max-width:960px){.grid,.filters{grid-template-columns:1fr 1fr}}@media(max-width:720px){.grid,.filters{grid-template-columns:1fr}.wrap{padding:24px 16px 56px}}
+  </style>
+</head>
+<body data-page="open-data-manual-review-patches">
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="breadcrumb" data-render="breadcrumb"></div>
+      <h1>人工審核結果回填 Patch 草稿</h1>
+      <p>這是 patch draft，不是 crawler。本頁只用來整理人工審核完成後的回填草稿，不啟動 live crawler（no live crawler），不對 source_url 發出網路請求，不抓個資，不抓私人陳情全文，不自動發布（no auto publish）。crawler_execution_allowed 永遠 false，engineering_review_allowed 預設 false。</p>
+    </div>
+  </section>
+
+  <main class="wrap" id="openDataManualReviewPatches">
+    <div class="section-title"><h2>Patch 概覽</h2><span data-render="open-data-manual-review-patches-updated">讀取中</span></div>
+    <section class="grid">
+      <article class="card stat"><div class="label">total_count</div><div class="value" data-open-manual-review-patches="total">–</div></article>
+      <article class="card stat"><div class="label">day_1 patch 數</div><div class="value" data-open-manual-review-patches="day_1">–</div></article>
+      <article class="card stat"><div class="label">day_2 patch 數</div><div class="value" data-open-manual-review-patches="day_2">–</div></article>
+      <article class="card stat"><div class="label">day_3 patch 數</div><div class="value" data-open-manual-review-patches="day_3">–</div></article>
+      <article class="card stat"><div class="label">draft_not_started 數</div><div class="value" data-open-manual-review-patches="drafts">–</div></article>
+      <article class="card stat"><div class="label">crawler_execution_allowed = false</div><div class="value" data-open-manual-review-patches="crawler-disabled">–</div></article>
+    </section>
+
+    <div class="section-title"><h2>安全提醒</h2><span>internal patch drafts / manual review required</span></div>
+    <section class="card notice" data-render="open-data-manual-review-patches-note">正在讀取 patch drafts。</section>
+    <div class="action-row">
+      <a class="btn" href="./sources.html">回資料來源與更新狀態</a>
+      <a class="btn ghost" href="./open-data-manual-review-packets.html">回人工審核工作包</a>
+      <a class="btn ghost" href="./open-data-manual-review-sop.html">回人工審核 SOP</a>
+      <a class="btn ghost" href="./open-data-manual-review-results.html">回審核結果輸入表</a>
+      <a class="btn ghost" href="./open-data-review-evidence.html">回審核證據包</a>
+      <a class="btn secondary" href="./index.html">回儀表板首頁</a>
+    </div>
+
+    <div class="section-title"><h2>Patch 篩選</h2><span data-render="open-data-manual-review-patches-summary">正在整理 patch drafts。</span></div>
+    <section class="card filters">
+      <label>review_day
+        <select id="openDataManualReviewPatchDay">
+          <option value="">全部</option>
+          <option value="day_1">day_1</option>
+          <option value="day_2">day_2</option>
+          <option value="day_3">day_3</option>
+        </select>
+      </label>
+      <label>patch_status
+        <select id="openDataManualReviewPatchStatus">
+          <option value="">全部</option>
+          <option value="draft_not_started">draft_not_started</option>
+          <option value="waiting_for_manual_review">waiting_for_manual_review</option>
+          <option value="manual_result_entered">manual_result_entered</option>
+          <option value="needs_follow_up">needs_follow_up</option>
+          <option value="blocked">blocked</option>
+          <option value="ready_for_manual_patch_review">ready_for_manual_patch_review</option>
+        </select>
+      </label>
+      <label>topic_group
+        <select id="openDataManualReviewPatchTopicGroup">
+          <option value="">全部</option>
+          <option value="social_welfare">social_welfare</option>
+          <option value="public_works_environment">public_works_environment</option>
+          <option value="traffic_parking">traffic_parking</option>
+          <option value="culture_events">culture_events</option>
+          <option value="complaints_service">complaints_service</option>
+        </select>
+      </label>
+    </section>
+
+    <div class="section-title"><h2>Patch table</h2><span>回填草稿只描述未來人工更新方向</span></div>
+    <section class="card">
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>patch_status</th>
+              <th>review_day</th>
+              <th>review_batch</th>
+              <th>title</th>
+              <th>topic_group</th>
+              <th>source_owner</th>
+              <th>next_action</th>
+              <th>reviewer_notes_required</th>
+              <th>crawler_execution_allowed</th>
+              <th>engineering_review_allowed</th>
+              <th>source_url</th>
+            </tr>
+          </thead>
+          <tbody data-render="open-data-manual-review-patches-table">
+            <tr><td colspan="11" class="empty">正在載入 patch drafts。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./site-pages.js"></script>
+</body>
+</html>
