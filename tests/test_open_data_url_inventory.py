@@ -1,7 +1,6 @@
 from pathlib import Path
 
-import yaml
-
+from scripts.build_open_data_url_inventory import load_config as load_inventory_config
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "chiayi_open_data_url_inventory.yml"
@@ -15,7 +14,11 @@ REQUIRED_GROUPS = {
 
 
 def load_config() -> dict:
-    return yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+    return load_config_from_builder()
+
+
+def load_config_from_builder() -> dict:
+    return load_inventory_config(CONFIG)
 
 
 def test_open_data_url_inventory_config_exists_and_has_minimum_items() -> None:

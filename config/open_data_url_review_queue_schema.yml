@@ -1,0 +1,57 @@
+public_use_status: internal_url_review_queue_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+
+required_fields:
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - official_domain
+  - source_type
+  - expected_format
+  - license_status
+  - update_cadence
+  - url_review_status
+  - source_reachability
+  - official_source_verified
+  - license_reviewed
+  - crawler_candidate
+  - crawler_priority
+  - crawler_blockers
+  - reviewed_by
+  - reviewed_at
+  - review_notes
+  - safety_notes
+  - dashboard_use
+
+url_review_status_options:
+  - needs_manual_url_review
+  - url_reachable
+  - official_source_verified
+  - license_needs_review
+  - crawler_candidate
+  - needs_more_context
+  - do_not_crawl
+
+crawler_priority_options:
+  - none
+  - low
+  - medium
+  - high
+
+source_reachability_options:
+  - unknown
+  - reachable
+  - temporarily_unreachable
+  - blocked_or_requires_login
+  - not_public
+
+public_use_gate:
+  - 只有 official_source_verified 且 license_reviewed 才可以進 crawler_candidate。
+  - crawler_candidate 不代表可以馬上爬。
+  - 仍需人工批准後才可建立 crawler。
+  - do_not_crawl 永遠不可進入 crawler。

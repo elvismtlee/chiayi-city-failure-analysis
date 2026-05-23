@@ -14,7 +14,7 @@
       <nav class="nav"></nav>
       <div class="breadcrumb" data-render="breadcrumb"></div>
       <h1>嘉義市官方開放資料 URL 盤點</h1>
-      <p>這是第二批真實資料來源盤點頁，先把官方開放資料與公開服務入口做成可審核 inventory。這一階段只審核 URL，不啟動 crawler，不抓個資，不抓私人陳情，也不自動發布。</p>
+      <p>這是第二批真實資料來源盤點頁，先把官方開放資料與公開服務入口做成可審核 inventory。這一階段只審核 URL，不啟動 live crawler，不抓個資，不抓私人陳情全文，也不自動發布。</p>
     </div>
   </section>
 
@@ -29,9 +29,10 @@
       <article class="card stat"><div class="label">1999 / 服務入口來源數</div><div class="value" data-open-data="complaints">–</div></article>
     </section>
 
-    <div class="section-title"><h2>審核提醒</h2><span>internal / manual review required</span></div>
+    <div class="section-title"><h2>審核提醒</h2><span>internal_url_inventory / manual review required</span></div>
     <section class="card notice" data-render="open-data-note">正在讀取官方開放資料 URL 盤點。</section>
     <div class="action-row">
+      <a class="btn" href="./open-data-review.html">進入 URL 人工審核佇列</a>
       <a class="btn" href="./sources.html">回資料來源與更新狀態</a>
       <a class="btn secondary" href="./index.html">回儀表板首頁</a>
     </div>
@@ -74,7 +75,7 @@
     <div class="section-title"><h2>使用邊界</h2></div>
     <section class="card notice">
       <strong>本頁只做第二批真實資料來源盤點。</strong>
-      目前只審核 URL，不啟動 crawler，不抓個資，不抓私人陳情，不自動發布，no auto publish。所有來源都必須人工審核後，才考慮建立 crawler 或接入後續 dashboard。
+      狀態為 internal_url_inventory。 目前只審核 URL，不啟動 live crawler，不抓個資，不抓私人陳情全文，不自動發布，no auto publish。所有來源都必須人工審核後，才考慮建立 crawler 或接入後續 dashboard。
     </section>
   </main>
 
