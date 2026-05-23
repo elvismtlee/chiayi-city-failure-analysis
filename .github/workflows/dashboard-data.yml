@@ -31,6 +31,7 @@ on:
       - "scripts/build_open_data_review_evidence_pack.py"
       - "scripts/build_open_data_manual_review_result_template.py"
       - "scripts/build_open_data_manual_review_sop.py"
+      - "scripts/build_open_data_manual_review_execution_packets.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -45,7 +46,9 @@ on:
       - "config/open_data_review_evidence_pack_schema.yml"
       - "config/open_data_manual_review_result_template_schema.yml"
       - "config/open_data_manual_review_sop_schema.yml"
+      - "config/open_data_manual_review_execution_packets_schema.yml"
       - "dashboard/**"
+      - "docs/open_data_manual_review_packets/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -85,6 +88,8 @@ on:
       - "tests/test_build_open_data_manual_review_result_template.py"
       - "tests/test_open_data_manual_review_sop_schema.py"
       - "tests/test_build_open_data_manual_review_sop.py"
+      - "tests/test_open_data_manual_review_execution_packets_schema.py"
+      - "tests/test_build_open_data_manual_review_execution_packets.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -104,6 +109,8 @@ on:
       - "tests/test_open_data_review_evidence_page.py"
       - "tests/test_open_data_manual_review_results_page.py"
       - "tests/test_open_data_manual_review_sop_page.py"
+      - "tests/test_open_data_manual_review_packets_page.py"
+      - "tests/test_manual_review_packet_docs.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -149,6 +156,7 @@ on:
       - "scripts/build_open_data_review_evidence_pack.py"
       - "scripts/build_open_data_manual_review_result_template.py"
       - "scripts/build_open_data_manual_review_sop.py"
+      - "scripts/build_open_data_manual_review_execution_packets.py"
       - "scripts/build_command_center_overview.py"
       - "scripts/build_dashboard_health_check.py"
       - "scripts/build_weekly_system_report.py"
@@ -163,7 +171,9 @@ on:
       - "config/open_data_review_evidence_pack_schema.yml"
       - "config/open_data_manual_review_result_template_schema.yml"
       - "config/open_data_manual_review_sop_schema.yml"
+      - "config/open_data_manual_review_execution_packets_schema.yml"
       - "dashboard/**"
+      - "docs/open_data_manual_review_packets/**"
       - "data/processed/cycc_minutes_reviewed_sample.json"
       - "tests/test_build_dashboard_data.py"
       - "tests/test_build_hotspots_geojson.py"
@@ -203,6 +213,8 @@ on:
       - "tests/test_build_open_data_manual_review_result_template.py"
       - "tests/test_open_data_manual_review_sop_schema.py"
       - "tests/test_build_open_data_manual_review_sop.py"
+      - "tests/test_open_data_manual_review_execution_packets_schema.py"
+      - "tests/test_build_open_data_manual_review_execution_packets.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -222,6 +234,8 @@ on:
       - "tests/test_open_data_review_evidence_page.py"
       - "tests/test_open_data_manual_review_results_page.py"
       - "tests/test_open_data_manual_review_sop_page.py"
+      - "tests/test_open_data_manual_review_packets_page.py"
+      - "tests/test_manual_review_packet_docs.py"
       - "tests/test_sources_page.py"
       - "tests/test_weekly_summary_page.py"
       - "tests/test_policy_drafts_page.py"
@@ -307,6 +321,8 @@ jobs:
         run: python scripts/build_open_data_manual_review_result_template.py
       - name: Build open data manual review SOP
         run: python scripts/build_open_data_manual_review_sop.py
+      - name: Build open data manual review execution packets
+        run: python scripts/build_open_data_manual_review_execution_packets.py
       - name: Build command center overview
         run: python scripts/build_command_center_overview.py
       - name: Build dashboard health check
@@ -350,6 +366,7 @@ jobs:
               "open_data_review_evidence_pack.json",
               "open_data_manual_review_result_template.json",
               "open_data_manual_review_sop.json",
+              "open_data_manual_review_execution_packets.json",
               "command_center_overview.json",
               "dashboard_health_check.json",
               "weekly_system_report.json",
@@ -402,6 +419,8 @@ jobs:
           pytest -q tests/test_build_open_data_manual_review_result_template.py
           pytest -q tests/test_open_data_manual_review_sop_schema.py
           pytest -q tests/test_build_open_data_manual_review_sop.py
+          pytest -q tests/test_open_data_manual_review_execution_packets_schema.py
+          pytest -q tests/test_build_open_data_manual_review_execution_packets.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py
@@ -421,6 +440,8 @@ jobs:
           pytest -q tests/test_open_data_review_evidence_page.py
           pytest -q tests/test_open_data_manual_review_results_page.py
           pytest -q tests/test_open_data_manual_review_sop_page.py
+          pytest -q tests/test_open_data_manual_review_packets_page.py
+          pytest -q tests/test_manual_review_packet_docs.py
           pytest -q tests/test_sources_page.py
           pytest -q tests/test_weekly_summary_page.py
           pytest -q tests/test_policy_drafts_page.py

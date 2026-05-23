@@ -1,0 +1,37 @@
+public_use_status: internal_manual_review_execution_packets_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+required_fields:
+  - packet_id
+  - packet_title
+  - source_sop_file
+  - source_result_template_file
+  - total_tasks
+  - daily_batches
+  - packets
+  - day_packet_id
+  - review_day
+  - review_batch
+  - task_count
+  - estimated_minutes_total
+  - checklist_before_start
+  - task_cards
+  - evidence_fields_to_fill
+  - result_fields_to_fill
+  - reviewer_notes_template
+  - completion_checklist
+  - handoff_after_completion
+  - safety_notes
+  - crawler_execution_allowed
+  - engineering_review_allowed
+packet_status_values:
+  - not_started
+  - in_progress
+  - completed_manual_review_only
+  - needs_follow_up
+  - blocked
