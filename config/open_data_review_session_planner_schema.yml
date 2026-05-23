@@ -1,0 +1,73 @@
+public_use_status: internal_review_session_planner_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+engineering_review_allowed_default: false
+human_approval_required: true
+
+required_fields:
+  - session_task_id
+  - checklist_id
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - proposed_fetch_method
+  - proposed_parser_type
+  - review_day
+  - review_batch
+  - estimated_minutes
+  - session_status
+  - source_open_check
+  - official_source_check
+  - license_terms_check
+  - format_check
+  - personal_data_check
+  - private_complaint_check
+  - engineering_gate_check
+  - reviewer_action_items
+  - evidence_to_record
+  - reviewer_notes_template
+  - completion_criteria
+  - next_action_after_session
+  - session_blockers
+  - safety_notes
+  - crawler_execution_allowed
+  - engineering_review_allowed
+
+session_status:
+  - not_started
+  - in_progress
+  - evidence_recorded
+  - needs_follow_up
+  - blocked
+  - completed_for_manual_review_only
+
+review_batch:
+  - batch_1_high_priority
+  - batch_2_standard
+  - batch_3_follow_up
+
+next_action_after_session:
+  - record_source_evidence
+  - update_human_review_workbook_later
+  - update_engineering_checklist_later
+  - mark_needs_follow_up
+  - block_item
+  - prepare_manual_summary_later
+
+safety_rules:
+  - crawler_execution_allowed 永遠 false。
+  - engineering_review_allowed 預設 false。
+  - session_status 不可包含 approved_for_crawling。
+  - 不可新增 live_crawler。
+  - 每筆都必須有 personal_data_check 和 private_complaint_check。
+  - 每筆都必須有 evidence_to_record。
+  - 每筆都必須有 completion_criteria。
+  - 這只是人工 session planner，不會修改原始 workbook 狀態。

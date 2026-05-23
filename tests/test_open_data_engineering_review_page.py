@@ -29,3 +29,9 @@ def test_site_pages_renders_open_data_engineering_review_checklist() -> None:
     assert "openDataEngineeringReviewSearch" in content
     assert "openDataEngineeringReviewStatus" in content
     assert "openDataEngineeringReviewSourceGate" in content
+
+
+def test_open_data_engineering_review_page_links_to_review_sessions() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-review-sessions.html" in content
+    assert "進入人工審核執行工作台" in content

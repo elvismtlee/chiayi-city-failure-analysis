@@ -15,6 +15,7 @@ DASHBOARD_PAGES = [
     "open-data-crawler-specs.html",
     "open-data-human-review.html",
     "open-data-engineering-review.html",
+    "open-data-review-sessions.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -113,6 +114,12 @@ def test_shared_nav_contains_open_data_engineering_review_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "工程審查清單" in content
     assert "./open-data-engineering-review.html" in content
+
+
+def test_shared_nav_contains_open_data_review_sessions_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "人工審核執行" in content
+    assert "./open-data-review-sessions.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:
