@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524015134",
-  "generated_at": "2026-05-24T01:51:34+08:00",
+  "check_id": "dashboard-health-20260524031037",
+  "generated_at": "2026-05-24T03:10:37+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -193,6 +193,12 @@
       "exists": true,
       "empty": false,
       "valid_json": true
+    },
+    {
+      "file": "dashboard/project-landing.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
     },
     {
       "file": "dashboard/open-data-inventory.html",
@@ -482,6 +488,11 @@
   "invalid_json_files": [],
   "page_checks": [
     {
+      "page": "dashboard/project-landing.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/open-data-inventory.html",
       "exists": true,
       "empty": false
@@ -633,6 +644,11 @@
     }
   ],
   "nav_checks": [
+    {
+      "name": "公開展示頁",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
     {
       "name": "開放資料盤點",
       "in_site_map": true,

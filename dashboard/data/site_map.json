@@ -1,5 +1,6 @@
 [
   {"title": "城市儀表板首頁", "path": "./index.html", "level": 1, "description": "KPI、熱點地圖、議題排行與城市故障追蹤表。"},
+  {"title": "公開展示頁", "path": "./project-landing.html", "level": 1, "group": "總覽", "status": "internal_preview", "description": "給非工程背景使用者閱讀的公開展示版專案頁，說明目前成果、人工審核流程與安全邊界。"},
   {"title": "城市熱點地圖", "path": "./map.html", "level": 2, "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"},
   {"title": "座標審核", "path": "./geocoding-review.html", "level": 2, "description": "人工檢查 prototype 座標與地理校正候選清單。"},
   {"title": "CYCC 公開資料審核", "path": "./cycc-review.html", "level": 2, "description": "顯示嘉義市議會公開 metadata 的內部逐筆審核表與統計卡。"},
