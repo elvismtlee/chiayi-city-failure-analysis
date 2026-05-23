@@ -35,3 +35,9 @@ def test_open_data_engineering_review_page_links_to_review_sessions() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "./open-data-review-sessions.html" in content
     assert "進入人工審核執行工作台" in content
+
+
+def test_open_data_engineering_review_page_links_to_evidence_pack() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-review-evidence.html" in content
+    assert "查看審核證據包" in content
