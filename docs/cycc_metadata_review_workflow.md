@@ -63,6 +63,7 @@ review_status: needs_review
 - 擷取私人陳情全文。
 - 收集姓名、電話、email、地址等個資。
 - 將 metadata 直接改寫成攻擊、指控或結論。
+- 不得把 metadata 直接改寫成指控。
 - 自動發文。
 - 自動寄信。
 - 自動建立募款或金流內容。
