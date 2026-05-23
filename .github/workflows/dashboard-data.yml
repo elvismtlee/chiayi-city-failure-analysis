@@ -112,6 +112,7 @@ on:
       - "tests/test_open_data_day1_operation_board_page.py"
       - "tests/test_source_verification_workspace_page.py"
       - "tests/test_project_landing_page.py"
+      - "tests/test_launch_homepage_flow.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -265,6 +266,7 @@ on:
       - "tests/test_open_data_day1_operation_board_page.py"
       - "tests/test_source_verification_workspace_page.py"
       - "tests/test_project_landing_page.py"
+      - "tests/test_launch_homepage_flow.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
       - "tests/test_filming_checklists_page.py"
@@ -500,6 +502,7 @@ jobs:
           pytest -q tests/test_open_data_day1_operation_board_page.py
           pytest -q tests/test_source_verification_workspace_page.py
           pytest -q tests/test_project_landing_page.py
+          pytest -q tests/test_launch_homepage_flow.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py
           pytest -q tests/test_filming_checklists_page.py

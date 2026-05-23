@@ -15,6 +15,7 @@ def test_source_verification_workspace_exists() -> None:
 def test_source_verification_workspace_has_plain_language_manual_checks() -> None:
     content = PAGE.read_text(encoding="utf-8")
     assert "資料源人工檢查工作台" in content
+    assert "這不是審核人，也不是審核政治內容，而是檢查官方資料來源能不能安全進資料庫。" in content
     assert "打開一筆官方 URL" in content
     for field in [
         "source_title",
