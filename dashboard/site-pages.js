@@ -199,6 +199,12 @@ function topicGroupLabel(topicGroup) {
   return labels[topicGroup] || valueOrPending(topicGroup);
 }
 
+function readinessLevelClass(level) {
+  if (level === 'blocked') return 'pill blocked';
+  if (level === 'medium') return 'pill medium';
+  return 'pill';
+}
+
 function setOpenDataKpi(payload) {
   const counts = payload?.topic_groups || {};
   setText('[data-open-data="total"]', String(payload?.total_count || 0));
@@ -446,6 +452,148 @@ function setupOpenDataReviewQueue(payload) {
   render();
 }
 
+function setOpenDataReadinessKpi(payload) {
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  const levels = payload?.readiness_levels || {};
+  const groups = payload?.topic_groups || {};
+  const highRiskCount = items.filter(
+    item => item.readiness_level === 'blocked' || Number(item?.score_breakdown?.crawler_risk_score || 0) >= 5,
+  ).length;
+  setText('[data-open-readiness="total"]', String(payload?.total_count || 0));
+  setText('[data-open-readiness="high"]', String(levels.high || 0));
+  setText('[data-open-readiness="medium"]', String(levels.medium || 0));
+  setText('[data-open-readiness="low"]', String(levels.low || 0));
+  setText('[data-open-readiness="blocked"]', String(highRiskCount));
+  setText('[data-open-readiness="complaints"]', String(groups.complaints_service || 0));
+  setText('[data-render="open-data-readiness-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataReadinessNote(payload) {
+  const note = document.querySelector('[data-render="open-data-readiness-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是 readiness report。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` 總數：${payload?.total_count || 0}。狀態：internal_readiness_report。這不是 crawler，不啟動 live crawler，不抓個資，不抓私人陳情全文，不自動發布。readiness score 只是內部排序，不代表正式評價或結論。`,
+  );
+}
+
+function filterOpenDataReadiness(items) {
+  const query = String(document.querySelector('#openDataReadinessSearch')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataReadinessTopicGroup')?.value || 'all');
+  const level = String(document.querySelector('#openDataReadinessLevel')?.value || 'all');
+  const stage = String(document.querySelector('#openDataReadinessStage')?.value || 'all');
+  return items.filter(item => {
+    const haystack = [
+      String(item.title || ''),
+      String(item.source_owner || ''),
+      String(item.readiness_notes || ''),
+    ].join(' ').toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    const matchesLevel = level === 'all' || item.readiness_level === level;
+    const matchesStage = stage === 'all' || item.crawler_stage === stage;
+    return matchesQuery && matchesGroup && matchesLevel && matchesStage;
+  });
+}
+
+function renderOpenDataReadinessTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-readiness-table"]');
+  const summary = document.querySelector('[data-render="open-data-readiness-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆 readiness 排序`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 11;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的 readiness 項目。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const levelCell = document.createElement('td');
+    const levelPill = document.createElement('span');
+    levelPill.className = readinessLevelClass(item.readiness_level);
+    levelPill.textContent = valueOrPending(item.readiness_level);
+    levelCell.appendChild(levelPill);
+
+    const scoreCell = createCell(item.readiness_score);
+
+    const topicCell = document.createElement('td');
+    const topicPill = document.createElement('span');
+    topicPill.className = 'pill';
+    topicPill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(topicPill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const formatCell = createCell(item.expected_format);
+    const licenseCell = createCell(item.license_status);
+    const cadenceCell = createCell(item.update_cadence);
+    const stageCell = createCell(item.crawler_stage);
+    const notesCell = createCell(item.readiness_notes, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      levelCell,
+      scoreCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      formatCell,
+      licenseCell,
+      cadenceCell,
+      stageCell,
+      notesCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataReadiness(payload) {
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  setOpenDataReadinessKpi(payload);
+  renderOpenDataReadinessNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataReadiness(items).sort((a, b) => {
+      if (b.readiness_score !== a.readiness_score) return b.readiness_score - a.readiness_score;
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataReadinessTable(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataReadinessSearch');
+  const groupSelect = document.querySelector('#openDataReadinessTopicGroup');
+  const levelSelect = document.querySelector('#openDataReadinessLevel');
+  const stageSelect = document.querySelector('#openDataReadinessStage');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  if (levelSelect) levelSelect.addEventListener('change', render);
+  if (stageSelect) stageSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -500,6 +648,21 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataReviewQueue(payload);
+  }
+  if (page === 'open-data-readiness') {
+    const payload = await loadJson('./data/open_data_readiness_report.json', {
+      generated_at: '',
+      public_use_status: 'internal_readiness_report',
+      total_count: 0,
+      topic_groups: {},
+      readiness_levels: {},
+      items: [],
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataReadiness(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

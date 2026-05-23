@@ -10,6 +10,7 @@ DASHBOARD_PAGES = [
     "cycc-review.html",
     "open-data-inventory.html",
     "open-data-review.html",
+    "open-data-readiness.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -37,6 +38,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./cycc-review.html",
         "./open-data-inventory.html",
         "./open-data-review.html",
+        "./open-data-readiness.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -73,6 +75,12 @@ def test_shared_nav_contains_open_data_review_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "官方資料審核" in content
     assert "./open-data-review.html" in content
+
+
+def test_shared_nav_contains_open_data_readiness_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "Readiness評分" in content
+    assert "./open-data-readiness.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:

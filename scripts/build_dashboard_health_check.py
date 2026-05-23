@@ -14,6 +14,7 @@ TAIPEI_TZ = timezone(timedelta(hours=8))
 IMPORTANT_JSON = [
     "dashboard/data/open_data_url_inventory.json",
     "dashboard/data/open_data_url_review_queue.json",
+    "dashboard/data/open_data_readiness_report.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -35,6 +36,7 @@ IMPORTANT_JSON = [
 IMPORTANT_PAGES = [
     "dashboard/open-data-inventory.html",
     "dashboard/open-data-review.html",
+    "dashboard/open-data-readiness.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -66,6 +68,7 @@ IMPORTANT_JS = [
 NAV_LABELS = [
     "開放資料盤點",
     "官方資料審核",
+    "Readiness評分",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -162,6 +165,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_url_review_queue",
                 "actual_public_use_status": open_data_review_queue.get("public_use_status"),
                 "ok": open_data_review_queue.get("public_use_status") == "internal_url_review_queue",
+            }
+        )
+    open_data_readiness_path = root / "dashboard" / "data" / "open_data_readiness_report.json"
+    if open_data_readiness_path.exists() and open_data_readiness_path.stat().st_size > 0:
+        try:
+            open_data_readiness_report = json.loads(open_data_readiness_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_readiness_report = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_readiness_report",
+                "path": "dashboard/data/open_data_readiness_report.json",
+                "expected_public_use_status": "internal_readiness_report",
+                "actual_public_use_status": open_data_readiness_report.get("public_use_status"),
+                "ok": open_data_readiness_report.get("public_use_status") == "internal_readiness_report",
             }
         )
 

@@ -40,6 +40,7 @@ def build_queue_item(item: dict) -> dict:
         "expected_format": item["expected_format"],
         "license_status": item["license_status"],
         "update_cadence": item["update_cadence"],
+        "west_district_relevance": item.get("west_district_relevance", ""),
         "dashboard_use": item["dashboard_use"],
         "url_review_status": "needs_manual_url_review",
         "source_reachability": "unknown",
