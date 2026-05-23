@@ -1,0 +1,77 @@
+public_use_status: internal_human_review_workbook_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+human_approval_required: true
+
+required_fields:
+  - review_id
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - proposed_fetch_method
+  - proposed_parser_type
+  - source_opened
+  - official_source_verified
+  - license_reviewed
+  - terms_reviewed
+  - format_checked
+  - sample_download_checked
+  - personal_data_checked
+  - private_complaint_checked
+  - robots_or_terms_checked
+  - reviewer
+  - reviewed_at
+  - review_status
+  - approval_gate_status
+  - engineering_review_allowed
+  - crawler_execution_allowed
+  - blockers
+  - reviewer_notes
+  - next_action
+  - safety_notes
+
+review_status:
+  - not_started
+  - source_opened
+  - source_verified
+  - license_checked
+  - format_checked
+  - risk_checked
+  - ready_for_engineering_review
+  - blocked
+
+approval_gate_status:
+  - locked
+  - pending_manual_review
+  - needs_license_review
+  - needs_format_review
+  - needs_risk_review
+  - ready_for_engineering_review
+  - blocked
+
+next_action:
+  - open_source_url
+  - verify_official_source
+  - review_license_terms
+  - inspect_download_format
+  - check_personal_data_risk
+  - check_private_complaint_risk
+  - write_reviewer_notes
+  - prepare_engineering_review_later
+  - block_item
+
+safety_rules:
+  - crawler_execution_allowed 永遠 false。
+  - engineering_review_allowed 預設 false。
+  - human_approval_required 永遠 true。
+  - 只有在所有人工欄位都通過時，approval_gate_status 才能是 ready_for_engineering_review。
+  - complaints_service 不可直接進 ready_for_engineering_review。
+  - private_complaint_checked 必須存在。
+  - personal_data_checked 必須存在。
