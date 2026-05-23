@@ -20,6 +20,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_human_review_workbook.json",
     "dashboard/data/open_data_engineering_review_checklist.json",
     "dashboard/data/open_data_review_session_planner.json",
+    "dashboard/data/open_data_review_evidence_pack.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -47,6 +48,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-human-review.html",
     "dashboard/open-data-engineering-review.html",
     "dashboard/open-data-review-sessions.html",
+    "dashboard/open-data-review-evidence.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -84,6 +86,7 @@ NAV_LABELS = [
     "人工審核工作簿",
     "工程審查清單",
     "人工審核執行",
+    "審核證據包",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -270,6 +273,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_review_session_planner",
                 "actual_public_use_status": open_data_review_sessions.get("public_use_status"),
                 "ok": open_data_review_sessions.get("public_use_status") == "internal_review_session_planner",
+            }
+        )
+    open_data_review_evidence_path = root / "dashboard" / "data" / "open_data_review_evidence_pack.json"
+    if open_data_review_evidence_path.exists() and open_data_review_evidence_path.stat().st_size > 0:
+        try:
+            open_data_review_evidence = json.loads(open_data_review_evidence_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_review_evidence = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_review_evidence_pack",
+                "path": "dashboard/data/open_data_review_evidence_pack.json",
+                "expected_public_use_status": "internal_review_evidence_pack",
+                "actual_public_use_status": open_data_review_evidence.get("public_use_status"),
+                "ok": open_data_review_evidence.get("public_use_status") == "internal_review_evidence_pack",
             }
         )
 
