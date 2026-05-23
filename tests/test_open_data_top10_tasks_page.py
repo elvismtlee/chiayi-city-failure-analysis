@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_top10_review_tasks() -> None:
     assert "openDataTop10Search" in content
     assert "openDataTop10Priority" in content
     assert "openDataTop10Status" in content
+
+
+def test_open_data_top10_tasks_page_links_to_crawler_specs() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-crawler-specs.html" in content
+    assert "建立 Crawler 規格草稿" in content

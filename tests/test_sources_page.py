@@ -25,3 +25,9 @@ def test_sources_links_to_open_data_top10_tasks() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-top10-tasks.html' in content
     assert '前往 Top 10 官方資料審核任務' in content
+
+
+def test_sources_links_to_open_data_crawler_specs() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    assert './open-data-crawler-specs.html' in content
+    assert '前往 Crawler 規格草稿' in content

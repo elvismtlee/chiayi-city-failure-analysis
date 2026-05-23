@@ -211,6 +211,12 @@ function reviewPriorityClass(priority) {
   return 'pill';
 }
 
+function crawlerSpecStatusClass(status) {
+  if (status === 'blocked') return 'pill risk';
+  if (status === 'license_review_required' || status === 'parser_design_required') return 'pill warn';
+  return 'pill';
+}
+
 function setOpenDataKpi(payload) {
   const counts = payload?.topic_groups || {};
   setText('[data-open-data="total"]', String(payload?.total_count || 0));
@@ -741,6 +747,156 @@ function setupOpenDataTop10Tasks(payload) {
   render();
 }
 
+function setOpenDataCrawlerSpecKpi(payload) {
+  const fetchMethods = payload?.proposed_fetch_methods || {};
+  const items = Array.isArray(payload?.specs) ? payload.specs : [];
+  const groups = payload?.topic_groups || {};
+  setText('[data-open-crawler-spec="total"]', String(payload?.total_count || 0));
+  setText(
+    '[data-open-crawler-spec="disabled"]',
+    String(items.filter(item => item.crawler_execution_allowed === false).length),
+  );
+  setText('[data-open-crawler-spec="csv"]', String(fetchMethods.csv_download_later || 0));
+  setText(
+    '[data-open-crawler-spec="html"]',
+    String((fetchMethods.html_page_parse_later || 0) + (fetchMethods.not_recommended || 0)),
+  );
+  setText(
+    '[data-open-crawler-spec="high-risk"]',
+    String(items.filter(item => item.personal_data_risk === 'high').length),
+  );
+  setText('[data-open-crawler-spec="complaints"]', String(groups.complaints_service || 0));
+  setText('[data-render="open-data-crawler-spec-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataCrawlerSpecNote(payload) {
+  const note = document.querySelector('[data-render="open-data-crawler-spec-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是 crawler spec 草稿。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` 規格數：${payload?.total_count || 0}。狀態：internal_crawler_spec_drafts。這不是 crawler，不啟動 live crawler，不抓個資，不抓私人陳情全文，不自動發布。crawler_execution_allowed 永遠是 false，spec draft 不代表批准爬取。`,
+  );
+}
+
+function filterOpenDataCrawlerSpecs(items) {
+  const query = String(document.querySelector('#openDataCrawlerSpecSearch')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataCrawlerSpecTopicGroup')?.value || 'all');
+  const status = String(document.querySelector('#openDataCrawlerSpecStatus')?.value || 'all');
+  const fetchMethod = String(document.querySelector('#openDataCrawlerSpecFetchMethod')?.value || 'all');
+  const risk = String(document.querySelector('#openDataCrawlerSpecRisk')?.value || 'all');
+  return items.filter(item => {
+    const haystack = [
+      String(item.title || ''),
+      String(item.source_owner || ''),
+      String(item.next_action || ''),
+      String(item.safety_notes || ''),
+    ].join(' ').toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    const matchesStatus = status === 'all' || item.crawler_spec_status === status;
+    const matchesFetchMethod = fetchMethod === 'all' || item.proposed_fetch_method === fetchMethod;
+    const matchesRisk = risk === 'all' || item.personal_data_risk === risk;
+    return matchesQuery && matchesGroup && matchesStatus && matchesFetchMethod && matchesRisk;
+  });
+}
+
+function renderOpenDataCrawlerSpecTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-crawler-spec-table"]');
+  const summary = document.querySelector('[data-render="open-data-crawler-spec-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆 crawler spec 草稿`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 10;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的 crawler spec 草稿。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const statusCell = document.createElement('td');
+    const statusPill = document.createElement('span');
+    statusPill.className = crawlerSpecStatusClass(item.crawler_spec_status);
+    statusPill.textContent = valueOrPending(item.crawler_spec_status);
+    statusCell.appendChild(statusPill);
+
+    const topicCell = document.createElement('td');
+    const topicPill = document.createElement('span');
+    topicPill.className = 'pill';
+    topicPill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(topicPill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const fetchCell = createCell(item.proposed_fetch_method);
+    const parserCell = createCell(item.proposed_parser_type);
+    const personalRiskCell = createCell(item.personal_data_risk);
+    const complaintRiskCell = createCell(item.private_complaint_risk);
+    const actionCell = createCell(item.next_action, 'compact');
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    row.append(
+      statusCell,
+      topicCell,
+      titleCell,
+      ownerCell,
+      fetchCell,
+      parserCell,
+      personalRiskCell,
+      complaintRiskCell,
+      actionCell,
+      urlCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataCrawlerSpecs(payload) {
+  const items = Array.isArray(payload?.specs) ? payload.specs : [];
+  setOpenDataCrawlerSpecKpi(payload);
+  renderOpenDataCrawlerSpecNote(payload);
+
+  const render = () => {
+    const filtered = filterOpenDataCrawlerSpecs(items).sort((a, b) => {
+      if (a.personal_data_risk !== b.personal_data_risk) return String(b.personal_data_risk).localeCompare(String(a.personal_data_risk));
+      return String(a.title || '').localeCompare(String(b.title || ''), 'zh-Hant');
+    });
+    renderOpenDataCrawlerSpecTable(filtered, items.length);
+  };
+  const searchInput = document.querySelector('#openDataCrawlerSpecSearch');
+  const groupSelect = document.querySelector('#openDataCrawlerSpecTopicGroup');
+  const statusSelect = document.querySelector('#openDataCrawlerSpecStatus');
+  const fetchMethodSelect = document.querySelector('#openDataCrawlerSpecFetchMethod');
+  const riskSelect = document.querySelector('#openDataCrawlerSpecRisk');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (fetchMethodSelect) fetchMethodSelect.addEventListener('change', render);
+  if (riskSelect) riskSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -826,6 +982,23 @@ async function bootSitePages() {
       no_personal_data: true,
     });
     setupOpenDataTop10Tasks(payload);
+  }
+  if (page === 'open-data-crawler-specs') {
+    const payload = await loadJson('./data/open_data_crawler_spec_drafts.json', {
+      generated_at: '',
+      public_use_status: 'internal_crawler_spec_drafts',
+      total_count: 0,
+      topic_groups: {},
+      proposed_fetch_methods: {},
+      parser_types: {},
+      specs: [],
+      crawler_execution_allowed: false,
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataCrawlerSpecs(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

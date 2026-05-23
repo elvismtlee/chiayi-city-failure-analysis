@@ -1,0 +1,80 @@
+public_use_status: internal_crawler_spec_draft_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+crawler_execution_allowed: false
+
+required_fields:
+  - spec_id
+  - task_id
+  - inventory_id
+  - title
+  - topic_group
+  - source_owner
+  - source_url
+  - expected_format
+  - license_status
+  - update_cadence
+  - readiness_score
+  - review_priority
+  - source_review_status
+  - crawler_spec_status
+  - crawler_execution_allowed
+  - proposed_fetch_method
+  - proposed_parser_type
+  - expected_output_dataset
+  - output_fields_draft
+  - refresh_strategy
+  - rate_limit_notes
+  - robots_or_terms_review_status
+  - personal_data_risk
+  - private_complaint_risk
+  - safety_notes
+  - human_approval_required
+  - blockers
+  - next_action
+
+crawler_spec_status:
+  - draft_not_reviewed
+  - source_review_required
+  - license_review_required
+  - parser_design_required
+  - blocked
+  - ready_for_engineering_review
+
+proposed_fetch_method:
+  - manual_download_later
+  - csv_download_later
+  - json_api_later
+  - html_table_parse_later
+  - html_page_parse_later
+  - not_recommended
+
+proposed_parser_type:
+  - csv
+  - json
+  - xml
+  - html_table
+  - html_document
+  - unknown
+
+personal_data_risk:
+  - low
+  - medium
+  - high
+  - blocked
+
+private_complaint_risk:
+  - low
+  - medium
+  - high
+  - blocked
+
+safety_rules:
+  - crawler_execution_allowed 永遠預設 false。
+  - human_approval_required 永遠 true。
+  - complaints_service 類型不得直接進 crawler ready。
+  - 若 topic_group = complaints_service，private_complaint_risk 至少 medium。
+  - 若 source_url 是入口頁、服務頁、表單頁，不得自動爬取，只能 manual_review_only。
+  - no_live_crawler 必須 true。

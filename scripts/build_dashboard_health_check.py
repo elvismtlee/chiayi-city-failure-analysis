@@ -16,6 +16,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_url_review_queue.json",
     "dashboard/data/open_data_readiness_report.json",
     "dashboard/data/open_data_top10_review_tasks.json",
+    "dashboard/data/open_data_crawler_spec_drafts.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -39,6 +40,7 @@ IMPORTANT_PAGES = [
     "dashboard/open-data-review.html",
     "dashboard/open-data-readiness.html",
     "dashboard/open-data-top10-tasks.html",
+    "dashboard/open-data-crawler-specs.html",
     "dashboard/minutes-review.html",
     "dashboard/minutes-issues.html",
     "dashboard/weekly-summary.html",
@@ -72,6 +74,7 @@ NAV_LABELS = [
     "官方資料審核",
     "Readiness評分",
     "Top10審核任務",
+    "Crawler規格草稿",
     "內容排程",
     "每日執行",
     "公開審核",
@@ -198,6 +201,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_top10_review_tasks",
                 "actual_public_use_status": open_data_top10_tasks.get("public_use_status"),
                 "ok": open_data_top10_tasks.get("public_use_status") == "internal_top10_review_tasks",
+            }
+        )
+    open_data_crawler_specs_path = root / "dashboard" / "data" / "open_data_crawler_spec_drafts.json"
+    if open_data_crawler_specs_path.exists() and open_data_crawler_specs_path.stat().st_size > 0:
+        try:
+            open_data_crawler_specs = json.loads(open_data_crawler_specs_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            open_data_crawler_specs = {}
+        data_status_checks.append(
+            {
+                "name": "open_data_crawler_spec_drafts",
+                "path": "dashboard/data/open_data_crawler_spec_drafts.json",
+                "expected_public_use_status": "internal_crawler_spec_drafts",
+                "actual_public_use_status": open_data_crawler_specs.get("public_use_status"),
+                "ok": open_data_crawler_specs.get("public_use_status") == "internal_crawler_spec_drafts",
             }
         )
 
