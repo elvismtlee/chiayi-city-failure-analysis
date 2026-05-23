@@ -7,6 +7,7 @@ DASHBOARD_PAGES = [
     "index.html",
     "map.html",
     "geocoding-review.html",
+    "cycc-review.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -31,6 +32,7 @@ def test_shared_nav_contains_required_pages() -> None:
         "./index.html",
         "./map.html",
         "./geocoding-review.html",
+        "./cycc-review.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -49,6 +51,12 @@ def test_shared_nav_contains_geocoding_review_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "座標審核" in content
     assert "geocoding-review.html" in content
+
+
+def test_shared_nav_contains_cycc_review_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "CYCC公開資料" in content
+    assert "cycc-review.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:
