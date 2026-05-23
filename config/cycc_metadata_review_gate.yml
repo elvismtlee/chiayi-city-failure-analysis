@@ -1,0 +1,53 @@
+public_use_status: internal_review_gate
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+metadata_only_default: true
+
+source_files:
+  - dashboard/data/cycc_minutes_metadata.json
+  - dashboard/data/cycc_question_video_metadata.json
+
+review_statuses:
+  allowed:
+    - needs_review
+    - source_verified
+    - content_reviewed
+    - citation_ready
+    - needs_context
+    - do_not_use_publicly
+  citation_ready_required_checks:
+    - source_url_verified
+    - detail_url_verified
+    - official_source_confirmed
+    - title_date_checked
+    - original_content_reviewed
+    - neutral_summary_written
+    - source_link_retained
+
+public_use_rules:
+  may_use_for_internal_index:
+    - needs_review
+    - source_verified
+    - content_reviewed
+    - citation_ready
+    - needs_context
+    - do_not_use_publicly
+  may_use_for_public_citation:
+    - citation_ready
+  never_auto_publish: true
+  require_human_approval_before_public_use: true
+
+prohibited_uses:
+  - auto_social_posting
+  - auto_email_sending
+  - personal_data_collection
+  - private_complaint_text_collection
+  - unverified_accusation
+  - character_judgment
+  - fundraising_or_payment_action
+
+required_public_disclaimers:
+  - 內部 metadata，需人工審核後才可對外引用。
+  - 不代表完整民意調查或完整市政結論。
+  - 不得只依 metadata 做指控或人物評價。
