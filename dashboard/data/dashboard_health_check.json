@@ -1,21 +1,9 @@
 {
-  "check_id": "dashboard-health-20260523111123",
-  "generated_at": "2026-05-23T11:11:23+08:00",
+  "check_id": "dashboard-health-20260523122641",
+  "generated_at": "2026-05-23T12:26:41+08:00",
   "checked_files": [
     {
-      "file": "dashboard/data/cycc_public_records_crawl_report.json",
-      "exists": true,
-      "empty": false,
-      "valid_json": true
-    },
-    {
-      "file": "dashboard/data/cycc_minutes_metadata.json",
-      "exists": true,
-      "empty": false,
-      "valid_json": true
-    },
-    {
-      "file": "dashboard/data/cycc_question_video_metadata.json",
+      "file": "dashboard/data/open_data_url_inventory.json",
       "exists": true,
       "empty": false,
       "valid_json": true
@@ -117,7 +105,7 @@
       "valid_json": true
     },
     {
-      "file": "dashboard/cycc-review.html",
+      "file": "dashboard/open-data-inventory.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -266,7 +254,7 @@
   "invalid_json_files": [],
   "page_checks": [
     {
-      "page": "dashboard/cycc-review.html",
+      "page": "dashboard/open-data-inventory.html",
       "exists": true,
       "empty": false
     },
@@ -343,7 +331,7 @@
   ],
   "nav_checks": [
     {
-      "name": "CYCC 公開資料審核",
+      "name": "開放資料盤點",
       "in_site_map": true,
       "in_shared_nav": true
     },
@@ -381,6 +369,15 @@
       "name": "每週系統報告",
       "in_site_map": true,
       "in_shared_nav": true
+    }
+  ],
+  "data_status_checks": [
+    {
+      "name": "open_data_url_inventory",
+      "path": "dashboard/data/open_data_url_inventory.json",
+      "expected_public_use_status": "internal_url_inventory",
+      "actual_public_use_status": "internal_url_inventory",
+      "ok": true
     }
   ],
   "warnings": [],

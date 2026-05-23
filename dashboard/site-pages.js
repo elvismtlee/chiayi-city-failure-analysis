@@ -34,6 +34,21 @@ function valueOrPending(value) {
   return value === undefined || value === null || value === '' ? '待補' : String(value);
 }
 
+function clearChildren(node) {
+  if (!node) return;
+  while (node.firstChild) node.removeChild(node.firstChild);
+}
+
+function appendText(node, text) {
+  node.appendChild(document.createTextNode(text));
+}
+
+function createCell(text) {
+  const cell = document.createElement('td');
+  cell.textContent = valueOrPending(text);
+  return cell;
+}
+
 function renderCrawlerStatus(report) {
   const note = document.querySelector('[data-render="pipeline-note"]');
   if (!note) return;
@@ -172,6 +187,128 @@ function setupCyccReviewTable(minutesPayload, videosPayload) {
   render();
 }
 
+function topicGroupLabel(topicGroup) {
+  const labels = {
+    traffic_parking: '交通停車',
+    social_welfare: '社福長照',
+    culture_events: '文化活動',
+    public_works_environment: '工程環境',
+    complaints_service: '1999 / 服務入口',
+  };
+  return labels[topicGroup] || valueOrPending(topicGroup);
+}
+
+function setOpenDataKpi(payload) {
+  const counts = payload?.topic_groups || {};
+  setText('[data-open-data="total"]', String(payload?.total_count || 0));
+  setText('[data-open-data="traffic"]', String(counts.traffic_parking || 0));
+  setText('[data-open-data="social"]', String(counts.social_welfare || 0));
+  setText('[data-open-data="culture"]', String(counts.culture_events || 0));
+  setText('[data-open-data="works"]', String(counts.public_works_environment || 0));
+  setText('[data-open-data="complaints"]', String(counts.complaints_service || 0));
+  setText('[data-render="open-data-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataInventoryNote(payload) {
+  const note = document.querySelector('[data-render="open-data-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是第二批真實資料來源盤點。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` 來源數：${payload?.total_count || 0}。來源：嘉義市政府與官方公開資料入口。狀態：internal URL inventory，manual review required。這一階段只審核 URL，不啟動 crawler，不抓個資、不抓私人陳情、不自動發布。`,
+  );
+}
+
+function filterOpenDataInventory(items) {
+  const query = String(document.querySelector('#openDataSearch')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataTopicGroup')?.value || 'all');
+  return items.filter(item => {
+    const title = String(item.title || '').toLowerCase();
+    const owner = String(item.source_owner || '').toLowerCase();
+    const matchesQuery = !query || title.includes(query) || owner.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    return matchesQuery && matchesGroup;
+  });
+}
+
+function renderOpenDataInventoryTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-table"]');
+  const summary = document.querySelector('[data-render="open-data-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆候選來源`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 9;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的候選來源。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const topicCell = document.createElement('td');
+    const pill = document.createElement('span');
+    pill.className = 'pill';
+    pill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(pill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+    const typeCell = createCell(item.source_type);
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    const formatCell = createCell(item.expected_format);
+    const cadenceCell = createCell(item.update_cadence);
+    const reviewCell = createCell(item.review_status);
+    const useCell = createCell(item.dashboard_use);
+
+    row.append(
+      topicCell,
+      titleCell,
+      ownerCell,
+      typeCell,
+      urlCell,
+      formatCell,
+      cadenceCell,
+      reviewCell,
+      useCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataInventory(payload) {
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  setOpenDataKpi(payload);
+  renderOpenDataInventoryNote(payload);
+
+  const render = () => renderOpenDataInventoryTable(filterOpenDataInventory(items), items.length);
+  const searchInput = document.querySelector('#openDataSearch');
+  const groupSelect = document.querySelector('#openDataTopicGroup');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -202,6 +339,16 @@ async function bootSitePages() {
     ]);
     renderCyccReview(crawlerReport);
     setupCyccReviewTable(minutesPayload, videosPayload);
+  }
+  if (page === 'open-data-inventory') {
+    const payload = await loadJson('./data/open_data_url_inventory.json', {
+      generated_at: '',
+      public_use_status: 'internal_url_inventory',
+      total_count: 0,
+      topic_groups: {},
+      items: [],
+    });
+    setupOpenDataInventory(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
