@@ -110,6 +110,7 @@ on:
       - "tests/test_open_data_day1_manual_review_operation_board_schema.py"
       - "tests/test_build_open_data_day1_manual_review_operation_board.py"
       - "tests/test_open_data_day1_operation_board_page.py"
+      - "tests/test_source_verification_workspace_page.py"
       - "tests/test_project_landing_page.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
@@ -262,6 +263,7 @@ on:
       - "tests/test_open_data_day1_manual_review_operation_board_schema.py"
       - "tests/test_build_open_data_day1_manual_review_operation_board.py"
       - "tests/test_open_data_day1_operation_board_page.py"
+      - "tests/test_source_verification_workspace_page.py"
       - "tests/test_project_landing_page.py"
       - "tests/test_social_drafts_page.py"
       - "tests/test_video_scripts_page.py"
@@ -496,6 +498,7 @@ jobs:
           pytest -q tests/test_open_data_day1_manual_review_operation_board_schema.py
           pytest -q tests/test_build_open_data_day1_manual_review_operation_board.py
           pytest -q tests/test_open_data_day1_operation_board_page.py
+          pytest -q tests/test_source_verification_workspace_page.py
           pytest -q tests/test_project_landing_page.py
           pytest -q tests/test_social_drafts_page.py
           pytest -q tests/test_video_scripts_page.py

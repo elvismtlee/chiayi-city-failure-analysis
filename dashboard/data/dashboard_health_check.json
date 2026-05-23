@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524031037",
-  "generated_at": "2026-05-24T03:10:37+08:00",
+  "check_id": "dashboard-health-20260524033332",
+  "generated_at": "2026-05-24T03:33:32+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -196,6 +196,12 @@
     },
     {
       "file": "dashboard/project-landing.html",
+      "exists": true,
+      "empty": false,
+      "valid_json": null
+    },
+    {
+      "file": "dashboard/source-verification-workspace.html",
       "exists": true,
       "empty": false,
       "valid_json": null
@@ -493,6 +499,11 @@
       "empty": false
     },
     {
+      "page": "dashboard/source-verification-workspace.html",
+      "exists": true,
+      "empty": false
+    },
+    {
       "page": "dashboard/open-data-inventory.html",
       "exists": true,
       "empty": false
@@ -646,6 +657,11 @@
   "nav_checks": [
     {
       "name": "公開展示頁",
+      "in_site_map": true,
+      "in_shared_nav": true
+    },
+    {
+      "name": "資料源檢查工作台",
       "in_site_map": true,
       "in_shared_nav": true
     },
