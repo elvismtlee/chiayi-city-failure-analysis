@@ -5,6 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = ROOT / "dashboard"
 DASHBOARD_PAGES = [
     "index.html",
+    "project-landing.html",
     "map.html",
     "geocoding-review.html",
     "cycc-review.html",
@@ -46,6 +47,7 @@ def test_shared_nav_contains_required_pages() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     for page in [
         "./index.html",
+        "./project-landing.html",
         "./map.html",
         "./geocoding-review.html",
         "./cycc-review.html",
@@ -77,6 +79,7 @@ def test_shared_nav_contains_open_data_labels() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     for label in [
         "城市熱點地圖",
+        "公開展示頁",
         "座標審核",
         "CYCC公開資料",
         "開放資料盤點",

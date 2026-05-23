@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>嘉義市 12 年城市故障分析資料庫｜公開展示版</title>
+  <style>
+    :root{--green:#0f766e;--green-deep:#064e3b;--mint:#ecfdf5;--soft:#f0fdf4;--text:#172033;--muted:#64748b;--line:rgba(15,118,110,.14);--card:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#effcf7 0%,#f8fafc 34%,#f8fafc 100%)}
+    .inner,.wrap{max-width:1180px;margin:auto}
+    .nav{display:block;margin-bottom:28px}
+    .hero{padding:36px 24px 64px;color:#fff;background:radial-gradient(circle at 8% 12%,rgba(255,255,255,.18),transparent 26%),radial-gradient(circle at 90% 12%,rgba(167,243,208,.16),transparent 20%),linear-gradient(135deg,#064e3b,#0f766e)}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);font-size:13px;font-weight:900;letter-spacing:.06em}
+    h1{font-size:clamp(40px,6vw,70px);line-height:1.04;margin:20px 0 14px}
+    .hero-copy{max-width:860px;font-size:clamp(18px,2.2vw,24px);line-height:1.8;color:rgba(255,255,255,.92)}
+    .hero-status{margin-top:20px;padding:16px 18px;border-radius:22px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:16px;font-weight:800;color:#f0fdf4}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;font-weight:900;text-decoration:none}
+    .btn.primary{background:#fff;color:var(--green-deep)}
+    .btn.secondary{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff}
+    .wrap{padding:34px 24px 70px}
+    .section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:34px 0 16px}
+    .section-title h2{margin:0;font-size:30px}
+    .section-title span{color:var(--muted);font-size:14px}
+    .grid{display:grid;gap:18px}
+    .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .steps{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .quick-links{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card,.step,.quick-link,.notice{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 20px 56px rgba(15,23,42,.07)}
+    .card{padding:24px}
+    .result-tag{display:inline-flex;width:max-content;padding:7px 11px;border-radius:999px;background:var(--soft);color:#065f46;font-size:13px;font-weight:900}
+    .card h3{margin:14px 0 8px;font-size:24px}
+    .card strong{display:block;font-size:30px;color:var(--green-deep);margin:0 0 8px}
+    .card p{margin:0;color:#475569;line-height:1.75}
+    .card a{display:inline-flex;margin-top:16px;color:#0f766e;font-weight:900;text-decoration:none}
+    .step{padding:18px}
+    .dot{width:34px;height:34px;border-radius:999px;background:var(--green);display:grid;place-items:center;color:#fff;font-weight:950;margin-bottom:12px}
+    .step b{display:block;font-size:17px;margin-bottom:8px;color:var(--green-deep)}
+    .step span{display:block;font-size:14px;line-height:1.65;color:#475569}
+    .notice{padding:22px;line-height:1.8;color:#475569}
+    .notice ul{margin:14px 0 0;padding-left:20px}
+    .notice li+li{margin-top:6px}
+    .safety-list{display:flex;gap:10px;flex-wrap:wrap}
+    .safety-pill{display:inline-flex;align-items:center;border-radius:999px;padding:10px 14px;background:var(--mint);color:#065f46;border:1px solid rgba(15,118,110,.12);font-weight:800}
+    .next-list{margin:0;padding-left:20px;line-height:1.95;color:#475569}
+    .quick-link{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 18px;text-decoration:none;color:var(--green-deep);font-weight:900;background:linear-gradient(180deg,#fff,#f6fffb)}
+    .footer-note{margin-top:26px;color:var(--muted);font-size:14px;line-height:1.8}
+    @media(max-width:980px){.cards,.steps,.quick-links{grid-template-columns:1fr 1fr}}
+    @media(max-width:720px){.cards,.steps,.quick-links{grid-template-columns:1fr}.hero{padding:30px 16px 46px}.wrap{padding:24px 16px 56px}.hero-actions{display:grid;grid-template-columns:1fr}.btn{width:100%}}
+  </style>
+</head>
+<body data-page="project-landing">
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="badge">PUBLIC PROJECT PREVIEW</div>
+      <h1>嘉義市 12 年城市故障分析資料庫</h1>
+      <p class="hero-copy">用工程師的方法，把城市問題整理成資料、審核流程與可行動的城市洞察。這是公開展示版，讓不是工程師的人也能一眼看懂：專案已經做到哪裡、現在能怎麼操作、下一步是什麼。</p>
+      <div class="hero-status">目前階段：內部人工審核，不是 live crawler。</div>
+      <div class="hero-actions">
+        <a class="btn primary" href="./open-data-day1-operation-board.html">查看 Day 1 操作看板</a>
+        <a class="btn secondary" href="#progress">查看目前成果</a>
+        <a class="btn secondary" href="./sources.html">查看資料來源</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="section-title" id="progress"><h2>目前完成成果</h2><span>不是空殼，而是已經能展示的成果頁</span></div>
+    <section class="grid cards">
+      <article class="card">
+        <span class="result-tag">資料盤點</span>
+        <h3>官方資料盤點</h3>
+        <strong>29 筆官方 URL</strong>
+        <p>官方資料來源已盤點完成，可以直接回看資料來源與人工審核入口。</p>
+        <a href="./open-data-inventory.html">查看官方資料盤點 →</a>
+      </article>
+      <article class="card">
+        <span class="result-tag">優先任務</span>
+        <h3>Top 10 審核任務</h3>
+        <strong>10 筆高優先審核任務</strong>
+        <p>已從 readiness 報告整理出最適合一人團隊優先處理的任務清單。</p>
+        <a href="./open-data-top10-tasks.html">查看 Top 10 任務 →</a>
+      </article>
+      <article class="card">
+        <span class="result-tag">今日操作</span>
+        <h3>Day 1 操作看板</h3>
+        <strong>3 筆任務 / 90 分鐘</strong>
+        <p>今天該先看哪 3 筆、每筆要填什麼、現在還是草稿，都已整理成工作台。</p>
+        <a href="./open-data-day1-operation-board.html">進入 Day 1 看板 →</a>
+      </article>
+      <article class="card">
+        <span class="result-tag">工作流程</span>
+        <h3>人工審核工作包</h3>
+        <strong>day_1 / day_2 / day_3</strong>
+        <p>把整個人工審核流程切成每日可執行工作包，方便一人團隊往下做。</p>
+        <a href="./open-data-manual-review-packets.html">查看工作包 →</a>
+      </article>
+      <article class="card">
+        <span class="result-tag">回填草稿</span>
+        <h3>回填 Patch 草稿</h3>
+        <strong>10 筆 patch draft</strong>
+        <p>人工審核完成後，未來要怎麼回填結果、工作簿與工程審查清單，都已經有草稿。</p>
+        <a href="./open-data-manual-review-patches.html">查看 Patch 草稿 →</a>
+      </article>
+      <article class="card">
+        <span class="result-tag">系統狀態</span>
+        <h3>Health Check</h3>
+        <strong>status ok</strong>
+        <p>頁面、資料檔、導航與工作文件都已納入健康檢查，方便快速看整體狀態。</p>
+        <a href="./health-check.html">查看健康檢查 →</a>
+      </article>
+    </section>
+
+    <div class="section-title"><h2>現在的流程怎麼走</h2><span>用 5 個步驟看懂目前流程</span></div>
+    <section class="grid steps">
+      <div class="step"><div class="dot">1</div><b>蒐集官方資料來源</b><span>先把官方資料來源整理成可追蹤的 URL inventory。</span></div>
+      <div class="step"><div class="dot">2</div><b>建立人工審核任務</b><span>從 readiness、Top 10 任務與工作包整理出今天該做什麼。</span></div>
+      <div class="step"><div class="dot">3</div><b>Day 1 人工逐筆審核</b><span>逐筆人工開啟來源頁，記錄來源、授權、格式與風險。</span></div>
+      <div class="step"><div class="dot">4</div><b>用 Patch 草稿回填結果</b><span>把人工審核結果整理成未來要更新的欄位與回填方向。</span></div>
+      <div class="step"><div class="dot">5</div><b>完成審核後才進工程設計</b><span>人工審核穩定之後，未來才會進 engineering review。</span></div>
+    </section>
+
+    <div class="section-title"><h2>為什麼不是自動更新？</h2><span>先把安全與資料品質守住</span></div>
+    <section class="notice">
+      目前沒有啟動 live crawler。數字不會自己變，是因為資料必須先通過人工審核。這樣做是為了避免錯誤資料、個資、私人陳情全文或未授權資料被誤用。
+    </section>
+
+    <div class="section-title"><h2>資料安全邊界</h2><span>這些邊界目前都還在</span></div>
+    <section class="notice">
+      <div class="safety-list">
+        <span class="safety-pill">no live crawler</span>
+        <span class="safety-pill">no personal data</span>
+        <span class="safety-pill">no private complaint full text</span>
+        <span class="safety-pill">no auto publish</span>
+        <span class="safety-pill">manual review required</span>
+        <span class="safety-pill">crawler_execution_allowed = false</span>
+        <span class="safety-pill">engineering_review_allowed = false</span>
+      </div>
+    </section>
+
+    <div class="section-title"><h2>下一步</h2><span>現在最需要的是人工審核與回填</span></div>
+    <section class="notice">
+      <ol class="next-list">
+        <li>完成 Day 1 人工審核</li>
+        <li>填寫 Day 1 表單</li>
+        <li>產生回填 PR</li>
+        <li>更新人工審核結果</li>
+        <li>進入工程審查</li>
+      </ol>
+    </section>
+
+    <div class="section-title"><h2>快速入口</h2><span>直接進入主要工作頁</span></div>
+    <section class="grid quick-links">
+      <a class="quick-link" href="./index.html">首頁</a>
+      <a class="quick-link" href="./open-data-day1-operation-board.html">Day 1 操作看板</a>
+      <a class="quick-link" href="./open-data-day1-review-form.html">Day 1 審核表單</a>
+      <a class="quick-link" href="./open-data-manual-review-packets.html">人工審核工作包</a>
+      <a class="quick-link" href="./open-data-manual-review-patches.html">回填 Patch 草稿</a>
+      <a class="quick-link" href="./sources.html">資料來源</a>
+      <a class="quick-link" href="./health-check.html">健康檢查</a>
+    </section>
+
+    <p class="footer-note">這是公開展示版，用來讓更多人看懂專案已經做到哪裡。它不是 live crawler，也不是實際審核完成的宣告，而是把目前的成果、流程和下一步用更清楚的方式展示出來。</p>
+  </main>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+</body>
+</html>

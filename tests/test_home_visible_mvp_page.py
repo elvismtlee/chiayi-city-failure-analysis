@@ -12,6 +12,8 @@ def test_home_page_shows_visible_mvp_progress() -> None:
     assert '人工審核工作包' in content
     assert '回填 Patch 草稿' in content
     assert '審核表單草稿' in content
+    assert '公開展示頁' in content
+    assert './project-landing.html' in content
     assert './open-data-day1-operation-board.html' in content
     assert './open-data-day1-review-form.html' in content
     assert './shared-nav.js?v=20260523-navux' in content
