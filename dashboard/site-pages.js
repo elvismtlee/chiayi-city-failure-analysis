@@ -52,6 +52,35 @@ function renderCrawlerStatus(report) {
   note.innerHTML = `<strong>已讀取 crawler 報告。</strong>最近抓取時間：${report.crawled_at || report.generated_at || '未標示'}。此資料仍為 internal metadata，需要人工審核後才可對外使用。`;
 }
 
+function getCyccCount(report, pattern) {
+  const outputFiles = report?.output_files || [];
+  const match = outputFiles.find(item => String(item.path || '').includes(pattern));
+  return Number(match?.record_count || 0);
+}
+
+function renderCyccReview(report) {
+  const note = document.querySelector('[data-render="cycc-note"]');
+  if (!note) return;
+
+  if (!report || !report.public_use_status) {
+    setText('[data-cycc="minutes"]', '0');
+    setText('[data-cycc="videos"]', '0');
+    setText('[data-cycc="total"]', '0');
+    setText('[data-cycc="status"]', '待抓取');
+    note.innerHTML = '<strong>尚未讀取到 CYCC crawl report。</strong>請先執行 CYCC Manual Crawl，並將審核後 summary report 接入 dashboard/data。';
+    return;
+  }
+
+  const minutes = getCyccCount(report, 'cycc_minutes_metadata.csv');
+  const videos = getCyccCount(report, 'cycc_question_video_metadata.csv');
+  const total = minutes + videos;
+  setText('[data-cycc="minutes"]', String(minutes));
+  setText('[data-cycc="videos"]', String(videos));
+  setText('[data-cycc="total"]', String(total));
+  setText('[data-cycc="status"]', report.public_use_status === 'internal_crawl_report' ? '內部審核' : '待確認');
+  note.innerHTML = `<strong>已接入嘉義市議會公開資料 summary report。</strong>最近抓取時間：${report.crawled_at || '未標示'}。目前只顯示內部 metadata 統計，不公開 raw CSV，不自動發布，不產生競選文案。人工審核狀態：${report.manual_review_required ? 'required' : 'not marked'}。`;
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -73,6 +102,10 @@ async function bootSitePages() {
     renderSourcesTable(sources);
     const crawlerReport = await loadJson('./data/cycc_public_records_crawl_report.json', null);
     renderCrawlerStatus(crawlerReport);
+  }
+  if (page === 'cycc-review') {
+    const crawlerReport = await loadJson('./data/cycc_public_records_crawl_report.json', null);
+    renderCyccReview(crawlerReport);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);
