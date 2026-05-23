@@ -19,3 +19,9 @@ def test_open_data_inventory_page_links_to_review_queue() -> None:
     content = PAGE.read_text(encoding='utf-8')
     assert './open-data-review.html' in content
     assert '進入 URL 人工審核佇列' in content
+
+
+def test_open_data_inventory_page_links_to_readiness() -> None:
+    content = PAGE.read_text(encoding='utf-8')
+    assert './open-data-readiness.html' in content
+    assert '查看 Readiness 評分' in content

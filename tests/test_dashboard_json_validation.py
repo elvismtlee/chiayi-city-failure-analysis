@@ -16,6 +16,7 @@ REQUIRED_JSON_FILES = [
     "local_place_dictionary.json",
     "open_data_url_inventory.json",
     "open_data_url_review_queue.json",
+    "open_data_readiness_report.json",
     "site_map.json",
 ]
 
@@ -300,8 +301,10 @@ def test_site_map_includes_hotspot_map_page() -> None:
 def test_open_data_inventory_and_review_queue_statuses() -> None:
     inventory = load_json("open_data_url_inventory.json")
     review_queue = load_json("open_data_url_review_queue.json")
+    readiness = load_json("open_data_readiness_report.json")
     assert inventory["public_use_status"] == "internal_url_inventory"
     assert review_queue["public_use_status"] == "internal_url_review_queue"
+    assert readiness["public_use_status"] == "internal_readiness_report"
 
 
 def test_no_sensitive_field_names_in_dashboard_json() -> None:

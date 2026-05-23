@@ -1,0 +1,52 @@
+public_use_status: internal_readiness_score_schema
+manual_review_required: true
+no_auto_publish: true
+no_personal_data: true
+no_live_crawler: true
+
+score_dimensions:
+  - official_source_score
+  - data_format_score
+  - license_clarity_score
+  - update_cadence_score
+  - west_district_relevance_score
+  - dashboard_value_score
+  - crawler_risk_score
+
+score_range:
+  min: 0
+  max: 5
+
+readiness_score_range:
+  min: 0
+  max: 30
+
+readiness_level:
+  - high
+  - medium
+  - low
+  - blocked
+
+crawler_stage:
+  - manual_review_only
+  - candidate_after_license_review
+  - candidate_after_source_verification
+  - candidate_after_format_check
+  - not_recommended
+
+scoring_formula:
+  - readiness_score = official_source_score + data_format_score + license_clarity_score + update_cadence_score + west_district_relevance_score + dashboard_value_score - crawler_risk_score
+  - readiness_score lowest value is 0
+  - readiness_score highest value is 30
+
+readiness_level_rules:
+  - high = 22 以上
+  - medium = 14 到 21
+  - low = 1 到 13
+  - blocked = 0 或 do_not_crawl
+
+public_use_gate:
+  - readiness_score 只是內部排序，不代表正式評價或結論。
+  - crawler_stage 只是人工審核階段，不代表批准爬取。
+  - no_live_crawler 為 true 時，不可直接進入 crawler ready 狀態。
+  - complaints_service 類型必須保持更嚴格人工審核，不得抓私人陳情全文或個資。

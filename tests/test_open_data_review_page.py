@@ -26,3 +26,9 @@ def test_site_pages_renders_open_data_review_queue() -> None:
     assert "openDataReviewSearch" in content
     assert "openDataReviewStatus" in content
     assert "openDataReviewPriority" in content
+
+
+def test_open_data_review_page_links_to_readiness() -> None:
+    content = PAGE.read_text(encoding="utf-8")
+    assert "./open-data-readiness.html" in content
+    assert "查看 Readiness 評分" in content
