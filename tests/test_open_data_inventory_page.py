@@ -11,5 +11,11 @@ def test_open_data_inventory_page_has_required_ui() -> None:
     assert 'id="openDataTopicGroup"' in content
     assert 'manual review required' in content
     assert 'no auto publish' in content
-    assert '不啟動 crawler' in content
+    assert '不啟動 live crawler' in content
     assert './shared-nav.js?v=20260523-navux' in content
+
+
+def test_open_data_inventory_page_links_to_review_queue() -> None:
+    content = PAGE.read_text(encoding='utf-8')
+    assert './open-data-review.html' in content
+    assert '進入 URL 人工審核佇列' in content

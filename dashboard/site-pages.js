@@ -43,8 +43,9 @@ function appendText(node, text) {
   node.appendChild(document.createTextNode(text));
 }
 
-function createCell(text) {
+function createCell(text, className = '') {
   const cell = document.createElement('td');
+  if (className) cell.className = className;
   cell.textContent = valueOrPending(text);
   return cell;
 }
@@ -219,7 +220,7 @@ function renderOpenDataInventoryNote(payload) {
   note.appendChild(strong);
   appendText(
     note,
-    ` 來源數：${payload?.total_count || 0}。來源：嘉義市政府與官方公開資料入口。狀態：internal URL inventory，manual review required。這一階段只審核 URL，不啟動 crawler，不抓個資、不抓私人陳情、不自動發布。`,
+    ` 來源數：${payload?.total_count || 0}。來源：嘉義市政府與官方公開資料入口。狀態：internal_url_inventory，manual review required。這一階段只審核 URL，不啟動 live crawler，不抓個資、不抓私人陳情全文、不自動發布，no auto publish。`,
   );
 }
 
@@ -309,6 +310,142 @@ function setupOpenDataInventory(payload) {
   render();
 }
 
+function setOpenDataReviewKpi(payload) {
+  const counts = payload?.topic_groups || {};
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  setText('[data-open-review="total"]', String(payload?.total_count || 0));
+  setText(
+    '[data-open-review="needs-review"]',
+    String(items.filter(item => item.url_review_status === 'needs_manual_url_review').length),
+  );
+  setText(
+    '[data-open-review="crawler-candidate"]',
+    String(items.filter(item => item.crawler_candidate === true).length),
+  );
+  setText(
+    '[data-open-review="do-not-crawl"]',
+    String(items.filter(item => item.url_review_status === 'do_not_crawl').length),
+  );
+  setText('[data-open-review="traffic"]', String(counts.traffic_parking || 0));
+  setText('[data-open-review="complaints"]', String(counts.complaints_service || 0));
+  setText('[data-render="open-data-review-updated"]', `最近更新：${payload?.generated_at || '未標示'}`);
+}
+
+function renderOpenDataReviewNote(payload) {
+  const note = document.querySelector('[data-render="open-data-review-note"]');
+  if (!note) return;
+  clearChildren(note);
+
+  const strong = document.createElement('strong');
+  strong.textContent = '這是人工審核佇列。';
+  note.appendChild(strong);
+  appendText(
+    note,
+    ` 總數：${payload?.total_count || 0}。狀態：internal_url_review_queue。這不是 live crawler，不抓個資，不抓私人陳情全文，不自動發布。crawler_candidate 只是候選，不代表已批准爬取。`,
+  );
+}
+
+function filterOpenDataReviewQueue(items) {
+  const query = String(document.querySelector('#openDataReviewSearch')?.value || '').trim().toLowerCase();
+  const topicGroup = String(document.querySelector('#openDataReviewTopicGroup')?.value || 'all');
+  const status = String(document.querySelector('#openDataReviewStatus')?.value || 'all');
+  const priority = String(document.querySelector('#openDataReviewPriority')?.value || 'all');
+  return items.filter(item => {
+    const haystack = [
+      String(item.title || ''),
+      String(item.source_owner || ''),
+      String(item.review_notes || ''),
+    ].join(' ').toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesGroup = topicGroup === 'all' || item.topic_group === topicGroup;
+    const matchesStatus = status === 'all' || item.url_review_status === status;
+    const matchesPriority = priority === 'all' || item.crawler_priority === priority;
+    return matchesQuery && matchesGroup && matchesStatus && matchesPriority;
+  });
+}
+
+function renderOpenDataReviewTable(items, totalCount) {
+  const tbody = document.querySelector('[data-render="open-data-review-table"]');
+  const summary = document.querySelector('[data-render="open-data-review-summary"]');
+  if (!tbody) return;
+
+  clearChildren(tbody);
+  if (summary) summary.textContent = `目前顯示 ${items.length} / ${totalCount} 筆人工審核佇列`;
+
+  if (!items.length) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 11;
+    cell.className = 'empty';
+    cell.textContent = '目前沒有符合條件的審核項目。';
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement('tr');
+
+    const topicCell = document.createElement('td');
+    const topicPill = document.createElement('span');
+    topicPill.className = 'pill';
+    topicPill.textContent = topicGroupLabel(item.topic_group);
+    topicCell.appendChild(topicPill);
+
+    const titleCell = createCell(item.title);
+    const ownerCell = createCell(item.source_owner);
+
+    const urlCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.className = 'url-link';
+    link.href = valueOrPending(item.source_url);
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = valueOrPending(item.source_url);
+    urlCell.appendChild(link);
+
+    const formatCell = createCell(item.expected_format);
+    const licenseCell = createCell(item.license_status);
+    const statusCell = createCell(item.url_review_status);
+    const reachabilityCell = createCell(item.source_reachability);
+    const candidateCell = createCell(item.crawler_candidate ? 'true' : 'false');
+    const priorityCell = createCell(item.crawler_priority);
+    const notesCell = createCell(item.review_notes, 'compact');
+
+    row.append(
+      topicCell,
+      titleCell,
+      ownerCell,
+      urlCell,
+      formatCell,
+      licenseCell,
+      statusCell,
+      reachabilityCell,
+      candidateCell,
+      priorityCell,
+      notesCell,
+    );
+    tbody.appendChild(row);
+  });
+}
+
+function setupOpenDataReviewQueue(payload) {
+  const items = Array.isArray(payload?.items) ? payload.items : [];
+  setOpenDataReviewKpi(payload);
+  renderOpenDataReviewNote(payload);
+
+  const render = () => renderOpenDataReviewTable(filterOpenDataReviewQueue(items), items.length);
+  const searchInput = document.querySelector('#openDataReviewSearch');
+  const groupSelect = document.querySelector('#openDataReviewTopicGroup');
+  const statusSelect = document.querySelector('#openDataReviewStatus');
+  const prioritySelect = document.querySelector('#openDataReviewPriority');
+  if (searchInput) searchInput.addEventListener('input', render);
+  if (groupSelect) groupSelect.addEventListener('change', render);
+  if (statusSelect) statusSelect.addEventListener('change', render);
+  if (prioritySelect) prioritySelect.addEventListener('change', render);
+  render();
+}
+
 function renderReports(items) {
   const node = document.querySelector('[data-render="reports"]');
   if (!node) return;
@@ -349,6 +486,20 @@ async function bootSitePages() {
       items: [],
     });
     setupOpenDataInventory(payload);
+  }
+  if (page === 'open-data-review') {
+    const payload = await loadJson('./data/open_data_url_review_queue.json', {
+      generated_at: '',
+      public_use_status: 'internal_url_review_queue',
+      total_count: 0,
+      topic_groups: {},
+      items: [],
+      no_live_crawler: true,
+      manual_review_required: true,
+      no_auto_publish: true,
+      no_personal_data: true,
+    });
+    setupOpenDataReviewQueue(payload);
   }
   if (page === 'reports') {
     const reports = await loadJson('./data/reports_index.json', []);

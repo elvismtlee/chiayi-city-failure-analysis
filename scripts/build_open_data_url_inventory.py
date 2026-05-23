@@ -4,8 +4,12 @@ import json
 from collections import Counter
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from typing import Any
 
-import yaml
+try:
+    import yaml  # type: ignore
+except ImportError:  # pragma: no cover - CI installs PyYAML
+    yaml = None
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "chiayi_open_data_url_inventory.yml"
@@ -13,8 +17,60 @@ OUTPUT = ROOT / "dashboard" / "data" / "open_data_url_inventory.json"
 GROUPS = {"traffic_parking", "social_welfare", "culture_events", "public_works_environment", "complaints_service"}
 
 
+def _parse_scalar(value: str) -> Any:
+    text = value.strip()
+    if text in {"true", "false"}:
+        return text == "true"
+    if text in {'""', "''"}:
+        return ""
+    if not text:
+        return ""
+    return text
+
+
+def _load_simple_yaml(text: str) -> dict[str, Any]:
+    data: dict[str, Any] = {}
+    items: list[dict[str, Any]] = []
+    current_item: dict[str, Any] | None = None
+    in_items = False
+
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        if not line or line.lstrip().startswith("#"):
+            continue
+        if line == "items:":
+            in_items = True
+            data["items"] = items
+            continue
+        if not in_items:
+            key, value = line.split(":", 1)
+            data[key.strip()] = _parse_scalar(value)
+            continue
+        if line.startswith("  - "):
+            current_item = {}
+            items.append(current_item)
+            item_line = line[4:]
+            if item_line:
+                key, value = item_line.split(":", 1)
+                current_item[key.strip()] = _parse_scalar(value)
+            continue
+        if current_item is None or not line.startswith("    "):
+            raise ValueError("Unsupported YAML structure in chiayi_open_data_url_inventory.yml")
+        key, value = line.strip().split(":", 1)
+        current_item[key.strip()] = _parse_scalar(value)
+
+    return data
+
+
+def load_config(path: Path = CONFIG) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8")
+    if yaml is not None and hasattr(yaml, "safe_load"):
+        return yaml.safe_load(text)
+    return _load_simple_yaml(text)
+
+
 def build_open_data_url_inventory() -> dict:
-    data = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+    data = load_config(CONFIG)
     items = data.get("items", [])
     if len(items) < 20:
         raise ValueError("inventory must contain at least 20 items")

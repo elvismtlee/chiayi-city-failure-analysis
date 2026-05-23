@@ -8,6 +8,8 @@ DASHBOARD_PAGES = [
     "map.html",
     "geocoding-review.html",
     "cycc-review.html",
+    "open-data-inventory.html",
+    "open-data-review.html",
     "insights.html",
     "sources.html",
     "methodology.html",
@@ -33,6 +35,8 @@ def test_shared_nav_contains_required_pages() -> None:
         "./map.html",
         "./geocoding-review.html",
         "./cycc-review.html",
+        "./open-data-inventory.html",
+        "./open-data-review.html",
         "./insights.html",
         "./sources.html",
         "./methodology.html",
@@ -57,6 +61,18 @@ def test_shared_nav_contains_cycc_review_label() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "CYCC公開資料" in content
     assert "cycc-review.html" in content
+
+
+def test_shared_nav_contains_open_data_inventory_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "開放資料盤點" in content
+    assert "./open-data-inventory.html" in content
+
+
+def test_shared_nav_contains_open_data_review_label() -> None:
+    content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
+    assert "官方資料審核" in content
+    assert "./open-data-review.html" in content
 
 
 def test_shared_nav_contains_disclosure() -> None:

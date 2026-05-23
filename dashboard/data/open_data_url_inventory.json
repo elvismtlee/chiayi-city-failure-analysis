@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T12:26:34+08:00",
+  "generated_at": "2026-05-23T14:28:46+08:00",
   "public_use_status": "internal_url_inventory",
   "total_count": 29,
   "topic_groups": {
@@ -561,10 +561,5 @@
       "manual_review_required": true,
       "notes": "用於界定陳情資料邊界，強化不抓私人案件全文的規則。"
     }
-  ],
-  "notes": [
-    "第二批真實資料來源盤點，先審核官方 URL，不啟動 crawler。",
-    "internal dashboard / manual review required / no auto publish",
-    "不抓個資、不抓私人陳情、不抓私人案件全文。"
   ]
 }
