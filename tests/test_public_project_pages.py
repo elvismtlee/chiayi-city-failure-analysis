@@ -12,7 +12,7 @@ def test_project_landing_public_overview() -> None:
     content = read_page('project-landing.html')
     assert '專案說明' in content
     assert '嘉義市城市問題儀表板' in content
-    assert '目前可看內容' in content
+    assert '現在已經能看什麼' in content
     assert '主要功能' in content
     assert '下一步會補什麼' in content
     assert './index.html' in content
