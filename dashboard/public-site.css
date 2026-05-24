@@ -1,0 +1,200 @@
+html{
+  color-scheme:dark;
+}
+
+body{
+  background:
+    radial-gradient(circle at 14% 10%,rgba(249,115,22,.12),transparent 22%),
+    radial-gradient(circle at 84% 16%,rgba(45,212,191,.10),transparent 20%),
+    linear-gradient(180deg,#05070b 0%,#0a0f16 34%,#111925 100%) !important;
+  color:#e5edf7 !important;
+}
+
+.hero{
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow:0 24px 54px rgba(0,0,0,.18);
+}
+
+.badge{
+  background:rgba(249,115,22,.14) !important;
+  border-color:rgba(251,146,60,.34) !important;
+  color:#fdba74 !important;
+}
+
+.lead,
+.hero p{
+  color:#d8e1ee !important;
+}
+
+.notice,
+.card,
+.summary-card,
+.hotspot-item,
+.status-item,
+.source-card,
+.check-item,
+.step,
+.hero-panel,
+.trend-row,
+.trend-jump-link,
+.quick a,
+.quick-link,
+.source-actions .ghost,
+.panel{
+  border-color:rgba(255,255,255,.08) !important;
+  box-shadow:0 20px 48px rgba(0,0,0,.24) !important;
+}
+
+.card,
+.summary-card,
+.hotspot-item,
+.status-item,
+.source-card,
+.check-item,
+.step,
+.hero-panel,
+.trend-row,
+.quick a,
+.quick-link,
+.source-actions .ghost,
+.panel{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02)) !important;
+}
+
+.notice{
+  background:linear-gradient(180deg,rgba(249,115,22,.18),rgba(249,115,22,.08)) !important;
+  border-color:rgba(249,115,22,.38) !important;
+  color:#fed7aa !important;
+}
+
+.section-title h2,
+.section-head h2,
+.card h2,
+.card h3,
+.summary-card strong,
+.status-item b,
+.source-card h3,
+.hero-panel h2,
+.sample h3,
+.step b,
+.page-card a,
+.quick a,
+.quick-link,
+section h2{
+  color:#fff7ed !important;
+}
+
+.section-title span,
+.section-head p,
+.section-head .tag,
+.label,
+.kpi-label,
+.summary-card b,
+.kpi span,
+.status-item span,
+.footer-note,
+.footnote,
+.tech-note,
+.hero-panel p,
+.hero-panel li,
+.card p,
+.card li,
+.sample-note,
+.sample-grid div,
+.sample-grid strong,
+.panel p,
+.source-card p,
+.source-card dd,
+.source-card dt,
+.check-item p,
+.step span,
+.metric b,
+.metric span,
+.trend-group-note,
+.trend-empty,
+.bar-note,
+.kpi-source,
+.value,
+.list,
+.lead-note{
+  color:#cbd5e1 !important;
+}
+
+.section-title span,
+.section-head .tag,
+.pill,
+.tag,
+.score,
+.status,
+.kpi-source{
+  background:rgba(249,115,22,.12) !important;
+  border-color:rgba(249,115,22,.22) !important;
+  color:#fdba74 !important;
+}
+
+.bar-track{
+  background:#1f2937 !important;
+}
+
+.bar-fill{
+  background:linear-gradient(90deg,#fb923c,#f97316 60%,#fdba74) !important;
+}
+
+.btn.primary,
+.hero-btn.primary,
+.source-actions .primary{
+  background:#f97316 !important;
+  color:#fff !important;
+}
+
+.btn.ghost,
+.hero-btn.secondary,
+.btn.secondary,
+.source-actions .ghost,
+.trend-jump-link,
+.quick a,
+.quick-link{
+  color:#f8fafc !important;
+  background:rgba(255,255,255,.04) !important;
+  border-color:rgba(255,255,255,.12) !important;
+}
+
+.quick a:hover,
+.quick-link:hover,
+.trend-jump-link:hover,
+.page-card a:hover{
+  color:#fdba74 !important;
+  border-color:rgba(249,115,22,.38) !important;
+}
+
+.safety span,
+.safety-pill{
+  background:rgba(249,115,22,.12) !important;
+  border-color:rgba(249,115,22,.22) !important;
+  color:#fdba74 !important;
+}
+
+.table-wrap table{
+  color:#e5edf7;
+}
+
+.table-wrap th{
+  background:rgba(255,255,255,.06) !important;
+  color:#cbd5e1 !important;
+}
+
+.table-wrap td{
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+details{
+  color:#e5edf7;
+}
+
+summary{
+  color:#fff7ed;
+}
+
+code{
+  color:#fdba74;
+}

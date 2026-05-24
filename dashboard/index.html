@@ -351,6 +351,7 @@
       .bar-value{text-align:left}
     }
   </style>
+  <link rel="stylesheet" href="./public-site.css?v=20260525">
 </head>
 <body>
   <section class="hero">
@@ -390,7 +391,7 @@
       <h2>城市故障總覽</h2>
       <span>prototype data / data-driven UI</span>
     </div>
-    <section class="grid kpi-grid" id="kpiGrid">
+    <section class="grid kpi-grid" id="homepage-kpis">
       <article class="kpi-card">
         <span class="kpi-label">原型案件數</span>
         <div class="kpi-value">12,458</div>
@@ -437,7 +438,7 @@
       <article class="panel">
         <h3>目前最值得優先關注的城市議題</h3>
         <p>這裡會先讀本地的 <code>issue_trends.json</code>，優先挑出 90 天視窗、依 current_count 排序後的前 6 名。若本地 JSON 暫時無法讀取，畫面也不會空白。</p>
-        <div class="bar-list" id="issueBars">
+        <div class="bar-list" id="issue-ranking-list">
           <div class="bar-row">
             <div>
               <div class="bar-meta"><span class="bar-name">其他議題</span><span>confidence 0.40</span></div>
@@ -462,7 +463,7 @@
       <h2>熱點分析</h2>
       <span>根據 hotspots.json 顯示目前最有代表性的 3 個熱點</span>
     </div>
-    <section class="grid hotspot-grid" id="hotspotCards">
+    <section class="grid hotspot-grid" id="hotspot-cards">
       <article class="hotspot-card">
         <h3>文化路商圈</h3>
         <div class="score-badge">92</div>
@@ -496,7 +497,7 @@
       </article>
       <article class="panel">
         <h3>熱點列表</h3>
-        <div class="hotspot-list" id="hotspotSidebar">
+        <div class="hotspot-list" id="hotspot-sidebar">
           <article class="hotspot-card">
             <h3>文化路商圈</h3>
             <div class="score-badge">92</div>
@@ -514,7 +515,7 @@
       <h2>資料來源接入狀態</h2>
       <span>讓一般人理解：現在有原型數據，但正式資料還在接入</span>
     </div>
-    <section class="grid status-grid" id="dataStatusGrid">
+    <section class="grid status-grid" id="data-status-grid">
       <article class="status-item"><b>官方資料源數量</b><span>29 筆官方資料來源已完成盤點。</span></article>
       <article class="status-item"><b>prototype data</b><span>首頁已接入 prototype data，作為公開展示用儀表板原型。</span></article>
       <article class="status-item"><b>live crawler</b><span>尚未啟動 live crawler，資料仍屬人工接入前狀態。</span></article>
@@ -596,239 +597,7 @@
     <p class="footnote">首頁現在的定位是公開城市問題儀表板。它會誠實標示資料仍是 prototype data，但第一眼先讓使用者看到數字、排行、熱點、行動建議與資料接入狀態，而不是一串流程名詞。</p>
   </main>
 
-  <script>
-    const FALLBACK_SUMMARY = {
-      total_cases: 12458,
-      total_questions: 386,
-      total_hotspots: 18,
-      top_issue: "交通",
-      updated_at: "2026-05-21"
-    };
-
-    const FALLBACK_INVENTORY = {
-      total_count: 29
-    };
-
-    const FALLBACK_HEALTH = {
-      status: "ok",
-      warnings: [],
-      missing_files: []
-    };
-
-    const FALLBACK_ISSUES = [
-      { display_name: "其他議題", current_count: 10, confidence: 0.40, review_status: "prototype", recommended_action: "補充逐字稿、會議日期與更完整分類後，再重新計算趨勢。", window_days: 90 },
-      { display_name: "市場商圈", current_count: 4, confidence: 0.45, review_status: "prototype", recommended_action: "先以市場商圈作為觀察題組，補足更多樣本後再評估趨勢。", window_days: 90 },
-      { display_name: "交通停車", current_count: 3, confidence: 0.45, review_status: "prototype", recommended_action: "先以交通停車作為觀察題組，補足更多樣本後再評估趨勢。", window_days: 90 },
-      { display_name: "環境衛生", current_count: 2, confidence: 0.45, review_status: "prototype", recommended_action: "先以環境衛生作為觀察題組，補足更多樣本後再評估趨勢。", window_days: 90 },
-      { display_name: "通學安全", current_count: 2, confidence: 0.45, review_status: "prototype", recommended_action: "先以通學安全作為觀察題組，補足更多樣本後再評估趨勢。", window_days: 90 },
-      { display_name: "文化觀光", current_count: 1, confidence: 0.45, review_status: "prototype", recommended_action: "先以文化觀光作為觀察題組，補足更多樣本後再評估趨勢。", window_days: 90 }
-    ];
-
-    const FALLBACK_HOTSPOTS = [
-      {
-        name: "文化路商圈",
-        category: "停車 / 人行",
-        department: "交通處",
-        score: 92,
-        action: "商圈動線與停車熱點專案"
-      },
-      {
-        name: "市場周邊",
-        category: "垃圾 / 動線",
-        department: "環保局 / 建設處",
-        score: 78,
-        action: "市場周邊環境改善與卸貨規劃"
-      },
-      {
-        name: "學校周邊",
-        category: "通學安全",
-        department: "交通處 / 教育處",
-        score: 71,
-        action: "通學步道與接送區改善"
-      }
-    ];
-
-    async function fetchJson(path, fallback) {
-      try {
-        const response = await fetch(path);
-        if (!response.ok) throw new Error(path);
-        return await response.json();
-      } catch (error) {
-        return fallback;
-      }
-    }
-
-    async function loadDashboardSummary() {
-      return fetchJson("./data/dashboard_summary.json", FALLBACK_SUMMARY);
-    }
-
-    async function loadIssueTrends() {
-      return fetchJson("./data/issue_trends.json", FALLBACK_ISSUES);
-    }
-
-    async function loadHotspots() {
-      return fetchJson("./data/hotspots.json", FALLBACK_HOTSPOTS);
-    }
-
-    async function loadInventory() {
-      return fetchJson("./data/open_data_url_inventory.json", FALLBACK_INVENTORY);
-    }
-
-    async function loadHealth() {
-      return fetchJson("./data/dashboard_health_check.json", FALLBACK_HEALTH);
-    }
-
-    function formatNumber(value) {
-      if (typeof value !== "number") return value;
-      return new Intl.NumberFormat("zh-TW").format(value);
-    }
-
-    function renderKpis(summary, inventory, health) {
-      const kpis = [
-        {
-          label: "原型案件數",
-          value: formatNumber(summary.total_cases ?? FALLBACK_SUMMARY.total_cases),
-          desc: "作為原型儀表板的總案件量級指標。",
-          source: "source: dashboard_summary.json"
-        },
-        {
-          label: "質詢紀錄數",
-          value: formatNumber(summary.total_questions ?? FALLBACK_SUMMARY.total_questions),
-          desc: "對照地方議題分類與城市問題脈絡。",
-          source: "source: dashboard_summary.json"
-        },
-        {
-          label: "城市熱點",
-          value: formatNumber(summary.total_hotspots ?? FALLBACK_SUMMARY.total_hotspots),
-          desc: "目前熱點總數，用來標示需要優先看的區位。",
-          source: "source: hotspots.json"
-        },
-        {
-          label: "最大議題",
-          value: summary.top_issue ?? FALLBACK_SUMMARY.top_issue,
-          desc: "目前原型資料中最常出現的城市議題。",
-          source: "source: dashboard_summary.json"
-        },
-        {
-          label: "官方資料源",
-          value: formatNumber(inventory.total_count ?? FALLBACK_INVENTORY.total_count),
-          desc: "已盤點的官方資料來源數量。",
-          source: "source: open_data_url_inventory.json"
-        },
-        {
-          label: "上線狀態",
-          value: (health.status || "ok") === "ok" ? "Ready" : "Prototype",
-          desc: "首頁與 GitHub Pages 已可展示，但資料仍屬 prototype。",
-          source: "source: dashboard_health_check.json"
-        }
-      ];
-
-      const html = kpis.map((item) => `
-        <article class="kpi-card">
-          <span class="kpi-label">${item.label}</span>
-          <div class="kpi-value">${item.value}</div>
-          <div class="kpi-desc">${item.desc}</div>
-          <span class="kpi-source">${item.source}</span>
-        </article>
-      `).join("");
-      document.getElementById("kpiGrid").innerHTML = html;
-    }
-
-    function renderIssueBars(trends) {
-      const sourceItems = Array.isArray(trends) ? trends : [];
-      const preferred = sourceItems.filter((item) => Number(item.window_days) === 90);
-      const chosen = (preferred.length ? preferred : FALLBACK_ISSUES)
-        .slice()
-        .sort((a, b) => (b.current_count || 0) - (a.current_count || 0))
-        .slice(0, 6);
-      const maxCount = Math.max(...chosen.map((item) => item.current_count || 0), 1);
-      const html = chosen.map((item) => `
-        <div class="bar-row">
-          <div>
-            <div class="bar-meta">
-              <span class="bar-name">${item.display_name}</span>
-              <span>confidence ${Number(item.confidence || 0).toFixed(2)}</span>
-            </div>
-            <div class="bar-note">review_status: ${item.review_status} ｜ ${item.recommended_action}</div>
-          </div>
-          <div class="bar-track"><span class="bar-fill" style="width:${Math.max(12, Math.round((item.current_count || 0) / maxCount * 100))}%"></span></div>
-          <span class="bar-value">${item.current_count || 0}</span>
-        </div>
-      `).join("");
-      document.getElementById("issueBars").innerHTML = html;
-    }
-
-    function hotspotCardTemplate(item) {
-      return `
-        <article class="hotspot-card">
-          <h3>${item.name}</h3>
-          <div class="score-badge">${item.score}</div>
-          <div class="tag-row">
-            <span class="tag">${item.category}</span>
-            <span class="tag">${item.department}</span>
-          </div>
-          <p><b>行動建議：</b>${item.action}</p>
-          <a class="hotspot-link" href="./map.html">查看地圖 →</a>
-        </article>
-      `;
-    }
-
-    function renderHotspotCards(hotspots) {
-      const items = (Array.isArray(hotspots) ? hotspots : FALLBACK_HOTSPOTS).slice(0, 3);
-      document.getElementById("hotspotCards").innerHTML = items.map(hotspotCardTemplate).join("");
-      document.getElementById("hotspotSidebar").innerHTML = items.map(hotspotCardTemplate).join("");
-    }
-
-    function renderDataStatus(inventory, health) {
-      const totalSources = inventory.total_count ?? FALLBACK_INVENTORY.total_count;
-      const healthStatus = health.status === "ok" ? "ok" : "prototype";
-      const warnings = Array.isArray(health.warnings) ? health.warnings.length : 0;
-      const html = [
-        {
-          title: "官方資料源數量",
-          text: `${formatNumber(totalSources)} 筆官方資料來源已完成盤點。`
-        },
-        {
-          title: "prototype data",
-          text: "首頁已接入 prototype data，作為公開展示用儀表板原型。"
-        },
-        {
-          title: "live crawler",
-          text: "尚未啟動 live crawler，正式資料流仍維持關閉。"
-        },
-        {
-          title: "資料源檢查中",
-          text: "官方資料來源仍在逐步整理與檢查，不直接視為正式資料接入。"
-        },
-        {
-          title: "GitHub Pages",
-          text: `狀態：${healthStatus} ｜ warnings ${warnings} ｜ GitHub Pages 已上線。`
-        }
-      ].map((item) => `
-        <article class="status-item">
-          <b>${item.title}</b>
-          <span>${item.text}</span>
-        </article>
-      `).join("");
-      document.getElementById("dataStatusGrid").innerHTML = html;
-    }
-
-    async function initDashboard() {
-      const [summary, trends, hotspots, inventory, health] = await Promise.all([
-        loadDashboardSummary(),
-        loadIssueTrends(),
-        loadHotspots(),
-        loadInventory(),
-        loadHealth()
-      ]);
-      renderKpis(summary, inventory, health);
-      renderIssueBars(trends);
-      renderHotspotCards(hotspots);
-      renderDataStatus(inventory, health);
-    }
-
-    initDashboard();
-  </script>
+  <script src="./public-dashboard.js?v=20260525"></script>
   <script src="./shared-nav.js?v=20260523-navux"></script>
 </body>
 </html>
