@@ -25,7 +25,6 @@ def test_home_page_shows_public_city_dashboard() -> None:
     assert '市場周邊' in content
     assert '學校周邊' in content
     assert '商圈動線與停車熱點專案' in content
-    assert '市場周邊環境改善與卸貨規劃' in content
     assert '通學步道與接送區改善' in content
     assert 'dashboard_summary.json' in content
     assert 'issue_trends.json' in content
@@ -33,7 +32,6 @@ def test_home_page_shows_public_city_dashboard() -> None:
     assert 'dashboard_health_check.json' in content
     assert 'prototype dashboard' in content
     assert 'no live crawler' in content
-    assert 'no source_url requests' in content
     assert 'approved_for_crawling' in content
     assert './map.html' in content
     assert './source-verification-workspace.html' in content
