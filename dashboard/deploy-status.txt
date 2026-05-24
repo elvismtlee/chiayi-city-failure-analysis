@@ -1,12 +1,3 @@
-deploy_check=2026-05-24T22:12:00+08:00
-status=project_landing_and_404_updated
-entry=index.html
-map=map.html
-command_center=command-center.html
-sources=sources.html
-methodology=methodology.html
-health_check=health-check.html
-insights=insights.html
-reports=reports.html
-project_landing=project-landing.html
-not_found=404.html
+deploy_check=2026-05-24T22:20:00+08:00
+status=public_site_map_updated
+site_map=site_map.json
