@@ -18,7 +18,7 @@
           <h1>資料來源</h1>
           <p>這一頁用白話整理目前嘉義市城市問題儀表板的資料來源：哪些已經做成 prototype、哪些是官方資料來源盤點、哪些還沒正式接入，以及我們為什麼現在還不啟動 crawler。</p>
           <div class="hero-actions">
-            <a class="btn primary" href="./index.html">回首頁儀表板</a>
+            <a class="btn primary" href="./index.html">回儀表板首頁</a>
             <a class="btn secondary" href="./command-center.html">看城市資料總控台</a>
             <a class="btn secondary" href="./open-data-inventory.html">看官方資料來源盤點</a>
           </div>
@@ -142,6 +142,32 @@
       <a class="quick-link" href="./methodology.html">城市故障分析方法論</a>
       <a class="quick-link" href="./health-check.html">健康檢查</a>
       <a class="quick-link" href="./source-verification-workspace.html">資料源檢查工作台</a>
+      <a class="quick-link" href="./cycc-review.html">前往 CYCC 公開資料審核</a>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <h2>真實資料管線狀態</h2>
+        <p>這一區保留給維護者快速查看目前內部資料接入草稿，但不把它放在頁面最前面，避免一般讀者一打開就掉進工程細節。</p>
+      </div>
+      <span>internal metadata / still not live</span>
+    </div>
+    <section class="card" data-pipeline="status">
+      <h3>目前尚未啟動正式抓取</h3>
+      <p>CYCC public records crawler 仍維持停用狀態，這裡只保留真實資料管線狀態的白話摘要。正式資料接入前，不會直接對 source_url 發出程式請求，也不會把任何資料自動標成 approved_for_crawling。</p>
+      <div class="tag-row" style="margin-top:16px">
+        <span class="tag orange">no live crawler</span>
+        <span class="tag">no source_url requests</span>
+        <span class="tag">approved_for_crawling = false</span>
+      </div>
+    </section>
+    <section class="card" data-pipeline="records" style="margin-top:16px">
+      <h3>後台資料入口</h3>
+      <p>如果需要進一步查看內部盤點或逐筆檢查頁，請從這些次要入口前往。它們保留在後段，是為了讓公開版的資料來源頁先把資料邊界與 prototype 狀態講清楚。</p>
+      <div class="hero-actions" style="margin-top:18px">
+        <a class="btn secondary" href="./cycc-review.html">前往 CYCC 公開資料審核</a>
+        <a class="btn secondary" href="./source-verification-workspace.html">前往資料源檢查工作台</a>
+      </div>
     </section>
 
     <p class="footnote">這一頁的作用，是幫一般人理解：目前哪些資料已經可展示、哪些只是官方資料來源盤點、哪些還沒正式接入，以及為什麼我們現在還不會直接自動抓資料。</p>

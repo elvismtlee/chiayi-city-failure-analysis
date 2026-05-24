@@ -109,7 +109,7 @@ def test_shared_nav_contains_open_data_labels() -> None:
 def test_shared_nav_contains_disclosure() -> None:
     content = (DASHBOARD_DIR / "shared-nav.js").read_text(encoding="utf-8")
     assert "DASHBOARD_DISCLOSURE" in content
-    assert "不代表完整民意調查" in content
+    assert "不代表正式全量統計" in content
 
 
 def test_shared_nav_uses_two_level_grouped_navigation() -> None:

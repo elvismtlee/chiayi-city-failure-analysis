@@ -36,7 +36,8 @@ def test_homepage_keeps_public_dashboard_sections() -> None:
     assert "嘉義市城市問題儀表板" in content
     assert "原型案件數" in content
     assert "議題排行" in content
-    assert "Top 3 熱點行動建議" in content
+    assert "熱點分析" in content
+    assert "商圈動線與停車熱點專案" in content
     assert "prototype dashboard" in content
 
 
