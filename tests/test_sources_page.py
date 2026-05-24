@@ -3,6 +3,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_sources_page_contains_public_launch_sections() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    for text in [
+        '資料來源',
+        '資料透明原則',
+        '資料來源總覽',
+        '目前已有原型資料',
+        '官方資料來源盤點',
+        '資料安全邊界',
+        '主要公開頁面',
+        '後台資料處理入口',
+        'prototype dashboard',
+        'no live crawler',
+        'approved_for_crawling',
+    ]:
+        assert text in content
+
+
 def test_sources_links_to_open_data_inventory() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-inventory.html' in content
@@ -97,3 +115,15 @@ def test_sources_links_to_open_data_day1_operation_board() -> None:
     content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
     assert './open-data-day1-operation-board.html' in content
     assert '前往 Day1 操作看板' in content
+
+
+def test_sources_keeps_public_page_links() -> None:
+    content = (ROOT / 'dashboard' / 'sources.html').read_text(encoding='utf-8')
+    for link in [
+        './index.html',
+        './map.html',
+        './command-center.html',
+        './methodology.html',
+        './health-check.html',
+    ]:
+        assert link in content
