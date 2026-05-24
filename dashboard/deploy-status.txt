@@ -1,5 +1,5 @@
-deploy_check=2026-05-24T21:12:00+08:00
-status=public_navigation_prioritized
+deploy_check=2026-05-24T21:49:00+08:00
+status=sources_page_public_ready
 entry=index.html
 map=map.html
 command_center=command-center.html
