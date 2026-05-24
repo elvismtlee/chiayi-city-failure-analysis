@@ -3,58 +3,483 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>嘉義市城市故障分析儀表板｜Prototype</title>
+  <title>嘉義市城市問題儀表板</title>
   <style>
-    :root{--green:#0f766e;--dark:#064e3b;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff;--soft:#ecfdf5;--sand:#f8fafc;--amber:#b45309;--blue:#1d4ed8;--shadow:0 18px 50px rgba(15,23,42,.08)}
+    :root{
+      --bg:#08090c;
+      --bg-soft:#111318;
+      --panel:#161a22;
+      --panel-soft:#1b2230;
+      --line:rgba(255,255,255,.08);
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --orange:#f97316;
+      --orange-soft:rgba(249,115,22,.14);
+      --teal:#2dd4bf;
+      --green:#34d399;
+      --shadow:0 24px 56px rgba(0,0,0,.28);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#effcf7 0%,#f8fafc 42%,#fff 100%)}
-    a{color:inherit}.hero{position:relative;overflow:hidden;padding:36px 24px 60px;color:#fff;background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.20),transparent 28%),radial-gradient(circle at 88% 12%,rgba(134,239,172,.18),transparent 24%),linear-gradient(135deg,#052e2b,#064e3b 48%,#0f766e)}
-    .inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,68px);line-height:1.05;margin:22px 0 14px;letter-spacing:-.04em}.hero p{font-size:clamp(18px,2.2vw,23px);line-height:1.75;max-width:940px;color:rgba(255,255,255,.92)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;font-weight:950;text-decoration:none}.btn.primary{background:#fff;color:var(--dark)}.btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}.wrap{padding:30px 24px 64px}.notice{background:linear-gradient(135deg,#ecfdf5,#fff);border-left:8px solid var(--green);border-radius:24px;padding:22px;box-shadow:var(--shadow);line-height:1.8;color:#475569}.notice b{color:var(--dark)}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:28px}.section-title span{color:var(--muted);font-size:14px}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.dashboard-layout{grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}.hotspot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.quick{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:var(--shadow)}.card h3{font-size:22px;margin:0 0 10px;color:var(--dark)}.num{font-size:38px;font-weight:950;color:var(--dark);margin:8px 0 10px;letter-spacing:-.05em}.card p{margin:0 0 14px;color:#475569;line-height:1.65}.card a{color:#0f766e;font-weight:950;text-decoration:none}.kpi-card{position:relative;overflow:hidden}.kpi-card::after{content:"";position:absolute;right:-28px;top:-34px;width:90px;height:90px;border-radius:999px;background:rgba(15,118,110,.08)}.kpi-card .label{display:block;color:var(--muted);font-weight:850}.kpi-card .source{display:block;margin-top:10px;color:#64748b;font-size:13px;line-height:1.5}.chart-panel{min-height:360px}.bar-row{display:grid;grid-template-columns:92px 1fr 52px;gap:10px;align-items:center;margin:14px 0}.bar-label{font-weight:900;color:var(--dark)}.bar{height:16px;border-radius:999px;background:#e2e8f0;overflow:hidden}.bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#0f766e,#14b8a6)}.bar-value{text-align:right;font-weight:950;color:#0f766e}.map-box{position:relative;min-height:360px;border-radius:24px;background:linear-gradient(135deg,#dff8ef,#f8fafc);border:1px solid rgba(15,118,110,.16);overflow:hidden}.map-box::before{content:"西區 prototype map";position:absolute;left:18px;top:16px;color:#0f766e;font-weight:950;letter-spacing:.05em}.pin{position:absolute;width:20px;height:20px;border-radius:50% 50% 50% 0;background:#0f766e;transform:rotate(-45deg);box-shadow:0 8px 18px rgba(15,118,110,.28)}.pin::after{content:"";position:absolute;width:8px;height:8px;border-radius:999px;background:#fff;left:6px;top:6px}.pin-1{left:22%;top:38%}.pin-2{left:60%;top:55%;background:#b45309}.pin-3{left:42%;top:72%;background:#1d4ed8}.map-legend{position:absolute;left:18px;right:18px;bottom:18px;display:grid;gap:8px}.legend-item{background:rgba(255,255,255,.88);border:1px solid rgba(15,118,110,.12);border-radius:14px;padding:10px 12px;color:#334155;font-size:14px}.legend-item b{color:var(--dark)}.hotspot-card{background:linear-gradient(180deg,#fff,#f7fffb)}.score{display:inline-flex;align-items:center;justify-content:center;min-width:72px;height:42px;border-radius:999px;background:var(--soft);color:#065f46;font-size:22px;font-weight:950;margin:8px 0 12px}.tag{display:inline-flex;padding:7px 11px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:13px;font-weight:950;margin:0 8px 8px 0}.safety-list{display:flex;gap:10px;flex-wrap:wrap}.safety-pill{display:inline-flex;align-items:center;padding:9px 12px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-weight:900;font-size:13px}.quick a{background:#fff;border:1px solid rgba(15,118,110,.13);border-radius:18px;padding:16px;text-decoration:none;color:var(--dark);font-weight:950;box-shadow:0 12px 30px rgba(15,23,42,.05)}.footer-note{margin-top:26px;color:var(--muted);line-height:1.7;font-size:14px}@media(max-width:980px){.kpi-grid,.dashboard-layout,.hotspot-grid,.quick{grid-template-columns:1fr 1fr}}@media(max-width:640px){.kpi-grid,.dashboard-layout,.hotspot-grid,.quick{grid-template-columns:1fr}.hero{padding:30px 18px 48px}.wrap{padding:24px 18px 56px}.actions{display:grid}.btn{width:100%}}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 14% 16%,rgba(249,115,22,.14),transparent 26%),
+        radial-gradient(circle at 84% 12%,rgba(45,212,191,.10),transparent 22%),
+        linear-gradient(180deg,#090b10 0%,#0d1118 34%,#111723 100%);
+    }
+    a{color:inherit}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:34px 24px 72px;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)),
+        linear-gradient(135deg,#050608 0%,#0c0f15 42%,#141a25 100%);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .inner,.wrap{max-width:1200px;margin:auto}
+    .nav{display:block;margin-bottom:26px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+      gap:22px;
+      align-items:stretch;
+    }
+    .hero-copy{
+      padding:34px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    .hero-side,
+    .card,
+    .ranking-panel,
+    .map-panel,
+    .action-card,
+    .notice,
+    .quick-link{
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:36px;
+      padding:0 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.05em;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:#fde68a;
+    }
+    .badge.orange{background:var(--orange-soft);border-color:rgba(249,115,22,.28);color:#fdba74}
+    h1{
+      margin:20px 0 14px;
+      font-size:clamp(42px,6vw,78px);
+      line-height:1.03;
+      letter-spacing:-.05em;
+    }
+    .hero-copy p{
+      margin:0;
+      max-width:860px;
+      color:#e2e8f0;
+      font-size:clamp(18px,2.2vw,24px);
+      line-height:1.82;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+    }
+    .btn.primary{background:var(--orange);color:#fff}
+    .btn.secondary{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      color:#f8fafc;
+    }
+    .hero-side{padding:26px}
+    .hero-side h2{
+      margin:0 0 12px;
+      font-size:22px;
+      color:#fdba74;
+    }
+    .hero-side p{margin:0;color:#cbd5e1;line-height:1.82}
+    .hero-list{margin:18px 0 0;padding-left:18px;color:#cbd5e1;line-height:1.9}
+    .hero-list li+li{margin-top:6px}
+    .wrap{padding:34px 24px 74px}
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin:34px 0 18px;
+    }
+    .section-title h2{margin:0;font-size:32px;letter-spacing:-.03em}
+    .section-title span{color:var(--muted);font-size:14px}
+    .grid{display:grid;gap:16px}
+    .kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+    .overview-grid{grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr)}
+    .action-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{padding:22px;position:relative;overflow:hidden}
+    .card::after{
+      content:"";
+      position:absolute;
+      right:-24px;
+      top:-32px;
+      width:88px;
+      height:88px;
+      border-radius:999px;
+      background:rgba(249,115,22,.10);
+    }
+    .kpi-label{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    .kpi-value{
+      margin:0 0 10px;
+      font-size:clamp(30px,3vw,42px);
+      font-weight:950;
+      letter-spacing:-.04em;
+      color:#fff7ed;
+    }
+    .kpi-meta{
+      color:#cbd5e1;
+      font-size:14px;
+      line-height:1.7;
+    }
+    .prototype-note{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:22px;
+      border:1px solid rgba(249,115,22,.18);
+      background:rgba(249,115,22,.08);
+      color:#fed7aa;
+      line-height:1.8;
+    }
+    .ranking-panel,.map-panel,.notice{padding:26px}
+    .ranking-panel h3,.map-panel h3,.action-card h3,.notice h3{
+      margin:0 0 10px;
+      font-size:24px;
+      color:#fff7ed;
+    }
+    .ranking-panel p,.map-panel p,.action-card p,.notice p{
+      margin:0;
+      color:#cbd5e1;
+      line-height:1.78;
+    }
+    .bar-row{
+      display:grid;
+      grid-template-columns:120px 1fr 52px;
+      gap:12px;
+      align-items:center;
+      margin:18px 0;
+    }
+    .bar-label{font-weight:900;color:#f8fafc}
+    .bar-track{
+      height:18px;
+      border-radius:999px;
+      background:#273041;
+      overflow:hidden;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,.28);
+    }
+    .bar-fill{
+      display:block;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#fb923c,#f97316 58%,#fdba74);
+    }
+    .bar-value{
+      text-align:right;
+      font-weight:950;
+      color:#fdba74;
+    }
+    .map-box{
+      position:relative;
+      min-height:360px;
+      margin-top:18px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 22% 18%,rgba(45,212,191,.12),transparent 20%),
+        radial-gradient(circle at 80% 66%,rgba(249,115,22,.12),transparent 18%),
+        linear-gradient(135deg,#151c28 0%,#101620 100%);
+    }
+    .map-box::before{
+      content:"西區熱點示意圖｜prototype";
+      position:absolute;
+      left:18px;
+      top:16px;
+      color:#fdba74;
+      font-weight:900;
+      letter-spacing:.06em;
+    }
+    .road{
+      position:absolute;
+      background:rgba(148,163,184,.18);
+      border-radius:999px;
+    }
+    .road-a{left:12%;top:28%;width:70%;height:10px}
+    .road-b{left:20%;top:54%;width:58%;height:8px}
+    .road-c{left:38%;top:16%;width:10px;height:62%}
+    .road-d{left:62%;top:24%;width:10px;height:54%}
+    .hotspot{
+      position:absolute;
+      width:22px;
+      height:22px;
+      border-radius:50% 50% 50% 0;
+      transform:rotate(-45deg);
+      box-shadow:0 10px 18px rgba(0,0,0,.35);
+    }
+    .hotspot::after{
+      content:"";
+      position:absolute;
+      left:7px;
+      top:7px;
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#fff;
+    }
+    .hotspot-1{left:24%;top:33%;background:var(--orange)}
+    .hotspot-2{left:58%;top:53%;background:#f59e0b}
+    .hotspot-3{left:43%;top:68%;background:#38bdf8}
+    .map-legend{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      display:grid;
+      gap:8px;
+    }
+    .legend-item{
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(8,9,12,.72);
+      border:1px solid rgba(255,255,255,.08);
+      color:#e2e8f0;
+      font-size:14px;
+    }
+    .legend-item b{color:#fff7ed}
+    .action-card{
+      padding:22px;
+      background:linear-gradient(180deg,rgba(249,115,22,.06),rgba(255,255,255,.02));
+    }
+    .score-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:76px;
+      height:42px;
+      border-radius:999px;
+      margin:8px 0 12px;
+      background:rgba(249,115,22,.12);
+      color:#fdba74;
+      font-size:22px;
+      font-weight:950;
+    }
+    .meta-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:0 0 14px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      background:rgba(45,212,191,.10);
+      border:1px solid rgba(45,212,191,.18);
+      color:#99f6e4;
+      font-size:13px;
+      font-weight:900;
+    }
+    .notice-list{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .notice-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(249,115,22,.10);
+      border:1px solid rgba(249,115,22,.18);
+      color:#fdba74;
+      font-size:13px;
+      font-weight:900;
+    }
+    .quick-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:62px;
+      padding:0 18px;
+      text-align:center;
+      text-decoration:none;
+      color:#fff7ed;
+      font-weight:900;
+    }
+    .footnote{
+      margin-top:28px;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+    @media(max-width:1120px){
+      .kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .action-grid,.quick-grid{grid-template-columns:1fr 1fr}
+      .overview-grid,.hero-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .hero{padding:28px 16px 54px}
+      .wrap{padding:26px 16px 60px}
+      .kpi-grid,.action-grid,.quick-grid{grid-template-columns:1fr}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .bar-row{grid-template-columns:1fr;gap:8px}
+      .bar-value{text-align:left}
+      .section-title{align-items:start;flex-direction:column}
+    }
   </style>
 </head>
 <body>
   <section class="hero">
     <div class="inner">
       <nav class="nav"></nav>
-      <div class="badge">CITY DATA DASHBOARD｜PROTOTYPE</div>
-      <h1>嘉義市城市故障分析儀表板</h1>
-      <p>先把嘉義市城市問題做成看得懂的數據儀表板：案件量、質詢量、熱點、主題排行與行動建議。目前是 prototype 原型資料，不是正式爬蟲資料；正式資料會等資料源檢查完成後再接上。</p>
-      <div class="actions">
-        <a class="btn primary" href="./map.html">查看城市熱點地圖</a>
-        <a class="btn secondary" href="./source-verification-workspace.html">資料源檢查工作台</a>
-        <a class="btn secondary" href="./command-center.html">成果總控台</a>
-        <a class="btn secondary" href="./project-landing.html">專案說明</a>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="badge-row">
+            <span class="badge orange">Prototype dashboard</span>
+            <span class="badge">嘉義市城市治理資料原型</span>
+          </div>
+          <h1>嘉義市城市問題儀表板</h1>
+          <p>用公開資料與原型資料，把嘉義市交通、道路、停車、環境、通學安全等城市問題做成可追蹤、可視覺化的城市治理儀表板。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#hotspots">查看城市熱點</a>
+            <a class="btn secondary" href="#ranking">查看議題排行</a>
+            <a class="btn secondary" href="#data-status">資料來源說明</a>
+          </div>
+        </div>
+        <aside class="hero-side">
+          <h2>現在看到的是什麼</h2>
+          <p>這是一個整理嘉義市官方公開資料、地方議題與城市問題的資料庫原型。第一眼先看到數字、熱點與行動建議，而不是流程頁。</p>
+          <ul class="hero-list">
+            <li>目前還沒有啟動爬蟲</li>
+            <li>先用 prototype data 做出可視覺化儀表板樣貌</li>
+            <li>目標是建立可信、可追蹤、可視覺化的城市問題資料庫</li>
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
 
   <main class="wrap">
-    <section class="notice"><b>資料狀態：</b>以下數據來自本 repo 既有 prototype data，包括 <code>dashboard_summary.json</code> 與 <code>hotspots.json</code>。這是儀表板原型，不是假裝成正式民調或正式 1999 全量資料；正式資料接入前，所有 crawler 仍維持關閉。</section>
-
-    <div class="section-title"><h2>城市故障總覽</h2><span>prototype data / updated 2026-05-21</span></div>
+    <div class="section-title">
+      <h2>城市故障總覽</h2>
+      <span>prototype data / local repo only</span>
+    </div>
     <section class="grid kpi-grid">
-      <article class="card kpi-card"><span class="label">原型案件數</span><div class="num">12,458</div><p>作為儀表板展示用的 total_cases。</p><span class="source">source: dashboard_summary.json</span></article>
-      <article class="card kpi-card"><span class="label">質詢紀錄數</span><div class="num">386</div><p>用於連結議會質詢與城市議題。</p><span class="source">source: dashboard_summary.json</span></article>
-      <article class="card kpi-card"><span class="label">城市熱點</span><div class="num">18</div><p>目前熱點總數指標。</p><span class="source">source: dashboard_summary.json</span></article>
-      <article class="card kpi-card"><span class="label">最主要議題</span><div class="num">交通</div><p>目前 top_issue 顯示交通為第一主題。</p><span class="source">source: dashboard_summary.json</span></article>
-    </section>
-
-    <div class="section-title"><h2>議題排行與熱點圖</h2><span>先用原型數據呈現儀表板樣貌</span></div>
-    <section class="grid dashboard-layout">
-      <article class="card chart-panel">
-        <h3>目前最受關注的城市故障類型</h3>
-        <p>這裡先用 prototype 熱點分數呈現問題強度，不代表正式統計結論。</p>
-        <div class="bar-row"><span class="bar-label">停車 / 人行</span><div class="bar"><span style="width:92%"></span></div><span class="bar-value">92</span></div>
-        <div class="bar-row"><span class="bar-label">垃圾 / 動線</span><div class="bar"><span style="width:78%"></span></div><span class="bar-value">78</span></div>
-        <div class="bar-row"><span class="bar-label">通學安全</span><div class="bar"><span style="width:71%"></span></div><span class="bar-value">71</span></div>
-        <p class="footer-note">下一步：把官方資料源檢查完成後，改接真實來源欄位與正式統計。</p>
+      <article class="card">
+        <span class="kpi-label">原型案件數</span>
+        <div class="kpi-value">12,458</div>
+        <div class="kpi-meta">來自本地原型總覽資料，用來呈現儀表板的案件量級感。</div>
       </article>
       <article class="card">
-        <h3>西區城市熱點示意</h3>
+        <span class="kpi-label">質詢紀錄數</span>
+        <div class="kpi-value">386</div>
+        <div class="kpi-meta">對應目前原型中的議會質詢紀錄量，幫助對照城市問題主題。</div>
+      </article>
+      <article class="card">
+        <span class="kpi-label">城市熱點</span>
+        <div class="kpi-value">18</div>
+        <div class="kpi-meta">目前儀表板中的熱點總數，顯示需要追蹤的城市區域與問題群。</div>
+      </article>
+      <article class="card">
+        <span class="kpi-label">最大議題</span>
+        <div class="kpi-value">交通</div>
+        <div class="kpi-meta">根據目前原型總覽資料，交通是最主要的城市議題。</div>
+      </article>
+      <article class="card">
+        <span class="kpi-label">官方資料源</span>
+        <div class="kpi-value">29</div>
+        <div class="kpi-meta">目前已盤點的官方資料來源數量，後續會逐步人工檢查。</div>
+      </article>
+      <article class="card">
+        <span class="kpi-label">上線狀態</span>
+        <div class="kpi-value">Prototype</div>
+        <div class="kpi-meta">這是 prototype dashboard，不是正式全量資料，也不是 live crawler 版本。</div>
+      </article>
+    </section>
+
+    <div class="prototype-note">
+      <b>prototype data 說明：</b>目前首頁顯示的是 repo 內既有本地資料，包括 <code>dashboard_summary.json</code>、<code>hotspots.json</code>、<code>hotspots.geojson</code> 和 <code>open_data_url_inventory.json</code>。它是展示城市問題儀表板樣貌的原型，不是假裝成正式 1999 全量資料。
+    </div>
+
+    <div class="section-title" id="ranking">
+      <h2>城市問題議題排行</h2>
+      <span>依目前 hotspots score 排出最需要優先看見的問題</span>
+    </div>
+    <section class="grid overview-grid">
+      <article class="ranking-panel">
+        <h3>目前最突出的三類城市問題</h3>
+        <p>先用現有 prototype hotspots 分數，做出一般人也看得懂的議題排行視覺。正式資料接入後，再改成自動更新的統計圖。</p>
+        <div class="bar-row">
+          <span class="bar-label">停車 / 人行</span>
+          <div class="bar-track"><span class="bar-fill" style="width:92%"></span></div>
+          <span class="bar-value">92</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">垃圾 / 動線</span>
+          <div class="bar-track"><span class="bar-fill" style="width:78%"></span></div>
+          <span class="bar-value">78</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">通學安全</span>
+          <div class="bar-track"><span class="bar-fill" style="width:71%"></span></div>
+          <span class="bar-value">71</span>
+        </div>
+      </article>
+      <article class="map-panel" id="hotspots">
+        <h3>西區熱點示意</h3>
+        <p>這裡先用簡單視覺呈現文化路商圈、市場周邊、學校周邊三個關鍵區位，讓人一眼知道城市問題主要落在哪裡。</p>
         <div class="map-box">
-          <div class="pin pin-1"></div>
-          <div class="pin pin-2"></div>
-          <div class="pin pin-3"></div>
+          <div class="road road-a"></div>
+          <div class="road road-b"></div>
+          <div class="road road-c"></div>
+          <div class="road road-d"></div>
+          <div class="hotspot hotspot-1"></div>
+          <div class="hotspot hotspot-2"></div>
+          <div class="hotspot hotspot-3"></div>
           <div class="map-legend">
             <div class="legend-item"><b>文化路商圈</b>｜停車 / 人行｜score 92</div>
             <div class="legend-item"><b>市場周邊</b>｜垃圾 / 動線｜score 78</div>
@@ -64,33 +489,79 @@
       </article>
     </section>
 
-    <div class="section-title"><h2>Top 3 熱點行動建議</h2><span>prototype hotspots</span></div>
-    <section class="grid hotspot-grid">
-      <article class="card hotspot-card"><h3>文化路商圈</h3><div class="score">92</div><div><span class="tag">停車 / 人行</span><span class="tag">交通處</span></div><p>建議行動：商圈動線與停車熱點專案。</p><a href="./map.html">查看地圖 →</a></article>
-      <article class="card hotspot-card"><h3>市場周邊</h3><div class="score">78</div><div><span class="tag">垃圾 / 動線</span><span class="tag">環保局 / 建設處</span></div><p>建議行動：市場周邊環境改善與卸貨規劃。</p><a href="./map.html">查看地圖 →</a></article>
-      <article class="card hotspot-card"><h3>學校周邊</h3><div class="score">71</div><div><span class="tag">通學安全</span><span class="tag">交通處 / 教育處</span></div><p>建議行動：通學步道與接送區改善。</p><a href="./map.html">查看地圖 →</a></article>
+    <div class="section-title">
+      <h2>Top 3 熱點行動建議</h2>
+      <span>把熱點直接翻成城市治理語言</span>
+    </div>
+    <section class="grid action-grid">
+      <article class="action-card">
+        <h3>文化路商圈</h3>
+        <div class="score-badge">92</div>
+        <div class="meta-tags">
+          <span class="tag">停車 / 人行</span>
+          <span class="tag">交通處</span>
+        </div>
+        <p>商圈尖峰時段的停車與步行動線壓力最明顯，建議先用區段專案方式處理。</p>
+        <p style="margin-top:12px"><b>行動建議：</b>商圈動線與停車熱點專案</p>
+      </article>
+      <article class="action-card">
+        <h3>市場周邊</h3>
+        <div class="score-badge">78</div>
+        <div class="meta-tags">
+          <span class="tag">垃圾 / 動線</span>
+          <span class="tag">環保局 / 建設處</span>
+        </div>
+        <p>市場周邊常見垃圾堆置與卸貨動線混亂，需要把環境與交通一起看。</p>
+        <p style="margin-top:12px"><b>行動建議：</b>市場周邊環境改善與卸貨規劃</p>
+      </article>
+      <article class="action-card">
+        <h3>學校周邊</h3>
+        <div class="score-badge">71</div>
+        <div class="meta-tags">
+          <span class="tag">通學安全</span>
+          <span class="tag">交通處 / 教育處</span>
+        </div>
+        <p>上放學時段的人車衝突與接送區安排，是學校周邊最值得優先看的問題。</p>
+        <p style="margin-top:12px"><b>行動建議：</b>通學步道與接送區改善</p>
+      </article>
     </section>
 
-    <div class="section-title"><h2>資料來源接入狀態</h2><span>審核退到後台，但保留透明邊界</span></div>
-    <section class="grid dashboard-layout">
-      <article class="card"><h3>目前可用資料</h3><p>首頁現在優先呈現城市數據感，流程頁退到後台。現有可用本地資料包含總覽指標、熱點清單、熱點 GeoJSON、資料來源盤點與健康檢查。</p><a href="./health-check.html">查看健康檢查 →</a></article>
-      <article class="card"><h3>安全邊界</h3><div class="safety-list"><span class="safety-pill">no live crawler</span><span class="safety-pill">no source_url requests</span><span class="safety-pill">no personal data</span><span class="safety-pill">no auto publish</span><span class="safety-pill">approved_for_crawling 不自動設定</span></div></article>
+    <div class="section-title" id="data-status">
+      <h2>資料狀態說明</h2>
+      <span>先把邊界講清楚，再談下一步資料接入</span>
+    </div>
+    <section class="notice">
+      <h3>目前為 prototype dashboard，不是正式全量資料</h3>
+      <p>正式資料接入前，這個首頁只展示本地 prototype data 與熱點原型。數字不會自動變動，也不代表城市問題已完成全面盤點。</p>
+      <div class="notice-list">
+        <span class="notice-pill">no live crawler</span>
+        <span class="notice-pill">no source_url requests</span>
+        <span class="notice-pill">no personal data</span>
+        <span class="notice-pill">no private complaint full text</span>
+        <span class="notice-pill">no auto publish</span>
+        <span class="notice-pill">approved_for_crawling 不自動設定</span>
+        <span class="notice-pill">crawler_execution_allowed = false</span>
+        <span class="notice-pill">engineering_review_allowed = false</span>
+      </div>
     </section>
 
-    <div class="section-title"><h2>主要入口</h2><span>儀表板優先，流程後台化</span></div>
-    <section class="grid quick">
-      <a href="./map.html">城市熱點地圖</a>
-      <a href="./command-center.html">成果總控台</a>
-      <a href="./project-landing.html">公開展示頁</a>
-      <a href="./source-verification-workspace.html">資料源檢查工作台</a>
-      <a href="./open-data-inventory.html">官方資料來源盤點</a>
-      <a href="./open-data-day1-operation-board.html">Day 1 操作看板</a>
-      <a href="./sources.html">資料來源</a>
-      <a href="./health-check.html">健康檢查</a>
+    <div class="section-title">
+      <h2>次要入口</h2>
+      <span>流程與系統頁保留，但不放進主視覺</span>
+    </div>
+    <section class="grid quick-grid">
+      <a class="quick-link" href="./map.html">map.html</a>
+      <a class="quick-link" href="./command-center.html">command-center.html</a>
+      <a class="quick-link" href="./project-landing.html">project-landing.html</a>
+      <a class="quick-link" href="./source-verification-workspace.html">source-verification-workspace.html</a>
+      <a class="quick-link" href="./open-data-inventory.html">open-data-inventory.html</a>
+      <a class="quick-link" href="./open-data-day1-operation-board.html">open-data-day1-operation-board.html</a>
+      <a class="quick-link" href="./health-check.html">health-check.html</a>
     </section>
 
-    <p class="footer-note">公開說法請注意：目前是 prototype dashboard，不是正式全量資料庫。正式資料接入前，不啟動 live crawler，也不把任何資料自動標成 approved_for_crawling。</p>
+    <p class="footnote">這版首頁的任務很單純：先讓人第一眼看到數字、熱點、排行和行動建議。資料源檢查、Day 1 工作和其他內部流程頁都還在，但退到底部當次要入口，不再佔住主畫面。</p>
   </main>
+
   <script src="./shared-nav.js?v=20260523-navux"></script>
 </body>
 </html>
