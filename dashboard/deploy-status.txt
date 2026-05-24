@@ -1,5 +1,5 @@
-deploy_check=2026-05-24T22:02:00+08:00
-status=public_insights_reports_updated
+deploy_check=2026-05-24T22:12:00+08:00
+status=project_landing_and_404_updated
 entry=index.html
 map=map.html
 command_center=command-center.html
@@ -8,3 +8,5 @@ methodology=methodology.html
 health_check=health-check.html
 insights=insights.html
 reports=reports.html
+project_landing=project-landing.html
+not_found=404.html
