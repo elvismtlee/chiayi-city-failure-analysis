@@ -4,20 +4,26 @@ ROOT = Path(__file__).resolve().parents[1]
 HOME = ROOT / 'dashboard' / 'index.html'
 
 
-def test_home_page_shows_launch_entry_flow() -> None:
+def test_home_page_shows_city_data_dashboard() -> None:
     content = HOME.read_text(encoding='utf-8')
-    assert '嘉義市城市故障分析資料庫' in content
-    assert 'MVP 上線入口' in content
-    assert '四個主要入口' in content
-    assert '公開展示頁' in content
-    assert '資料源檢查工作台' in content
-    assert '成果總控台' in content
-    assert 'Day 1 操作看板' in content
-    assert './project-landing.html' in content
+    assert '嘉義市城市故障分析儀表板' in content
+    assert 'CITY DATA DASHBOARD' in content
+    assert '城市故障總覽' in content
+    assert '原型案件數' in content
+    assert '12,458' in content
+    assert '質詢紀錄數' in content
+    assert '386' in content
+    assert '城市熱點' in content
+    assert '18' in content
+    assert '最主要議題' in content
+    assert '交通' in content
+    assert '文化路商圈' in content
+    assert '市場周邊' in content
+    assert '學校周邊' in content
+    assert './map.html' in content
     assert './source-verification-workspace.html' in content
     assert './command-center.html' in content
-    assert './open-data-day1-operation-board.html' in content
-    assert 'GitHub Pages' in content
+    assert './project-landing.html' in content
     assert 'no live crawler' in content
     assert 'no source_url requests' in content
     assert 'approved_for_crawling' in content
