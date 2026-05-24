@@ -35,7 +35,7 @@ def test_public_dashboard_renderer_has_no_external_fetch_targets() -> None:
     assert "source_url" not in content
     assert "http://" not in content
     assert "https://" not in content
-    assert "fetch(\"./data/" in content
+    assert "fetch(path)" in content
 
 
 def test_homepage_loads_renderer_and_render_targets() -> None:
