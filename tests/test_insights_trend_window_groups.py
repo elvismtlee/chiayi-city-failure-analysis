@@ -54,9 +54,7 @@ def test_trend_window_css_classes_are_present() -> None:
     for class_name in [
         "trend-group",
         "trend-group-header",
-        "trend-group-7",
-        "trend-group-30",
-        "trend-group-90",
+        "trend-group-${group.days}",
         "trend-group-note",
         "trend-empty",
     ]:

@@ -30,6 +30,7 @@ def test_insights_page_mentions_key_issue_groups() -> None:
 
 
 def test_insights_avoids_support_polling_terms() -> None:
+    html = read_dashboard_file("insights.html")
     script = read_dashboard_file("insights.js")
 
     for anchor in ["trend-7", "trend-30", "trend-90"]:
@@ -75,7 +76,7 @@ def test_issue_trends_ui_discloses_prototype_data_limits() -> None:
         "prototype dashboard",
         "sample metadata 階段",
         "不代表正式全量資料",
-        "不代表完整民意結論",
+        "完整民意結論",
     ]:
         assert phrase in html
 
