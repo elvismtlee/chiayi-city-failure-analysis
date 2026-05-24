@@ -1,4 +1,5 @@
-deploy_check=2026-05-24T12:58:00+08:00
-status=hotspot_map_dashboard_updated
+deploy_check=2026-05-24T13:56:40+08:00
+status=command_center_public_control_room_updated
 entry=index.html
 map=map.html
+command_center=command-center.html
