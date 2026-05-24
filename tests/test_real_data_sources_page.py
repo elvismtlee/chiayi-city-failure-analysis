@@ -11,7 +11,7 @@ def test_sources_page_shows_real_data_pipeline_status() -> None:
     assert "data-pipeline=\"status\"" in content
     assert "data-pipeline=\"records\"" in content
     assert "./shared-nav.js?v=20260523-navux" in content
-    assert ".nav{display:block" in content
+    assert "回儀表板首頁" in content
 
 
 def test_site_pages_loads_cycc_crawler_report() -> None:
