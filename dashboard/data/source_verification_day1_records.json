@@ -1,0 +1,135 @@
+{
+  "generated_at": "2026-05-24T12:02:00+08:00",
+  "public_use_status": "internal_source_verification_day1_records",
+  "review_day": "day_1",
+  "total_count": 3,
+  "manual_review_required": true,
+  "no_live_crawler": true,
+  "no_auto_publish": true,
+  "no_personal_data": true,
+  "crawler_execution_allowed": false,
+  "engineering_review_allowed": false,
+  "approved_for_crawling": false,
+  "records": [
+    {
+      "record_id": "source-verification-day1-01",
+      "inventory_id": "social_after_school_child_care",
+      "task_id": "open-data-top10-01",
+      "operation_board_reference": "open-data-day1-form-01",
+      "source_title": "嘉義市兒童課後照顧服務據點",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95735",
+      "is_official_source": true,
+      "data_format": "CSV / XML",
+      "visible_fields": [
+        "據點名稱",
+        "服務地址",
+        "服務區域",
+        "服務單位",
+        "服務類型",
+        "更新日期"
+      ],
+      "privacy_risk": "low，預期是公開服務據點資料，但人工仍需確認沒有兒少個案、名冊或私人聯絡資訊。",
+      "recommended_next_action": "人工確認頁面標題、公開欄位與下載格式後，保留為可整理的社福服務據點來源。",
+      "verification_status": "draft_pending_human_check",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "approved_for_crawling": false,
+      "notes_for_human_reviewer": "這筆是 Day 1 最適合先看的來源之一。先確認這是 data.gov.tw 上由嘉義市政府社會處發布的正式資料集，再看是否只有公開據點資訊。",
+      "what_to_check_manually": [
+        "頁面標題是否與 inventory 記錄一致",
+        "發布機關是否顯示嘉義市政府社會處",
+        "頁面是否提供 CSV 或 XML 下載",
+        "公開欄位是否以據點資訊為主，不含兒少個案內容",
+        "更新日期或更新頻率是否可見",
+        "若看到聯絡方式，先判斷是否屬於公開機關資訊而非私人個資"
+      ],
+      "expected_output_after_review": [
+        "留下可讀的 source_title 與 source_owner",
+        "確認 data_format 與 visible_fields",
+        "標出 privacy_risk 是否仍為 low",
+        "寫出下一步是保留、人工整理，或先暫停"
+      ]
+    },
+    {
+      "record_id": "source-verification-day1-02",
+      "inventory_id": "social_integrated_care",
+      "task_id": "open-data-top10-02",
+      "operation_board_reference": "open-data-day1-form-02",
+      "source_title": "嘉義市社區整體照顧服務體系",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/95733",
+      "is_official_source": true,
+      "data_format": "CSV / XML",
+      "visible_fields": [
+        "據點名稱",
+        "服務地址",
+        "服務區域",
+        "服務單位",
+        "服務分類",
+        "更新日期"
+      ],
+      "privacy_risk": "low，預期是公開長照與社區服務據點資料，但人工要確認沒有個案、照護紀錄或私人聯絡資訊。",
+      "recommended_next_action": "人工確認這筆是否只含公開據點欄位，若是，就保留為後續資料表欄位整理候選。",
+      "verification_status": "draft_pending_human_check",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "approved_for_crawling": false,
+      "notes_for_human_reviewer": "這筆對高齡服務與社區照顧很重要，但我們只看公開據點，不延伸碰觸任何照護個案內容。",
+      "what_to_check_manually": [
+        "確認 dataset title 是否為嘉義市社區整體照顧服務體系",
+        "確認發布機關是否為嘉義市政府社會處",
+        "記錄實際可下載格式",
+        "記錄肉眼可見欄位是否足夠形成服務據點資料表",
+        "確認是否只涉及公開服務據點",
+        "若看到疑似個案資料或私密說明，立刻把 privacy_risk 提高並註記"
+      ],
+      "expected_output_after_review": [
+        "確認是否屬於官方公開資料來源",
+        "整理出可見欄位與格式說明",
+        "標示是否適合後續人工整理成資料庫欄位",
+        "維持 crawler_execution_allowed 與 engineering_review_allowed 為 false"
+      ]
+    },
+    {
+      "record_id": "source-verification-day1-03",
+      "inventory_id": "social_community_care_stations",
+      "task_id": "open-data-top10-03",
+      "operation_board_reference": "open-data-day1-form-03",
+      "source_title": "嘉義市社區照顧關懷據點",
+      "source_owner": "嘉義市政府社會處",
+      "source_url": "https://data.gov.tw/dataset/52404",
+      "is_official_source": true,
+      "data_format": "CSV",
+      "visible_fields": [
+        "據點名稱",
+        "服務地址",
+        "行政區",
+        "服務單位",
+        "服務項目",
+        "更新日期"
+      ],
+      "privacy_risk": "low，預期是公開社區服務據點資料，但人工仍需確認沒有長者名冊、關懷紀錄或私人電話名單。",
+      "recommended_next_action": "人工確認欄位完整度後，保留為社區照顧服務分布的基礎來源候選。",
+      "verification_status": "draft_pending_human_check",
+      "crawler_execution_allowed": false,
+      "engineering_review_allowed": false,
+      "approved_for_crawling": false,
+      "notes_for_human_reviewer": "這筆很適合做 Day 1 練習，因為它應該是相對直觀的服務據點資料。重點是留下公開欄位與風險判斷，不是直接抓資料。",
+      "what_to_check_manually": [
+        "頁面是否清楚顯示官方資料集名稱",
+        "來源機關是否仍是嘉義市政府社會處",
+        "是否能看出資料是 CSV 或其他格式",
+        "服務據點欄位是否清楚可辨識",
+        "是否出現任何私人個資或陳情內容",
+        "看完後寫下這筆資料適不適合繼續人工整理"
+      ],
+      "expected_output_after_review": [
+        "完成 8 個基本欄位填寫",
+        "留下對 visible_fields 的白話描述",
+        "記錄 privacy_risk 與 recommended_next_action",
+        "確認這只是人工檢查紀錄，不是批准爬取"
+      ]
+    }
+  ]
+}

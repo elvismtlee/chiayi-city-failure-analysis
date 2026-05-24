@@ -28,6 +28,7 @@ IMPORTANT_JSON = [
     "dashboard/data/open_data_day1_sample_manual_review_results.json",
     "dashboard/data/open_data_day1_manual_review_form_draft.json",
     "dashboard/data/open_data_day1_manual_review_operation_board.json",
+    "dashboard/data/source_verification_day1_records.json",
     "dashboard/data/cycc_minutes_review_queue.json",
     "dashboard/data/cycc_minutes_reviewed_sample.json",
     "dashboard/data/cycc_minutes_issue_candidates.json",
@@ -112,6 +113,7 @@ IMPORTANT_DOCS = [
     "docs/open_data_manual_review_patch_drafts/day_3_patch_drafts.md",
     "docs/open_data_day1_sample_results/day_1_sample_manual_review_results.md",
     "docs/open_data_day1_manual_review_forms/day_1_manual_review_form_draft.md",
+    "docs/source_verification_day1_records.md",
 ]
 
 NAV_LABELS = [
@@ -260,6 +262,21 @@ def build_health_check(root: Path = ROOT) -> dict[str, Any]:
                 "expected_public_use_status": "internal_top10_review_tasks",
                 "actual_public_use_status": open_data_top10_tasks.get("public_use_status"),
                 "ok": open_data_top10_tasks.get("public_use_status") == "internal_top10_review_tasks",
+            }
+        )
+    source_verification_day1_path = root / "dashboard" / "data" / "source_verification_day1_records.json"
+    if source_verification_day1_path.exists() and source_verification_day1_path.stat().st_size > 0:
+        try:
+            source_verification_day1 = json.loads(source_verification_day1_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            source_verification_day1 = {}
+        data_status_checks.append(
+            {
+                "name": "source_verification_day1_records",
+                "path": "dashboard/data/source_verification_day1_records.json",
+                "expected_public_use_status": "internal_source_verification_day1_records",
+                "actual_public_use_status": source_verification_day1.get("public_use_status"),
+                "ok": source_verification_day1.get("public_use_status") == "internal_source_verification_day1_records",
             }
         )
     open_data_crawler_specs_path = root / "dashboard" / "data" / "open_data_crawler_spec_drafts.json"
