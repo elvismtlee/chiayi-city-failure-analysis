@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524132013",
-  "generated_at": "2026-05-24T13:20:13+08:00",
+  "check_id": "dashboard-health-20260524132612",
+  "generated_at": "2026-05-24T13:26:12+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
@@ -186,7 +186,7 @@
       "file": "dashboard/data/dashboard_health_check.json",
       "exists": true,
       "empty": false,
-      "valid_json": false
+      "valid_json": true
     },
     {
       "file": "dashboard/data/weekly_system_report.json",
@@ -521,9 +521,7 @@
   ],
   "missing_files": [],
   "empty_files": [],
-  "invalid_json_files": [
-    "dashboard/data/dashboard_health_check.json"
-  ],
+  "invalid_json_files": [],
   "page_checks": [
     {
       "page": "dashboard/index.html",
@@ -944,10 +942,8 @@
       "ok": true
     }
   ],
-  "warnings": [
-    "Invalid JSON file: dashboard/data/dashboard_health_check.json"
-  ],
-  "status": "needs_attention",
+  "warnings": [],
+  "status": "ok",
   "public_use_status": "internal_health_check",
   "notes": [
     "internal dashboard / needs human review / manual publishing only",
