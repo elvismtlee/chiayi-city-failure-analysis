@@ -3,40 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard 健康檢查</title>
+  <title>網站與資料健康檢查｜嘉義市城市問題儀表板</title>
   <style>
-    body { margin: 0; font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f7f8fa; color: #1f2933; }
-    header { background: #17324d; color: white; padding: 24px; }
-    nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
-    nav a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.45); }
-    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
-    section { background: white; border: 1px solid #d9e2ec; border-radius: 8px; padding: 18px; margin: 16px 0; }
-    .notice { background: #fff7ed; border-color: #fed7aa; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border-bottom: 1px solid #e5e9f0; padding: 10px; text-align: left; }
+    :root{--orange:#f97316;--dark:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--green:#0f766e;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,main{max-width:1120px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 54px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(36px,5vw,62px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2vw,21px);line-height:1.78;color:#cbd5e1;max-width:900px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;padding:0 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}main{padding:30px 24px 72px}section{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;margin:16px 0;box-shadow:var(--shadow)}section h2{margin:0 0 12px;color:#0f172a}.notice{background:#fff7ed;border-color:#fed7aa;border-left:6px solid var(--orange);color:#7c2d12;line-height:1.75}.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.summary-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.summary-card b{display:block;color:#64748b;font-size:13px}.summary-card strong{display:block;font-size:28px;margin:8px 0;color:#0f172a;line-height:1}.summary-card span{font-size:13px;color:#475569}.tech-note{color:#475569;line-height:1.75}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#ecfdf5;color:#047857;font-size:12px;font-weight:950;margin:4px 4px 0 0}table{width:100%;border-collapse:collapse;min-width:760px}th,td{border-bottom:1px solid #e5e9f0;padding:10px;text-align:left;vertical-align:top}th{color:var(--muted);background:#f8fafc}.table-wrap{overflow:auto}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}@media(max-width:900px){.summary-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.inner,main{padding-left:18px;padding-right:18px}.summary-grid{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dashboard 健康檢查</h1>
-    <p>internal dashboard / needs human review / manual publishing only</p>
-    <nav class="nav"></nav>
+  <header class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <span class="badge">SITE HEALTH CHECK</span>
+      <h1>網站與資料健康檢查</h1>
+      <p class="lead">這一頁主要給維護者看，用來確認網站頁面是否存在、JSON 是否有效、資料是否可展示，以及目前哪些檔案需要補齊。一般市民可先看首頁儀表板與城市熱點地圖。</p>
+      <div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./command-center.html">看資料總控台</a><a class="btn ghost" href="./sources.html">看資料來源</a></div>
+    </div>
   </header>
   <main>
-    <section class="notice">這是內部系統健康檢查，只檢查本地檔案，不代表資料內容已完成人工審核，不自動發布。</section>
-    <section><h2>整體 Status</h2><p id="status"></p><p id="checked-count"></p></section>
+    <section class="notice"><b>白話摘要：</b>健康檢查不是城市問題分析結果，而是維護者用來確認網站是否正常、主要頁面是否存在、JSON 是否有效、目前資料是否可展示。此頁不啟動 live crawler，不對 source_url 發出請求，也不自動發布任何資料。</section>
+    <section>
+      <h2>公開上線檢查摘要</h2>
+      <div class="summary-grid">
+        <div class="summary-card"><b>網站狀態</b><strong id="status">讀取中</strong><span>dashboard_health_check.json</span></div>
+        <div class="summary-card"><b>檢查項目</b><strong id="checked-count">–</strong><span>頁面與資料檔</span></div>
+        <div class="summary-card"><b>主要頁面</b><strong>6</strong><span>首頁、地圖、總控台、來源、方法論、健康檢查</span></div>
+        <div class="summary-card"><b>資料狀態</b><strong>Prototype</strong><span>非正式全量資料</span></div>
+      </div>
+      <p class="tech-note" style="margin-top:14px"><span class="pill">prototype dashboard</span><span class="pill">no live crawler</span><span class="pill">no source_url requests</span><span class="pill">approved_for_crawling 不自動設定</span></p>
+    </section>
     <section><h2>Missing Files</h2><ul id="missing-files"></ul></section>
     <section><h2>Empty Files</h2><ul id="empty-files"></ul></section>
     <section><h2>Invalid JSON Files</h2><ul id="invalid-json-files"></ul></section>
     <section>
       <h2>Page Checks</h2>
-      <table><thead><tr><th>頁面</th><th>存在</th><th>空白</th></tr></thead><tbody id="page-checks"></tbody></table>
+      <div class="table-wrap"><table><thead><tr><th>頁面</th><th>存在</th><th>空白</th></tr></thead><tbody id="page-checks"></tbody></table></div>
     </section>
     <section>
       <h2>Nav Checks</h2>
-      <table><thead><tr><th>項目</th><th>site_map</th><th>shared-nav</th></tr></thead><tbody id="nav-checks"></tbody></table>
+      <div class="table-wrap"><table><thead><tr><th>項目</th><th>site_map</th><th>shared-nav</th></tr></thead><tbody id="nav-checks"></tbody></table></div>
     </section>
     <section><h2>Warnings</h2><ul id="warnings"></ul></section>
+    <p class="footer-note">安全邊界：prototype dashboard、非正式全量資料、no live crawler、no source_url requests、no personal data、no private complaint full text、no auto publish、approved_for_crawling 不自動設定。</p>
   </main>
   <script src="./shared-nav.js"></script>
   <script src="./health-check.js"></script>
