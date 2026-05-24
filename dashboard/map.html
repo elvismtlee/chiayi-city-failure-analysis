@@ -5,34 +5,188 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>城市熱點地圖｜嘉義市城市問題儀表板</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    :root{--orange:#f97316;--green:#0f766e;--dark:#0f172a;--text:#172033;--muted:#64748b;--card:#fff;--line:#e2e8f0;--bg:#f8fafc;--shadow:0 16px 46px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:var(--bg)}a{color:inherit}.hero{position:relative;overflow:hidden;padding:34px 24px 48px;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 56%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.15);border:1px solid rgba(251,146,60,.36);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(36px,5vw,62px);line-height:1.05;margin:18px 0 12px}.hero p{font-size:clamp(17px,2vw,21px);line-height:1.75;max-width:900px;color:#cbd5e1}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;padding:0 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.22)}.wrap{padding:28px 24px 68px}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1.35fr) minmax(330px,.65fr)}.cards3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:24px;padding:20px;box-shadow:var(--shadow)}.card h2,.card h3{margin:0 0 10px;color:#0f172a}.card p{margin:0;color:#475569;line-height:1.68}.kpi{position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--accent,var(--orange))}.kpi b{display:block;color:var(--muted);font-size:13px}.kpi strong{display:block;font-size:32px;font-weight:950;line-height:1;margin:10px 0 7px;color:#0f172a}.kpi span{color:#64748b;font-size:13px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-head h2{margin:0;font-size:28px}.section-head p{margin:6px 0 0;color:var(--muted)}.section-head .tag{font-size:12px;font-weight:950;color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;white-space:nowrap}#leafletHotspotMap{height:620px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}.cyfa-marker{border-radius:999px;background:#0f766e;color:#fff;display:grid;place-items:center;border:3px solid #fff;box-shadow:0 8px 24px rgba(15,23,42,.28);font-weight:900}.cyfa-marker-high{background:#dc2626}.cyfa-marker-medium{background:#f97316}.cyfa-marker-low{background:#0f766e}.map-popup h3{margin:0 0 8px;color:#064e3b}.map-popup p{margin:6px 0}.hotspot-list{display:grid;gap:12px}.hotspot-item{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff}.hotspot-item .top{display:flex;justify-content:space-between;gap:12px}.hotspot-item b{font-size:17px;color:#0f172a}.score{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:32px;border-radius:999px;background:#fff7ed;color:#c2410c;font-weight:950}.tag{display:inline-flex;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:900;padding:6px 10px;margin:8px 6px 8px 0}.action-card{border-top:4px solid var(--accent,var(--orange))}.rank{display:inline-flex;border-radius:999px;background:#fff7ed;color:#c2410c;font-weight:950;font-size:12px;padding:6px 10px;margin-bottom:10px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.quick{grid-template-columns:repeat(4,minmax(0,1fr))}.quick a{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:16px;font-weight:950;color:#0f172a;text-decoration:none}.quick a:hover{border-color:#f97316;color:#c2410c}.footer-note{margin-top:18px;color:var(--muted);line-height:1.7;font-size:14px}@media(max-width:980px){.kpi-grid,.layout,.cards3,.quick{grid-template-columns:1fr 1fr}#leafletHotspotMap{height:500px}}@media(max-width:640px){.hero{padding:28px 18px 44px}.wrap{padding:24px 18px 56px}.kpi-grid,.layout,.cards3,.quick{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}#leafletHotspotMap{height:420px}}
-  </style>
-  <link rel="stylesheet" href="./public-site.css?v=20260525">
+  <link rel="stylesheet" href="./public-site.css?v=20260526-public" />
 </head>
 <body>
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">HOTSPOT MAP DASHBOARD</span><h1>城市熱點地圖</h1><p>用地圖、排行與行動建議看懂嘉義市西區目前的城市故障熱點。這一頁讀取 <code>hotspots.geojson</code> 與 <code>hotspots.json</code>，目前是 prototype map，不是正式全量資料，而是公開版 dashboard 的地點視角。</p><div class="actions"><a class="btn primary" href="#mapDashboard">查看熱點地圖</a><a class="btn ghost" href="#actions">查看行動建議</a><a class="btn ghost" href="./index.html">回首頁儀表板</a></div></div></section>
-  <main class="wrap" id="mapDashboard">
-    <section class="notice"><b>資料狀態：</b>本頁為地圖原型。座標與熱點分數來自本 repo 既有 prototype data；正式版仍需接入 geocoding、GeoJSON、行政區圖層與更精準地點資料。</section>
-    <div class="section-head"><div><h2>熱點總覽</h2><p>先把城市問題的位置、分數、主管機關和行動建議放在同一頁。</p></div><span class="tag">prototype hotspots</span></div>
-    <section class="grid kpi-grid">
-      <article class="card kpi" style="--accent:#f97316"><b>最高熱點分數</b><strong>92</strong><span>文化路商圈</span></article>
-      <article class="card kpi" style="--accent:#0f766e"><b>目前顯示熱點</b><strong>3</strong><span>hotspots.json</span></article>
-      <article class="card kpi" style="--accent:#3b82f6"><b>主要問題類型</b><strong>3</strong><span>停車、人行、環境、通學</span></article>
-      <article class="card kpi" style="--accent:#a855f7"><b>地圖狀態</b><strong>Prototype</strong><span>Leaflet / OpenStreetMap</span></article>
-    </section>
-    <div class="section-head"><div><h2>地圖與熱點排行</h2><p>左側互動地圖，右側列出目前最高分的城市故障熱點。</p></div></div>
-    <section class="grid layout">
-      <article class="card"><div id="leafletHotspotMap" data-render="leaflet_hotspot_map"></div></article>
-      <aside class="card"><h3>熱點排行</h3><p>目前依 prototype score 排序。</p><div class="hotspot-list" style="margin-top:14px"><div class="hotspot-item"><div class="top"><b>文化路商圈</b><span class="score">92</span></div><span class="tag">停車 / 人行</span><span class="tag">交通處</span><p>商圈動線與停車熱點專案。</p></div><div class="hotspot-item"><div class="top"><b>市場周邊</b><span class="score">78</span></div><span class="tag">垃圾 / 動線</span><span class="tag">環保局 / 建設處</span><p>市場周邊環境改善與卸貨規劃。</p></div><div class="hotspot-item"><div class="top"><b>學校周邊</b><span class="score">71</span></div><span class="tag">通學安全</span><span class="tag">交通處 / 教育處</span><p>通學步道與接送區改善。</p></div></div></aside>
-    </section>
-    <div class="section-head" id="actions"><div><h2>Top 3 熱點行動建議</h2><p>每一個地點都對應一個可追蹤的改善方向。</p></div><span class="tag">action cards</span></div>
-    <section class="grid cards3"><article class="card action-card" style="--accent:#0f766e"><span class="rank">#1 score 92</span><h3>文化路商圈</h3><p><b>問題：</b>停車 / 人行</p><p><b>主管：</b>交通處</p><p><b>行動：</b>商圈動線與停車熱點專案</p></article><article class="card action-card" style="--accent:#f97316"><span class="rank">#2 score 78</span><h3>市場周邊</h3><p><b>問題：</b>垃圾 / 動線</p><p><b>主管：</b>環保局 / 建設處</p><p><b>行動：</b>市場周邊環境改善與卸貨規劃</p></article><article class="card action-card" style="--accent:#3b82f6"><span class="rank">#3 score 71</span><h3>學校周邊</h3><p><b>問題：</b>通學安全</p><p><b>主管：</b>交通處 / 教育處</p><p><b>行動：</b>通學步道與接送區改善</p></article></section>
-    <div class="section-head"><div><h2>相關頁面</h2><p>如果要從熱點地圖往外看更多背景，可以回到首頁、資料來源、總控台或健康檢查頁。</p></div></div>
-    <section class="grid quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./sources.html">資料來源 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./health-check.html">健康檢查 <span>→</span></a></section>
-    <p class="footer-note">本頁為 prototype map。正式版需接入 geocoding、GeoJSON、行政區圖層與更精準的地點資料；no live crawler、no source_url requests、approved_for_crawling 不自動設定，正式資料接入前仍屬公開版原型展示。</p>
-  </main>
-  <script src="./shared-nav.js"></script>
+  <div class="public-shell">
+    <header class="page-hero">
+      <div class="page-container hero-inner">
+        <nav class="nav"></nav>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">CITY HOTSPOT MAP</span>
+            <h1>城市熱點地圖</h1>
+            <p>這一頁把城市熱點放回地圖與地點語境裡。除了 Leaflet 地圖，也同時提供熱點排行、主管機關與 Top 3 熱點行動建議，讓一般人看得懂哪些地方最值得優先關注。</p>
+            <div class="hero-meta">
+              <span class="meta-pill">prototype map</span>
+              <span class="meta-pill">hotspots.geojson</span>
+              <span class="meta-pill">no live crawler</span>
+            </div>
+            <div class="hero-actions">
+              <a class="cta primary" href="#leafletHotspotMap">查看熱點地圖</a>
+              <a class="cta ghost" href="#actionCards">查看 Top 3 行動建議</a>
+              <a class="cta ghost" href="./index.html">回首頁儀表板</a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>這頁怎麼看</h2>
+            <p>左邊先看熱點位置，右邊看熱點排行與地點摘要，最後再看每個熱點對應的行動建議。它不是正式 GIS 決策系統，而是公開版的地點觀察層。</p>
+            <div class="mini-stack">
+              <div class="mini-card"><strong>最高熱點</strong><span>文化路商圈，分數 92。</span></div>
+              <div class="mini-card"><strong>地圖狀態</strong><span>Leaflet / OpenStreetMap，可展示但仍屬 prototype。</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="notice">
+        <strong>資料狀態：</strong>
+        本頁為 prototype map。座標與熱點分數來自本 repo 既有 prototype data；正式版仍需接入更完整的 geocoding、行政區圖層與時間序列資料。
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>熱點總覽</h2>
+            <p>先用摘要卡快速掌握地圖頁的重點，再往下看位置、排行與建議行動。</p>
+          </div>
+          <span class="section-tag">prototype hotspots</span>
+        </div>
+        <div class="grid grid-4">
+          <article class="card kpi-card accent-orange">
+            <span class="kpi-label">最高熱點分數</span>
+            <div class="kpi-value">92</div>
+            <div class="kpi-desc">文化路商圈</div>
+          </article>
+          <article class="card kpi-card accent-green">
+            <span class="kpi-label">目前顯示熱點</span>
+            <div class="kpi-value">3</div>
+            <div class="kpi-desc">文化路商圈、市場周邊、學校周邊</div>
+          </article>
+          <article class="card kpi-card accent-blue">
+            <span class="kpi-label">主要問題類型</span>
+            <div class="kpi-value">3</div>
+            <div class="kpi-desc">停車 / 人行、垃圾 / 動線、通學安全</div>
+          </article>
+          <article class="card kpi-card accent-purple">
+            <span class="kpi-label">地圖狀態</span>
+            <div class="kpi-value">Prototype</div>
+            <div class="kpi-desc">Leaflet / OpenStreetMap</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>熱點排行與地圖</h2>
+            <p>地圖先呈現位置，熱點排行補上類型與改善方向。這樣看起來才像 dashboard，不是一張孤單的地圖。</p>
+          </div>
+          <span class="section-tag">map + ranking</span>
+        </div>
+        <div class="hotspot-board">
+          <article class="card">
+            <div id="leafletHotspotMap" style="height:620px;border-radius:24px;overflow:hidden;"></div>
+          </article>
+          <aside class="map-side">
+            <div class="card">
+              <h3>熱點排行</h3>
+              <div class="line-list">
+                <div class="line-item">
+                  <div><strong>文化路商圈</strong><span class="muted">停車 / 人行｜交通處</span></div>
+                  <b>92</b>
+                </div>
+                <div class="line-item">
+                  <div><strong>市場周邊</strong><span class="muted">垃圾 / 動線｜環保局 / 建設處</span></div>
+                  <b>78</b>
+                </div>
+                <div class="line-item">
+                  <div><strong>學校周邊</strong><span class="muted">通學安全｜交通處 / 教育處</span></div>
+                  <b>71</b>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>資料狀態</h3>
+              <p>目前地圖仍屬 prototype dashboard：no live crawler、no source_url requests、approved_for_crawling 不自動設定。</p>
+              <a class="page-link" href="./sources.html">前往資料來源說明 →</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="actionCards">
+        <div class="section-head">
+          <div>
+            <h2>Top 3 熱點行動建議</h2>
+            <p>每個熱點都對應主管機關與具體方向，讓地圖頁不只是看位置，而是往下一步行動邁進。</p>
+          </div>
+          <span class="section-tag">action cards</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card hotspot-card accent-orange">
+            <span class="score-pill">score 92</span>
+            <h3>文化路商圈</h3>
+            <p><b>問題類型：</b>停車 / 人行</p>
+            <p><b>主管機關：</b>交通處</p>
+            <p><b>行動建議：</b>商圈動線與停車熱點專案</p>
+          </article>
+          <article class="card hotspot-card accent-green">
+            <span class="score-pill">score 78</span>
+            <h3>市場周邊</h3>
+            <p><b>問題類型：</b>垃圾 / 動線</p>
+            <p><b>主管機關：</b>環保局 / 建設處</p>
+            <p><b>行動建議：</b>市場周邊環境改善與卸貨規劃</p>
+          </article>
+          <article class="card hotspot-card accent-blue">
+            <span class="score-pill">score 71</span>
+            <h3>學校周邊</h3>
+            <p><b>問題類型：</b>通學安全</p>
+            <p><b>主管機關：</b>交通處 / 教育處</p>
+            <p><b>行動建議：</b>通學步道與接送區改善</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>資料狀態</h2>
+            <p>公開說明這張地圖的限制，避免被誤解成正式全量資料或已經接上自動抓取。</p>
+          </div>
+          <span class="section-tag">data status</span>
+        </div>
+        <div class="card">
+          <div class="safety">
+            <span>prototype dashboard</span>
+            <span>非正式全量資料</span>
+            <span>no live crawler</span>
+            <span>no source_url requests</span>
+            <span>approved_for_crawling 不自動設定</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>相關頁面</h2>
+            <p>需要更多背景時，可以切回首頁、資料來源與總控台，而不是只停在地圖本身。</p>
+          </div>
+          <span class="section-tag">quick links</span>
+        </div>
+        <div class="quick-grid">
+          <a class="quick-card" href="./index.html"><div><small>Home</small><b>城市儀表板首頁</b><span>查看 KPI、議題排行與資料狀態。</span></div></a>
+          <a class="quick-card" href="./sources.html"><div><small>Sources</small><b>資料來源</b><span>看 prototype data 與正式資料接入說明。</span></div></a>
+          <a class="quick-card" href="./command-center.html"><div><small>Control Room</small><b>城市資料總控台</b><span>看目前有哪些頁面和資料可用。</span></div></a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./leaflet-map.js"></script>
 </body>

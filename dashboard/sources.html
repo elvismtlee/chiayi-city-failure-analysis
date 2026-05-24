@@ -4,145 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>資料來源｜嘉義市城市問題儀表板</title>
-  <style>
-    :root{--orange:#f97316;--teal:#0f766e;--blue:#3b82f6;--purple:#8b5cf6;--navy:#0f172a;--card:#fff;--line:#e2e8f0;--shadow:0 18px 46px rgba(15,23,42,.12)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#f8fafc;color:#172033}a{color:inherit}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a);color:#fff}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 58px}.wrap{padding:30px 24px 76px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.4);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(40px,5vw,66px);line-height:1.03;margin:20px 0 14px;letter-spacing:-.05em}.lead{margin:0;font-size:clamp(17px,2.1vw,22px);line-height:1.8;color:#d8e1ee}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:32px 0 16px}.section-title h2{margin:0;font-size:30px;letter-spacing:-.03em}.section-title p{margin:6px 0 0;color:#64748b;line-height:1.7}.section-title span{display:inline-flex;border-radius:999px;padding:7px 11px;background:#ffedd5;color:#c2410c;font-size:12px;font-weight:950;white-space:nowrap}.grid{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a;font-size:22px}.card p,.card li,.card dd,.card dt{margin:0;color:#475569;line-height:1.72}.overview-card{position:relative;overflow:hidden}.overview-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--accent,var(--orange))}.overview-card b{display:block;color:#64748b;font-size:13px;font-weight:900}.overview-card strong{display:block;margin:10px 0 8px;font-size:30px;line-height:1;font-weight:950;color:#0f172a}.safety{display:flex;gap:8px;flex-wrap:wrap}.safety span{display:inline-flex;align-items:center;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:8px 11px;font-size:12px;font-weight:900}.quick a{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:16px;font-weight:950;text-decoration:none;box-shadow:var(--shadow)}.quick a:hover{border-color:#f97316;color:#c2410c}.details{margin-top:18px}.details details{background:#fff;border:1px solid rgba(15,23,42,.08);border-radius:20px;padding:16px 18px;box-shadow:var(--shadow)}.details summary{cursor:pointer;font-weight:900;color:#0f172a}.details ul{margin:14px 0 0;padding-left:20px;line-height:1.9;color:#475569}.footer-note{margin-top:22px;color:#64748b;line-height:1.8;font-size:14px}@media(max-width:980px){.grid4,.grid3,.grid2{grid-template-columns:1fr 1fr}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 58px}.grid4,.grid3,.grid2{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}.section-title{display:block}.section-title span{display:inline-flex;margin-top:10px}}
-  </style>
-  <link rel="stylesheet" href="./public-site.css?v=20260525">
+  <style>.nav{display:block}</style>
+  <link rel="stylesheet" href="./public-site.css?v=20260526-public">
 </head>
 <body>
-  <section class="hero">
-    <div class="inner">
-      <nav class="nav"></nav>
-      <span class="badge">DATA SOURCES</span>
-      <h1>資料來源</h1>
-      <p class="lead">說明目前城市問題儀表板使用哪些 prototype data、哪些官方資料來源已盤點、哪些正式資料尚未接入，以及如何避免誤用個資或不完整資料。</p>
-      <div class="actions">
-        <a class="btn primary" href="./index.html">回儀表板首頁</a>
-        <a class="btn ghost" href="./command-center.html">看資料總控台</a>
-        <a class="btn ghost" href="./methodology.html">看方法論</a>
+  <div class="public-shell">
+    <header class="page-hero">
+      <div class="page-container hero-inner">
+        <nav class="nav"></nav>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">DATA SOURCES</span>
+            <h1>資料來源</h1>
+            <p>說明目前城市問題儀表板使用哪些 prototype data、哪些官方資料來源已盤點、哪些正式資料尚未接入，以及如何避免誤用個資或不完整資料。</p>
+            <div class="hero-actions">
+              <a class="cta primary" href="./index.html">回儀表板首頁</a>
+              <a class="cta ghost" href="./command-center.html">看資料總控台</a>
+              <a class="cta ghost" href="./methodology.html">看方法論</a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>資料透明原則</h2>
+            <p>這個網站的公開性，不靠誇大，而是靠透明。哪些是 prototype data、哪些是候選資料來源、哪些還沒正式接入，都要寫清楚。</p>
+            <ul>
+              <li>目前首頁和地圖頁先使用 prototype dashboard data。</li>
+              <li>正式資料接入前不啟動 live crawler。</li>
+              <li>不對來源網址發出程式請求。</li>
+            </ul>
+          </aside>
+        </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <main class="wrap">
-    <section class="notice"><b>資料透明原則：</b>目前首頁和地圖頁先使用 prototype dashboard data，不是正式全量資料。正式資料接入前，不啟動 live crawler、不對 source_url 發出程式請求、不抓個資、不抓私人陳情全文、不自動發布，也不把任何資料自動標成 approved_for_crawling。</section>
+    <main class="page-main">
+      <section class="notice"><strong>資料透明原則：</strong>目前首頁和地圖頁先使用 prototype dashboard data，不是正式全量資料。正式資料接入前，不啟動 live crawler、不對 source_url 發出程式請求、不抓個資、不抓私人陳情全文、不自動發布，也不把任何資料自動標成 approved_for_crawling。</section>
 
-    <div class="section-title">
-      <div>
-        <h2>資料來源總覽</h2>
-        <p>先用四張摘要卡，讓一般人快速理解現在網站到底用了哪些資料、哪些還在接入中。</p>
-      </div>
-      <span>public data status</span>
-    </div>
-    <section class="grid grid4">
-      <article class="card overview-card" style="--accent:#f97316"><b>原型資料狀態</b><strong>可展示</strong><p>首頁、地圖與總控台目前都已使用可公開說明的 prototype data。</p></article>
-      <article class="card overview-card" style="--accent:#0f766e"><b>官方資料源盤點</b><strong>29 筆</strong><p>已完成候選來源盤點，但尚未全部正式接入前台。</p></article>
-      <article class="card overview-card" style="--accent:#3b82f6"><b>正式資料接入</b><strong>進行中</strong><p>後續會依來源可用性與欄位品質，逐步補進儀表板。</p></article>
-      <article class="card overview-card" style="--accent:#8b5cf6"><b>Crawler 狀態</b><strong>關閉</strong><p>目前維持 no live crawler，也不對來源網址做程式請求。</p></article>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>資料來源總覽</h2>
+            <p>先用四張摘要卡，讓一般人快速理解現在網站到底用了哪些資料、哪些還在接入中。</p>
+          </div>
+          <span class="section-tag">public data status</span>
+        </div>
+        <div class="grid grid-4">
+          <article class="card kpi-card accent-orange"><span class="kpi-label">原型資料狀態</span><div class="kpi-value">可展示</div><div class="kpi-desc">首頁、地圖與總控台目前都已使用可公開說明的 prototype data。</div></article>
+          <article class="card kpi-card accent-green"><span class="kpi-label">官方資料源盤點</span><div class="kpi-value">29 筆</div><div class="kpi-desc">已完成候選來源盤點，但尚未全部正式接入前台。</div></article>
+          <article class="card kpi-card accent-blue"><span class="kpi-label">正式資料接入</span><div class="kpi-value">進行中</div><div class="kpi-desc">後續會依來源可用性與欄位品質，逐步補進儀表板。</div></article>
+          <article class="card kpi-card accent-purple"><span class="kpi-label">Crawler 狀態</span><div class="kpi-value">關閉</div><div class="kpi-desc">目前維持 no live crawler，也不對來源網址做程式請求。</div></article>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>目前已有原型資料</h2>
-        <p>這些檔案是目前公開頁面實際會讀到的資料，不是假想中的資料庫。</p>
-      </div>
-      <span>prototype files</span>
-    </div>
-    <section class="grid grid3">
-      <article class="card"><h3>儀表板摘要</h3><p>提供首頁 KPI 的基礎數字，例如原型案件數、質詢紀錄數、熱點數與最大議題。</p><ul><li>dashboard_summary.json</li><li>用於首頁 KPI</li></ul></article>
-      <article class="card"><h3>城市熱點資料</h3><p>提供文化路商圈、市場周邊、學校周邊等熱點、分數與行動建議。</p><ul><li>hotspots.json</li><li>hotspots.geojson</li></ul></article>
-      <article class="card"><h3>議題趨勢資料</h3><p>提供交通停車、市場商圈、環境衛生、通學安全等 prototype 分類趨勢。</p><ul><li>issue_trends.json</li><li>目前仍是 sample / metadata 階段</li></ul></article>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>目前已有原型資料</h2>
+            <p>這些檔案是目前公開頁面實際會讀到的資料，不是假想中的資料庫。</p>
+          </div>
+          <span class="section-tag">prototype files</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><h3>儀表板摘要</h3><p>提供首頁 KPI 的基礎數字，例如原型案件數、質詢紀錄數、熱點數與最大議題。</p><ul class="list"><li>dashboard_summary.json</li><li>用於首頁 KPI</li></ul></article>
+          <article class="card"><h3>城市熱點資料</h3><p>提供文化路商圈、市場周邊、學校周邊等熱點、分數與行動建議。</p><ul class="list"><li>hotspots.json</li><li>hotspots.geojson</li></ul></article>
+          <article class="card"><h3>議題趨勢資料</h3><p>提供交通停車、市場商圈、環境衛生、通學安全等 prototype 分類趨勢。</p><ul class="list"><li>issue_trends.json</li><li>目前仍是 sample / metadata 階段</li></ul></article>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>官方資料來源盤點</h2>
-        <p>公開頁面先說清楚有哪些來源已盤點、哪些還沒正式接入，不讓人以為網站在亂編資料。</p>
-      </div>
-      <span>official source inventory</span>
-    </div>
-    <section class="grid grid3">
-      <article class="card"><h3>已盤點來源</h3><p>目前已盤點來源：29 筆官方資料來源候選，後續會逐步確認欄位、格式、更新頻率與可用性。</p><p style="margin-top:12px"><a href="./open-data-inventory.html">查看官方資料來源盤點 →</a></p></article>
-      <article class="card"><h3>尚未正式接入</h3><p>正式資料尚未全量接入首頁，因為需要先確認來源可用性與資料限制，避免把不完整資料包裝成正式結論。</p></article>
-      <article class="card"><h3>下一步資料類型</h3><p>交通事故、道路施工、路燈照明、停車問題、環境衛生、通學安全、市場商圈會是下一波優先資料類型。</p></article>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>官方資料來源盤點</h2>
+            <p>公開頁面先說清楚有哪些來源已盤點、哪些還沒正式接入，不讓人以為網站在亂編資料。</p>
+          </div>
+          <span class="section-tag">official source inventory</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><h3>已盤點來源</h3><p>目前已盤點來源：29 筆官方資料來源候選，後續會逐步確認欄位、格式、更新頻率與可用性。</p><p style="margin-top:12px"><a class="page-link" href="./open-data-inventory.html">查看官方資料來源盤點 →</a></p></article>
+          <article class="card"><h3>尚未正式接入</h3><p>正式資料尚未全量接入首頁，因為需要先確認來源可用性與資料限制，避免把不完整資料包裝成正式結論。</p></article>
+          <article class="card"><h3>下一步資料類型</h3><p>交通事故、道路施工、路燈照明、停車問題、環境衛生、通學安全、市場商圈會是下一波優先資料類型。</p></article>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>資料安全邊界</h2>
-        <p>資料來源頁最重要的任務之一，就是把不能做的事情講清楚。</p>
-      </div>
-      <span>safety boundary</span>
-    </div>
-    <section class="card"><div class="safety"><span>prototype dashboard</span><span>非正式全量資料</span><span>no live crawler</span><span>no source_url requests</span><span>no personal data</span><span>no private complaint full text</span><span>no auto publish</span><span>approved_for_crawling 不自動設定</span></div></section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>資料安全邊界</h2>
+            <p>資料來源頁最重要的任務之一，就是把不能做的事情講清楚。</p>
+          </div>
+          <span class="section-tag">safety boundary</span>
+        </div>
+        <div class="card">
+          <div class="safety">
+            <span>prototype dashboard</span>
+            <span>非正式全量資料</span>
+            <span>no live crawler</span>
+            <span>no source_url requests</span>
+            <span>no personal data</span>
+            <span>no private complaint full text</span>
+            <span>no auto publish</span>
+            <span>approved_for_crawling 不自動設定</span>
+          </div>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>主要公開頁面</h2>
-        <p>如果想從資料來源回到公開站其他主要頁面，可以從這裡繼續。</p>
-      </div>
-      <span>public links</span>
-    </div>
-    <section class="grid grid3 quick">
-      <a href="./index.html">城市儀表板首頁 <span>→</span></a>
-      <a href="./map.html">城市熱點地圖 <span>→</span></a>
-      <a href="./command-center.html">城市資料總控台 <span>→</span></a>
-      <a href="./methodology.html">方法論 <span>→</span></a>
-      <a href="./health-check.html">健康檢查 <span>→</span></a>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>主要公開頁面</h2>
+            <p>如果想從資料來源回到公開站其他主要頁面，可以從這裡繼續。</p>
+          </div>
+          <span class="section-tag">public links</span>
+        </div>
+        <div class="quick-grid">
+          <a class="quick-card" href="./index.html"><div><small>Home</small><b>城市儀表板首頁</b><span>回到 KPI、議題排行與熱點分析。</span></div></a>
+          <a class="quick-card" href="./map.html"><div><small>Map</small><b>城市熱點地圖</b><span>查看熱點排行、位置與行動建議。</span></div></a>
+          <a class="quick-card" href="./command-center.html"><div><small>Control Room</small><b>城市資料總控台</b><span>了解目前可用資料與下一步。</span></div></a>
+          <a class="quick-card" href="./methodology.html"><div><small>Methodology</small><b>方法論</b><span>理解分類方式、熱點邏輯與資料限制。</span></div></a>
+          <a class="quick-card" href="./health-check.html"><div><small>Health</small><b>健康檢查</b><span>看主要頁面與 JSON 是否正常。</span></div></a>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>真實資料管線狀態</h2>
-        <p>這一段保留給維護與測試相容，但已經移到後段，不干擾一般人第一眼閱讀。</p>
-      </div>
-      <span>internal metadata compatibility</span>
-    </div>
-    <section class="grid grid2">
-      <article class="card" style="--accent:#0f766e" data-pipeline="status">
-        <h3>資料管線狀態</h3>
-        <p>維持 prototype dashboard 為主，真實資料接入仍需逐步確認來源、欄位與安全邊界。</p>
-      </article>
-      <article class="card" style="--accent:#3b82f6" data-pipeline="records">
-        <h3>CYCC public records crawler</h3>
-        <p>目前不啟動、不自動抓取、不直接用於前台公開頁，僅保留相容標記與後續規劃資訊。</p>
-      </article>
-    </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>真實資料管線狀態</h2>
+            <p>這一段保留給維護與測試相容，但已經移到後段，不干擾一般人第一眼閱讀。</p>
+          </div>
+          <span class="section-tag">internal metadata compatibility</span>
+        </div>
+        <div class="grid grid-2">
+          <article class="card" data-pipeline="status">
+            <h3>資料管線狀態</h3>
+            <p>維持 prototype dashboard 為主，真實資料接入仍需逐步確認來源、欄位與安全邊界。</p>
+          </article>
+          <article class="card" data-pipeline="records">
+            <h3>CYCC public records crawler</h3>
+            <p>目前不啟動、不自動抓取、不直接用於前台公開頁，僅保留相容標記與後續規劃資訊。</p>
+          </article>
+        </div>
+      </section>
 
-    <div class="section-title">
-      <div>
-        <h2>後台資料處理入口</h2>
-        <p>舊後台連結保留在這裡，方便維護與測試，但不再放在公開頁第一眼。</p>
-      </div>
-      <span>details</span>
-    </div>
-    <div class="details">
-      <details>
-        <summary>展開後台資料處理入口</summary>
-        <ul>
-          <li><a href="./cycc-review.html">前往 CYCC 公開資料審核</a></li>
-          <li><a href="./open-data-inventory.html">前往官方開放資料 URL 盤點</a></li>
-          <li><a href="./open-data-review.html">前往官方資料 URL 人工審核</a></li>
-          <li><a href="./open-data-readiness.html">前往官方資料 Readiness 評分</a></li>
-          <li><a href="./open-data-top10-tasks.html">前往 Top 10 官方資料審核任務</a></li>
-          <li><a href="./open-data-crawler-specs.html">前往 Crawler 規格草稿</a></li>
-          <li><a href="./open-data-human-review.html">前往人工審核工作簿</a></li>
-          <li><a href="./open-data-engineering-review.html">前往工程審查清單</a></li>
-          <li><a href="./open-data-review-sessions.html">前往人工審核執行工作台</a></li>
-          <li><a href="./open-data-review-evidence.html">前往審核證據包</a></li>
-          <li><a href="./open-data-manual-review-results.html">前往審核結果輸入表</a></li>
-          <li><a href="./open-data-manual-review-sop.html">前往人工審核 SOP</a></li>
-          <li><a href="./open-data-manual-review-packets.html">前往人工審核工作包</a></li>
-          <li><a href="./open-data-manual-review-patches.html">前往回填 Patch 草稿</a></li>
-          <li><a href="./open-data-day1-sample-results.html">前往 Day1 填寫範例</a></li>
-          <li><a href="./open-data-day1-review-form.html">前往 Day1 審核表單</a></li>
-          <li><a href="./open-data-day1-operation-board.html">前往 Day1 操作看板</a></li>
-        </ul>
-      </details>
-    </div>
-
-    <p class="footer-note">資料來源頁是本資料站的透明基礎。正式資料上線後，應持續更新來源、筆數、更新時間與處理狀態，讓使用者知道哪些數字已接近正式資料、哪些仍停留在 prototype data。</p>
-  </main>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>後台資料處理入口</h2>
+            <p>舊後台連結保留在這裡，方便維護與測試，但不再放在公開頁第一眼。</p>
+          </div>
+          <span class="section-tag">details</span>
+        </div>
+        <div class="details-block">
+          <details>
+            <summary>展開後台資料處理入口</summary>
+            <ul>
+              <li><a href="./cycc-review.html">前往 CYCC 公開資料審核</a></li>
+              <li><a href="./open-data-inventory.html">前往官方開放資料 URL 盤點</a></li>
+              <li><a href="./open-data-review.html">前往官方資料 URL 人工審核</a></li>
+              <li><a href="./open-data-readiness.html">前往官方資料 Readiness 評分</a></li>
+              <li><a href="./open-data-top10-tasks.html">前往 Top 10 官方資料審核任務</a></li>
+              <li><a href="./open-data-crawler-specs.html">前往 Crawler 規格草稿</a></li>
+              <li><a href="./open-data-human-review.html">前往人工審核工作簿</a></li>
+              <li><a href="./open-data-engineering-review.html">前往工程審查清單</a></li>
+              <li><a href="./open-data-review-sessions.html">前往人工審核執行工作台</a></li>
+              <li><a href="./open-data-review-evidence.html">前往審核證據包</a></li>
+              <li><a href="./open-data-manual-review-results.html">前往審核結果輸入表</a></li>
+              <li><a href="./open-data-manual-review-sop.html">前往人工審核 SOP</a></li>
+              <li><a href="./open-data-manual-review-packets.html">前往人工審核工作包</a></li>
+              <li><a href="./open-data-manual-review-patches.html">前往回填 Patch 草稿</a></li>
+              <li><a href="./open-data-day1-sample-results.html">前往 Day1 填寫範例</a></li>
+              <li><a href="./open-data-day1-review-form.html">前往 Day1 審核表單</a></li>
+              <li><a href="./open-data-day1-operation-board.html">前往 Day1 操作看板</a></li>
+            </ul>
+          </details>
+        </div>
+        <p class="footer-note">資料來源頁是本資料站的透明基礎。正式資料上線後，應持續更新來源、筆數、更新時間與處理狀態，讓使用者知道哪些數字已接近正式資料、哪些仍停留在 prototype data。</p>
+      </section>
+    </main>
+  </div>
 
   <script src="./shared-nav.js?v=20260523-navux"></script>
 </body>

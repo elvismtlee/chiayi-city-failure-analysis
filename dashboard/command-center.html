@@ -4,28 +4,156 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>嘉義市城市資料總控台</title>
-  <style>
-    :root{--orange:#f97316;--navy:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--green:#0f766e;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 56px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2.1vw,22px);line-height:1.78;color:#cbd5e1;max-width:940px;margin:0}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;text-decoration:none;font-weight:950}.hero-btn.primary{background:var(--orange);color:#fff}.hero-btn.secondary{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}.wrap{padding:30px 24px 72px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:32px 0 16px}.section-head h2{margin:0;font-size:28px;letter-spacing:-.03em}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}.section-head .tag{font-size:12px;font-weight:950;color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;white-space:nowrap}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pages-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr)}.data-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a;font-size:21px}.card p{margin:0;color:#475569;line-height:1.7}.kpi{position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--accent,var(--orange))}.kpi span{display:block;color:var(--muted);font-size:13px;font-weight:850}.kpi strong{display:block;font-size:30px;line-height:1;font-weight:950;margin:10px 0 8px;color:#0f172a}.kpi em{font-style:normal;color:#64748b;font-size:12px;line-height:1.45}.page-card{display:flex;flex-direction:column;gap:10px;min-height:170px}.page-card .status{display:inline-flex;width:max-content;border-radius:999px;background:#ecfdf5;color:#047857;font-size:12px;font-weight:950;padding:6px 10px}.page-card a{margin-top:auto;color:#f97316;font-weight:950;text-decoration:none}.status-list{display:grid;gap:10px}.status-item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff}.status-item b{color:#0f172a}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:950}.data-card{border-top:4px solid var(--accent,var(--orange))}.data-card b{display:block;color:#0f172a;margin-bottom:6px}.safety{display:flex;gap:8px;flex-wrap:wrap}.safety span{display:inline-flex;align-items:center;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:8px 11px;font-size:12px;font-weight:900}.list{margin:0;padding-left:20px;color:#475569;line-height:1.85}.footer-note{margin-top:26px;color:#64748b;line-height:1.8;font-size:13px}@media(max-width:980px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.pages-grid,.layout,.data-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 56px}.kpi-grid,.pages-grid,.layout,.data-grid{grid-template-columns:1fr}.hero-actions{display:grid}.hero-btn{width:100%}.section-head{display:block}.section-head .tag{display:inline-flex;margin-top:10px}}
-  </style>
-  <link rel="stylesheet" href="./public-site.css?v=20260525">
+  <link rel="stylesheet" href="./public-site.css?v=20260526-public">
 </head>
 <body>
-  <header class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY DATA CONTROL ROOM</span><h1>嘉義市城市資料總控台</h1><p class="lead">這裡整理目前儀表板已可使用的資料、頁面、原型指標與後續資料接入狀態，讓使用者知道現在能看什麼、資料從哪裡來、下一步要補什麼。</p><div class="hero-actions"><a class="hero-btn primary" href="./index.html">回城市儀表板首頁</a><a class="hero-btn secondary" href="./map.html">看城市熱點地圖</a><a class="hero-btn secondary" href="./sources.html">看資料來源</a></div></div></header>
-  <main class="wrap">
-    <section class="notice"><b>公開資料說明：</b>目前是 prototype dashboard，不是正式全量資料庫。這裡不啟動 live crawler、不對 source_url 發出程式請求、不抓個資、不自動發布；正式資料會在資料源確認後逐步接入。這一頁的任務，是把網站目前有哪些資料、哪些頁面可看、哪些還在接入中，一次說清楚。</section>
-    <div class="section-head"><div><h2>目前可用資料</h2><p>先用已存在的本地資料呈現可用指標，讓使用者看得懂目前儀表板已有什麼。</p></div><span class="tag">prototype data</span></div>
-    <section class="grid kpi-grid" id="controlKpis"><article class="card kpi" style="--accent:#f97316"><span>原型案件數</span><strong>12,458</strong><em>dashboard_summary.json</em></article><article class="card kpi" style="--accent:#38bdf8"><span>質詢紀錄數</span><strong>386</strong><em>dashboard_summary.json</em></article><article class="card kpi" style="--accent:#34d399"><span>城市熱點</span><strong>18</strong><em>hotspots data</em></article><article class="card kpi" style="--accent:#a78bfa"><span>最大議題</span><strong>交通</strong><em>top_issue</em></article><article class="card kpi" style="--accent:#facc15"><span>官方資料源</span><strong>29</strong><em>inventory</em></article><article class="card kpi" style="--accent:#2dd4bf"><span>Health Check</span><strong>ok</strong><em>dashboard_health_check</em></article></section>
-    <div class="section-head"><div><h2>目前可用頁面</h2><p>這些頁面已可作為公開展示或內部查看的主要入口。</p></div><span class="tag">available pages</span></div>
-    <section class="grid pages-grid" id="availablePages"><article class="card page-card"><span class="status">可展示</span><h3>首頁儀表板</h3><p>城市問題總覽、KPI、議題排行與熱點行動建議。</p><a href="./index.html">前往 index.html →</a></article><article class="card page-card"><span class="status">可展示</span><h3>城市熱點地圖</h3><p>Leaflet 地圖、熱點排行與 Top 3 行動建議。</p><a href="./map.html">前往 map.html →</a></article><article class="card page-card"><span class="status">資料說明</span><h3>資料來源</h3><p>說明目前資料從哪裡來、哪些仍在接入中。</p><a href="./sources.html">前往 sources.html →</a></article><article class="card page-card"><span class="status">方法說明</span><h3>方法論</h3><p>解釋城市故障分析的分類、限制與使用方式。</p><a href="./methodology.html">前往 methodology.html →</a></article><article class="card page-card"><span class="status">系統狀態</span><h3>健康檢查</h3><p>檢查 dashboard 資料檔、頁面與 JSON 狀態。</p><a href="./health-check.html">前往 health-check.html →</a></article><article class="card page-card"><span class="status">內部工具</span><h3>資料源檢查工作台</h3><p>用於確認官方資料來源能否安全進入資料庫，前台不把它當成主視覺。</p><a href="./source-verification-workspace.html">前往工作台 →</a></article></section>
-    <div class="section-head"><div><h2>資料接入狀態</h2><p>不用工程術語，直接看目前資料在哪個階段。</p></div><span class="tag">data status</span></div>
-    <section class="grid layout"><article class="card"><h3>目前狀態</h3><div class="status-list"><div class="status-item"><b>已有 prototype data</b><span class="pill">已可展示</span></div><div class="status-item"><b>官方資料來源盤點</b><span class="pill">29 筆</span></div><div class="status-item"><b>資料源人工檢查</b><span class="pill">進行中</span></div><div class="status-item"><b>crawler 尚未啟動</b><span class="pill">false</span></div><div class="status-item"><b>正式統計全量接入</b><span class="pill">待處理</span></div></div></article><article class="card"><h3>目前資料檔</h3><ul class="list" id="dataFiles"><li>儀表板摘要：dashboard_summary.json</li><li>熱點資料：hotspots.json / hotspots.geojson</li><li>議題趨勢：issue_trends.json</li><li>資料來源盤點：open_data_url_inventory.json</li><li>健康檢查：dashboard_health_check.json</li><li>每週系統報告：weekly_system_report.json</li></ul></article></section>
-    <div class="section-head"><div><h2>下一步補資料</h2><p>接下來要補的是會讓儀表板更像真實城市資料產品的資料類型。</p></div></div>
-    <section class="grid data-grid"><article class="card data-card" style="--accent:#ef4444"><b>交通事故資料</b><p>現況：prototype 指標。下一步：確認官方欄位、年度、地點與傷亡欄位。</p></article><article class="card data-card" style="--accent:#f97316"><b>道路施工資料</b><p>現況：待接入。下一步：盤點施工位置、期間、主辦單位。</p></article><article class="card data-card" style="--accent:#facc15"><b>路燈照明資料</b><p>現況：待接入。下一步：確認故障、修復、區域欄位。</p></article><article class="card data-card" style="--accent:#8b5cf6"><b>停車問題資料</b><p>現況：prototype 熱點。下一步：整合停車格、違停、商圈動線。</p></article><article class="card data-card" style="--accent:#10b981"><b>環境衛生資料</b><p>現況：prototype 分類。下一步：接入清潔、垃圾、通報與改善紀錄。</p></article><article class="card data-card" style="--accent:#3b82f6"><b>通學安全資料</b><p>現況：prototype 熱點。下一步：接入學校周邊路口、人行道與接送區資料。</p></article></section>
-    <div class="section-head"><div><h2>安全邊界</h2><p>維持透明，不把原型資料包裝成正式全量資料。</p></div></div>
-    <section class="card"><div class="safety"><span>prototype dashboard</span><span>no live crawler</span><span>no source_url requests</span><span>no personal data</span><span>no private complaint full text</span><span>no auto publish</span><span>approved_for_crawling 不自動設定</span><span>crawler_execution_allowed = false</span><span>engineering_review_allowed = false</span></div></section>
-    <p class="footer-note">這個總控台是公開可讀的第二層入口：首頁看數據，地圖看位置，總控台看目前資料和下一步。它不是內部 pipeline 監控頁，而是讓一般人也能理解目前網站做到哪裡、還缺什麼資料。</p>
-  </main>
-  <script src="./shared-nav.js?v=20260524-command-center-public"></script>
-  <script src="./command-center.js?v=20260524-command-center-public"></script>
+  <div class="public-shell">
+    <header class="page-hero">
+      <div class="page-container hero-inner">
+        <nav class="nav"></nav>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">CITY DATA CONTROL ROOM</span>
+            <h1>嘉義市城市資料總控台</h1>
+            <p>這裡整理目前儀表板已可使用的資料、頁面、熱點、議題與資料接入狀態總覽，讓使用者知道現在能看什麼、資料從哪裡來、下一步要補什麼。</p>
+            <div class="hero-actions">
+              <a class="cta primary" href="./index.html">回城市儀表板首頁</a>
+              <a class="cta ghost" href="./map.html">看城市熱點地圖</a>
+              <a class="cta ghost" href="./sources.html">看資料來源</a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>這頁的任務</h2>
+            <p>首頁是給人第一眼看數字，總控台則是把目前有哪些資料、哪些頁面可用、哪些資料還只是 prototype，一次整理清楚。</p>
+            <div class="mini-stack">
+              <div class="mini-card"><strong>目前可用資料</strong><span>原型案件數、質詢紀錄數、熱點與最大議題。</span></div>
+              <div class="mini-card"><strong>目前可用頁面</strong><span>首頁、地圖、資料來源、方法論、健康檢查與工作台入口。</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="notice">
+        <strong>公開資料說明：</strong>
+        目前是 prototype dashboard，不是正式全量資料庫。這裡不啟動 live crawler、不對 source_url 發出程式請求、不抓個資、不自動發布；正式資料會在資料源確認後逐步接入。
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>目前可用資料</h2>
+            <p>先用已存在的本地資料呈現可用指標，讓使用者看得懂目前儀表板已有什麼。</p>
+          </div>
+          <span class="section-tag">prototype data</span>
+        </div>
+        <div class="grid grid-3" id="controlKpis">
+          <article class="card kpi accent-orange"><span class="label">原型案件數</span><strong>12,458</strong><span>dashboard_summary.json</span></article>
+          <article class="card kpi accent-blue"><span class="label">質詢紀錄數</span><strong>386</strong><span>dashboard_summary.json</span></article>
+          <article class="card kpi accent-green"><span class="label">城市熱點</span><strong>18</strong><span>hotspots data</span></article>
+          <article class="card kpi accent-purple"><span class="label">最大議題</span><strong>交通</strong><span>issue_trends.json</span></article>
+          <article class="card kpi accent-teal"><span class="label">官方資料源</span><strong>29</strong><span>open_data_url_inventory.json</span></article>
+          <article class="card kpi accent-red"><span class="label">Health Check</span><strong>ok</strong><span>dashboard_health_check.json</span></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>目前可用頁面</h2>
+            <p>這些頁面已可作為公開展示或內部查看的主要入口。</p>
+          </div>
+          <span class="section-tag">available pages</span>
+        </div>
+        <div class="grid grid-3" id="availablePages">
+          <article class="card page-card"><span class="status">可展示</span><h3>首頁儀表板</h3><p>城市問題總覽、KPI、議題排行與熱點行動建議。</p><a class="page-link" href="./index.html">前往 index.html →</a></article>
+          <article class="card page-card"><span class="status">可展示</span><h3>城市熱點地圖</h3><p>Leaflet 地圖、熱點排行與 Top 3 行動建議。</p><a class="page-link" href="./map.html">前往 map.html →</a></article>
+          <article class="card page-card"><span class="status">資料說明</span><h3>資料來源</h3><p>說明目前資料從哪裡來、哪些仍在接入中。</p><a class="page-link" href="./sources.html">前往 sources.html →</a></article>
+          <article class="card page-card"><span class="status">方法說明</span><h3>方法論</h3><p>解釋城市故障分析的分類、限制與使用方式。</p><a class="page-link" href="./methodology.html">前往 methodology.html →</a></article>
+          <article class="card page-card"><span class="status">系統狀態</span><h3>健康檢查</h3><p>檢查 dashboard 資料檔、頁面與 JSON 狀態。</p><a class="page-link" href="./health-check.html">前往 health-check.html →</a></article>
+          <article class="card page-card"><span class="status">內部工具</span><h3>資料源檢查工作台</h3><p>用於確認官方資料來源能否安全進入資料庫，前台不把它當成主視覺。</p><a class="page-link" href="./source-verification-workspace.html">前往工作台 →</a></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>資料接入狀態</h2>
+            <p>不用工程術語，直接看目前資料在哪個階段。</p>
+          </div>
+          <span class="section-tag">data status</span>
+        </div>
+        <div class="grid layout-2">
+          <article class="card">
+            <h3>目前狀態</h3>
+            <div class="status-list">
+              <div class="status-item"><div><b>已有 prototype data</b><span>首頁、地圖與洞察頁已有可展示內容。</span></div><span class="pill">已可展示</span></div>
+              <div class="status-item"><div><b>官方資料來源盤點</b><span>目前已盤點 29 筆官方資料來源候選。</span></div><span class="pill">29 筆</span></div>
+              <div class="status-item"><div><b>資料源人工檢查</b><span>正式接入前仍需逐步確認來源與欄位。</span></div><span class="pill">進行中</span></div>
+              <div class="status-item"><div><b>crawler 尚未啟動</b><span>不對來源網址做程式請求。</span></div><span class="pill">false</span></div>
+              <div class="status-item"><div><b>正式統計資料</b><span>尚未全量接入，因此前台仍以 prototype dashboard 為主。</span></div><span class="pill">待處理</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>目前資料檔</h3>
+            <ul class="list" id="dataFiles">
+              <li>儀表板摘要：dashboard_summary.json</li>
+              <li>熱點資料：hotspots.json / hotspots.geojson</li>
+              <li>議題趨勢：issue_trends.json</li>
+              <li>資料來源盤點：open_data_url_inventory.json</li>
+              <li>健康檢查：dashboard_health_check.json</li>
+              <li>每週系統報告：weekly_system_report.json</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>下一步補資料</h2>
+            <p>接下來要補的是會讓儀表板更像真實城市資料產品的資料類型。</p>
+          </div>
+          <span class="section-tag">next data</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card data-card accent-red"><h3>交通事故資料</h3><p>現況：prototype 指標。下一步：確認官方欄位、年度、地點與傷亡欄位。</p></article>
+          <article class="card data-card accent-orange"><h3>道路施工資料</h3><p>現況：待接入。下一步：盤點施工位置、期間、主辦單位。</p></article>
+          <article class="card data-card accent-green"><h3>路燈照明資料</h3><p>現況：待接入。下一步：確認故障、修復、區域欄位。</p></article>
+          <article class="card data-card accent-purple"><h3>停車資料</h3><p>現況：prototype 熱點。下一步：整合停車格、違停與商圈動線資料。</p></article>
+          <article class="card data-card accent-blue"><h3>環境衛生資料</h3><p>現況：prototype 分類。下一步：接入清潔、垃圾與改善紀錄。</p></article>
+          <article class="card data-card accent-teal"><h3>通學安全資料</h3><p>現況：prototype 熱點。下一步：接入學校周邊路口、人行道與接送區資料。</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>安全邊界</h2>
+            <p>維持透明，不把原型資料包裝成正式全量資料。</p>
+          </div>
+          <span class="section-tag">safety</span>
+        </div>
+        <div class="card">
+          <div class="safety">
+            <span>prototype dashboard</span>
+            <span>no live crawler</span>
+            <span>no source_url requests</span>
+            <span>no personal data</span>
+            <span>no private complaint full text</span>
+            <span>no auto publish</span>
+            <span>approved_for_crawling 不自動設定</span>
+            <span>crawler_execution_allowed = false</span>
+            <span>engineering_review_allowed = false</span>
+          </div>
+        </div>
+        <p class="footer-note">這個總控台是公開可讀的第二層入口：首頁看數據，地圖看位置，總控台看目前資料和下一步。它不是 review backlog 或 pipeline 頁，而是讓一般人也能理解目前網站做到哪裡、還缺什麼資料。</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./command-center.js?v=20260526-public"></script>
 </body>
 </html>
