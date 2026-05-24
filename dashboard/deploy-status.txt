@@ -1,4 +1,4 @@
-deploy_check=2026-05-24T04:20:50+08:00
-status=launch_ready
+deploy_check=2026-05-24T11:58:30+08:00
+status=city_dashboard_home_merged
 entry=index.html
-pages_workflow=.github/workflows/pages.yml
+latest_pr=197
