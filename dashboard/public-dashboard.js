@@ -48,6 +48,12 @@ const HOMEPAGE_FALLBACK_HOTSPOTS = [
   }
 ];
 
+const HOMEPAGE_FALLBACK_MAP_NOTES = [
+  "停車與人行動線壓力最明顯，適合作為商圈改善優先題。",
+  "垃圾、動線與卸貨衝突較多，是環境與交通交界型熱點。",
+  "通學步道與接送區問題清楚，適合從安全改善先著手。"
+];
+
 function safeText(value, fallback = "") {
   if (value === undefined || value === null || value === "") {
     return fallback;
@@ -83,6 +89,15 @@ function getTarget(idOptions) {
     }
   }
   return null;
+}
+
+function renderHeroMeta(summary) {
+  const updated = getTarget(["hero-updated-at"]);
+  if (!updated) {
+    return;
+  }
+  const raw = safeText(summary?.updated_at, HOMEPAGE_FALLBACK_SUMMARY.updated_at);
+  updated.textContent = `最後更新：${raw}`;
 }
 
 function renderHomepageKpis(summary, inventory, health) {
@@ -169,8 +184,8 @@ function renderIssueRanking(trends) {
         <div class="issue-top">
           <span class="issue-name">${safeText(item?.display_name, "未命名議題")}</span>
           <div class="issue-meta">
-            <span class="issue-pill">confidence ${Number(item?.confidence || 0).toFixed(2)}</span>
-            <span class="issue-pill">${safeText(item?.review_status, "prototype")}</span>
+            <span class="chip">confidence ${Number(item?.confidence || 0).toFixed(2)}</span>
+            <span class="chip">${safeText(item?.review_status, "prototype")}</span>
           </div>
         </div>
         <div class="issue-bar"><span style="width:${width}%"></span></div>
@@ -187,10 +202,10 @@ function hotspotCardTemplate(item) {
   return `
     <article class="hotspot-card">
       <h3>${safeText(item?.name, "未命名熱點")}</h3>
-      <div class="score-badge">${safeText(item?.score, "—")}</div>
-      <div class="tag-row">
-        <span class="tag">${safeText(item?.category, "待分類")}</span>
-        <span class="tag">${safeText(item?.department, "待確認單位")}</span>
+      <div class="score">${safeText(item?.score, "—")}</div>
+      <div class="hotspot-meta">
+        <span class="chip">${safeText(item?.category, "待分類")}</span>
+        <span class="chip">${safeText(item?.department, "待確認單位")}</span>
       </div>
       <p><b>行動建議：</b>${safeText(item?.action, "先補齊公開資料與欄位。")}</p>
       <a class="hotspot-link" href="./map.html">查看地圖 →</a>
@@ -200,15 +215,33 @@ function hotspotCardTemplate(item) {
 
 function renderHotspotCards(hotspots) {
   const cardsTarget = getTarget(["hotspot-cards", "hotspotCards"]);
-  const sidebarTarget = getTarget(["hotspot-sidebar", "hotspotSidebar"]);
+  const mapListTarget = getTarget(["hotspot-map-list"]);
+  const mapPinsTarget = getTarget(["hotspot-map-pins"]);
   const items = (Array.isArray(hotspots) ? hotspots : HOMEPAGE_FALLBACK_HOTSPOTS).slice(0, 3);
   const html = items.map(hotspotCardTemplate).join("");
 
   if (cardsTarget) {
     cardsTarget.innerHTML = html;
   }
-  if (sidebarTarget) {
-    sidebarTarget.innerHTML = html;
+  if (mapListTarget) {
+    mapListTarget.innerHTML = items.map((item, index) => `
+      <div class="map-row">
+        <div>
+          <strong>${safeText(item?.name, "未命名熱點")}</strong>
+          <span>${HOMEPAGE_FALLBACK_MAP_NOTES[index] || "持續補資料與改善建議。"}</span>
+        </div>
+        <b>${safeText(item?.score, "—")}</b>
+      </div>
+    `).join("");
+  }
+  if (mapPinsTarget) {
+    mapPinsTarget.innerHTML = items.map((item) => `
+      <div class="map-pin" style="left:${safeText(item?.x, 50)}%;top:${safeText(item?.y, 50)}%;"></div>
+      <div class="map-bubble" style="left:calc(${safeText(item?.x, 50)}% + 14px);top:calc(${safeText(item?.y, 50)}% - 44px);">
+        <strong>${safeText(item?.name, "未命名熱點")}</strong>
+        ${safeText(item?.category, "待分類")}<br>分數 ${safeText(item?.score, "—")}
+      </div>
+    `).join("");
   }
 }
 
@@ -264,6 +297,7 @@ async function initPublicDashboard() {
     loadJson("./data/open_data_url_inventory.json", HOMEPAGE_FALLBACK_INVENTORY)
   ]);
 
+  renderHeroMeta(summary);
   renderHomepageKpis(summary, inventory, health);
   renderIssueRanking(trends);
   renderHotspotCards(hotspots);
@@ -272,6 +306,7 @@ async function initPublicDashboard() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initPublicDashboard().catch(() => {
+    renderHeroMeta(HOMEPAGE_FALLBACK_SUMMARY);
     renderHomepageKpis(HOMEPAGE_FALLBACK_SUMMARY, HOMEPAGE_FALLBACK_INVENTORY, HOMEPAGE_FALLBACK_HEALTH);
     renderIssueRanking(HOMEPAGE_FALLBACK_ISSUES);
     renderHotspotCards(HOMEPAGE_FALLBACK_HOTSPOTS);
