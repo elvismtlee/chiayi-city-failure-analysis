@@ -9,20 +9,22 @@
   </style>
 </head>
 <body data-page="reports">
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY WEEKLY REPORT</span><h1>城市週報</h1><p class="lead">把每週城市問題、熱點變化、資料狀態與下一步行動整理成可閱讀的摘要。這裡先提供 prototype weekly report 格式，正式資料接入後會逐週更新。</p><div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./map.html">看熱點地圖</a><a class="btn ghost" href="./sources.html">看資料來源</a></div></div></section>
+  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY WEEKLY REPORT</span><h1>城市週報</h1><p class="lead">把每週城市問題、熱點變化、資料狀態與下一步行動整理成可閱讀的摘要。這裡先提供 prototype weekly report 格式，讓外部讀者知道未來正式資料接入後，週報會怎麼長、會追蹤哪些事情。</p><div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./map.html">看熱點地圖</a><a class="btn ghost" href="./command-center.html">看城市資料總控台</a><a class="btn ghost" href="./sources.html">看資料來源</a></div></div></section>
   <main class="wrap">
-    <section class="notice"><b>目前狀態：</b>城市週報仍是 prototype dashboard 的一部分，不是正式全量資料報告。正式資料接入前，no live crawler、no source_url requests、no personal data、approved_for_crawling 不自動設定。</section>
+    <section class="notice"><b>目前狀態：</b>城市週報仍是 prototype dashboard 的一部分，不是正式全量資料報告。正式資料接入前，no live crawler、no source_url requests、no personal data、no private complaint full text、approved_for_crawling 不自動設定。</section>
     <div class="section-title"><h2>本週城市觀察</h2><span>prototype report</span></div>
     <section class="grid grid3"><article class="card report-card" style="--accent:#f97316"><span class="pill">焦點 1</span><h3>交通停車仍是第一優先</h3><p>目前 prototype 指標顯示，交通與停車問題是最需要優先追蹤的城市問題類型。</p></article><article class="card report-card" style="--accent:#0f766e"><span class="pill">焦點 2</span><h3>市場商圈需要整合管理</h3><p>市場周邊同時涉及環境、卸貨、通行與商圈動線，適合做跨局處改善清單。</p></article><article class="card report-card" style="--accent:#3b82f6"><span class="pill">焦點 3</span><h3>通學安全可先從熱點做起</h3><p>學校周邊的接送區、人行空間與路口安全，適合先用地點型專案追蹤。</p></article></section>
     <div class="section-title"><h2>週報會包含什麼</h2><span>report structure</span></div>
     <section class="grid grid2"><article class="card"><h3>每週摘要</h3><ul class="list"><li>本週最需要注意的城市問題。</li><li>新增或升高的議題類型。</li><li>熱點地圖與行動建議。</li></ul></article><article class="card"><h3>資料檢查</h3><ul class="list"><li>資料來源是否更新。</li><li>JSON 是否可正常讀取。</li><li>prototype data 是否仍需標示限制。</li></ul></article></section>
+    <div class="section-title"><h2>正式週報上線前的準備</h2><span>launch prep</span></div>
+    <section class="grid grid3"><article class="card"><h3>先穩定資料來源</h3><p>目前每週報告仍依賴 prototype data。正式上線前，要先把交通、道路、環境與商圈資料的來源接穩。</p></article><article class="card"><h3>再補時間序列</h3><p>只有把日期、區域與更新節奏整理好，週報才有辦法從一次性的觀察，變成持續追蹤。</p></article><article class="card"><h3>最後才做固定更新</h3><p>週報會在正式資料接入後才進入固定節奏，目前這一頁先讓大家看懂未來週報的閱讀方式與欄位架構。</p></article></section>
     <div class="section-title"><h2>週報列表</h2><span>reports_index.json</span></div>
     <section class="grid grid2" data-render="reports"><article class="card"><h3>Prototype 週報</h3><p>目前等待 reports_index.json 產生週報列表。正式資料接入後，這裡會顯示每週報告卡片。</p></article></section>
     <div class="section-title"><h2>相關頁面</h2><span>quick links</span></div>
-    <section class="grid grid3 quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./health-check.html">網站與資料健康檢查 <span>→</span></a></section>
+    <section class="grid grid3 quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./map.html">城市熱點地圖 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./sources.html">資料來源 <span>→</span></a><a href="./methodology.html">方法論 <span>→</span></a><a href="./health-check.html">網站與資料健康檢查 <span>→</span></a></section>
     <p class="footer-note">城市週報可作為公開說明、志工摘要、社群素材與政見研究的基礎；但正式引用前仍需回到資料來源與方法論確認限制。</p>
   </main>
-  <script src="./shared-nav.js"></script>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="./site-pages.js"></script>
 </body>
 </html>
