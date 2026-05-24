@@ -27,6 +27,12 @@ def test_public_pages_have_dashboard_content() -> None:
     assert '原型案件數' in home
     assert '議題排行' in home
     assert '文化路商圈' in home
+    project = page('project-landing.html')
+    assert '嘉義市城市問題儀表板專案總覽' in project
+    assert '現在怎麼開始' in project
+    map_page = page('map.html')
+    assert 'Top 3 熱點行動建議' in map_page
+    assert '地圖資料怎麼理解' in map_page
     sources = page('sources.html')
     assert '資料透明原則' in sources
     assert '目前已有原型資料' in sources

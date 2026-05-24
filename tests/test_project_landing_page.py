@@ -11,12 +11,12 @@ def test_project_landing_page_exists() -> None:
 
 def test_project_landing_page_shows_public_facing_progress() -> None:
     content = PAGE.read_text(encoding="utf-8")
-    assert "嘉義市 12 年城市故障分析資料庫" in content
-    assert "公開展示版" in content
-    assert "Day 1 操作看板" in content
-    assert "29 筆官方 URL" in content
-    assert "10 筆高優先審核任務" in content
-    assert "3 筆任務" in content
+    assert "公開展示頁" in content or "專案說明" in content
+    assert "嘉義市城市問題儀表板專案總覽" in content
+    assert "現在已經能看什麼" in content
+    assert "現在怎麼開始" in content
+    assert "主要功能" in content
+    assert "下一步會補什麼" in content
     assert "no live crawler" in content
-    assert "crawler_execution_allowed = false" in content
+    assert "approved_for_crawling" in content
     assert "./shared-nav.js?v=20260523-navux" in content
