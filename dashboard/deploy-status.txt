@@ -1,4 +1,7 @@
-deploy_check=2026-05-24T12:58:00+08:00
-status=hotspot_map_dashboard_updated
+deploy_check=2026-05-24T14:08:12+08:00
+status=public_info_pages_updated
 entry=index.html
 map=map.html
+command_center=command-center.html
+methodology=methodology.html
+health_check=health-check.html
