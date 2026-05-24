@@ -1,5 +1,7 @@
-deploy_check=2026-05-24T13:56:40+08:00
-status=command_center_public_control_room_updated
+deploy_check=2026-05-24T14:08:12+08:00
+status=public_info_pages_updated
 entry=index.html
 map=map.html
 command_center=command-center.html
+methodology=methodology.html
+health_check=health-check.html
