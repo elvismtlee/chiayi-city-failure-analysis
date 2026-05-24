@@ -3,178 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>嘉義城市故障分析成果總控台</title>
+  <title>嘉義市城市資料總控台</title>
   <style>
-    :root{
-      --green:#0f766e;
-      --green-dark:#064e3b;
-      --green-soft:#ecfdf5;
-      --blue:#1d4ed8;
-      --amber:#b45309;
-      --red:#b91c1c;
-      --ink:#172033;
-      --muted:#64748b;
-      --line:#dbe5df;
-      --card:#ffffff;
-      --shadow:0 20px 58px rgba(15,23,42,.09);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);background:linear-gradient(180deg,#f0fdf4 0%,#f8fafc 42%,#ffffff 100%)}
-    a{color:inherit}
-    .hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.22),transparent 28%),radial-gradient(circle at 86% 8%,rgba(34,197,94,.34),transparent 30%),linear-gradient(135deg,#052e2b 0%,#064e3b 45%,#0f766e 100%)}
-    .hero::after{content:"";position:absolute;inset:auto -8% -35% 46%;height:310px;border-radius:999px;background:rgba(255,255,255,.10);filter:blur(4px);transform:rotate(-9deg)}
-    .inner,.wrap{max-width:1180px;margin:0 auto;position:relative;z-index:1}
-    .inner{padding:28px 24px 56px}
-    .nav{display:block;margin-bottom:30px}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.14);border-radius:999px;padding:8px 14px;font-weight:950;letter-spacing:.08em}
-    .eyebrow::before{content:"";width:10px;height:10px;border-radius:99px;background:#86efac;box-shadow:0 0 0 7px rgba(134,239,172,.15)}
-    h1{font-size:clamp(36px,5vw,64px);line-height:1.05;margin:22px 0 16px;letter-spacing:-.04em}
-    .lead{font-size:clamp(17px,2.1vw,22px);line-height:1.75;max-width:940px;color:rgba(255,255,255,.92);margin:0}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-    .hero-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;padding:0 18px;text-decoration:none;font-weight:950;box-shadow:0 14px 30px rgba(0,0,0,.12)}
-    .hero-btn.primary{background:#fff;color:var(--green-dark)}
-    .hero-btn.secondary{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.38)}
-    .hero-strip{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin-top:30px}
-    .hero-tile{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);border-radius:24px;padding:18px;backdrop-filter:blur(8px)}
-    .hero-tile b{display:block;font-size:14px;color:rgba(255,255,255,.74);margin-bottom:8px}.hero-tile span{display:block;font-size:24px;font-weight:950;letter-spacing:-.02em}
-    .wrap{padding:30px 24px 72px}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:34px 0 16px}
-    .section-head h2{margin:0;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}.section-head .tag{font-size:13px;color:var(--green-dark);font-weight:950;background:var(--green-soft);border:1px solid rgba(15,118,110,.16);border-radius:999px;padding:8px 12px;white-space:nowrap}
-    .notice{background:linear-gradient(135deg,#ecfdf5,#ffffff);border:1px solid rgba(15,118,110,.16);border-left:8px solid var(--green);border-radius:26px;padding:22px;box-shadow:var(--shadow);line-height:1.8;color:#475569}.notice strong{color:var(--green-dark)}
-    .kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{position:relative;overflow:hidden;background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:20px;box-shadow:var(--shadow)}.metric::after{content:"";position:absolute;right:-34px;top:-34px;width:100px;height:100px;border-radius:999px;background:rgba(15,118,110,.08)}.metric span{display:block;color:var(--muted);font-size:14px;font-weight:800}.metric strong{display:block;margin-top:8px;font-size:38px;line-height:1;color:var(--green-dark);letter-spacing:-.05em}.metric em{display:block;margin-top:12px;color:#475569;font-size:13px;font-style:normal;line-height:1.55}
-    .command-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:16px;align-items:start}.panel{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:26px;padding:22px;box-shadow:var(--shadow)}.panel h3{margin:0 0 14px;font-size:22px;letter-spacing:-.02em}.panel-sub{margin:-6px 0 18px;color:var(--muted);line-height:1.65}
-    table{width:100%;border-collapse:separate;border-spacing:0 10px}th{text-align:left;color:var(--muted);font-size:13px;padding:0 12px 4px}td{background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:13px 12px;vertical-align:top;line-height:1.55}td:first-child{border-left:1px solid #e2e8f0;border-radius:16px 0 0 16px;font-weight:900;color:var(--green-dark)}td:last-child{border-right:1px solid #e2e8f0;border-radius:0 16px 16px 0}.status-pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:950;background:#dcfce7;color:#166534}.count-pill{display:inline-flex;min-width:36px;justify-content:center;border-radius:999px;padding:5px 10px;background:#eef2ff;color:#3730a3;font-weight:950}.source-path{display:block;margin-top:5px;color:#64748b;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
-    .backlog-grid{display:grid;grid-template-columns:1fr;gap:12px}.backlog-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:16px}.backlog-card b{display:block;color:var(--green-dark);font-size:17px}.backlog-card span{display:block;color:var(--muted);font-size:13px;margin-top:4px}.backlog-card strong{font-size:32px;color:var(--amber);letter-spacing:-.04em}
-    .action-list,.warning-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}.action-list li,.warning-list li{position:relative;background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:14px 14px 14px 44px;line-height:1.65;color:#334155}.action-list li::before,.warning-list li::before{content:"✓";position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:999px;background:var(--green);color:white;display:grid;place-items:center;font-size:13px;font-weight:950}.warning-list li::before{content:"!";background:var(--amber)}
-    .flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.flow-step{background:#fff;border:1px solid rgba(15,118,110,.13);border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(15,23,42,.06)}.flow-step .num{width:34px;height:34px;border-radius:999px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:950;margin-bottom:12px}.flow-step b{display:block;color:var(--green-dark);font-size:17px}.flow-step span{display:block;color:#475569;font-size:14px;line-height:1.55;margin-top:6px}
-    .entry-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.entry{display:flex;flex-direction:column;gap:8px;min-height:126px;text-decoration:none;background:#fff;border:1px solid rgba(15,118,110,.13);border-radius:22px;padding:18px;box-shadow:0 12px 34px rgba(15,23,42,.06)}.entry b{color:var(--green-dark);font-size:18px}.entry span{color:#475569;line-height:1.55;font-size:14px}.entry:hover{border-color:rgba(15,118,110,.42);transform:translateY(-1px)}
-    .safety-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.safety{background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;border-radius:20px;padding:16px;color:#7c2d12;line-height:1.55;font-weight:800}.safety code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(251,146,60,.12);border-radius:8px;padding:2px 6px;color:#7c2d12}
-    .muted{color:var(--muted);line-height:1.7;font-size:14px}.empty-state{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:18px;padding:14px;color:#64748b;line-height:1.65}
-    @media(max-width:980px){.hero-strip,.command-layout{grid-template-columns:1fr}.kpi-grid,.entry-grid,.safety-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:640px){.inner{padding:22px 18px 42px}.wrap{padding:24px 18px 58px}.kpi-grid,.entry-grid,.safety-grid,.flow{grid-template-columns:1fr}.section-head{display:block}.section-head .tag{display:inline-flex;margin-top:10px}.hero-actions{display:grid}.hero-btn{width:100%}table,thead,tbody,tr,th,td{display:block}thead{display:none}tr{margin-bottom:12px}td{border:1px solid #e2e8f0;border-bottom:0;border-radius:0}td:first-child{border-radius:16px 16px 0 0}td:last-child{border-bottom:1px solid #e2e8f0;border-radius:0 0 16px 16px}td::before{content:attr(data-label);display:block;color:#64748b;font-size:12px;font-weight:900;margin-bottom:4px}}
+    :root{--orange:#f97316;--navy:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--green:#0f766e;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 56px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2.1vw,22px);line-height:1.78;color:#cbd5e1;max-width:940px;margin:0}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;text-decoration:none;font-weight:950}.hero-btn.primary{background:var(--orange);color:#fff}.hero-btn.secondary{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}.wrap{padding:30px 24px 72px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:32px 0 16px}.section-head h2{margin:0;font-size:28px;letter-spacing:-.03em}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}.section-head .tag{font-size:12px;font-weight:950;color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;white-space:nowrap}.grid{display:grid;gap:16px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pages-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr)}.data-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a;font-size:21px}.card p{margin:0;color:#475569;line-height:1.7}.kpi{position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--accent,var(--orange))}.kpi span{display:block;color:var(--muted);font-size:13px;font-weight:850}.kpi strong{display:block;font-size:30px;line-height:1;font-weight:950;margin:10px 0 8px;color:#0f172a}.kpi em{font-style:normal;color:#64748b;font-size:12px;line-height:1.45}.page-card{display:flex;flex-direction:column;gap:10px;min-height:170px}.page-card .status{display:inline-flex;width:max-content;border-radius:999px;background:#ecfdf5;color:#047857;font-size:12px;font-weight:950;padding:6px 10px}.page-card a{margin-top:auto;color:#f97316;font-weight:950;text-decoration:none}.status-list{display:grid;gap:10px}.status-item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff}.status-item b{color:#0f172a}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:950}.data-card{border-top:4px solid var(--accent,var(--orange))}.data-card b{display:block;color:#0f172a;margin-bottom:6px}.safety{display:flex;gap:8px;flex-wrap:wrap}.safety span{display:inline-flex;align-items:center;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:8px 11px;font-size:12px;font-weight:900}.list{margin:0;padding-left:20px;color:#475569;line-height:1.85}.footer-note{margin-top:26px;color:#64748b;line-height:1.8;font-size:13px}@media(max-width:980px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.pages-grid,.layout,.data-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 56px}.kpi-grid,.pages-grid,.layout,.data-grid{grid-template-columns:1fr}.hero-actions{display:grid}.hero-btn{width:100%}.section-head{display:block}.section-head .tag{display:inline-flex;margin-top:10px}}
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="inner">
-      <nav class="nav"></nav>
-      <div class="eyebrow" data-render="breadcrumb">總覽 / 總控台</div>
-      <h1>嘉義城市故障分析成果總控台</h1>
-      <p class="lead">把目前已建立的資料審核、內容產出、公開審查與每日執行項目，整理成一個能直接展示進度的 command center。這裡只讀取本地 JSON，不啟動 live crawler，也不自動發布。</p>
-      <div class="hero-actions">
-        <a class="hero-btn primary" href="./index.html">回到 Visible MVP 首頁</a>
-        <a class="hero-btn secondary" href="./open-data-day1-operation-board.html">Day 1 操作看板</a>
-        <a class="hero-btn secondary" href="./public-review.html">公開審核佇列</a>
-      </div>
-      <section class="hero-strip" aria-label="總控台狀態摘要">
-        <div class="hero-tile"><b>PUBLIC USE STATUS</b><span id="public-use-status">internal_command_center</span></div>
-        <div class="hero-tile"><b>GENERATED AT</b><span id="generated-at">讀取中</span></div>
-        <div class="hero-tile"><b>REVIEW MODE</b><span>manual only</span></div>
-      </section>
-    </div>
-  </header>
-
+  <header class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY DATA CONTROL ROOM</span><h1>嘉義市城市資料總控台</h1><p class="lead">這裡整理目前儀表板已可使用的資料、頁面、原型指標與後續資料接入狀態，讓使用者知道現在能看什麼、資料從哪裡來、下一步要補什麼。</p><div class="hero-actions"><a class="hero-btn primary" href="./index.html">回城市儀表板首頁</a><a class="hero-btn secondary" href="./map.html">看城市熱點地圖</a><a class="hero-btn secondary" href="./sources.html">看資料來源</a></div></div></header>
   <main class="wrap">
-    <section class="notice">
-      <strong>內部工作總覽：</strong>
-      這是內部成果總控台，不是民調，不是支持度調查，不自動發布；任何對外使用前，都要先通過人工審核與法遵確認。
-    </section>
-
-    <div class="section-head">
-      <div>
-        <h2>一眼看懂目前成果</h2>
-        <p>從既有 `command_center_overview.json` 讀取數字，呈現目前 dashboard 已整理出的資料量與待審狀態。</p>
-      </div>
-      <span class="tag">VISIBLE UI / JSON READ ONLY</span>
-    </div>
-    <section id="key-counts" class="kpi-grid" aria-live="polite"></section>
-
-    <div class="section-head">
-      <div>
-        <h2>Pipeline Status</h2>
-        <p>每一列都是目前已存在的資料檔或工作模組，下一步以人工審核、人工回填、人工發布為主。</p>
-      </div>
-      <span class="tag">12 個模組</span>
-    </div>
-    <section class="command-layout">
-      <article class="panel">
-        <h3>資料與內容流程</h3>
-        <p class="panel-sub">available 不代表可以公開使用，只代表該模組已經有資料或草稿可供人工檢查。</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>項目</th><th>狀態</th><th>數量</th><th>下一步</th></tr></thead>
-            <tbody id="pipeline-status"></tbody>
-          </table>
-        </div>
-      </article>
-      <aside class="panel">
-        <h3>Review Backlog</h3>
-        <p class="panel-sub">目前最需要人眼確認的隊列。</p>
-        <div id="review-backlog" class="backlog-grid"></div>
-        <h3 style="margin-top:24px">Next Actions</h3>
-        <ul id="next-actions" class="action-list"></ul>
-      </aside>
-    </section>
-
-    <div class="section-head">
-      <div>
-        <h2>人工審核作戰流程</h2>
-        <p>保持工程紀律：先審來源、再審內容、最後才進入可公開素材。</p>
-      </div>
-      <span class="tag">MANUAL REVIEW FIRST</span>
-    </div>
-    <section class="flow">
-      <div class="flow-step"><div class="num">1</div><b>看資料源</b><span>確認來源、授權、格式與更新頻率。</span></div>
-      <div class="flow-step"><div class="num">2</div><b>填審核表</b><span>只做人工紀錄，不把資料標成可爬。</span></div>
-      <div class="flow-step"><div class="num">3</div><b>回填 Patch</b><span>用 PR 留下可追溯修改紀錄。</span></div>
-      <div class="flow-step"><div class="num">4</div><b>公開前審核</b><span>政策、社群、短影音都需人工批准。</span></div>
-      <div class="flow-step"><div class="num">5</div><b>手動發布</b><span>不自動寄信、不自動發布、不做攻擊文案。</span></div>
-    </section>
-
-    <div class="section-head">
-      <div>
-        <h2>快速入口</h2>
-        <p>把目前最常用的成果頁放在同一屏，方便後續展示與人工操作。</p>
-      </div>
-      <span class="tag">DASHBOARD SHORTCUTS</span>
-    </div>
-    <section class="entry-grid">
-      <a class="entry" href="./open-data-day1-operation-board.html"><b>Day 1 操作看板</b><span>KPI、timeline、task cards 與安全邊界。</span></a>
-      <a class="entry" href="./open-data-day1-review-form.html"><b>Day 1 審核表單</b><span>逐筆記錄來源狀態與人工判斷。</span></a>
-      <a class="entry" href="./open-data-manual-review-patches.html"><b>回填 Patch 草稿</b><span>讓審核結果用 PR 方式留下紀錄。</span></a>
-      <a class="entry" href="./public-review.html"><b>公開審核</b><span>對外素材使用前的最後一道關卡。</span></a>
-      <a class="entry" href="./policy-drafts.html"><b>政策草稿</b><span>把城市問題轉成可說明的政策方向。</span></a>
-      <a class="entry" href="./social-drafts.html"><b>社群草稿</b><span>所有文案仍須人工確認後才可使用。</span></a>
-      <a class="entry" href="./video-scripts.html"><b>短影音腳本</b><span>適合轉成實地拍攝與口語版本。</span></a>
-      <a class="entry" href="./daily-execution.html"><b>每日執行</b><span>把 dashboard 成果轉成一人團隊可做的工作。</span></a>
-    </section>
-
-    <div class="section-head">
-      <div>
-        <h2>安全邊界</h2>
-        <p>這一頁只做視覺化總覽，不提升資料權限，也不啟動任何自動抓取。</p>
-      </div>
-      <span class="tag">NO LIVE CRAWLER</span>
-    </div>
-    <section class="safety-grid">
-      <div class="safety">不啟動 live crawler，<code>crawler_execution_allowed</code> 必須 false。</div>
-      <div class="safety">不新增真正 crawler script，<code>engineering_review_allowed</code> 必須 false。</div>
-      <div class="safety">不抓個資、不抓私人陳情全文、不自動發布。</div>
-    </section>
-
-    <div class="section-head">
-      <div>
-        <h2>Warnings</h2>
-        <p>若 JSON 讀取失敗或有警示，會顯示在這裡。</p>
-      </div>
-    </div>
-    <section class="panel">
-      <ul id="warnings" class="warning-list"></ul>
-    </section>
-
-    <p class="muted">public_use_status: internal_command_center · internal dashboard / needs human review / manual publishing only</p>
+    <section class="notice"><b>公開資料說明：</b>目前是 prototype dashboard，不是正式全量資料庫。這裡不啟動 live crawler、不對 source_url 發出程式請求、不抓個資、不自動發布；正式資料會在資料源確認後逐步接入。</section>
+    <div class="section-head"><div><h2>目前可用資料</h2><p>先用已存在的本地資料呈現可用指標，讓使用者看得懂目前儀表板已有什麼。</p></div><span class="tag">prototype data</span></div>
+    <section class="grid kpi-grid" id="controlKpis"><article class="card kpi" style="--accent:#f97316"><span>原型案件數</span><strong>12,458</strong><em>dashboard_summary.json</em></article><article class="card kpi" style="--accent:#38bdf8"><span>質詢紀錄數</span><strong>386</strong><em>dashboard_summary.json</em></article><article class="card kpi" style="--accent:#34d399"><span>城市熱點</span><strong>18</strong><em>hotspots data</em></article><article class="card kpi" style="--accent:#a78bfa"><span>最大議題</span><strong>交通</strong><em>top_issue</em></article><article class="card kpi" style="--accent:#facc15"><span>官方資料源</span><strong>29</strong><em>inventory</em></article><article class="card kpi" style="--accent:#2dd4bf"><span>Health Check</span><strong>ok</strong><em>dashboard_health_check</em></article></section>
+    <div class="section-head"><div><h2>目前可用頁面</h2><p>這些頁面已可作為公開展示或內部查看的主要入口。</p></div><span class="tag">available pages</span></div>
+    <section class="grid pages-grid" id="availablePages"><article class="card page-card"><span class="status">可展示</span><h3>首頁儀表板</h3><p>城市問題總覽、KPI、議題排行與熱點行動建議。</p><a href="./index.html">前往 index.html →</a></article><article class="card page-card"><span class="status">可展示</span><h3>城市熱點地圖</h3><p>Leaflet 地圖、熱點排行與 Top 3 行動建議。</p><a href="./map.html">前往 map.html →</a></article><article class="card page-card"><span class="status">資料說明</span><h3>資料來源</h3><p>說明目前資料從哪裡來、哪些仍在接入中。</p><a href="./sources.html">前往 sources.html →</a></article><article class="card page-card"><span class="status">方法說明</span><h3>方法論</h3><p>解釋城市故障分析的分類、限制與使用方式。</p><a href="./methodology.html">前往 methodology.html →</a></article><article class="card page-card"><span class="status">系統狀態</span><h3>健康檢查</h3><p>檢查 dashboard 資料檔、頁面與 JSON 狀態。</p><a href="./health-check.html">前往 health-check.html →</a></article><article class="card page-card"><span class="status">內部工具</span><h3>資料源檢查工作台</h3><p>用於確認官方資料來源能否安全進入資料庫。</p><a href="./source-verification-workspace.html">前往工作台 →</a></article></section>
+    <div class="section-head"><div><h2>資料接入狀態</h2><p>不用工程術語，直接看目前資料在哪個階段。</p></div><span class="tag">data status</span></div>
+    <section class="grid layout"><article class="card"><h3>目前狀態</h3><div class="status-list"><div class="status-item"><b>已有 prototype data</b><span class="pill">已可展示</span></div><div class="status-item"><b>官方資料來源盤點</b><span class="pill">29 筆</span></div><div class="status-item"><b>資料源人工檢查</b><span class="pill">進行中</span></div><div class="status-item"><b>crawler 尚未啟動</b><span class="pill">false</span></div><div class="status-item"><b>正式統計全量接入</b><span class="pill">待處理</span></div></div></article><article class="card"><h3>目前資料檔</h3><ul class="list" id="dataFiles"><li>儀表板摘要：dashboard_summary.json</li><li>熱點資料：hotspots.json / hotspots.geojson</li><li>議題趨勢：issue_trends.json</li><li>資料來源盤點：open_data_url_inventory.json</li><li>健康檢查：dashboard_health_check.json</li><li>每週系統報告：weekly_system_report.json</li></ul></article></section>
+    <div class="section-head"><div><h2>下一步補資料</h2><p>接下來要補的是會讓儀表板更像真實城市資料產品的資料類型。</p></div></div>
+    <section class="grid data-grid"><article class="card data-card" style="--accent:#ef4444"><b>交通事故資料</b><p>現況：prototype 指標。下一步：確認官方欄位、年度、地點與傷亡欄位。</p></article><article class="card data-card" style="--accent:#f97316"><b>道路施工資料</b><p>現況：待接入。下一步：盤點施工位置、期間、主辦單位。</p></article><article class="card data-card" style="--accent:#facc15"><b>路燈照明資料</b><p>現況：待接入。下一步：確認故障、修復、區域欄位。</p></article><article class="card data-card" style="--accent:#8b5cf6"><b>停車問題資料</b><p>現況：prototype 熱點。下一步：整合停車格、違停、商圈動線。</p></article><article class="card data-card" style="--accent:#10b981"><b>環境衛生資料</b><p>現況：prototype 分類。下一步：接入清潔、垃圾、通報與改善紀錄。</p></article><article class="card data-card" style="--accent:#3b82f6"><b>通學安全資料</b><p>現況：prototype 熱點。下一步：接入學校周邊路口、人行道與接送區資料。</p></article></section>
+    <div class="section-head"><div><h2>安全邊界</h2><p>維持透明，不把原型資料包裝成正式全量資料。</p></div></div>
+    <section class="card"><div class="safety"><span>prototype dashboard</span><span>no live crawler</span><span>no source_url requests</span><span>no personal data</span><span>no private complaint full text</span><span>no auto publish</span><span>approved_for_crawling 不自動設定</span><span>crawler_execution_allowed = false</span><span>engineering_review_allowed = false</span></div></section>
+    <p class="footer-note">這個總控台是公開可讀的第二層入口：首頁看數據，地圖看位置，總控台看目前資料和下一步。command_center_overview.json 仍保留作為內部資料狀態來源。</p>
   </main>
-  <script src="./shared-nav.js?v=20260524-command-center-ui"></script>
-  <script src="./command-center.js?v=20260524-command-center-ui"></script>
+  <script src="./shared-nav.js?v=20260524-command-center-public"></script>
+  <script src="./command-center.js?v=20260524-command-center-public"></script>
 </body>
 </html>
