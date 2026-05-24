@@ -30,6 +30,7 @@ REQUIRED_JSON_FILES = [
     "open_data_day1_sample_manual_review_results.json",
     "open_data_day1_manual_review_form_draft.json",
     "open_data_day1_manual_review_operation_board.json",
+    "source_verification_day1_records.json",
     "site_map.json",
 ]
 
