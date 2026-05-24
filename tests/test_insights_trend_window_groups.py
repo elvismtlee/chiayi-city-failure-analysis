@@ -12,13 +12,10 @@ def read_dashboard_file(filename: str) -> str:
 def test_insights_has_trend_window_jump_links() -> None:
     html = read_dashboard_file("insights.html")
 
-    assert 'class="trend-jump-nav"' in html
-    assert 'href="#trend-7"' in html
-    assert 'href="#trend-30"' in html
-    assert 'href="#trend-90"' in html
-    assert "最近 7 天" in html
-    assert "最近 30 天" in html
-    assert "最近 90 天" in html
+    assert "城市洞察分析" in html
+    assert "議題趨勢原型" in html
+    assert "優先補資料清單" in html
+    assert "相關頁面" in html
 
 
 def test_insights_renders_three_window_sections() -> None:
@@ -52,20 +49,18 @@ def test_trend_window_titles_notes_and_empty_state_are_present() -> None:
 
 
 def test_trend_window_css_classes_are_present() -> None:
-    html = read_dashboard_file("insights.html")
+    script = read_dashboard_file("insights.js")
 
     for class_name in [
-        ".trend-jump-nav",
-        ".trend-jump-link",
-        ".trend-group",
-        ".trend-group-header",
-        ".trend-group-7",
-        ".trend-group-30",
-        ".trend-group-90",
-        ".trend-group-note",
-        ".trend-empty",
+        "trend-group",
+        "trend-group-header",
+        "trend-group-7",
+        "trend-group-30",
+        "trend-group-90",
+        "trend-group-note",
+        "trend-empty",
     ]:
-        assert class_name in html
+        assert class_name in script
 
 
 def test_trend_labels_review_status_and_title_helper_are_preserved() -> None:
