@@ -162,19 +162,25 @@ function renderIssueRanking(trends) {
 
   const maxCount = Math.max(...chosen.map((item) => Number(item?.current_count || 0)), 1);
 
-  target.innerHTML = chosen.map((item) => `
-    <div class="bar-row">
-      <div>
-        <div class="bar-meta">
-          <span class="bar-name">${safeText(item?.display_name, "未命名議題")}</span>
-          <span>confidence ${Number(item?.confidence || 0).toFixed(2)}</span>
+  target.innerHTML = chosen.map((item) => {
+    const width = Math.max(12, Math.round((Number(item?.current_count || 0) / maxCount) * 100));
+    return `
+      <article class="issue-card">
+        <div class="issue-top">
+          <span class="issue-name">${safeText(item?.display_name, "未命名議題")}</span>
+          <div class="issue-meta">
+            <span class="issue-pill">confidence ${Number(item?.confidence || 0).toFixed(2)}</span>
+            <span class="issue-pill">${safeText(item?.review_status, "prototype")}</span>
+          </div>
         </div>
-        <div class="bar-note">review_status: ${safeText(item?.review_status, "prototype")} ｜ ${safeText(item?.recommended_action, "持續補資料")}</div>
-      </div>
-      <div class="bar-track"><span class="bar-fill" style="width:${Math.max(12, Math.round((Number(item?.current_count || 0) / maxCount) * 100))}%"></span></div>
-      <span class="bar-value">${formatNumber(item?.current_count || 0)}</span>
-    </div>
-  `).join("");
+        <div class="issue-bar"><span style="width:${width}%"></span></div>
+        <div class="issue-foot">
+          <span>${safeText(item?.recommended_action, "持續補資料後再評估。")}</span>
+          <span class="issue-count">${formatNumber(item?.current_count || 0)}</span>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
 function hotspotCardTemplate(item) {
@@ -215,30 +221,36 @@ function renderDataStatus(summary, health) {
   const healthStatus = safeText(health?.status, HOMEPAGE_FALLBACK_HEALTH.status);
   const warningCount = Array.isArray(health?.warnings) ? health.warnings.length : 0;
   const totalHotspots = formatNumber(summary?.total_hotspots ?? HOMEPAGE_FALLBACK_SUMMARY.total_hotspots);
+  const totalCases = formatNumber(summary?.total_cases ?? HOMEPAGE_FALLBACK_SUMMARY.total_cases);
 
   const items = [
     {
       title: "prototype dashboard",
-      text: "目前首頁使用 prototype dashboard data，作為公開展示與分類觀察。"
+      text: `目前首頁使用 ${totalCases} 筆原型案件與 ${totalHotspots} 個城市熱點，作為公開展示與分類觀察。`,
+      badge: "prototype data"
     },
     {
       title: "非正式全量資料",
-      text: `目前熱點 ${totalHotspots} 筆屬於原型展示，正式資料仍在接入中。`
+      text: `目前熱點 ${totalHotspots} 個屬於原型展示，正式資料仍在接入中。`,
+      badge: "資料持續接入"
     },
     {
       title: "no live crawler",
-      text: "正式資料接入前，不啟動 live crawler，也不對資料來源網址發出程式請求。"
+      text: "正式資料接入前，不啟動 live crawler，也不對資料來源網址發出程式請求。",
+      badge: "crawler off"
     },
     {
       title: "GitHub Pages",
-      text: `網站狀態 ${healthStatus}，目前 warnings ${warningCount}，可作為公開儀表板原型展示。`
+      text: `網站狀態 ${healthStatus}，目前 warnings ${warningCount}，可作為公開儀表板原型展示。`,
+      badge: `status: ${healthStatus}`
     }
   ];
 
   target.innerHTML = items.map((item) => `
-    <article class="status-item">
-      <b>${item.title}</b>
-      <span>${item.text}</span>
+    <article class="status-card">
+      <h3>${item.title}</h3>
+      <p>${item.text}</p>
+      <span class="status-badge">${item.badge}</span>
     </article>
   `).join("");
 }
