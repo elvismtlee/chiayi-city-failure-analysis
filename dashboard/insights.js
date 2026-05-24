@@ -34,8 +34,8 @@ const TREND_LABELS = {
 const REVIEW_STATUS_LABELS = {
   prototype: '原型資料',
   uncertain: '待複核',
-  unreviewed: '尚未人工檢查',
-  reviewed: '已人工檢查',
+  unreviewed: '待確認',
+  reviewed: '已確認',
   corrected: '已人工修正',
 };
 
@@ -110,7 +110,7 @@ function renderTrendCard(item) {
         <div><dt>信心</dt><dd>${Math.round(confidence * 100)}%</dd></div>
       </dl>
       <p>${escapeHtml(item.summary || '目前仍在資料整理階段。')}</p>
-      <b>建議：${escapeHtml(item.recommended_action || '持續補充資料並人工 review。')}</b>
+      <b>建議：${escapeHtml(item.recommended_action || '持續補充資料並做公開資料確認。')}</b>
     </article>
   `;
 }
@@ -177,4 +177,8 @@ async function bootInsights() {
   renderCouncilorCards(councilors);
 }
 
-bootInsights();
+document.addEventListener('DOMContentLoaded', () => {
+  bootInsights().catch((error) => {
+    console.warn('Insights fallback content is active:', error);
+  });
+});

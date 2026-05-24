@@ -5,34 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>城市洞察分析｜嘉義市城市問題儀表板</title>
   <style>
-    :root{--orange:#f97316;--dark:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 54px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2.1vw,22px);line-height:1.78;color:#cbd5e1;max-width:920px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;padding:0 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}.wrap{padding:30px 24px 72px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:28px}.section-title span{font-size:12px;font-weight:950;color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;white-space:nowrap}.grid{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a;font-size:21px}.card p,.card li{margin:0;color:#475569;line-height:1.75}.insight-card{border-top:4px solid var(--accent,var(--orange))}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#fff7ed;color:#c2410c;font-size:12px;font-weight:950;margin-bottom:12px}.metric{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:10px}.metric b{color:#0f172a}.metric span{font-weight:950;color:#f97316}.trend-list{display:grid;gap:10px}.trend-row{border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff}.bar{height:10px;border-radius:999px;background:#e2e8f0;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#f97316,#fdba74)}.list{margin:0;padding-left:20px}.quick a{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:16px;font-weight:950;color:#0f172a;text-decoration:none}.quick a:hover{border-color:#f97316;color:#c2410c}.trend-jump-nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}.trend-jump-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid #fdba74;background:#fff7ed;color:#c2410c;font-weight:900;text-decoration:none}.trend-group{display:grid;gap:16px}.trend-group-header{display:flex;justify-content:space-between;gap:16px;align-items:start}.trend-group-7{}.trend-group-30{}.trend-group-90{}.trend-group-note{margin-top:8px;color:#7c2d12}.trend-empty{margin:0;color:#64748b}.footer-note{margin-top:26px;color:#64748b;line-height:1.8;font-size:13px}@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 56px}}
+    :root{--orange:#f97316;--teal:#0f766e;--blue:#3b82f6;--purple:#8b5cf6;--navy:#0f172a;--card:#fff;--line:#e2e8f0;--shadow:0 18px 46px rgba(15,23,42,.12)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#f8fafc;color:#172033}a{color:inherit}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a);color:#fff}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 58px}.wrap{padding:30px 24px 76px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.4);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(40px,5vw,66px);line-height:1.03;margin:20px 0 14px;letter-spacing:-.05em}.lead{margin:0;font-size:clamp(17px,2.1vw,22px);line-height:1.8;color:#d8e1ee}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;padding:0 18px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:32px 0 16px}.section-title h2{margin:0;font-size:30px;letter-spacing:-.03em}.section-title p{margin:6px 0 0;color:#64748b;line-height:1.7}.section-title span{display:inline-flex;border-radius:999px;padding:7px 11px;background:#ffedd5;color:#c2410c;font-size:12px;font-weight:950;white-space:nowrap}.grid{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3,.card h4{margin:0 0 10px;color:#0f172a}.card p,.card li{margin:0;color:#475569;line-height:1.72}.insight-card{border-top:4px solid var(--accent,var(--orange))}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#fff7ed;color:#c2410c;font-size:12px;font-weight:900}.trend-grid{display:grid;gap:16px}.quick a{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:16px;font-weight:950;text-decoration:none;box-shadow:var(--shadow)}.quick a:hover{border-color:#f97316;color:#c2410c}.footer-note{margin-top:22px;color:#64748b;line-height:1.8;font-size:14px}.list{margin:0;padding-left:20px}.table-wrap{overflow:auto}.table-wrap table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.table-wrap th,.table-wrap td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table-wrap th{background:#f8fafc;color:#475569;font-size:13px}@media(max-width:980px){.grid3,.grid2{grid-template-columns:1fr 1fr}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 58px}.grid3,.grid2{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}.section-title{display:block}.section-title span{display:inline-flex;margin-top:10px}}
   </style>
   <link rel="stylesheet" href="./public-site.css?v=20260525">
 </head>
 <body>
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY INSIGHTS</span><h1>城市洞察分析</h1><p class="lead">把城市問題儀表板的數字轉成一般人看得懂的觀察：哪些議題需要優先追蹤、哪些地點形成熱點、下一步應該先補什麼資料。</p><div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./map.html">看熱點地圖</a><a class="btn ghost" href="./reports.html">看城市週報</a></div></div></section>
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <span class="badge">CITY INSIGHTS</span>
+      <h1>城市洞察分析</h1>
+      <p class="lead">把城市問題儀表板的數字轉成一般人看得懂的觀察：哪些議題需要優先追蹤、哪些地點形成熱點、下一步應該先補什麼資料。</p>
+      <div class="actions">
+        <a class="btn primary" href="./index.html">回城市儀表板</a>
+        <a class="btn ghost" href="./map.html">看熱點地圖</a>
+        <a class="btn ghost" href="./reports.html">看城市週報</a>
+      </div>
+    </div>
+  </section>
+
   <main class="wrap">
-    <section class="notice"><b>資料聲明：</b>目前為 prototype dashboard 與 metadata / sample 階段，本頁只做城市問題觀察與資料整理方向，不代表正式調查結果、不代表完整民意結論。正式資料接入前，維持 no live crawler、no source_url requests、approved_for_crawling 不自動設定，並持續補充資料與人工 review。</section>
-    <div class="section-title"><h2>本週城市觀察摘要</h2><span>prototype insights</span></div>
-    <section class="grid grid3"><article class="card insight-card" style="--accent:#f97316"><span class="pill">第一優先</span><h3>交通停車仍是主要焦點</h3><p>目前 prototype 指標顯示，交通停車是最需要追蹤的城市問題類型，適合優先接入正式資料。</p></article><article class="card insight-card" style="--accent:#0f766e"><span class="pill">熱點觀察</span><h3>文化路商圈與市場周邊</h3><p>商圈、停車、人行、卸貨與環境問題常常交疊，適合用地點型改善專案追蹤。</p></article><article class="card insight-card" style="--accent:#3b82f6"><span class="pill">安全焦點</span><h3>通學安全需要持續補資料</h3><p>學校周邊問題適合接入路口、人行道、接送區與交通事故欄位，形成可追蹤指標。</p></article></section>
-    <div class="section-title"><h2>議題趨勢原型</h2><span>issue_trends.json</span></div>
-    <nav class="trend-jump-nav">
-      <a class="trend-jump-link" href="#trend-7">最近 7 天</a>
-      <a class="trend-jump-link" href="#trend-30">最近 30 天</a>
-      <a class="trend-jump-link" href="#trend-90">最近 90 天</a>
-    </nav>
-    <section class="grid grid2"><article class="card"><h3>目前分類觀察</h3><div class="trend-list"><div class="trend-row"><b>市場商圈</b><div class="bar"><span style="width:40%"></span></div><p>sample count: 4</p></div><div class="trend-row"><b>交通停車</b><div class="bar"><span style="width:30%"></span></div><p>sample count: 3</p></div><div class="trend-row"><b>通學安全 / 環境衛生</b><div class="bar"><span style="width:20%"></span></div><p>sample count: 2</p></div></div></article><article class="card"><h3>解讀方式</h3><ul class="list"><li>目前仍是 prototype data。</li><li>趨勢只能作為觀察題組，不是正式結論。</li><li>後續要補日期、地點、正式來源與長期序列。</li></ul></article></section>
-    <section class="trend-group trend-group-7" id="trend-7"><div class="card"><h3>最近 7 天｜短期熱點</h3><p class="trend-group-note">適合觀察最近快速升高、需要立即注意的議題。</p></div></section>
-    <section class="trend-group trend-group-30" id="trend-30"><div class="card"><h3>最近 30 天｜中期變化</h3><p class="trend-group-note">適合觀察一個月內逐漸累積的地方議題。</p></div></section>
-    <section class="trend-group trend-group-90" id="trend-90"><div class="card"><h3>最近 90 天｜長期趨勢</h3><p class="trend-group-note">適合觀察較長時間持續存在的結構性問題。</p></div></section>
-    <section class="card" data-render="trends"><p class="trend-empty">目前沒有可顯示的趨勢資料。</p></section>
-    <div class="section-title"><h2>優先補資料清單</h2><span>next data</span></div>
-    <section class="grid grid3"><article class="card"><h3>交通事故</h3><p>補上年度、地點、傷亡、事故類型，讓交通議題有正式趨勢。</p></article><article class="card"><h3>道路施工</h3><p>補上施工地點、期間、主辦單位，支援道路與商圈動線分析。</p></article><article class="card"><h3>環境與市場</h3><p>補上環境衛生、市場周邊、卸貨動線，形成跨局處改善清單。</p></article></section>
-    <div class="section-title"><h2>相關頁面</h2><span>quick links</span></div>
-    <section class="grid grid3 quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./sources.html">資料來源 <span>→</span></a></section>
+    <section class="notice"><b>資料聲明：</b>目前為 prototype dashboard 與 metadata / sample 階段，本頁只做城市問題觀察與資料整理方向，不代表正式調查結果、不代表完整民意結論。正式資料接入前，維持 no live crawler、no source_url requests、approved_for_crawling 不自動設定，並持續補充資料與人工確認。</section>
+
+    <div class="section-title">
+      <div>
+        <h2>本週城市觀察摘要</h2>
+        <p>先把當前最值得關注的問題說清楚，讓使用者知道現在看這個 dashboard，應該先讀出哪些訊息。</p>
+      </div>
+      <span>prototype insights</span>
+    </div>
+    <section class="grid grid3">
+      <article class="card insight-card" style="--accent:#f97316"><span class="pill">第一優先</span><h3>交通停車仍是主要焦點</h3><p>目前 prototype 指標顯示，交通停車是最需要追蹤的城市問題類型，適合優先接入正式資料。</p></article>
+      <article class="card insight-card" style="--accent:#0f766e"><span class="pill">熱點觀察</span><h3>文化路商圈與市場周邊</h3><p>商圈、停車、人行、卸貨與環境問題常常交疊，適合用地點型改善專案追蹤。</p></article>
+      <article class="card insight-card" style="--accent:#3b82f6"><span class="pill">安全焦點</span><h3>通學安全需要持續補資料</h3><p>學校周邊問題適合接入路口、人行道、接送區與交通事故欄位，形成可追蹤指標。</p></article>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>議題趨勢原型</h2>
+        <p>把趨勢資料分成不同時間窗口來看，先觀察哪些議題在最近 7 天、30 天、90 天比較常出現。</p>
+      </div>
+      <span>issue_trends.json</span>
+    </div>
+    <section class="trend-grid" data-render="trends">
+      <article class="card"><h3>資料載入中</h3><p>若本地 JSON 可讀，這裡會自動渲染最近 7 天、30 天、90 天的議題趨勢。</p></article>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>目前分類觀察</h2>
+        <p>即使還不是正式全量資料，也可以先從分類數量看到哪些題組值得優先補資料。</p>
+      </div>
+      <span>sample count</span>
+    </div>
+    <section class="grid grid2">
+      <article class="card"><h3>目前分類觀察</h3><div class="trend-list"><div class="trend-row"><b>市場商圈</b><p>sample count: 4</p></div><div class="trend-row"><b>交通停車</b><p>sample count: 3</p></div><div class="trend-row"><b>通學安全 / 環境衛生</b><p>sample count: 2</p></div></div></article>
+      <article class="card"><h3>解讀方式</h3><ul class="list"><li>目前仍是 prototype data。</li><li>趨勢只能作為觀察題組，不是正式結論。</li><li>後續要補日期、地點、正式來源與長期序列。</li></ul></article>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>熱點與分數摘要</h2>
+        <p>讓使用者不用跳回地圖頁，也能快速看懂目前最高優先的地點與行動方向。</p>
+      </div>
+      <span>score summary</span>
+    </div>
+    <section class="table-wrap">
+      <table>
+        <thead><tr><th>熱點</th><th>類型</th><th>分數</th><th>建議行動</th></tr></thead>
+        <tbody data-render="scores">
+          <tr><td>文化路商圈</td><td>交通停車</td><td>92</td><td>商圈動線與停車熱點專案</td></tr>
+          <tr><td>市場周邊</td><td>市場商圈</td><td>78</td><td>市場周邊環境改善與卸貨規劃</td></tr>
+          <tr><td>學校周邊</td><td>通學安全</td><td>71</td><td>通學步道與接送區改善</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>優先補資料清單</h2>
+        <p>洞察頁的價值，不只是觀察，還包括指出下一步最值得補的資料。</p>
+      </div>
+      <span>next data</span>
+    </div>
+    <section class="grid grid3">
+      <article class="card"><h3>交通事故</h3><p>補時間、地點、事故型態與傷亡欄位，讓交通議題更像真實城市資料。</p></article>
+      <article class="card"><h3>市場商圈</h3><p>補卸貨、環境、動線與通行資料，讓市場周邊問題不只停留在觀察層。</p></article>
+      <article class="card"><h3>通學安全</h3><p>補路口、人行道、接送區與學校周邊事故資料，形成可追蹤的安全指標。</p></article>
+    </section>
+
+    <div class="section-title">
+      <div>
+        <h2>相關頁面</h2>
+        <p>如果想從洞察往下看更多背景，可以從這幾個入口繼續。</p>
+      </div>
+      <span>quick links</span>
+    </div>
+    <section class="grid grid3 quick">
+      <a href="./index.html">城市儀表板首頁 <span>→</span></a>
+      <a href="./command-center.html">城市資料總控台 <span>→</span></a>
+      <a href="./sources.html">資料來源 <span>→</span></a>
+    </section>
+
     <p class="footer-note">城市洞察分析頁的任務，是把數據轉成可討論、可追蹤、可行動的問題清單；正式引用前仍需回到資料來源與方法論確認限制。</p>
   </main>
-  <script src="./shared-nav.js"></script>
-  <script src="./insights.js"></script>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./insights.js?v=20260525"></script>
 </body>
 </html>

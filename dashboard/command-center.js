@@ -7,13 +7,19 @@ function escapeHtml(value){
     .replaceAll("'",'&#039;');
 }
 
-function setText(selector,value){
-  const target=document.querySelector(selector);
-  if(target)target.textContent=value;
-}
-
 function numberText(value){
   return Number(value||0).toLocaleString('en-US');
+}
+
+async function loadJson(path,fallback){
+  try{
+    const response=await fetch(path,{cache:'no-store'});
+    if(!response.ok) throw new Error(path);
+    return await response.json();
+  }catch(error){
+    console.warn('Control room fallback content is active:',path,error);
+    return fallback;
+  }
 }
 
 function renderControlRoomKpis(summary,health,inventory){
@@ -45,24 +51,20 @@ function renderNextDataCards(){
 }
 
 async function loadControlRoom(){
-  try{
-    const [summaryRes,healthRes,inventoryRes,overviewRes]=await Promise.all([
-      fetch('./data/dashboard_summary.json'),
-      fetch('./data/dashboard_health_check.json'),
-      fetch('./data/open_data_url_inventory.json'),
-      fetch('./data/command_center_overview.json')
-    ]);
-    const summary=summaryRes.ok?await summaryRes.json():{};
-    const health=healthRes.ok?await healthRes.json():{};
-    const inventory=inventoryRes.ok?await inventoryRes.json():[];
-    if(overviewRes.ok)await overviewRes.json();
-    renderControlRoomKpis(summary,health,inventory);
-    renderAvailablePages();
-    renderDataStatus(health);
-    renderNextDataCards();
-  }catch(error){
-    console.warn('Control room fallback content is active:',error);
-  }
+  const [summary,health,inventory]=await Promise.all([
+    loadJson('./data/dashboard_summary.json',{}),
+    loadJson('./data/dashboard_health_check.json',{status:'ok'}),
+    loadJson('./data/open_data_url_inventory.json',[])
+  ]);
+  await loadJson('./data/command_center_overview.json',{});
+  renderControlRoomKpis(summary,health,inventory);
+  renderAvailablePages();
+  renderDataStatus(health);
+  renderNextDataCards();
 }
 
-loadControlRoom();
+document.addEventListener('DOMContentLoaded',()=>{
+  loadControlRoom().catch((error)=>{
+    console.warn('Control room fallback content is active:',error);
+  });
+});
