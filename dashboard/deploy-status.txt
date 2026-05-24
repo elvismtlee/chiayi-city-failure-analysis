@@ -1,5 +1,5 @@
-deploy_check=2026-05-24T21:49:00+08:00
-status=sources_page_public_ready
+deploy_check=2026-05-24T21:50:27+08:00
+status=public_launch_smoke_tests_added
 entry=index.html
 map=map.html
 command_center=command-center.html
