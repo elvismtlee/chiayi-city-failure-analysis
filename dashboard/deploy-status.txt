@@ -1,4 +1,4 @@
-deploy_check=2026-05-24T12:45:00+08:00
-status=functional_city_dashboard_home_merged
+deploy_check=2026-05-24T12:58:00+08:00
+status=hotspot_map_dashboard_updated
 entry=index.html
-latest_pr=200
+map=map.html
