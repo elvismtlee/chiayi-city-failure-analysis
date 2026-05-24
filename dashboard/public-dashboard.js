@@ -227,7 +227,7 @@ function renderDataStatus(summary, health) {
     },
     {
       title: "no live crawler",
-      text: "正式資料接入前，不啟動 live crawler，也不對 source_url 發出程式請求。"
+      text: "正式資料接入前，不啟動 live crawler，也不對資料來源網址發出程式請求。"
     },
     {
       title: "GitHub Pages",
