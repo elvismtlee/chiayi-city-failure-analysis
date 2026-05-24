@@ -14,5 +14,7 @@ def test_health_check_page_assets_and_navigation_exist() -> None:
     assert "dashboard_health_check.json" in js
     assert "健康檢查" in json.dumps(site_map, ensure_ascii=False)
     assert "健康檢查" in shared_nav
-    assert "內部" in html
-    assert "不自動發布" in html
+    assert "這一頁是給維護者看的" in html
+    assert "prototype dashboard" in html
+    assert "no live crawler" in html
+    assert "no auto publish" in html

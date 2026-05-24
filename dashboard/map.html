@@ -10,9 +10,9 @@
   </style>
 </head>
 <body>
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">HOTSPOT MAP DASHBOARD</span><h1>城市熱點地圖</h1><p>用地圖、排行與行動建議看懂嘉義市西區目前的城市故障熱點。這一頁讀取 <code>hotspots.geojson</code> 與 <code>hotspots.json</code>，目前是 prototype map，不是正式全量資料。</p><div class="actions"><a class="btn primary" href="#mapDashboard">查看熱點地圖</a><a class="btn ghost" href="#actions">查看行動建議</a><a class="btn ghost" href="./index.html">回首頁儀表板</a></div></div></section>
+  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">HOTSPOT MAP DASHBOARD</span><h1>城市熱點地圖</h1><p>用地圖、排行與行動建議看懂嘉義市西區目前的城市故障熱點。這一頁讀取 <code>hotspots.geojson</code> 與 <code>hotspots.json</code>，目前是 prototype map，不是正式全量資料。</p><div class="actions"><a class="btn primary" href="#mapDashboard">查看熱點地圖</a><a class="btn ghost" href="#actions">查看行動建議</a><a class="btn ghost" href="./sources.html">查看資料來源</a><a class="btn ghost" href="./command-center.html">查看城市資料總控台</a></div></div></section>
   <main class="wrap" id="mapDashboard">
-    <section class="notice"><b>資料狀態：</b>本頁為地圖原型。座標與熱點分數來自本 repo 既有 prototype data；正式版仍需接入 geocoding、GeoJSON、行政區圖層與更精準地點資料。</section>
+    <section class="notice"><b>資料狀態：</b>本頁為地圖原型。座標與熱點分數來自本 repo 既有 prototype data；正式版仍需接入 geocoding、GeoJSON、行政區圖層與更精準地點資料。這不是正式全量地圖，也不代表已啟動 live crawler。</section>
     <div class="section-head"><div><h2>熱點總覽</h2><p>先把城市問題的位置、分數、主管機關和行動建議放在同一頁。</p></div><span class="tag">prototype hotspots</span></div>
     <section class="grid kpi-grid">
       <article class="card kpi" style="--accent:#f97316"><b>最高熱點分數</b><strong>92</strong><span>文化路商圈</span></article>
@@ -28,10 +28,10 @@
     <div class="section-head" id="actions"><div><h2>Top 3 熱點行動建議</h2><p>每一個地點都對應一個可追蹤的改善方向。</p></div><span class="tag">action cards</span></div>
     <section class="grid cards3"><article class="card action-card" style="--accent:#0f766e"><span class="rank">#1 score 92</span><h3>文化路商圈</h3><p><b>問題：</b>停車 / 人行</p><p><b>主管：</b>交通處</p><p><b>行動：</b>商圈動線與停車熱點專案</p></article><article class="card action-card" style="--accent:#f97316"><span class="rank">#2 score 78</span><h3>市場周邊</h3><p><b>問題：</b>垃圾 / 動線</p><p><b>主管：</b>環保局 / 建設處</p><p><b>行動：</b>市場周邊環境改善與卸貨規劃</p></article><article class="card action-card" style="--accent:#3b82f6"><span class="rank">#3 score 71</span><h3>學校周邊</h3><p><b>問題：</b>通學安全</p><p><b>主管：</b>交通處 / 教育處</p><p><b>行動：</b>通學步道與接送區改善</p></article></section>
     <div class="section-head"><div><h2>相關頁面</h2><p>地圖是前台展示；資料來源和健康檢查放在後台。</p></div></div>
-    <section class="grid quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./sources.html">資料來源 <span>→</span></a><a href="./health-check.html">健康檢查 <span>→</span></a><a href="./source-verification-workspace.html">資料源檢查 <span>→</span></a></section>
-    <p class="footer-note">本頁為 prototype map。正式版需接入 geocoding、GeoJSON、行政區圖層與更精準的地點資料；no live crawler、no source_url requests、approved_for_crawling 不自動設定。</p>
+    <section class="grid quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./sources.html">資料來源 <span>→</span></a><a href="./health-check.html">健康檢查 <span>→</span></a></section>
+    <p class="footer-note">本頁為 prototype map，屬於非正式全量資料。正式版需接入 geocoding、GeoJSON、行政區圖層與更精準的地點資料；no live crawler、no source_url requests、no personal data、no private complaint full text、no auto publish，approved_for_crawling 不自動設定。</p>
   </main>
-  <script src="./shared-nav.js"></script>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./leaflet-map.js"></script>
 </body>

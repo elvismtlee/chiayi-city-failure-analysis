@@ -3,42 +3,103 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard 健康檢查</title>
+  <title>健康檢查｜嘉義市城市問題儀表板</title>
   <style>
-    body { margin: 0; font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f7f8fa; color: #1f2933; }
-    header { background: #17324d; color: white; padding: 24px; }
-    nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
-    nav a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.45); }
-    main { max-width: 1120px; margin: 0 auto; padding: 24px; }
-    section { background: white; border: 1px solid #d9e2ec; border-radius: 8px; padding: 18px; margin: 16px 0; }
-    .notice { background: #fff7ed; border-color: #fed7aa; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border-bottom: 1px solid #e5e9f0; padding: 10px; text-align: left; }
+    :root{--bg:#0c121a;--panel:#161e2b;--line:rgba(255,255,255,.08);--text:#f8fafc;--muted:#a5b4c7;--orange:#f97316;--orange-soft:rgba(249,115,22,.14);--shadow:0 20px 48px rgba(0,0,0,.28)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 10%,rgba(249,115,22,.12),transparent 24%),linear-gradient(180deg,#091018 0%,#101722 38%,#111827 100%)}a{color:inherit}.hero{padding:34px 24px 58px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(135deg,#05070b,#0f1722 54%,#172132)}.inner,.wrap{max-width:1200px;margin:auto}.nav{display:block;margin-bottom:26px}.hero-shell{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:18px}.hero-copy,.hero-side,.card,.notice,section{border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}.hero-copy,.hero-side,section,.notice{padding:24px}.badge{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:var(--orange-soft);border:1px solid rgba(249,115,22,.22);color:#fdba74;font-size:13px;font-weight:900;letter-spacing:.05em}h1{margin:18px 0 14px;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.04em}.hero-copy p,.hero-side p,.notice p{margin:0;color:#dbe4ef;line-height:1.8}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:900}.btn.primary{background:var(--orange);color:#fff}.btn.secondary{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:#fff}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.pill{display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e2e8f0;font-size:12px;font-weight:800}.wrap{padding:34px 24px 76px}.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 18px}.summary-card{padding:20px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}.summary-card b{display:block;color:var(--muted);font-size:14px}.summary-card strong{display:block;margin-top:10px;font-size:32px;font-weight:950;color:#fff7ed;letter-spacing:-.05em}.summary-card span{display:block;margin-top:10px;color:#dbe4ef;line-height:1.7;font-size:14px}.notice{margin-bottom:18px}.notice h2,section h2{margin:0 0 10px;color:#fff7ed;font-size:28px}.notice-list{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.notice-pill{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;background:rgba(249,115,22,.10);border:1px solid rgba(249,115,22,.18);color:#fdba74;font-size:13px;font-weight:900}table{width:100%;border-collapse:collapse}th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;vertical-align:top;color:#dbe4ef}th{color:#a5b4c7}.muted{color:var(--muted);line-height:1.8}.footnote{margin-top:26px;color:var(--muted);font-size:14px;line-height:1.8}@media(max-width:960px){.hero-shell,.summary-grid{grid-template-columns:1fr 1fr}}@media(max-width:720px){.hero{padding:28px 16px 54px}.wrap{padding:28px 16px 62px}.hero-shell,.summary-grid{grid-template-columns:1fr}.hero-actions{display:grid}.btn{width:100%}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dashboard 健康檢查</h1>
-    <p>internal dashboard / needs human review / manual publishing only</p>
-    <nav class="nav"></nav>
+  <header class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="hero-shell">
+        <section class="hero-copy">
+          <span class="badge">HEALTH CHECK / maintainer view</span>
+          <h1>健康檢查</h1>
+          <p>這一頁是給維護者看的，不是主入口。它的工作很單純：確認網站能不能正常打開、主要頁面在不在、JSON 有沒有壞掉、目前資料能不能作為公開展示版使用。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="./index.html">回城市問題儀表板</a>
+            <a class="btn secondary" href="./command-center.html">看城市資料總控台</a>
+            <a class="btn secondary" href="./sources.html">看資料來源</a>
+          </div>
+        </section>
+        <aside class="hero-side">
+          <h3 style="margin:0 0 10px;color:#fff7ed">這頁要怎麼讀</h3>
+          <p>先看整體狀態是不是 ok，再看有沒有 missing files、invalid JSON 或 warnings。如果這些檢查都正常，就代表網站本身適合拿來公開展示。</p>
+          <div class="pill-row">
+            <span class="pill">prototype dashboard</span>
+            <span class="pill">maintainer page</span>
+            <span class="pill">GitHub Pages 檢查</span>
+          </div>
+        </aside>
+      </div>
+    </div>
   </header>
-  <main>
-    <section class="notice">這是內部系統健康檢查，只檢查本地檔案，不代表資料內容已完成人工審核，不自動發布。</section>
-    <section><h2>整體 Status</h2><p id="status"></p><p id="checked-count"></p></section>
-    <section><h2>Missing Files</h2><ul id="missing-files"></ul></section>
-    <section><h2>Empty Files</h2><ul id="empty-files"></ul></section>
-    <section><h2>Invalid JSON Files</h2><ul id="invalid-json-files"></ul></section>
+  <main class="wrap">
+    <section class="notice">
+      <h2>白話摘要</h2>
+      <p>如果這一頁顯示正常，代表網站主要頁面存在、本地 JSON 檔案格式正確，而且目前資料站可以維持公開展示版的 prototype dashboard 狀態。這不代表正式資料已全量接入，只代表網站本身運作正常，並持續維持 no live crawler、no source_url requests、no personal data、no private complaint full text、no auto publish，且 approved_for_crawling 不自動設定。</p>
+      <div class="notice-list">
+        <span class="notice-pill">prototype dashboard</span>
+        <span class="notice-pill">非正式全量資料</span>
+        <span class="notice-pill">no live crawler</span>
+        <span class="notice-pill">no source_url requests</span>
+        <span class="notice-pill">no personal data</span>
+        <span class="notice-pill">no private complaint full text</span>
+        <span class="notice-pill">no auto publish</span>
+        <span class="notice-pill">approved_for_crawling 不自動設定</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>健康檢查重點</h2>
+      <div class="summary-grid">
+        <article class="summary-card"><b>網站是否正常</b><strong id="status">讀取中</strong><span>先看整體 status，確認頁面與資料檔是否都在。</span></article>
+        <article class="summary-card"><b>已檢查檔案</b><strong id="checked-count">讀取中</strong><span>代表目前這次健康檢查納入多少個頁面與資料檔。</span></article>
+        <article class="summary-card"><b>主要頁面是否存在</b><strong>Yes / No</strong><span>包含首頁、地圖、總控台、資料來源、方法論與健康檢查本身。</span></article>
+        <article class="summary-card"><b>資料是否可展示</b><strong>Prototype</strong><span>表示可以作為公開展示頁，但仍屬非正式全量資料。</span></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Missing Files</h2>
+      <p class="muted">如果這裡有檔案，通常代表某個頁面或資料檔不存在，會直接影響公開展示版的完整度。</p>
+      <ul id="missing-files"></ul>
+    </section>
+
+    <section>
+      <h2>Empty Files</h2>
+      <p class="muted">檔案存在但內容空白，通常也要一起修掉，不然頁面打開會像空殼。</p>
+      <ul id="empty-files"></ul>
+    </section>
+
+    <section>
+      <h2>Invalid JSON Files</h2>
+      <p class="muted">如果 JSON 無效，首頁、總控台或地圖的資料讀取就可能出錯。</p>
+      <ul id="invalid-json-files"></ul>
+    </section>
+
     <section>
       <h2>Page Checks</h2>
+      <p class="muted">這張表主要看公開頁面與核心內部頁是否存在、是否變成空白檔。</p>
       <table><thead><tr><th>頁面</th><th>存在</th><th>空白</th></tr></thead><tbody id="page-checks"></tbody></table>
     </section>
+
     <section>
       <h2>Nav Checks</h2>
+      <p class="muted">用來確認 site_map 與 shared-nav 是否仍然對得起來，避免導覽斷掉。</p>
       <table><thead><tr><th>項目</th><th>site_map</th><th>shared-nav</th></tr></thead><tbody id="nav-checks"></tbody></table>
     </section>
-    <section><h2>Warnings</h2><ul id="warnings"></ul></section>
+
+    <section>
+      <h2>Warnings</h2>
+      <p class="muted">這裡的 warning 不一定會讓網站壞掉，但通常表示還有需要收尾的地方。</p>
+      <ul id="warnings"></ul>
+    </section>
+
+    <p class="footnote">這一頁是維護用途，不是公開首頁。它的工作只是幫我們確認：網站是否正常、主要頁面是否存在、JSON 是否有效、目前資料是否仍適合以 prototype dashboard 方式對外展示。</p>
   </main>
-  <script src="./shared-nav.js"></script>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
   <script src="./health-check.js"></script>
 </body>
 </html>

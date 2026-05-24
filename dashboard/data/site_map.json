@@ -1,7 +1,7 @@
 [
-  {"title": "城市儀表板首頁", "path": "./index.html", "level": 1, "description": "MVP 上線入口首頁，集中整理公開展示頁、資料源檢查工作台、成果總控台與 Day 1 操作看板。"},
-  {"title": "公開展示頁", "path": "./project-landing.html", "level": 1, "group": "總覽", "status": "internal_preview", "description": "給一般人快速理解專案成果、資料源人工檢查方式與上線前安全邊界的展示頁。"},
-  {"title": "城市熱點地圖", "path": "./map.html", "level": 2, "description": "Leaflet / OpenStreetMap 熱點地圖，呈現城市故障熱點與行動建議。"},
+  {"title": "城市儀表板首頁", "path": "./index.html", "level": 1, "description": "公開城市問題儀表板首頁，集中呈現原型案件數、議題排行、熱點分析、行動建議與資料狀態。"},
+  {"title": "公開展示頁", "path": "./project-landing.html", "level": 1, "group": "總覽", "status": "internal_preview", "description": "給一般人快速理解這個城市資料專案在做什麼、目前做到哪裡，以及為什麼還是 prototype dashboard。"},
+  {"title": "城市熱點地圖", "path": "./map.html", "level": 2, "description": "公開展示版城市熱點地圖，整理熱點排行、地圖示意與 Top 3 行動建議。"},
   {"title": "座標審核", "path": "./geocoding-review.html", "level": 2, "description": "人工檢查 prototype 座標與地理校正候選清單。"},
   {"title": "CYCC 公開資料審核", "path": "./cycc-review.html", "level": 2, "description": "顯示嘉義市議會公開 metadata 的內部逐筆審核表與統計卡。"},
   {"title": "開放資料盤點", "path": "./open-data-inventory.html", "level": 2, "group": "資料審核", "status": "internal_review", "description": "第二批真實資料來源 URL 盤點與人工審核頁。"},
@@ -33,11 +33,11 @@
   {"title": "每日執行", "path": "./daily-execution.html", "level": 2, "description": "顯示一人團隊每日優先處理的內部執行清單。"},
   {"title": "公開審核", "path": "./public-review.html", "level": 2, "description": "顯示準備對外使用素材的人工審核佇列，未通過不可公開。"},
   {"title": "已核准素材", "path": "./approved-materials.html", "level": 2, "description": "顯示已通過人工審核的素材樣本，仍需手動發布。"},
-  {"title": "總控台", "path": "./command-center.html", "level": 2, "description": "內部成果總控台，整合主要模組狀態、warning、上線前待辦與 pipeline 進度。"},
-  {"title": "健康檢查", "path": "./health-check.html", "level": 2, "description": "檢查本地 dashboard JSON、頁面與導覽是否完整的內部健康檢查。"},
+  {"title": "城市資料總控台", "path": "./command-center.html", "level": 2, "description": "公開可讀的城市資料總控台，整理目前可用資料、可用頁面、資料接入狀態與下一步補資料方向。"},
+  {"title": "健康檢查", "path": "./health-check.html", "level": 2, "description": "維護者用的網站健康檢查頁，確認主要頁面存在、JSON 有效且 prototype dashboard 可正常展示。"},
   {"title": "每週系統報告", "path": "./weekly-system-report.html", "level": 2, "description": "彙整總控台與健康檢查狀態的內部每週系統報告。"},
   {"title": "城市洞察分析", "path": "./insights.html", "level": 2, "description": "AI 摘要、趨勢分析、局處負荷與議員議題分析。"},
-  {"title": "資料來源", "path": "./sources.html", "level": 2, "description": "資料來源、更新狀態、資料筆數與資料限制。"},
-  {"title": "方法論", "path": "./methodology.html", "level": 2, "description": "議題分類、城市故障分數、AI 摘要與資料限制。"},
+  {"title": "資料來源", "path": "./sources.html", "level": 2, "description": "用白話整理目前有哪些 prototype data、哪些是官方資料來源盤點，以及正式資料尚未接入的原因。"},
+  {"title": "方法論", "path": "./methodology.html", "level": 2, "description": "用一般人看得懂的方式說明城市故障分析方法、議題分類、熱點判讀與 prototype data 的限制。"},
   {"title": "城市週報", "path": "./reports.html", "level": 2, "description": "每週城市故障觀察報告列表。"}
 ]

@@ -3,24 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>分析方法與城市故障分數｜嘉義城市故障分析中心</title>
+  <title>城市故障分析方法論｜嘉義市城市問題儀表板</title>
   <style>
-    :root{--green:#0f766e;--dark:#064e3b;--mint:#dff8ef;--text:#172033;--muted:#64748b;--line:#dbe5df;--card:#fff}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:linear-gradient(180deg,#f3fbf7,#f8fafc)}.hero{padding:36px 24px 48px;color:#fff;background:linear-gradient(135deg,#064e3b,#0f766e)}.inner,.wrap{max-width:1180px;margin:auto}.nav{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}.nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.12)}.nav a.active{background:#fff;color:var(--dark);font-weight:800}h1{font-size:clamp(34px,5vw,58px);margin:0 0 12px}.hero p{font-size:20px;line-height:1.7;max-width:780px;color:rgba(255,255,255,.9)}.wrap{padding:30px 24px 64px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--card);border:1px solid rgba(15,118,110,.13);border-radius:24px;padding:22px;box-shadow:0 18px 50px rgba(15,23,42,.08)}.card h2{margin-top:0}.card p,.card li{line-height:1.8;color:#334155}.formula{background:#ecfdf5;border:1px solid #bbf7d0;border-radius:18px;padding:18px;font-weight:800;color:var(--dark);line-height:1.8}.pill{display:inline-block;margin:4px;padding:6px 10px;border-radius:999px;background:var(--mint);color:var(--dark);font-weight:700;font-size:13px}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+    :root{--bg:#0c121a;--panel:#161e2b;--panel-soft:#1c2635;--line:rgba(255,255,255,.08);--text:#f8fafc;--muted:#a5b4c7;--orange:#f97316;--orange-soft:rgba(249,115,22,.14);--teal:#2dd4bf;--shadow:0 20px 48px rgba(0,0,0,.28)}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--text);background:radial-gradient(circle at 14% 10%,rgba(249,115,22,.12),transparent 24%),linear-gradient(180deg,#0a1017 0%,#111827 42%,#131c29 100%)}a{color:inherit}.hero{padding:34px 24px 62px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(135deg,#06080b,#0f1622 54%,#172132)}.inner,.wrap{max-width:1200px;margin:auto}.nav{display:block;margin-bottom:26px}.hero-shell{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:18px}.hero-copy,.hero-side,.card,.formula,.notice{border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}.hero-copy,.hero-side,.card,.notice{padding:24px}.badge{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:var(--orange-soft);border:1px solid rgba(249,115,22,.22);color:#fdba74;font-size:13px;font-weight:900;letter-spacing:.05em}h1{margin:18px 0 14px;font-size:clamp(38px,5vw,68px);line-height:1.05;letter-spacing:-.04em}.hero-copy p,.hero-side p,.card p,.card li,.notice p{margin:0;color:#dbe4ef;line-height:1.82}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:900}.btn.primary{background:var(--orange);color:#fff}.btn.secondary{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:#fff}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.pill{display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:999px;background:rgba(45,212,191,.10);border:1px solid rgba(45,212,191,.18);color:#99f6e4;font-size:12px;font-weight:900}.wrap{padding:34px 24px 76px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:34px 0 18px}.section-head h2{margin:0;font-size:32px;letter-spacing:-.03em}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.7}.section-head span{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border-radius:999px;background:rgba(249,115,22,.10);border:1px solid rgba(249,115,22,.18);color:#fdba74;font-size:12px;font-weight:900}.grid{display:grid;gap:16px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card h3,.notice h3{margin:0 0 10px;color:#fff7ed}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tag{display:inline-flex;align-items:center;min-height:32px;padding:0 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:#e2e8f0;font-size:12px;font-weight:800}.formula{padding:20px;color:#fff7ed;font-size:18px;font-weight:900;line-height:1.9}.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.list li{padding:14px 14px 14px 40px;position:relative;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}.list li::before{content:"•";position:absolute;left:16px;top:10px;color:#fdba74;font-size:24px;font-weight:900}.notice-list{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.notice-pill{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;background:rgba(249,115,22,.10);border:1px solid rgba(249,115,22,.18);color:#fdba74;font-size:13px;font-weight:900}.footnote{margin-top:28px;color:var(--muted);font-size:14px;line-height:1.8}@media(max-width:960px){.hero-shell,.grid.two{grid-template-columns:1fr}}@media(max-width:720px){.hero{padding:28px 16px 54px}.wrap{padding:28px 16px 62px}.hero-actions{display:grid}.btn{width:100%}.section-head{flex-direction:column;align-items:start}}
   </style>
 </head>
 <body>
-  <section class="hero"><div class="inner"><nav class="nav"><a href="./index.html">城市儀表板首頁</a><a href="./insights.html">城市洞察分析</a><a href="./sources.html">資料來源</a><a class="active" href="./methodology.html">方法論</a><a href="./reports.html">城市週報</a></nav><h1>分析方法與城市故障分數</h1><p>說明本平台如何進行議題分類、熱點判定、趨勢分析、AI 摘要與城市故障分數計算。</p></div></section>
+  <section class="hero">
+    <div class="inner">
+      <nav class="nav"></nav>
+      <div class="hero-shell">
+        <section class="hero-copy">
+          <span class="badge">METHODOLOGY / prototype data</span>
+          <h1>城市故障分析方法論</h1>
+          <p>這一頁用一般人看得懂的方式，說明我們怎麼把城市問題整理成可視覺化的資料：為什麼要看資料、怎麼分類問題、怎麼看熱點，以及 prototype data 在正式資料接入前有哪些限制。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="./index.html">回城市問題儀表板</a>
+            <a class="btn secondary" href="./map.html">看城市熱點地圖</a>
+            <a class="btn secondary" href="./sources.html">看資料來源</a>
+          </div>
+        </section>
+        <aside class="hero-side">
+          <h3 style="margin:0 0 10px;color:#fff7ed">先記得兩件事</h3>
+          <p>第一，這是 prototype data 的整理方法，不是假裝已完成正式統計。第二，方法論的目的是讓資料怎麼來、怎麼看、怎麼用都說得清楚，而不是用複雜術語把人擋在外面。</p>
+          <div class="pill-row">
+            <span class="pill">prototype data</span>
+            <span class="pill">正式資料尚未全量接入</span>
+            <span class="pill">public-readable</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <main class="wrap">
-    <section class="grid2">
-      <article class="card"><h2>資料處理流程</h2><p>資料來源 → crawler → raw CSV → processed CSV → JSON → dashboard → AI 摘要與週報。</p></article>
-      <article class="card"><h2>城市故障分數</h2><div class="formula">案件量分數 + 重複率分數 + 處理時間分數 + 質詢落差分數 + 趨勢升高分數</div></article>
-      <article class="card"><h2>議題分類</h2><p><span class="pill">交通</span><span class="pill">道路</span><span class="pill">人行</span><span class="pill">環境</span><span class="pill">公共安全</span><span class="pill">水利排水</span><span class="pill">市場商圈</span><span class="pill">教育學區</span><span class="pill">文化觀光</span><span class="pill">行政服務</span></p></article>
-      <article class="card"><h2>趨勢分析</h2><p>支援 up、down、stable、spike 等趨勢狀態。時間範圍可包含 7 天、30 天、90 天、半年、一年與 12 年長期資料。</p></article>
-      <article class="card"><h2>AI 摘要限制</h2><ul><li>只能整理、分類、摘要與提示追蹤方向。</li><li>不做無來源指控。</li><li>不做人身攻擊。</li><li>不做支持度推論。</li><li>正式引用前應回到原始資料查證。</li></ul></article>
-      <article class="card"><h2>資料限制</h2><ul><li>metadata 不等於全文內容。</li><li>樣本資料不代表完整趨勢。</li><li>資料不足時不可做過度結論。</li><li>所有統計應標示更新時間。</li></ul></article>
+    <div class="section-head">
+      <div>
+        <h2>什麼是城市故障分析</h2>
+        <p>我們把日常城市生活中反覆出現、容易造成不便或風險的問題，整理成可以追蹤的題組與熱點。</p>
+      </div>
+      <span>what it means</span>
+    </div>
+    <section class="grid two">
+      <article class="card">
+        <h3>為什麼要用資料看城市問題</h3>
+        <p>因為單一事件很容易被情緒放大，但資料可以幫我們看見：哪些問題反覆出現、集中在哪裡、屬於哪一種議題，接著才能討論改善順序與治理行動。</p>
+      </article>
+      <article class="card">
+        <h3>城市故障不等於城市失敗</h3>
+        <p>這裡說的「故障」，比較像是城市運作中反覆出現的卡點。例如停車動線、路口安全、垃圾動線、市場周邊環境或學校周邊通行風險。</p>
+      </article>
     </section>
-    <p class="footer-note">方法論頁讓資料站具備透明性。未來每個分數、趨勢與 AI 摘要都應能回到資料來源與計算方式。</p>
+
+    <div class="section-head">
+      <div>
+        <h2>怎麼分類問題</h2>
+        <p>目前先用容易理解的議題分類來整理城市問題，讓首頁的議題排行與熱點分析能夠對得起來。</p>
+      </div>
+      <span>issue categories</span>
+    </div>
+    <section class="card">
+      <div class="tags">
+        <span class="tag">交通</span>
+        <span class="tag">道路</span>
+        <span class="tag">停車 / 人行</span>
+        <span class="tag">環境衛生</span>
+        <span class="tag">通學安全</span>
+        <span class="tag">市場商圈</span>
+        <span class="tag">公共安全</span>
+        <span class="tag">文化觀光</span>
+      </div>
+      <p style="margin-top:16px">這些分類不是永久不變，而是 prototype dashboard 目前最容易讓一般人理解的題組。正式資料接入後，分類可以更細，也可以把問題之間的關聯看得更清楚。</p>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <h2>怎麼看熱點</h2>
+        <p>熱點不是單純看聲量，而是看資料在空間與議題上是否反覆集中，並且能不能轉成可追蹤的治理線索。</p>
+      </div>
+      <span>hotspot logic</span>
+    </div>
+    <section class="grid two">
+      <article class="card">
+        <h3>熱點判讀原則</h3>
+        <ul class="list">
+          <li>看問題是否反覆出現在同一個區域。</li>
+          <li>看它是否對交通、環境或通學安全造成實際影響。</li>
+          <li>看是否能對應到具體主管機關與後續行動建議。</li>
+        </ul>
+      </article>
+      <article class="formula">
+        prototype hotspot score 不是正式行政評分。<br />
+        它的作用是先讓使用者看懂：哪裡最值得優先觀察、哪一類城市問題現在最突出。
+      </article>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <h2>prototype data 的限制</h2>
+        <p>這一點要講清楚，因為公開頁不能把 prototype data 說成正式資料。</p>
+      </div>
+      <span>honest limits</span>
+    </div>
+    <section class="notice">
+      <h3>正式資料接入前，這些限制一直存在</h3>
+      <p>目前網站仍是 prototype dashboard、非正式全量資料。這表示數字有展示價值，但不代表已完成正式接入、正式清洗與正式驗證。正式資料還在盤點與接入前整理階段，並維持 no live crawler、no source_url requests、no personal data、no private complaint full text、no auto publish，且 approved_for_crawling 不自動設定。</p>
+      <div class="notice-list">
+        <span class="notice-pill">prototype dashboard</span>
+        <span class="notice-pill">prototype data</span>
+        <span class="notice-pill">正式資料尚未全量接入</span>
+        <span class="notice-pill">no live crawler</span>
+        <span class="notice-pill">no source_url requests</span>
+        <span class="notice-pill">no personal data</span>
+        <span class="notice-pill">no private complaint full text</span>
+        <span class="notice-pill">no auto publish</span>
+        <span class="notice-pill">approved_for_crawling 不自動設定</span>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <h2>後續如何接正式資料</h2>
+        <p>接正式資料不是把網址丟進程式就好，而是要先確認來源、欄位、風險與公開邊界。</p>
+      </div>
+      <span>formal data later</span>
+    </div>
+    <section class="grid two">
+      <article class="card">
+        <h3>接資料前會做什麼</h3>
+        <ul class="list">
+          <li>確認是不是官方資料來源。</li>
+          <li>確認資料格式與公開條件。</li>
+          <li>確認欄位是否適合整理成正式資料表。</li>
+          <li>確認不會碰個資、私人陳情全文或未授權資料。</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>正式資料接入後會帶來什麼</h3>
+        <p>一旦正式資料來源穩定，首頁的議題排行、熱點地圖與行動建議就能更接近長期追蹤工具，而不是只停留在公開展示用的 prototype data。</p>
+      </article>
+    </section>
+
+    <p class="footnote">方法論頁的工作，不是把系統包裝成很神秘，而是把資料怎麼看、怎麼分類、怎麼限制、怎麼接正式資料，全部講清楚。這樣一般人才能信任這是一個誠實的公開城市問題儀表板。</p>
   </main>
-  <script src="./shared-nav.js"></script>
+  <script src="./shared-nav.js?v=20260523-navux"></script>
 </body>
 </html>

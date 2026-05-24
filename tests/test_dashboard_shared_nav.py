@@ -83,8 +83,9 @@ def test_shared_nav_contains_open_data_labels() -> None:
         "城市熱點地圖",
         "公開展示頁",
         "座標審核",
-        "CYCC公開資料",
-        "開放資料盤點",
+        "CYCC 公開資料",
+        "官方資料來源盤點",
+        "城市資料總控台",
         "資料源檢查工作台",
         "官方資料審核",
         "Readiness評分",
@@ -118,7 +119,7 @@ def test_shared_nav_uses_two_level_grouped_navigation() -> None:
     assert "dashboard-nav-tab" in content
     assert "dashboard-nav-link" in content
     assert "grid-template-columns:repeat(5" in content
-    for label in ["總覽", "資料審核", "內容產出", "發布管理", "系統說明"]:
+    for label in ["總覽", "資料處理 / 內部", "內容產出", "發布管理", "系統說明"]:
         assert label in content
 
 
