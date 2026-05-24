@@ -23,6 +23,44 @@
     <section class="card"><div class="safety"><span>prototype dashboard</span><span>非正式全量資料</span><span>no live crawler</span><span>no source_url requests</span><span>no personal data</span><span>no private complaint full text</span><span>no auto publish</span><span>approved_for_crawling 不自動設定</span></div></section>
     <div class="section-title"><h2>主要公開頁面</h2><span>public links</span></div>
     <section class="grid quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./map.html">城市熱點地圖 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./methodology.html">方法論 <span>→</span></a><a href="./health-check.html">健康檢查 <span>→</span></a></section>
+    <div class="section-title"><h2>真實資料管線狀態</h2><span>internal metadata compatibility</span></div>
+    <section class="grid source-grid">
+      <article class="card source-card" style="--accent:#0f766e" data-pipeline="status">
+        <h3>CYCC public records crawler</h3>
+        <p>這一區只保留資料管線狀態摘要，方便維護與既有檢查使用；不代表公開網站已啟動 live crawler。</p>
+      </article>
+      <article class="card source-card" style="--accent:#3b82f6" data-pipeline="records">
+        <h3>逐筆 metadata 狀態</h3>
+        <p>目前保留逐筆 metadata 相關入口與狀態標記，正式對外展示仍以公開儀表板頁面為主。</p>
+      </article>
+      <article class="card source-card" style="--accent:#f97316">
+        <h3>內部審視入口</h3>
+        <p><a href="./cycc-review.html">前往 CYCC 公開資料審核 →</a></p>
+        <p style="margin-top:12px"><a href="./index.html">回儀表板首頁 →</a></p>
+      </article>
+    </section>
+    <div class="section-title"><h2>後台資料處理入口</h2><span>details</span></div>
+    <details class="card">
+      <summary style="cursor:pointer;font-weight:950;color:#0f172a">展開後台資料處理入口</summary>
+      <div style="display:grid;gap:10px;margin-top:16px">
+        <a href="./open-data-inventory.html">前往官方開放資料 URL 盤點</a>
+        <a href="./open-data-review.html">前往官方資料 URL 人工審核</a>
+        <a href="./open-data-readiness.html">前往官方資料 Readiness 評分</a>
+        <a href="./open-data-top10-tasks.html">前往 Top 10 官方資料審核任務</a>
+        <a href="./open-data-crawler-specs.html">前往 Crawler 規格草稿</a>
+        <a href="./open-data-human-review.html">前往人工審核工作簿</a>
+        <a href="./open-data-engineering-review.html">前往工程審查清單</a>
+        <a href="./open-data-review-sessions.html">前往人工審核執行工作台</a>
+        <a href="./open-data-review-evidence.html">前往審核證據包</a>
+        <a href="./open-data-manual-review-results.html">前往審核結果輸入表</a>
+        <a href="./open-data-manual-review-sop.html">前往人工審核 SOP</a>
+        <a href="./open-data-manual-review-packets.html">前往人工審核工作包</a>
+        <a href="./open-data-manual-review-patches.html">前往回填 Patch 草稿</a>
+        <a href="./open-data-day1-sample-results.html">前往 Day1 填寫範例</a>
+        <a href="./open-data-day1-review-form.html">前往 Day1 審核表單</a>
+        <a href="./open-data-day1-operation-board.html">前往 Day1 操作看板</a>
+      </div>
+    </details>
     <p class="footer-note">資料來源頁是本資料站的透明基礎。正式資料上線後，應持續更新來源、筆數、更新時間與處理狀態。</p>
   </main>
   <script src="./shared-nav.js?v=20260523-navux"></script>
