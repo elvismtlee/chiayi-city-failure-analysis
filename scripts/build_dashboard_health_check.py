@@ -47,6 +47,7 @@ IMPORTANT_JSON = [
 ]
 
 IMPORTANT_PAGES = [
+    "dashboard/index.html",
     "dashboard/project-landing.html",
     "dashboard/source-verification-workspace.html",
     "dashboard/open-data-inventory.html",
@@ -93,6 +94,15 @@ IMPORTANT_JS = [
     "dashboard/approved-materials.js",
 ]
 
+IMPORTANT_DEPLOYMENT = [
+    ".github/workflows/pages.yml",
+    "dashboard/.nojekyll",
+]
+
+ALLOW_EMPTY_FILES = {
+    "dashboard/.nojekyll",
+}
+
 IMPORTANT_DOCS = [
     "docs/open_data_manual_review_packets/day_1_packet.md",
     "docs/open_data_manual_review_packets/day_2_packet.md",
@@ -105,6 +115,7 @@ IMPORTANT_DOCS = [
 ]
 
 NAV_LABELS = [
+    "儀表板首頁",
     "公開展示頁",
     "資料源檢查工作台",
     "開放資料盤點",
@@ -145,7 +156,7 @@ def parse_json(path: Path) -> bool:
 def check_file(root: Path, relative: str, invalid_json_files: list[str]) -> dict[str, Any]:
     path = root / relative
     exists = path.exists()
-    is_empty = exists and path.stat().st_size == 0
+    is_empty = exists and path.stat().st_size == 0 and relative not in ALLOW_EMPTY_FILES
     is_valid_json = None
     if exists and not is_empty and path.suffix == ".json":
         try:
@@ -162,7 +173,7 @@ def check_file(root: Path, relative: str, invalid_json_files: list[str]) -> dict
 
 
 def build_health_check(root: Path = ROOT) -> dict[str, Any]:
-    checked_targets = IMPORTANT_JSON + IMPORTANT_PAGES + IMPORTANT_JS + IMPORTANT_DOCS
+    checked_targets = IMPORTANT_JSON + IMPORTANT_PAGES + IMPORTANT_JS + IMPORTANT_DEPLOYMENT + IMPORTANT_DOCS
     invalid_json_files: list[str] = []
     checked_files = [check_file(root, target, invalid_json_files) for target in checked_targets]
     missing_files = [item["file"] for item in checked_files if not item["exists"]]
