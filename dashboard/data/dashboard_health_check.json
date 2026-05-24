@@ -1,6 +1,6 @@
 {
-  "check_id": "dashboard-health-20260524115417",
-  "generated_at": "2026-05-24T11:54:17+08:00",
+  "check_id": "dashboard-health-20260524132612",
+  "generated_at": "2026-05-24T13:26:12+08:00",
   "checked_files": [
     {
       "file": "dashboard/data/open_data_url_inventory.json",
