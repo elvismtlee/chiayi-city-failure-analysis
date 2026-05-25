@@ -42,4 +42,9 @@ def test_home_page_shows_public_city_dashboard() -> None:
     assert './open-data-day1-operation-board.html' in content
     assert './sources.html' in content
     assert './health-check.html' in content
+    assert './public-dashboard.js?v=20260525' in content
+    assert 'homepage-kpis' in content
+    assert 'issue-ranking-list' in content
+    assert 'hotspot-cards' in content
+    assert 'data-status-grid' in content
     assert './shared-nav.js?v=20260523-navux' in content

@@ -4,32 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>城市故障分析方法論｜嘉義市城市問題儀表板</title>
-  <style>
-    :root{--orange:#f97316;--dark:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--green:#0f766e;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 54px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2.1vw,22px);line-height:1.78;color:#cbd5e1;max-width:920px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;padding:0 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}.wrap{padding:30px 24px 72px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:28px}.section-title span{color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:950}.grid{display:grid;gap:18px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a}.card p,.card li{line-height:1.8;color:#334155}.pill{display:inline-flex;margin:4px;padding:7px 11px;border-radius:999px;background:#ecfdf5;color:#047857;font-weight:900;font-size:13px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.step{border-top:4px solid var(--accent,var(--orange))}.footer-note{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 56px}.actions{display:grid}.btn{width:100%}}
-  </style>
+  <link rel="stylesheet" href="./public-site.css?v=20260526-public">
 </head>
 <body>
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">METHODOLOGY</span><h1>城市故障分析方法論</h1><p class="lead">把城市問題當成一個可以被觀察、分類、追蹤與改善的系統。這裡說明我們怎麼看資料、怎麼分類問題、怎麼判讀熱點，以及 prototype data 目前有哪些限制。</p><div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./sources.html">看資料來源</a><a class="btn ghost" href="./map.html">看熱點地圖</a></div></div></section>
-  <main class="wrap">
-    <section class="notice"><b>方法論重點：</b>目前是 prototype dashboard，不是正式全量資料。所有數字與熱點都應清楚標示來源、限制與更新狀態；正式資料接入前，維持 no live crawler、no source_url requests、no personal data、no auto publish。</section>
+  <div class="public-shell">
+    <header class="page-hero">
+      <div class="page-container hero-inner">
+        <nav class="nav"></nav>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">METHODOLOGY</span>
+            <h1>城市故障分析方法論</h1>
+            <p>把城市問題當成一個可以被觀察、分類、追蹤與改善的系統。這裡說明我們怎麼看資料、怎麼分類問題、怎麼判讀熱點，以及 prototype data 目前有哪些限制。</p>
+            <div class="hero-actions">
+              <a class="cta primary" href="./index.html">回城市儀表板</a>
+              <a class="cta ghost" href="./sources.html">看資料來源</a>
+              <a class="cta ghost" href="./map.html">看熱點地圖</a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>方法論的任務</h2>
+            <p>不是把每件事都說成高深模型，而是讓一般人知道：這個網站怎麼分類問題、怎麼看熱點、為什麼不直接把 prototype data 當成正式結論。</p>
+          </aside>
+        </div>
+      </div>
+    </header>
 
-    <div class="section-title"><h2>什麼是城市故障分析</h2><span>plain language</span></div>
-    <section class="grid grid2"><article class="card"><h3>用工程方法看城市</h3><p>城市問題不是只有單一事件，而是可能反覆出現在同一地點、同一類型、同一流程的系統性問題。城市故障分析就是把這些問題整理成可追蹤的資料。</p></article><article class="card"><h3>從抱怨變成改善清單</h3><p>交通、停車、道路、環境、通學安全等問題，若能整理成分類、熱點、趨勢與行動建議，就能從零散意見變成具體改善方向。</p></article></section>
+    <main class="page-main">
+      <section class="notice"><strong>方法論重點：</strong>目前是 prototype dashboard，不是正式全量資料。所有數字與熱點都應清楚標示來源、限制與更新狀態；正式資料接入前，維持 no live crawler、no source_url requests、no personal data、no auto publish。</section>
 
-    <div class="section-title"><h2>問題如何分類</h2><span>issue taxonomy</span></div>
-    <section class="card"><p><span class="pill">交通停車</span><span class="pill">道路路平</span><span class="pill">人行安全</span><span class="pill">環境衛生</span><span class="pill">公共安全</span><span class="pill">水利排水</span><span class="pill">市場商圈</span><span class="pill">通學安全</span><span class="pill">文化觀光</span><span class="pill">行政服務</span></p><p style="margin-top:14px">分類不是為了貼標籤，而是為了讓相似問題可以被累積、比較與追蹤。</p></section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>什麼是城市故障分析</h2>
+            <p>白話來說，就是把城市裡反覆出現、會影響生活品質的問題，整理成可以追蹤的分類與地點，而不是只靠零散抱怨或單次新聞。</p>
+          </div>
+          <span class="section-tag">plain language</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card step-card accent-orange"><h3>看問題類型</h3><p>先把交通、停車、環境、通學安全、市場商圈等議題分類清楚，避免不同問題混在一起。</p></article>
+          <article class="card step-card accent-green"><h3>看問題位置</h3><p>再看哪些地點反覆出現類似問題，判斷是否形成城市熱點。</p></article>
+          <article class="card step-card accent-blue"><h3>看可執行行動</h3><p>最後把熱點對應到主管機關與改善方向，讓資料能變成實際討論的起點。</p></article>
+        </div>
+      </section>
 
-    <div class="section-title"><h2>怎麼看熱點</h2><span>hotspot logic</span></div>
-    <section class="grid grid3"><article class="card step" style="--accent:#f97316"><h3>1. 看位置</h3><p>同一地點若反覆出現交通、停車、環境或安全問題，就可能形成城市熱點。</p></article><article class="card step" style="--accent:#0f766e"><h3>2. 看問題強度</h3><p>目前用 prototype score 表示熱點強度，正式版會再接入更多資料欄位與時間序列。</p></article><article class="card step" style="--accent:#3b82f6"><h3>3. 看可執行行動</h3><p>熱點不是只做排名，還要對應主管機關、改善方向與後續追蹤。</p></article></section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>怎麼分類問題</h2>
+            <p>分類不是為了學術好看，而是為了讓不同來源、不同時間的問題可以放到同一個結構裡比較。</p>
+          </div>
+          <span class="section-tag">issue taxonomy</span>
+        </div>
+        <div class="grid grid-2">
+          <article class="card"><h3>目前主要題組</h3><ul class="list"><li>交通與停車</li><li>道路與人行空間</li><li>環境衛生</li><li>通學安全</li><li>市場商圈與動線</li></ul></article>
+          <article class="card"><h3>分類的用途</h3><ul class="list"><li>讓首頁可以做議題排行。</li><li>讓地圖可以對應熱點類型。</li><li>讓後續正式資料接入時，欄位可以延續同一套分類。</li></ul></article>
+        </div>
+      </section>
 
-    <div class="section-title"><h2>prototype data 的限制</h2><span>data limitation</span></div>
-    <section class="grid grid2"><article class="card"><h3>目前能做什麼</h3><ul><li>展示儀表板樣貌。</li><li>呈現原型 KPI、議題排行與熱點。</li><li>說明後續要接哪些正式資料。</li></ul></article><article class="card"><h3>目前不能說什麼</h3><ul><li>不能說這是正式全量資料。</li><li>不能拿 prototype 當正式民意或完整統計。</li><li>不能把未確認來源標成 approved_for_crawling。</li></ul></article></section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>怎麼看熱點</h2>
+            <p>熱點不只是某個地方很有名，而是某個區域反覆出現多種城市問題，值得優先觀察。</p>
+          </div>
+          <span class="section-tag">hotspot logic</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card step-card accent-orange"><h3>1. 看位置</h3><p>同一地點若反覆出現交通、停車、環境或安全問題，就可能形成城市熱點。</p></article>
+          <article class="card step-card accent-green"><h3>2. 看問題強度</h3><p>目前用 prototype score 表示熱點強度，正式版會再接入更多資料欄位與時間序列。</p></article>
+          <article class="card step-card accent-blue"><h3>3. 看可執行行動</h3><p>熱點不是只做排名，還要對應主管機關、改善方向與後續追蹤。</p></article>
+        </div>
+      </section>
 
-    <div class="section-title"><h2>後續如何接正式資料</h2><span>next data</span></div>
-    <section class="grid grid3"><article class="card"><h3>確認官方來源</h3><p>先確認資料來源、欄位、更新頻率與限制。</p></article><article class="card"><h3>建立資料欄位</h3><p>把時間、地點、問題類型、主管機關與處理狀態整理成可分析欄位。</p></article><article class="card"><h3>更新儀表板</h3><p>讓首頁、地圖、總控台從 prototype data 逐步接入正式資料。</p></article></section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>prototype data 的限制</h2>
+            <p>prototype data 的目的，是先讓網站可展示、可解釋、可討論；但不能假裝它已經是正式資料庫。</p>
+          </div>
+          <span class="section-tag">data limitation</span>
+        </div>
+        <div class="grid grid-2">
+          <article class="card"><h3>目前能做什麼</h3><ul class="list"><li>展示儀表板樣貌。</li><li>呈現原型 KPI、議題排行與熱點。</li><li>說明後續要接哪些正式資料。</li></ul></article>
+          <article class="card"><h3>目前不能說什麼</h3><ul class="list"><li>不能說這是正式全量資料。</li><li>不能拿 prototype data 當正式民意或完整統計。</li><li>不能把未確認來源標成 approved_for_crawling。</li></ul></article>
+        </div>
+      </section>
 
-    <p class="footer-note">安全邊界：prototype dashboard、非正式全量資料、no live crawler、no source_url requests、no personal data、no private complaint full text、no auto publish、approved_for_crawling 不自動設定。</p>
-  </main>
-  <script src="./shared-nav.js"></script>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>後續如何接正式資料</h2>
+            <p>正式資料接入不是直接抓回來就好，而是要先確認來源、欄位、限制與更新方式。</p>
+          </div>
+          <span class="section-tag">next data</span>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><h3>確認官方來源</h3><p>先確認資料來源、欄位、更新頻率與限制。</p></article>
+          <article class="card"><h3>建立資料欄位</h3><p>把時間、地點、問題類型、主管機關與處理狀態整理成可分析欄位。</p></article>
+          <article class="card"><h3>更新儀表板</h3><p>讓首頁、地圖、總控台從 prototype data 逐步接入正式資料。</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>安全邊界</h2>
+            <p>這些原則是方法論的一部分，不是附註。</p>
+          </div>
+          <span class="section-tag">safety</span>
+        </div>
+        <div class="card">
+          <div class="safety">
+            <span>prototype dashboard</span>
+            <span>非正式全量資料</span>
+            <span>no live crawler</span>
+            <span>no source_url requests</span>
+            <span>no personal data</span>
+            <span>no private complaint full text</span>
+            <span>no auto publish</span>
+            <span>approved_for_crawling 不自動設定</span>
+          </div>
+        </div>
+        <p class="footer-note">城市故障分析方法論的目標，不是把每件事都工程化，而是讓一般人也能知道：這個網站為什麼這樣分類、這樣看熱點、這樣誠實標示 prototype data 的限制。</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
 </body>
 </html>

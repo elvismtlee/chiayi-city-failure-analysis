@@ -4,25 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>城市週報｜嘉義市城市問題儀表板</title>
-  <style>
-    :root{--orange:#f97316;--dark:#0f172a;--slate:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--shadow:0 14px 40px rgba(15,23,42,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--slate);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}a{color:inherit}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#0f172a,#1e293b 58%,#0f172a)}.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,#fff 39px,#fff 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#fff 39px,#fff 40px)}.inner,.wrap{max-width:1180px;margin:auto;position:relative;z-index:1}.inner{padding:34px 24px 54px}.nav{display:block;margin-bottom:28px}.badge{display:inline-flex;border-radius:999px;padding:7px 12px;background:rgba(249,115,22,.16);border:1px solid rgba(251,146,60,.42);color:#fdba74;font-size:12px;font-weight:950;letter-spacing:.08em}h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:22px 0 14px;letter-spacing:-.05em}.lead{font-size:clamp(17px,2.1vw,22px);line-height:1.78;color:#cbd5e1;max-width:900px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;padding:0 16px;text-decoration:none;font-weight:950}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);color:#fff}.wrap{padding:30px 24px 72px}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:30px 0 16px}.section-title h2{margin:0;font-size:28px}.section-title span{font-size:12px;font-weight:950;color:#c2410c;background:#ffedd5;border-radius:999px;padding:7px 11px;white-space:nowrap}.grid{display:grid;gap:16px}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:var(--card);border:1px solid rgba(15,23,42,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:#0f172a;font-size:21px}.card p,.card li{margin:0;color:#475569;line-height:1.75}.report-card{border-top:4px solid var(--accent,var(--orange))}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;background:#fff7ed;color:#c2410c;font-size:12px;font-weight:950;margin-bottom:12px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);border-radius:22px;padding:18px 20px;color:#7c2d12;line-height:1.75;box-shadow:var(--shadow)}.list{margin:0;padding-left:20px}.quick a{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:16px;font-weight:950;color:#0f172a;text-decoration:none}.quick a:hover{border-color:#f97316;color:#c2410c}.footer-note{margin-top:26px;color:#64748b;line-height:1.8;font-size:13px}@media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}.actions{display:grid}.btn{width:100%}}@media(max-width:640px){.inner{padding:28px 18px 46px}.wrap{padding:24px 18px 56px}}
-  </style>
+  <link rel="stylesheet" href="./public-site.css?v=20260526-public">
 </head>
-<body data-page="reports">
-  <section class="hero"><div class="inner"><nav class="nav"></nav><span class="badge">CITY WEEKLY REPORT</span><h1>城市週報</h1><p class="lead">把每週城市問題、熱點變化、資料狀態與下一步行動整理成可閱讀的摘要。這裡先提供 prototype weekly report 格式，正式資料接入後會逐週更新。</p><div class="actions"><a class="btn primary" href="./index.html">回城市儀表板</a><a class="btn ghost" href="./map.html">看熱點地圖</a><a class="btn ghost" href="./sources.html">看資料來源</a></div></div></section>
-  <main class="wrap">
-    <section class="notice"><b>目前狀態：</b>城市週報仍是 prototype dashboard 的一部分，不是正式全量資料報告。正式資料接入前，no live crawler、no source_url requests、no personal data、approved_for_crawling 不自動設定。</section>
-    <div class="section-title"><h2>本週城市觀察</h2><span>prototype report</span></div>
-    <section class="grid grid3"><article class="card report-card" style="--accent:#f97316"><span class="pill">焦點 1</span><h3>交通停車仍是第一優先</h3><p>目前 prototype 指標顯示，交通與停車問題是最需要優先追蹤的城市問題類型。</p></article><article class="card report-card" style="--accent:#0f766e"><span class="pill">焦點 2</span><h3>市場商圈需要整合管理</h3><p>市場周邊同時涉及環境、卸貨、通行與商圈動線，適合做跨局處改善清單。</p></article><article class="card report-card" style="--accent:#3b82f6"><span class="pill">焦點 3</span><h3>通學安全可先從熱點做起</h3><p>學校周邊的接送區、人行空間與路口安全，適合先用地點型專案追蹤。</p></article></section>
-    <div class="section-title"><h2>週報會包含什麼</h2><span>report structure</span></div>
-    <section class="grid grid2"><article class="card"><h3>每週摘要</h3><ul class="list"><li>本週最需要注意的城市問題。</li><li>新增或升高的議題類型。</li><li>熱點地圖與行動建議。</li></ul></article><article class="card"><h3>資料檢查</h3><ul class="list"><li>資料來源是否更新。</li><li>JSON 是否可正常讀取。</li><li>prototype data 是否仍需標示限制。</li></ul></article></section>
-    <div class="section-title"><h2>週報列表</h2><span>reports_index.json</span></div>
-    <section class="grid grid2" data-render="reports"><article class="card"><h3>Prototype 週報</h3><p>目前等待 reports_index.json 產生週報列表。正式資料接入後，這裡會顯示每週報告卡片。</p></article></section>
-    <div class="section-title"><h2>相關頁面</h2><span>quick links</span></div>
-    <section class="grid grid3 quick"><a href="./index.html">城市儀表板首頁 <span>→</span></a><a href="./command-center.html">城市資料總控台 <span>→</span></a><a href="./health-check.html">網站與資料健康檢查 <span>→</span></a></section>
-    <p class="footer-note">城市週報可作為公開說明、志工摘要、社群素材與政見研究的基礎；但正式引用前仍需回到資料來源與方法論確認限制。</p>
-  </main>
-  <script src="./shared-nav.js"></script>
-  <script src="./site-pages.js"></script>
+<body>
+  <div class="public-shell">
+    <header class="page-hero">
+      <div class="page-container hero-inner">
+        <nav class="nav"></nav>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">CITY WEEKLY REPORT</span>
+            <h1>城市週報</h1>
+            <p>把每週城市問題、熱點變化、資料狀態與下一步行動整理成可閱讀的摘要。這裡先提供 prototype weekly report 格式，正式資料接入後會逐週更新。</p>
+            <div class="hero-meta">
+              <span class="meta-pill" id="report-week-range">週期：2026-05-18 至 2026-05-24</span>
+              <span class="meta-pill" id="report-status-pill">系統狀態：ok</span>
+              <span class="meta-pill">prototype dashboard</span>
+            </div>
+            <div class="hero-actions">
+              <a class="cta primary" href="./index.html">回城市儀表板</a>
+              <a class="cta ghost" href="./map.html">看熱點地圖</a>
+              <a class="cta ghost" href="./sources.html">看資料來源</a>
+            </div>
+          </div>
+          <aside class="hero-panel">
+            <h2>週報的用途</h2>
+            <p>把首頁、地圖、洞察頁拆散的資訊，整理成每週一次的閱讀版本。這會是未來對外說明、志工摘要與長期追蹤的核心格式。</p>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="notice"><strong>目前狀態：</strong>城市週報仍是 prototype dashboard 的一部分，不是正式全量資料報告。正式資料接入前，no live crawler、no source_url requests、no personal data、approved_for_crawling 不自動設定。</section>
+
+      <section class="section">
+        <div class="section-head"><div><h2>本週城市觀察</h2><p>把首頁數字、熱點與議題排行整理成一週一看的摘要，讓沒有天天看 dashboard 的人也能快速理解重點。</p></div><span class="section-tag">prototype report</span></div>
+        <div class="grid grid-3" id="weekly-report-highlights">
+          <article class="card report-card accent-orange"><span class="pill">焦點 1</span><h3>交通停車仍是第一優先</h3><p>目前 prototype 指標顯示，交通與停車問題是最需要優先追蹤的城市問題類型。</p></article>
+          <article class="card report-card accent-green"><span class="pill">焦點 2</span><h3>市場商圈需要整合管理</h3><p>市場周邊同時涉及環境、卸貨、通行與商圈動線，適合做跨局處改善清單。</p></article>
+          <article class="card report-card accent-blue"><span class="pill">焦點 3</span><h3>通學安全可先從熱點做起</h3><p>學校周邊的接送區、人行空間與路口安全，適合先用地點型專案追蹤。</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><h2>週報會包含什麼</h2><p>這一頁不是華麗包裝，而是固定用同一套欄位說清楚本週重點。</p></div><span class="section-tag">report structure</span></div>
+        <div class="grid grid-2">
+          <article class="card"><h3>每週摘要</h3><ul class="list"><li>本週最需要注意的城市問題。</li><li>新增或升高的議題類型。</li><li>熱點地圖與行動建議。</li></ul></article>
+          <article class="card"><h3>資料檢查</h3><ul class="list"><li>資料來源是否更新。</li><li>JSON 是否可正常讀取。</li><li>prototype data 是否仍需標示限制。</li></ul></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><h2>週報列表</h2><p>目前先保留週報格式與入口，未來可逐週累積成公開版城市觀察檔案。</p></div><span class="section-tag">reports_index.json</span></div>
+        <div class="grid grid-2">
+          <article class="card"><h3>第 1 版 prototype 週報</h3><p id="weekly-report-summary">對應目前首頁與地圖的第一版公開數據整理，用來示範未來週報應該長什麼樣子。</p></article>
+          <article class="card"><h3>後續更新方式</h3><ul class="list" id="weekly-report-actions"><li>正式資料接入後，週報可固定整理新熱點、議題變化與資料狀態更新。</li><li>目前仍以 prototype data 為主，先保持公開可讀與資料透明。</li></ul></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><h2>相關頁面</h2><p>如果想從週報回到原始頁面，可以從這裡直接切換。</p></div><span class="section-tag">quick links</span></div>
+        <div class="quick-grid">
+          <a class="quick-card" href="./index.html"><div><small>Home</small><b>城市儀表板首頁</b><span>回首頁看數字與熱點全貌。</span></div></a>
+          <a class="quick-card" href="./command-center.html"><div><small>Control Room</small><b>城市資料總控台</b><span>看目前可用資料、頁面與接入狀態。</span></div></a>
+          <a class="quick-card" href="./health-check.html"><div><small>Health</small><b>網站與資料健康檢查</b><span>確認網站與 JSON 是否正常。</span></div></a>
+        </div>
+        <p class="footer-note">城市週報可作為公開說明、志工摘要、社群素材與議題研究的基礎；但正式引用前仍需回到資料來源與方法論確認限制。</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./reports.js?v=20260526"></script>
 </body>
 </html>

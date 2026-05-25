@@ -15,6 +15,15 @@ function renderList(selector, items) {
   node.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join('');
 }
 
+function normalizePublicAction(text) {
+  const value = String(text ?? '');
+  if (!value) return '持續補充資料與熱點觀察。';
+  return value
+    .replace('建立嘉義市議會 metadata crawler', '整理嘉義市議會 metadata 來源與欄位')
+    .replace('補齊 1999 與陳情資料來源', '補足可公開展示的城市問題資料來源')
+    .replace('將熱點資料轉為 GeoJSON 並接入 Leaflet 地圖', '持續補強熱點資料與地圖呈現');
+}
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -23,6 +32,22 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+const FALLBACK_AI_SUMMARY = {
+  updated_at: "2026-05-21 09:00:00",
+  summary_title: "本週嘉義城市故障觀察",
+  summary: "目前為原型資料。平台將整合議會質詢、1999 陳情與地方生活議題，形成可追蹤、可視覺化的城市治理資料。",
+  top_findings: [
+    "交通、停車與道路是第一波優先觀察議題",
+    "市場周邊與學校周邊適合作為熱點分析示範區",
+    "議員質詢 metadata 將作為議題關注度分析基礎",
+  ],
+  recommended_actions: [
+    "建立嘉義市議會 metadata crawler",
+    "補齊 1999 與陳情資料來源",
+    "將熱點資料轉為 GeoJSON 並接入 Leaflet 地圖",
+  ],
+};
 
 const TREND_LABELS = {
   up: '上升',
@@ -34,8 +59,8 @@ const TREND_LABELS = {
 const REVIEW_STATUS_LABELS = {
   prototype: '原型資料',
   uncertain: '待複核',
-  unreviewed: '尚未人工檢查',
-  reviewed: '已人工檢查',
+  unreviewed: '待確認',
+  reviewed: '已確認',
   corrected: '已人工修正',
 };
 
@@ -57,6 +82,191 @@ const TREND_WINDOWS = [
     id: 'trend-90',
     title: '最近 90 天｜長期趨勢',
     note: '適合觀察較長時間持續存在的結構性問題。',
+  },
+];
+
+const FALLBACK_TRENDS = [
+  {
+    issue: "market",
+    display_name: "市場商圈",
+    current_count: 4,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 7,
+    confidence: 0.45,
+    summary: "7 天趨勢目前仍是 metadata / sample 階段；市場商圈是最明顯的高密度觀察題組。",
+    review_status: "prototype",
+    recommended_action: "先以市場商圈作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "traffic",
+    display_name: "交通停車",
+    current_count: 3,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 7,
+    confidence: 0.45,
+    summary: "7 天趨勢目前仍是 metadata / sample 階段；交通停車是最需要優先接入正式資料的分類。",
+    review_status: "prototype",
+    recommended_action: "先以交通停車作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "school",
+    display_name: "通學安全",
+    current_count: 2,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 7,
+    confidence: 0.45,
+    summary: "7 天趨勢目前仍是 metadata / sample 階段；學校周邊安全問題值得繼續補資料。",
+    review_status: "prototype",
+    recommended_action: "先以通學安全作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "market",
+    display_name: "市場商圈",
+    current_count: 4,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 30,
+    confidence: 0.45,
+    summary: "30 天趨勢目前仍是 metadata / sample 階段；市場商圈持續是高優先觀察題組。",
+    review_status: "prototype",
+    recommended_action: "先以市場商圈作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "environment",
+    display_name: "環境衛生",
+    current_count: 2,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 30,
+    confidence: 0.45,
+    summary: "30 天趨勢目前仍是 metadata / sample 階段；市場周邊環境問題值得補更多正式資料。",
+    review_status: "prototype",
+    recommended_action: "先以環境衛生作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "traffic",
+    display_name: "交通停車",
+    current_count: 3,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 30,
+    confidence: 0.45,
+    summary: "30 天趨勢目前仍是 metadata / sample 階段；交通停車與商圈動線值得持續追蹤。",
+    review_status: "prototype",
+    recommended_action: "先以交通停車作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "market",
+    display_name: "市場商圈",
+    current_count: 4,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 90,
+    confidence: 0.45,
+    summary: "90 天趨勢目前仍是 metadata / sample 階段；市場商圈是最穩定的長期觀察題組。",
+    review_status: "prototype",
+    recommended_action: "先以市場商圈作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "traffic",
+    display_name: "交通停車",
+    current_count: 3,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 90,
+    confidence: 0.45,
+    summary: "90 天趨勢目前仍是 metadata / sample 階段；交通停車是最需要率先轉成正式城市指標的題組。",
+    review_status: "prototype",
+    recommended_action: "先以交通停車作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+  {
+    issue: "school",
+    display_name: "通學安全",
+    current_count: 2,
+    previous_count: 0,
+    change_percent: 0,
+    trend: "stable",
+    window_days: 90,
+    confidence: 0.45,
+    summary: "90 天趨勢目前仍是 metadata / sample 階段；學校周邊安全與接送區是值得長期追蹤的分類。",
+    review_status: "prototype",
+    recommended_action: "先以通學安全作為觀察題組，補足會議日期與更多樣本後再評估趨勢。",
+  },
+];
+
+const FALLBACK_SCORES = [
+  {
+    target_name: "文化路商圈",
+    issue: "停車 / 人行",
+    score: 92,
+    level: "極高",
+    recommended_action: "商圈停車與人行動線改善專案。",
+  },
+  {
+    target_name: "市場周邊",
+    issue: "垃圾 / 動線",
+    score: 78,
+    level: "高",
+    recommended_action: "市場周邊環境改善與卸貨動線規劃。",
+  },
+  {
+    target_name: "學校周邊",
+    issue: "通學安全",
+    score: 71,
+    level: "高",
+    recommended_action: "通學安全盤點與行人友善改善。",
+  },
+];
+
+const FALLBACK_DEPARTMENTS = [
+  {
+    department: "交通處",
+    total_cases: 320,
+    avg_processing_days: 12.5,
+    top_issues: ["停車", "號誌", "通學安全"],
+    response_score: 78,
+  },
+  {
+    department: "工務處",
+    total_cases: 260,
+    avg_processing_days: 15.8,
+    top_issues: ["路平", "施工", "人行道"],
+    response_score: 72,
+  },
+  {
+    department: "環保局",
+    total_cases: 210,
+    avg_processing_days: 8.4,
+    top_issues: ["垃圾", "異味", "噪音"],
+    response_score: 81,
+  },
+];
+
+const FALLBACK_COUNCILORS = [
+  {
+    councilor_name: "範例議員 A",
+    council_term: "第十一屆",
+    district: "西區",
+    total_questions: 25,
+    top_issues: ["交通", "道路", "教育"],
+  },
+  {
+    councilor_name: "範例議員 B",
+    council_term: "第十一屆",
+    district: "西區",
+    total_questions: 18,
+    top_issues: ["環境", "文化", "社福"],
   },
 ];
 
@@ -110,7 +320,7 @@ function renderTrendCard(item) {
         <div><dt>信心</dt><dd>${Math.round(confidence * 100)}%</dd></div>
       </dl>
       <p>${escapeHtml(item.summary || '目前仍在資料整理階段。')}</p>
-      <b>建議：${escapeHtml(item.recommended_action || '持續補充資料並人工 review。')}</b>
+      <b>建議：${escapeHtml(item.recommended_action || '持續補充資料並做公開資料確認。')}</b>
     </article>
   `;
 }
@@ -156,11 +366,11 @@ function renderCouncilorCards(items) {
 }
 
 async function bootInsights() {
-  const summary = await readJson('./data/ai_issue_summary.json', {});
-  const trends = await readJson('./data/issue_trends.json', []);
-  const scores = await readJson('./data/urban_failure_scores.json', []);
-  const departments = await readJson('./data/department_performance.json', []);
-  const councilors = await readJson('./data/councilor_issue_analysis.json', []);
+  const summary = await readJson('./data/ai_issue_summary.json', FALLBACK_AI_SUMMARY);
+  const trends = await readJson('./data/issue_trends.json', FALLBACK_TRENDS);
+  const scores = await readJson('./data/urban_failure_scores.json', FALLBACK_SCORES);
+  const departments = await readJson('./data/department_performance.json', FALLBACK_DEPARTMENTS);
+  const councilors = await readJson('./data/councilor_issue_analysis.json', FALLBACK_COUNCILORS);
 
   const title = document.querySelector('[data-ai="title"]');
   const body = document.querySelector('[data-ai="summary"]');
@@ -170,11 +380,15 @@ async function bootInsights() {
   if (updated) updated.textContent = `資料更新：${summary.updated_at || 'prototype'}`;
 
   renderList('[data-ai="findings"]', summary.top_findings || []);
-  renderList('[data-ai="actions"]', summary.recommended_actions || []);
+  renderList('[data-ai="actions"]', (summary.recommended_actions || []).map(normalizePublicAction));
   renderTrendCards(trends);
   renderScoreTable(scores);
   renderDepartmentCards(departments);
   renderCouncilorCards(councilors);
 }
 
-bootInsights();
+document.addEventListener('DOMContentLoaded', () => {
+  bootInsights().catch((error) => {
+    console.warn('Insights fallback content is active:', error);
+  });
+});

@@ -4,6 +4,44 @@ const FALLBACK_HOTSPOT_COORDS = [
   [23.4787, 120.4456],
   [23.4758, 120.4528],
 ];
+const FALLBACK_HOTSPOTS = [
+  {
+    name: '文化路商圈',
+    district: '西區',
+    category: '停車 / 人行',
+    department: '交通處',
+    score: 92,
+    action: '商圈動線與停車熱點專案',
+    lat: 23.4808,
+    lng: 120.4497,
+    isPrototype: true,
+    sourceType: 'fallback',
+  },
+  {
+    name: '市場周邊',
+    district: '西區',
+    category: '垃圾 / 動線',
+    department: '環保局 / 建設處',
+    score: 78,
+    action: '市場周邊環境改善與卸貨規劃',
+    lat: 23.4787,
+    lng: 120.4456,
+    isPrototype: true,
+    sourceType: 'fallback',
+  },
+  {
+    name: '學校周邊',
+    district: '西區',
+    category: '通學安全',
+    department: '交通處 / 教育處',
+    score: 71,
+    action: '通學步道與接送區改善',
+    lat: 23.4758,
+    lng: 120.4528,
+    isPrototype: true,
+    sourceType: 'fallback',
+  },
+];
 
 async function readJson(path) {
   const response = await fetch(path, { cache: 'no-store' });
@@ -21,8 +59,8 @@ async function loadHotspots() {
       const hotspots = await readJson('./data/hotspots.json');
       return normalizeLegacyHotspots(hotspots);
     } catch (legacyError) {
-      console.warn('Use empty hotspots fallback:', legacyError);
-      return [];
+      console.warn('Use built-in hotspots fallback:', legacyError);
+      return FALLBACK_HOTSPOTS;
     }
   }
 }
@@ -115,9 +153,56 @@ function createPopupContent(hotspot) {
   `;
 }
 
+function renderFallbackMap(node, hotspots) {
+  const items = hotspots.length ? hotspots : FALLBACK_HOTSPOTS;
+  node.innerHTML = `
+    <div class="map-fallback-shell">
+      <div class="map-fallback-header">
+        <strong>prototype map fallback</strong>
+        <span>外部地圖底圖未載入時，仍保留熱點內容與行動建議。</span>
+      </div>
+      <div class="map-fallback-grid">
+        <article class="map-fallback-panel">
+          <div class="map-fallback-canvas">
+            ${items.map((hotspot) => `
+              <div class="map-fallback-pin" style="left:${((hotspot.lng - 120.44) * 420).toFixed(0)}px;top:${((23.485 - hotspot.lat) * 900).toFixed(0)}px;">
+                <span>${hotspot.score}</span>
+              </div>
+              <div class="map-fallback-bubble" style="left:${(((hotspot.lng - 120.44) * 420) + 16).toFixed(0)}px;top:${(((23.485 - hotspot.lat) * 900) - 12).toFixed(0)}px;">
+                <strong>${hotspot.name}</strong>
+                ${hotspot.category}
+              </div>
+            `).join('')}
+          </div>
+        </article>
+        <aside class="map-fallback-list">
+          ${items.map((hotspot) => `
+            <article class="map-fallback-item">
+              <div>
+                <strong>${hotspot.name}</strong>
+                <p>${hotspot.category}｜${hotspot.department}</p>
+              </div>
+              <div>
+                <b>${hotspot.score}</b>
+                <span>${hotspot.action}</span>
+              </div>
+            </article>
+          `).join('')}
+        </aside>
+      </div>
+    </div>
+  `;
+}
+
 async function bootLeafletHotspotMap() {
   const node = document.querySelector('[data-render="leaflet_hotspot_map"]');
-  if (!node || typeof L === 'undefined') return;
+  if (!node) return;
+
+  const hotspots = await loadHotspots();
+  if (typeof L === 'undefined') {
+    renderFallbackMap(node, hotspots);
+    return;
+  }
 
   const map = L.map(node, { scrollWheelZoom: false }).setView(CHIAYI_CENTER, 15);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -125,7 +210,6 @@ async function bootLeafletHotspotMap() {
     attribution: '&copy; OpenStreetMap contributors',
   }).addTo(map);
 
-  const hotspots = await loadHotspots();
   const bounds = [];
 
   hotspots.forEach(hotspot => {
