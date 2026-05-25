@@ -15,6 +15,15 @@ function renderList(selector, items) {
   node.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join('');
 }
 
+function normalizePublicAction(text) {
+  const value = String(text ?? '');
+  if (!value) return '持續補充資料與熱點觀察。';
+  return value
+    .replace('建立嘉義市議會 metadata crawler', '整理嘉義市議會 metadata 來源與欄位')
+    .replace('補齊 1999 與陳情資料來源', '補足可公開展示的城市問題資料來源')
+    .replace('將熱點資料轉為 GeoJSON 並接入 Leaflet 地圖', '持續補強熱點資料與地圖呈現');
+}
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -371,7 +380,7 @@ async function bootInsights() {
   if (updated) updated.textContent = `資料更新：${summary.updated_at || 'prototype'}`;
 
   renderList('[data-ai="findings"]', summary.top_findings || []);
-  renderList('[data-ai="actions"]', summary.recommended_actions || []);
+  renderList('[data-ai="actions"]', (summary.recommended_actions || []).map(normalizePublicAction));
   renderTrendCards(trends);
   renderScoreTable(scores);
   renderDepartmentCards(departments);

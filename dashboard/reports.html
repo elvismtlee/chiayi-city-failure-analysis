@@ -16,6 +16,11 @@
             <span class="eyebrow">CITY WEEKLY REPORT</span>
             <h1>城市週報</h1>
             <p>把每週城市問題、熱點變化、資料狀態與下一步行動整理成可閱讀的摘要。這裡先提供 prototype weekly report 格式，正式資料接入後會逐週更新。</p>
+            <div class="hero-meta">
+              <span class="meta-pill" id="report-week-range">週期：2026-05-18 至 2026-05-24</span>
+              <span class="meta-pill" id="report-status-pill">系統狀態：ok</span>
+              <span class="meta-pill">prototype dashboard</span>
+            </div>
             <div class="hero-actions">
               <a class="cta primary" href="./index.html">回城市儀表板</a>
               <a class="cta ghost" href="./map.html">看熱點地圖</a>
@@ -35,7 +40,7 @@
 
       <section class="section">
         <div class="section-head"><div><h2>本週城市觀察</h2><p>把首頁數字、熱點與議題排行整理成一週一看的摘要，讓沒有天天看 dashboard 的人也能快速理解重點。</p></div><span class="section-tag">prototype report</span></div>
-        <div class="grid grid-3">
+        <div class="grid grid-3" id="weekly-report-highlights">
           <article class="card report-card accent-orange"><span class="pill">焦點 1</span><h3>交通停車仍是第一優先</h3><p>目前 prototype 指標顯示，交通與停車問題是最需要優先追蹤的城市問題類型。</p></article>
           <article class="card report-card accent-green"><span class="pill">焦點 2</span><h3>市場商圈需要整合管理</h3><p>市場周邊同時涉及環境、卸貨、通行與商圈動線，適合做跨局處改善清單。</p></article>
           <article class="card report-card accent-blue"><span class="pill">焦點 3</span><h3>通學安全可先從熱點做起</h3><p>學校周邊的接送區、人行空間與路口安全，適合先用地點型專案追蹤。</p></article>
@@ -53,8 +58,8 @@
       <section class="section">
         <div class="section-head"><div><h2>週報列表</h2><p>目前先保留週報格式與入口，未來可逐週累積成公開版城市觀察檔案。</p></div><span class="section-tag">reports_index.json</span></div>
         <div class="grid grid-2">
-          <article class="card"><h3>第 1 版 prototype 週報</h3><p>對應目前首頁與地圖的第一版公開數據整理，用來示範未來週報應該長什麼樣子。</p></article>
-          <article class="card"><h3>後續更新方式</h3><p>正式資料接入後，週報可固定整理新熱點、議題變化與資料狀態更新，而不是每次都重做整站文案。</p></article>
+          <article class="card"><h3>第 1 版 prototype 週報</h3><p id="weekly-report-summary">對應目前首頁與地圖的第一版公開數據整理，用來示範未來週報應該長什麼樣子。</p></article>
+          <article class="card"><h3>後續更新方式</h3><ul class="list" id="weekly-report-actions"><li>正式資料接入後，週報可固定整理新熱點、議題變化與資料狀態更新。</li><li>目前仍以 prototype data 為主，先保持公開可讀與資料透明。</li></ul></article>
         </div>
       </section>
 
@@ -71,5 +76,6 @@
   </div>
 
   <script src="./shared-nav.js?v=20260523-navux"></script>
+  <script src="./reports.js?v=20260526"></script>
 </body>
 </html>
